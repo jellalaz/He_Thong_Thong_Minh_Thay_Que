@@ -33,27 +33,32 @@
           "receiver": "Điều phối",
           "type": "INFORM",
           "content": [
-            0.03906201921168464,
-            0.016372547738231973,
+            0.026610676134019507,
+            0.011031893834946134,
             0.0,
             0.0,
             0.0,
-            0.037062783087307864,
-            0.016858020106640812,
-            0.017158540019313575,
-            0.06048275561744941,
+            0.024967103593479045,
+            0.0117841360271087,
+            0.011637830294947053,
+            0.042755888500270574,
             0.0,
-            0.03779049375614172,
-            0.01838077715604164,
-            0.15875281739735295,
+            0.02746034200360927,
+            0.013112119345005193,
+            0.1329749107630071,
             0.0,
-            0.018141269159939247,
-            0.0,
-            0.0,
+            0.012432423085122586,
             0.0,
             0.0,
-            0.09400593770892479,
-            0.017296138273085262
+            0.0,
+            0.0,
+            0.07310678775529492,
+            0.01174261067253027,
+            0.11284359791695872,
+            0.0,
+            0.0,
+            0.01169250735945496,
+            0.01089697868772145
           ]
         },
         {
@@ -157,7 +162,10 @@
           "target": "đường huyết trung bình"
         }
       ],
-      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "feedback_supported": false,
+      "response_id": null,
+      "response_mode": "kb-rules",
+      "generator": "KB và luật có nguồn",
       "suggestions": [
         "Ngưỡng HbA1c được hiểu thế nào?",
         "Tôi nên chuẩn bị gì khi đi khám?"
@@ -201,6 +209,11 @@
           "receiver": "Điều phối",
           "type": "INFORM",
           "content": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             0.0,
             0.0,
             0.0,
@@ -267,7 +280,10 @@
       ],
       "sources": [],
       "graph_evidence": [],
-      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "feedback_supported": false,
+      "response_id": null,
+      "response_mode": "kb-rules",
+      "generator": "KB và luật có nguồn",
       "suggestions": [
         "HbA1c là gì?",
         "Gợi ý cách chia một bữa ăn",
@@ -283,7 +299,7 @@
     "status": 200,
     "passed": true,
     "response": {
-      "answer": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.\n\nHigh, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "answer": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.",
       "result": {
         "label": "High",
         "scores": {
@@ -339,26 +355,31 @@
           "type": "INFORM",
           "content": [
             0.0,
-            0.02617834348259236,
-            0.03246343820338126,
+            0.026801082802573123,
+            0.033829132132269825,
             0.0,
             0.0,
-            0.03885268533517924,
-            0.005226727618695112,
-            0.0059356924420847215,
-            0.02347920046829119,
-            0.03797356293058031,
-            0.02435065832580839,
-            0.00635850369098737,
-            0.012399307321778737,
-            0.005502807661820003,
+            0.039101743727110796,
+            0.006073335819191514,
+            0.005997932425879838,
+            0.025857237526787105,
+            0.034586153218782265,
+            0.02289459240794995,
+            0.006757754993691525,
+            0.013390580326309886,
+            0.005629064562722526,
             0.0,
             0.0,
-            0.01957973890879254,
-            0.00661012834925586,
-            0.018650304491344485,
-            0.011459619242119152,
-            0.6166025667257966
+            0.017336031006332478,
+            0.00695181897935313,
+            0.01931752739261867,
+            0.012945944654025923,
+            0.6173626483797877,
+            0.02543641824836449,
+            0.005756043787797778,
+            0.0,
+            0.0,
+            0.00860951329684257
           ]
         },
         {
@@ -462,9 +483,13 @@
         }
       ],
       "graph_evidence": [],
-      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "feedback_supported": false,
+      "response_id": null,
+      "response_mode": "kb-rules",
+      "generator": "KB và luật có nguồn",
       "suggestions": [
-        "Nhãn High có phải chẩn đoán không?"
+        "HbA1c là gì?",
+        "Tôi cần kiểm tra đường huyết thế nào?"
       ],
       "context_used": false,
       "topic": "classification",
@@ -476,7 +501,7 @@
     "status": 200,
     "passed": true,
     "response": {
-      "answer": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.\n\nMô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "answer": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.",
       "result": {
         "value": 207.53014411590692,
         "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c."
@@ -511,7 +536,7 @@
           "receiver": "Điều phối",
           "type": "INFORM",
           "content": {
-            "topic": "model",
+            "topic": "regression",
             "context_used": false
           }
         },
@@ -527,25 +552,30 @@
           "type": "INFORM",
           "content": [
             0.0,
-            0.027261585929959004,
+            0.027699908825863175,
             0.0,
             0.0,
             0.0,
-            0.03085623148249204,
+            0.03134486714305057,
             0.0,
             0.0,
             0.0,
-            0.019122149034152273,
-            0.01624268250317211,
+            0.0204025533224019,
+            0.01755820383209852,
             0.0,
-            0.018581508746833057,
-            0.03385308718512339,
+            0.020008628977311756,
+            0.033644505788461725,
             0.0,
             0.0,
-            0.019267020996131763,
-            0.021881182508424614,
+            0.017885001894207348,
+            0.020775255931516808,
             0.0,
-            0.35903850493239003,
+            0.35631419607711967,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.018008814652176526,
             0.0
           ]
         },
@@ -671,12 +701,16 @@
           "target": "xác suất mắc bệnh"
         }
       ],
-      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "feedback_supported": false,
+      "response_id": null,
+      "response_mode": "kb-rules",
+      "generator": "KB và luật có nguồn",
       "suggestions": [
-        "Điểm tiến triển có phải đường huyết không?"
+        "HbA1c là gì?",
+        "Tôi cần kiểm tra đường huyết thế nào?"
       ],
       "context_used": false,
-      "topic": "model",
+      "topic": "regression",
       "tone": "normal"
     }
   },
@@ -765,14 +799,19 @@
             0.0,
             0.0,
             0.0,
-            0.23408193813107256,
+            0.24041576139884924,
             0.0,
             0.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            0.0762876473625329,
+            0.07747757665413314,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
             0.0
           ]
         },
@@ -866,7 +905,10 @@
         }
       ],
       "graph_evidence": [],
-      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "feedback_supported": false,
+      "response_id": null,
+      "response_mode": "kb-rules",
+      "generator": "KB và luật có nguồn",
       "suggestions": [
         "Ngưỡng HbA1c được hiểu thế nào?",
         "Tôi nên chuẩn bị gì khi đi khám?"

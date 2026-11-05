@@ -1,6 +1,6 @@
 {
   "version": "3.0",
-  "reviewed_at": "2026-11-05",
+  "reviewed_at": "2026-11-06",
   "documents": [
     {
       "id": "bloodpressure",
@@ -503,6 +503,38 @@
       "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
       "source": "who",
       "triples": []
+    },
+    {
+      "id": "foot_care",
+      "title": "Chăm sóc bàn chân khi có tiểu đường",
+      "terms": ["bàn chân", "chân", "vết loét", "tê chân", "kiểm tra chân"],
+      "text": "Người có tiểu đường nên quan sát bàn chân mỗi ngày, kể cả giữa các ngón chân, để sớm nhận ra vết cắt, chỗ đỏ, sưng hoặc phồng rộp. Có thể dùng gương hoặc nhờ người hỗ trợ nếu khó nhìn. Hãy trao đổi với cơ sở y tế khi phát hiện tổn thương; kiểm tra bàn chân trong các lần khám.",
+      "source": "feet",
+      "triples": [["Tiểu đường", "cần chú ý", "chăm sóc bàn chân"], ["Chăm sóc bàn chân", "gồm", "quan sát hằng ngày"]]
+    },
+    {
+      "id": "sick_day",
+      "title": "Khi người tiểu đường bị ốm",
+      "terms": ["bị ốm", "sốt", "ngày ốm", "nôn", "mất nước"],
+      "text": "Khi bị ốm, đường huyết có thể thay đổi dù ăn ít hơn. CDC khuyên trao đổi trước với nhóm chăm sóc về kế hoạch ngày ốm, theo dõi đường huyết thường xuyên hơn theo hướng dẫn và uống nước để tránh mất nước. Nếu khó thở, không giữ được nước uống hoặc có dấu hiệu nặng, cần liên hệ cơ sở y tế khẩn cấp. Không tự chỉnh thuốc theo chatbot.",
+      "source": "sickday",
+      "triples": [["Ngày ốm", "cần", "theo dõi đường huyết"], ["Ngày ốm", "cần chú ý", "mất nước"]]
+    },
+    {
+      "id": "kidney_checks",
+      "title": "Theo dõi thận ở người tiểu đường",
+      "terms": ["thận", "uacr", "egfr", "albumin niệu", "lọc cầu thận"],
+      "text": "UACR (tỷ số albumin/creatinine trong nước tiểu) và eGFR (mức lọc cầu thận ước tính) là hai chỉ số thường dùng để đánh giá tổn thương thận. Người có tiểu đường nên trao đổi với bác sĩ về thời điểm kiểm tra và ý nghĩa kết quả; một chỉ số đơn lẻ không đủ kết luận tình trạng thận.",
+      "source": "kidney",
+      "triples": [["Theo dõi thận", "dùng", "UACR"], ["Theo dõi thận", "dùng", "eGFR"]]
+    },
+    {
+      "id": "activity_plan",
+      "title": "Bắt đầu vận động từng bước",
+      "terms": ["bắt đầu vận động", "đi bộ", "hoạt động thể lực", "thể dục"],
+      "text": "CDC gợi ý bắt đầu bằng mục tiêu nhỏ, chẳng hạn đi bộ khoảng 10 phút sau bữa tối, rồi tăng dần theo sức. Mục tiêu chung được nêu là ít nhất 150 phút vận động mức vừa mỗi tuần. Người có bệnh nền hoặc đang dùng thuốc làm hạ đường huyết nên hỏi nhóm chăm sóc về hoạt động phù hợp và cách theo dõi khi vận động.",
+      "source": "exercise",
+      "triples": [["Vận động", "có thể bắt đầu bằng", "đi bộ ngắn"], ["Vận động", "cần phù hợp", "tình trạng cá nhân"]]
     }
   ],
   "sources": {
@@ -557,6 +589,10 @@
     "classification_data": {
       "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
       "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
-    }
+    },
+    "feet": {"label": "NIDDK · Diabetes & Foot Problems", "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"},
+    "sickday": {"label": "CDC · Managing Sick Days", "url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html"},
+    "kidney": {"label": "NIDDK · Quick Reference on UACR & GFR", "url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr"},
+    "exercise": {"label": "CDC · Get Active", "url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html"}
   }
 }

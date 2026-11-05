@@ -11,6 +11,7 @@ from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
 from app import local_llm, feedback
+from app.model_explanation import explain
 from app.settings import database, browser_url
 from typing import Literal
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -82,6 +83,8 @@ def chat(req:Request):
   msg('Mô hình','Đối chiếu','INFORM',json.dumps(result,ensure_ascii=False))
  q=req.question or ('phân loại nhãn tổng hợp classification High Moderate Low' if req.task=='classification' else 'điểm tiến triển diabetes')
  plan=route(q,[h.model_dump() for h in req.history])
+ if result is not None:
+  plan.update(topic=req.task,ids=['classification_scope'] if req.task=='classification' else ['model'],override=None,intro='',suggestions=['HbA1c là gì?','Tôi cần kiểm tra đường huyết thế nào?'])
  msg('Hội thoại','Điều phối','INFORM',{'topic':plan['topic'],'context_used':plan['context_used']})
  scores=bus.request('Điều phối','Truy xuất',plan['query'])
  selected=[docs[i] for i in np.argsort(-scores)[:3] if scores[i]>max(.04,float(scores.max())*.65)]
@@ -106,14 +109,14 @@ def chat(req:Request):
  elif plan['intro']:answer=plan['intro']+'\n\n'+answer
  if result:
   verdict=bus.request('Điều phối','Đối chiếu',result)
-  answer=verdict['scope']+'\n\n'+answer
+  answer=explain(req.task,result)
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
  response_mode="kb-rules"
  feedback_id=None;presentation=0
  if local_llm.enabled() and plan['topic'] in {'meal','fruit','activity','monitor','diabetes','symptoms','knowledge'} and selected and not re.search(r'\d',q):
   feedback_id,presentation=feedback.choose(plan['topic'])
   msg('Chính sách phản hồi','Điều phối','INFORM',{'strategy':('trực tiếp','từng bước')[presentation]})
- if local_llm.enabled():
+ if local_llm.enabled() and result is None:
   bus.register(Agent('Kiểm chứng phản hồi',local_llm.verify))
   bus.register(Agent('Ngôn ngữ cục bộ',local_llm.respond))
   try:

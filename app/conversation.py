@@ -6,6 +6,7 @@ def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
 
 TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem','do tieu duong','kiem tra tieu duong'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['overview','testing']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
+TOPICS=[('sick_day',['bi om','ngay om','bi sot','sot','non khi bi tieu duong'],['sick_day']),('foot_care',['ban chan','te chan','vet loet o chan','kiem tra chan'],['foot_care']),('kidney_checks',['uacr','egfr','albumin nieu','chuc nang than','benh than','xet nghiem than'],['kidney_checks'])]+[(key,terms,ids+['activity_plan'] if key=='activity' else ids) for key,terms,ids in TOPICS]
 FOLLOW={
  'bloodpressure':['Đo huyết áp tại nhà thế nào?','Tôi nên ghi gì khi đi khám?'],
  'a1c':['Ngưỡng HbA1c được hiểu thế nào?','Tôi nên chuẩn bị gì khi đi khám?'],
@@ -20,6 +21,7 @@ FOLLOW={
  'classification':['Nhãn High có phải chẩn đoán không?'],
  'diabetes':['HbA1c là gì?','Tôi nên theo dõi đường huyết thế nào?'],
  'model':['Điểm tiến triển có phải đường huyết không?']}
+FOLLOW.update({'sick_day':['Tôi nên ghi gì khi bị ốm?'],'foot_care':['Tôi cần kiểm tra bàn chân ra sao?'],'kidney_checks':['UACR và eGFR dùng để làm gì?']})
 
 def topic(q):
  for key,terms,ids in TOPICS:

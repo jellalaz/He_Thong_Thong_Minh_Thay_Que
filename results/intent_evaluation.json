@@ -1,69 +1,69 @@
 {
-  "train": 64,
-  "test": 16,
-  "accuracy": 1.0,
-  "macro_f1": 1.0,
+  "train": 112,
+  "test": 32,
+  "accuracy": 0.9375,
+  "macro_f1": 0.9365079365079365,
   "report": {
     "a1c": {
       "precision": 1.0,
       "recall": 1.0,
       "f1-score": 1.0,
-      "support": 2.0
+      "support": 4.0
     },
     "activity": {
-      "precision": 1.0,
+      "precision": 0.8,
       "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 2.0
+      "f1-score": 0.8888888888888888,
+      "support": 4.0
     },
     "bloodpressure": {
       "precision": 1.0,
       "recall": 1.0,
       "f1-score": 1.0,
-      "support": 2.0
+      "support": 4.0
     },
     "fruit": {
       "precision": 1.0,
       "recall": 1.0,
       "f1-score": 1.0,
-      "support": 2.0
+      "support": 4.0
     },
     "meal": {
-      "precision": 1.0,
+      "precision": 0.8,
       "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 2.0
+      "f1-score": 0.8888888888888888,
+      "support": 4.0
     },
     "medicine": {
       "precision": 1.0,
       "recall": 1.0,
       "f1-score": 1.0,
-      "support": 2.0
+      "support": 4.0
     },
     "monitor": {
       "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 2.0
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 4.0
     },
     "out_of_scope": {
       "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 2.0
+      "recall": 0.75,
+      "f1-score": 0.8571428571428571,
+      "support": 4.0
     },
-    "accuracy": 1.0,
+    "accuracy": 0.9375,
     "macro avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 16.0
+      "precision": 0.95,
+      "recall": 0.9375,
+      "f1-score": 0.9365079365079365,
+      "support": 32.0
     },
     "weighted avg": {
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1-score": 1.0,
-      "support": 16.0
+      "precision": 0.95,
+      "recall": 0.9375,
+      "f1-score": 0.9365079365079365,
+      "support": 32.0
     }
   },
   "predictions": [
@@ -162,7 +162,103 @@
       "label": "out_of_scope",
       "split": "test",
       "predicted": "out_of_scope"
+    },
+    {
+      "text": "Bữa chiều của tôi thường chỉ có bánh mì, chỉnh sao?",
+      "label": "meal",
+      "split": "test",
+      "predicted": "meal"
+    },
+    {
+      "text": "Tư vấn cách sắp xếp phần ăn trong đĩa",
+      "label": "meal",
+      "split": "test",
+      "predicted": "meal"
+    },
+    {
+      "text": "Tôi có thể chọn quả ổi cho bữa phụ không?",
+      "label": "fruit",
+      "split": "test",
+      "predicted": "fruit"
+    },
+    {
+      "text": "Ăn trái cây nguyên quả thay nước ép vì sao?",
+      "label": "fruit",
+      "split": "test",
+      "predicted": "fruit"
+    },
+    {
+      "text": "Tôi ngồi văn phòng cả ngày, bắt đầu tập thế nào?",
+      "label": "activity",
+      "split": "test",
+      "predicted": "activity"
+    },
+    {
+      "text": "Đi bộ sau bữa tối có ích gì?",
+      "label": "activity",
+      "split": "test",
+      "predicted": "activity"
+    },
+    {
+      "text": "Dừng viên đang uống khi chỉ số tốt hơn được không?",
+      "label": "medicine",
+      "split": "test",
+      "predicted": "medicine"
+    },
+    {
+      "text": "Có thể điều chỉnh đơn thuốc ở nhà không?",
+      "label": "medicine",
+      "split": "test",
+      "predicted": "medicine"
+    },
+    {
+      "text": "Viết nhật ký trước lần tái khám ra sao?",
+      "label": "monitor",
+      "split": "test",
+      "predicted": "monitor"
+    },
+    {
+      "text": "Tôi nên lưu số đo cùng thời điểm hay bữa ăn?",
+      "label": "monitor",
+      "split": "test",
+      "predicted": "meal"
+    },
+    {
+      "text": "Máy đo áp huyết báo hai con số, đọc sao?",
+      "label": "bloodpressure",
+      "split": "test",
+      "predicted": "bloodpressure"
+    },
+    {
+      "text": "Cần ngồi nghỉ trước lúc đo huyết áp không?",
+      "label": "bloodpressure",
+      "split": "test",
+      "predicted": "bloodpressure"
+    },
+    {
+      "text": "Trên xét nghiệm ghi HbA1c, giải thích giúp",
+      "label": "a1c",
+      "split": "test",
+      "predicted": "a1c"
+    },
+    {
+      "text": "Chỉ số đường hóa ba tháng dùng để làm gì?",
+      "label": "a1c",
+      "split": "test",
+      "predicted": "a1c"
+    },
+    {
+      "text": "Hãy gợi ý một bộ phim kinh dị",
+      "label": "out_of_scope",
+      "split": "test",
+      "predicted": "activity"
+    },
+    {
+      "text": "Tỷ giá đồng đô la hôm nay là bao nhiêu?",
+      "label": "out_of_scope",
+      "split": "test",
+      "predicted": "out_of_scope"
     }
   ],
-  "limitations": "Small author-written internal benchmark. No patient data, no language-model fine-tuning; confidence scores are not medical probabilities."
+  "limitations": "Author-written internal intent benchmark. No patient data. Overlapping wording and topic content across splits can inflate scores. This training updates only the question router, not Qwen or clinical prediction models."
 }

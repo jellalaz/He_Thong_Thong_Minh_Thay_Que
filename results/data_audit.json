@@ -95,10 +95,10 @@
   },
   "knowledge": {
     "file": "data/knowledge.json",
-    "documents": 21,
-    "used_sources": 9,
-    "source_registry_entries": 13,
-    "triples": 32,
+    "documents": 26,
+    "used_sources": 13,
+    "source_registry_entries": 17,
+    "triples": 40,
     "sources": [
       {
         "id": "diagnosis",
@@ -137,9 +137,10 @@
         "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
         "documents": [
           "activity",
-          "symptoms"
+          "symptoms",
+          "overview"
         ],
-        "count": 2
+        "count": 3
       },
       {
         "id": "care",
@@ -192,9 +193,45 @@
           "classification_scope"
         ],
         "count": 1
+      },
+      {
+        "id": "feet",
+        "label": "NIDDK · Diabetes & Foot Problems",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems",
+        "documents": [
+          "foot_care"
+        ],
+        "count": 1
+      },
+      {
+        "id": "sickday",
+        "label": "CDC · Managing Sick Days",
+        "url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html",
+        "documents": [
+          "sick_day"
+        ],
+        "count": 1
+      },
+      {
+        "id": "kidney",
+        "label": "NIDDK · Quick Reference on UACR & GFR",
+        "url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr",
+        "documents": [
+          "kidney_checks"
+        ],
+        "count": 1
+      },
+      {
+        "id": "exercise",
+        "label": "CDC · Get Active",
+        "url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
+        "documents": [
+          "activity_plan"
+        ],
+        "count": 1
       }
     ],
-    "scope": "Các đoạn biên soạn kế thừa TL02 và mô tả mô hình bổ sung; chưa có bộ nạp PDF/web tự động."
+    "scope": "26 đoạn có nguồn về kiến thức tiểu đường và phạm vi mô hình; chưa có bộ nạp PDF/web tự động."
   },
   "seed": 254
 }

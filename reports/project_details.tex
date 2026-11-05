@@ -10,11 +10,15 @@ GET /api/schema cung cấp thứ tự đặc trưng. GET /api/examples cung cấ
 
 Trường result của phân loại gồm label, scores và scope. scores là đầu ra xác suất lớp của mô hình trên nhãn tổng hợp, chưa được hiệu chỉnh. Trường result của hồi quy gồm value và scope. Việc tách cấu trúc này tránh dùng chung một con số cho hai ý nghĩa khác nhau. Dữ liệu mẫu là mẫu của bộ nghiên cứu, không phải hồ sơ do người dùng cung cấp.
 
+Nút ``Giải thích kết quả'' trên web gửi lại task và values của mẫu vừa chạy, nên câu trả lời được tính từ chính các đầu vào đó. Nhánh phân loại nêu nhãn, điểm của ba lớp, accuracy và macro-F1 trên tập test; nhánh hồi quy nêu điểm tiến triển, MAE và $R^2$. Mỗi nhánh đều giải thích ý nghĩa của nhãn/điểm và giới hạn khi chuyển sang trường hợp cá nhân. Mã tạo diễn giải nằm trong \path{app/model_explanation.py}; nó không sinh khuyến nghị điều trị.
+
 Kiểm tra đầu vào hiện yêu cầu số hữu hạn, giới hạn trị tuyệt đối và đủ số trường. Đây là kiểm tra kỹ thuật, chưa phải kiểm định lâm sàng từng đơn vị. Giá trị nhập bằng số nhưng sai đơn vị vẫn có thể làm kết quả vô nghĩa; vì vậy demo được giới hạn ở dữ liệu nghiên cứu và có nút điền mẫu.
 \section{Kết quả kiểm thử tích hợp}
 Script test\_scenarios.py thực hiện tám trường hợp: câu hỏi có nguồn; câu hỏi ngoài từ vựng; suy luận phân loại; suy luận hồi quy; thiếu trường; giá trị không hữu hạn; tên bài toán không hợp lệ; lỗi Neo4j có kiểm soát. Tám trường hợp đều đạt điều kiện kiểm tra ở lần chạy lưu trong results/api\_scenarios.json. Kiểm tra lỗi cơ sở dữ liệu được thực hiện bằng thay thế driver trong test, không phải chủ động tắt cơ sở dữ liệu đang phục vụ người dùng.
 
 Kiểm thử xác nhận hợp đồng phản hồi và nhánh lỗi, chưa đo độ chính xác truy xuất trên tập câu hỏi lớn. Trường hợp ngoài miền sử dụng chuỗi không có trong từ vựng, do đó không chứng minh hệ thống phát hiện mọi câu hỏi ngoài miền bằng tiếng Việt. Những giới hạn này giúp tách kiểm thử chức năng khỏi đánh giá chất lượng tư vấn.
+
+Bản cập nhật thêm bảy điều kiện trong \path{scripts/test_chat_upgrade.py}: bốn chủ đề RAG mới, hai cách diễn giải kết quả mô hình và tổng số tài liệu công bố qua API. Thử nghiệm xác nhận các đoạn dẫn đúng nguồn và không biến điểm nghiên cứu thành chẩn đoán. Đây vẫn là kiểm tra chức năng theo kịch bản, chưa phải đánh giá y khoa bởi chuyên gia.
 \section{Đối chiếu với sơ đồ yêu cầu}
 \begin{longtable}{p{4cm}p{10cm}}\toprule Thành phần & Hiện thực trong sản phẩm\\\midrule
 DB và Deep Learning & Hai bộ dữ liệu tách biệt, MLPClassifier và MLPRegressor; có checkpoint và kết quả test.\\
@@ -22,4 +26,4 @@ Phân loại và dự đoán & Hai lựa chọn trong phòng thực nghiệm, c�
 Web/sách đến KB & Kế thừa KB đã biên soạn từ tiểu luận 02; bảo toàn mã nguồn tài liệu, không tự động thu thập web ở thời điểm chạy.\\
 KB và RAG & TF-IDF chọn đoạn văn; Neo4j trả các quan hệ cùng mã tài liệu; phản hồi trích đoạn có nguồn.\\
 Agent và RL + rule & Handler và MessageBus xử lý yêu cầu; chính sách học một bước chọn kiểu phản hồi, luật chặn thiếu bằng chứng.\\
-Tư vấn, trợ giúp & Chatbot giải thích kiến thức và phạm vi đầu ra; chưa sinh đối thoại tự do bằng LLM.\\\bottomrule\end{longtable}
+Tư vấn, trợ giúp & Chatbot giải thích kiến thức và phạm vi đầu ra; bản local dùng Qwen LoRA cho câu kiến thức có nguồn, còn câu thông số và thuốc theo luật.\\\bottomrule\end{longtable}

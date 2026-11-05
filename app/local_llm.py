@@ -3,7 +3,7 @@ import os,re,threading,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 _lock=threading.Lock();_model=None;_tokenizer=None
-GUARDED={'bloodpressure','a1c','testing','low','urgent','medicine','model','classification','meanpressure','demographics'}
+GUARDED={'bloodpressure','a1c','testing','low','urgent','medicine','model','classification','meanpressure','demographics','sick_day'}
 def enabled():return os.environ.get('GLUCOGUIDE_LOCAL_LLM')=='1'
 def load():
  global _model,_tokenizer
