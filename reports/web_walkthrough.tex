@@ -1,4 +1,4 @@
-\clearpage\section{Thiết kế giao diện và cách đọc kết quả}
+\section{Thiết kế giao diện và cách đọc kết quả}
 Giao diện có bốn khu vực: Trò chuyện, Phân loại \& dự đoán, Đồ thị và Dữ liệu. Mỗi khu vực tương ứng với một nhiệm vụ kiểm tra; khối nhật ký trong cột căn cứ phản ánh lượt đang được chọn. Các hình minh họa ghi lại giao diện và kết quả thực nghiệm trên ứng dụng.
 
 \subsection{Trợ lý kiến thức}
@@ -50,7 +50,7 @@ Các ngưỡng và lưu ý được rà soát theo NIDDK; hướng dẫn hạ đ
 \subsection{Nối mô hình với hội thoại và so sánh đầu vào}
 Sau khi suy luận, người dùng có thể bấm ``Đưa kết quả sang trò chuyện'' để xem giải thích phạm vi và căn cứ. Thao tác giữ kết quả thực từ API, không dựng một dự đoán mới trong JavaScript. Người dùng cũng có thể đổi một trường và chạy lại để xem khác biệt so với lần chạy trước. Với mẫu hồi quy đã lưu, đổi BMI từ 32,1 thành 28 cho đầu ra từ 207,53 thành 179,64, chênh lệch khoảng -27,89 điểm trong lượt demo được kiểm tra. Đây là độ nhạy của mô hình trên đầu vào giả định; không suy ra hiệu quả điều trị hay mục tiêu giảm cân.
 \subsection{Tra cứu KB và sử dụng Neo4j}
-Mục Nguồn \& tài liệu có tra cứu không dấu trên 21 đoạn kiến thức. Mỗi kết quả có nội dung, nguồn gốc và nút hỏi trợ lý. GET /api/knowledge trả các đoạn văn và thông tin nguồn; GET /api/status kiểm tra kết nối Neo4j và số lượng nút, cạnh.
+Mục Nguồn \& tài liệu có tra cứu không dấu trên 22 đoạn kiến thức. Mỗi kết quả có nội dung, nguồn gốc và nút hỏi trợ lý. GET /api/knowledge trả các đoạn văn và thông tin nguồn; GET /api/status kiểm tra kết nối Neo4j và số lượng nút, cạnh.
 
 Neo4j có bản cục bộ để phát triển và AuraDB Free cho demo công khai. Khi trạng thái kết nối thành công, người dùng vào Bản đồ tri thức, chọn HbA1c, bấm nút hoặc mã tài liệu để đọc căn cứ. Đồ thị có 60 khái niệm và 32 quan hệ. Tài liệu classification\_scope có văn bản nhưng chưa có bộ ba; chọn tài liệu này trả về không có cạnh thay vì hiển thị các cạnh không liên quan. Khi dịch vụ tắt, chạy start-neo4j.ps1 từ thư mục project. Muốn dùng Neo4j Browser, mở localhost:7474/browser và dùng tài khoản trong cấu hình cục bộ; không đưa mật khẩu vào báo cáo hoặc GitHub.
 \subsection{Kiểm thử bổ sung và thiết bị}
@@ -63,6 +63,6 @@ Kiểm tra thủ công trên web bao gồm bấm nguồn sang đồ thị, chọ
 \subsection{Hội thoại tiếp nối và đối chiếu nhiều chỉ số}
 Lớp hội thoại nhận tối đa 64 thông điệp trong phiên. Khi người dùng hỏi ``đường huyết 7'' rồi bổ sung ``mmol/L, lúc đói'', hệ thống ghép phần thông tin làm rõ với câu hỏi đang xét, công bố đơn vị và điều kiện áp dụng. Khi người dùng đưa một số đo mới, giá trị mới được xét riêng, không tự sao chép đơn vị từ số đo cũ. Với câu chứa cả HbA1c và đường huyết, mỗi chỉ số được đối chiếu theo loại xét nghiệm tương ứng, sau đó tổng hợp thành một phản hồi.
 
-Nút nguồn dưới từng câu trả lời mở trực tiếp trích đoạn cùng liên kết đến tài liệu gốc. Nhờ đó người xem có thể kiểm tra căn cứ ngay cả trên màn hình hẹp. Nội dung chi tiết được xây dựng từ quy tắc và tài liệu đã biên soạn; chưa có mô hình ngôn ngữ được huấn luyện để sinh hội thoại tự do. Giới hạn này được giữ rõ khi đánh giá các câu nhiều ý, phủ định hoặc thay đổi chủ thể.
+Nút nguồn dưới từng câu trả lời mở trực tiếp trích đoạn cùng liên kết đến tài liệu gốc. Nhờ đó người xem có thể kiểm tra căn cứ ngay cả trên màn hình hẹp. Bản công khai tổng hợp bằng luật và tài liệu. Nhánh local bổ sung Qwen LoRA với bước kiểm tra nhất quán; kết quả huấn luyện và giới hạn được trình bày trong chương riêng. Các câu nhiều ý, phủ định hoặc thay đổi chủ thể vẫn cần đánh giá thêm.
 
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{demo-sources.png}\caption{Mở trích đoạn và liên kết nguồn ngay bên dưới câu trả lời.}\end{figure}

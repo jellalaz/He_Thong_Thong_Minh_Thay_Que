@@ -17,3 +17,7 @@ reports/converted.tex
 reports/legacy.tex
 *.xdv
 .vercel/
+
+.venv-llm/
+.local-models/
+.local-training/

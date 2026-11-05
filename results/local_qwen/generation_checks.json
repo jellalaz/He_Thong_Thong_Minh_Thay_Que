@@ -1,0 +1,330 @@
+{
+  "base": {
+    "knowledge": {
+      "n": 8,
+      "citation_present": 0,
+      "unknown_citation_cases": 0,
+      "token_limit_cases": 0,
+      "mean_seconds": 8.067909062499893,
+      "cases": [
+        {
+          "id": "test-knowledge-0",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "1",
+            "100",
+            "2",
+            "4"
+          ],
+          "reached_token_limit": false,
+          "seconds": 6.9970352000018465
+        },
+        {
+          "id": "test-knowledge-1",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "2"
+          ],
+          "reached_token_limit": false,
+          "seconds": 5.482065899999725
+        },
+        {
+          "id": "test-knowledge-2",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 5.294677500001853
+        },
+        {
+          "id": "test-knowledge-3",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "10",
+            "15"
+          ],
+          "reached_token_limit": false,
+          "seconds": 3.802766499997233
+        },
+        {
+          "id": "test-knowledge-4",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 10.977190599998721
+        },
+        {
+          "id": "test-knowledge-5",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "1",
+            "2",
+            "3"
+          ],
+          "reached_token_limit": false,
+          "seconds": 10.897864400001708
+        },
+        {
+          "id": "test-knowledge-6",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "reached_token_limit": false,
+          "seconds": 16.845429999997577
+        },
+        {
+          "id": "test-knowledge-7",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 4.246242400000483
+        }
+      ]
+    },
+    "dialogue": {
+      "n": 8,
+      "citation_present": 0,
+      "unknown_citation_cases": 0,
+      "token_limit_cases": 0,
+      "mean_seconds": 4.974249112500274,
+      "cases": [
+        {
+          "id": "test-dialogue-0",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "90"
+          ],
+          "reached_token_limit": false,
+          "seconds": 7.854040800000803
+        },
+        {
+          "id": "test-dialogue-1",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 1.3339404000034847
+        },
+        {
+          "id": "test-dialogue-2",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 2.7569929999990563
+        },
+        {
+          "id": "test-dialogue-3",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 3.845969399997557
+        },
+        {
+          "id": "test-dialogue-4",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "2"
+          ],
+          "reached_token_limit": false,
+          "seconds": 6.55917529999715
+        },
+        {
+          "id": "test-dialogue-5",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "2",
+            "3"
+          ],
+          "reached_token_limit": false,
+          "seconds": 5.729960900000151
+        },
+        {
+          "id": "test-dialogue-6",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 2.986912600001233
+        },
+        {
+          "id": "test-dialogue-7",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [
+            "3"
+          ],
+          "reached_token_limit": false,
+          "seconds": 8.72700050000276
+        }
+      ]
+    }
+  },
+  "lora": {
+    "knowledge": {
+      "n": 8,
+      "citation_present": 8,
+      "unknown_citation_cases": 0,
+      "token_limit_cases": 0,
+      "mean_seconds": 7.5670386249998955,
+      "cases": [
+        {
+          "id": "test-knowledge-0",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 8.540841099998943
+        },
+        {
+          "id": "test-knowledge-1",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 7.514840700001514
+        },
+        {
+          "id": "test-knowledge-2",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 5.890892899999017
+        },
+        {
+          "id": "test-knowledge-3",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 6.971101600000111
+        },
+        {
+          "id": "test-knowledge-4",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 10.286018900002091
+        },
+        {
+          "id": "test-knowledge-5",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 10.303595599998516
+        },
+        {
+          "id": "test-knowledge-6",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 5.757780899999489
+        },
+        {
+          "id": "test-knowledge-7",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 5.271237299999484
+        }
+      ]
+    },
+    "dialogue": {
+      "n": 8,
+      "citation_present": 7,
+      "unknown_citation_cases": 1,
+      "token_limit_cases": 0,
+      "mean_seconds": 4.927808200000527,
+      "cases": [
+        {
+          "id": "test-dialogue-0",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 4.9873765999982425
+        },
+        {
+          "id": "test-dialogue-1",
+          "citation_present": true,
+          "unknown_citations": [
+            "id"
+          ],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 3.637342500001978
+        },
+        {
+          "id": "test-dialogue-2",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 4.988632499997038
+        },
+        {
+          "id": "test-dialogue-3",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 4.217209300000832
+        },
+        {
+          "id": "test-dialogue-4",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 7.057842200003506
+        },
+        {
+          "id": "test-dialogue-5",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 6.9094245999986015
+        },
+        {
+          "id": "test-dialogue-6",
+          "citation_present": false,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 0.6794657000027655
+        },
+        {
+          "id": "test-dialogue-7",
+          "citation_present": true,
+          "unknown_citations": [],
+          "numbers_to_review": [],
+          "reached_token_limit": false,
+          "seconds": 6.945172200001252
+        }
+      ]
+    }
+  }
+}

@@ -5,7 +5,7 @@ from app.intent import predict_intent
 def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
 
-TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['testing','a1c','monitor']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
+TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['overview','testing']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
 FOLLOW={
  'bloodpressure':['Đo huyết áp tại nhà thế nào?','Tôi nên ghi gì khi đi khám?'],
  'a1c':['Ngưỡng HbA1c được hiểu thế nào?','Tôi nên chuẩn bị gì khi đi khám?'],
@@ -111,6 +111,8 @@ def _route(question,history):
 def contextual_route(question, history):
  """Resolve explicitly supplied follow-up fields, without silently inventing values."""
  q=norm(question)
+ if q.strip(' .!?') in ['toi yeu ban','yeu ban','cam on ban','ban de thuong qua']:
+  return {'topic':'social','ids':[],'query':question,'context_used':False,'intro':'','override':'Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?','tone':'normal','suggestions':['Tiểu đường là gì?','HbA1c là gì?']}
  users=[h['content'] for h in history if h['role']=='user']
  # Retain only the active topic; a new explicit topic starts a new context.
  anchor=None

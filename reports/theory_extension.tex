@@ -55,3 +55,9 @@ Luật biểu diễn những điều kiện phải kiểm tra trực tiếp, ch�
 \subsection{Phạm vi của chính sách học được}
 Chính sách được tối ưu theo phần thưởng và môi trường đã định nghĩa. Nếu thay đổi chi phí, khả năng quan sát hoặc hành vi đối thủ, chính sách cũ có thể không còn phù hợp. Vì vậy, cần kiểm tra cả kết quả khi giữ nguyên chính sách lẫn khi được phép học lại. Thực nghiệm dưới đây dùng hai điều kiện đó để phân biệt khả năng chuyển môi trường với khả năng thích nghi sau huấn luyện.
 \input{agent_experiment.tex}
+
+\section{Tinh chỉnh mô hình ngôn ngữ và kiểm soát phản hồi}
+\subsection{Học thích nghi với LoRA}
+Theo phương pháp LoRA~\cite{lora}, với một mô hình ngôn ngữ đã tiền huấn luyện, hệ thống giữ trọng số nền cố định và chỉ tối ưu các ma trận hạng thấp. Phương pháp giảm số tham số cần lưu gradient và trạng thái bộ tối ưu, phù hợp thử nghiệm trên GPU cá nhân. Tinh chỉnh không thay thế kho bằng chứng: dữ liệu nhỏ có thể làm mô hình học văn phong, nhưng không bảo đảm bổ sung kiến thức chính xác hoặc loại bỏ ảo giác.
+\subsection{Phân biệt các tầng đánh giá}
+Loss validation đo mức khớp với câu trả lời đích trên các mẫu không dùng cập nhật gradient. Đánh giá phản hồi cần kiểm tra thêm mức đúng câu hỏi, nguồn trích dẫn, thông tin thiếu và khả năng tiếp nối ngữ cảnh. Cuối cùng, kiểm thử hệ thống đo cả điều phối, luật và cơ chế dự phòng. Ba tầng này trả lời các câu hỏi khác nhau; không dùng một chỉ số loss để đại diện cho toàn bộ chất lượng chatbot. Thực nghiệm và điều kiện vận hành cụ thể được trình bày trong báo cáo Project 01 riêng.

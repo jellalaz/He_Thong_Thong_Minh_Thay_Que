@@ -6,7 +6,7 @@ GlucoGuide phát triển từ các thực nghiệm học phần, bổ sung cơ c
 \section{Phạm vi đầu ra}
 Hai bộ dữ liệu có định nghĩa nhãn khác nhau. Bộ phân loại gồm các nhãn High, Moderate và Low của dữ liệu tổng hợp. Bộ hồi quy gồm những người đã mắc bệnh và một thước đo tiến triển sau một năm. Vì vậy không thể ghép một nhãn High với một điểm hồi quy để suy ra xác suất mắc bệnh. Ứng dụng dùng hai biểu mẫu riêng và công bố phạm vi ngay tại đầu ra.
 
-Sản phẩm hiện sử dụng tổng hợp trích đoạn xác định. Câu trả lời được ghép từ các đoạn văn truy xuất được và thông tin về phạm vi mô hình; không gọi mô hình ngôn ngữ bên ngoài. Lựa chọn này giúp kiểm tra nguồn và tái lập kết quả, nhưng khả năng đối thoại tự nhiên bị giới hạn bởi từ vựng và độ phủ của kho tài liệu.
+Bản công khai sử dụng tổng hợp trích đoạn xác định. Câu trả lời được ghép từ các đoạn văn truy xuất được và thông tin về phạm vi mô hình; không gọi mô hình ngôn ngữ bên ngoài. Bản cục bộ bổ sung Qwen3 1.7B tinh chỉnh LoRA để diễn đạt trên tài liệu truy xuất; các yêu cầu về thông số và thuốc vẫn qua luật. Hai chế độ đều phụ thuộc chất lượng và độ phủ của kho tài liệu.
 \section{Mục tiêu đánh giá}
 Phân loại được đo bằng accuracy và macro-F1. Hồi quy được đo bằng MAE và hệ số xác định. Truy xuất cần kiểm tra cả tài liệu được chọn và quan hệ có nguồn trên Neo4j. Kiểm tra ứng dụng tập trung vào các tình huống có bằng chứng, thiếu bằng chứng, thiếu đầu vào, giá trị không hợp lệ và cơ sở dữ liệu đồ thị không hoạt động.
 \chapter{Agent và cơ chế phối hợp}
@@ -78,9 +78,9 @@ MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
 RETURN a,r,b LIMIT 100;
 \end{verbatim}
 \section{Hạn chế và hướng hoàn thiện}
-Hệ thống duy trì ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
+Hệ thống duy trì ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, nhánh Qwen local mới được đánh giá trên tập nội bộ nhỏ và chưa có hội đồng tranh biện độc lập. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
 
 Hướng ưu tiên là mở rộng giao thức agent và bộ nhớ hội thoại, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.
 
 \input{cloud_deployment.tex}
-\input{web_walkthrough.tex}
+\input{local_qwen.tex}\chapter{Giao diện và kịch bản sử dụng}\input{web_walkthrough.tex}

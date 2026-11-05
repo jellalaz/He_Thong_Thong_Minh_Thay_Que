@@ -5,7 +5,7 @@ Project sử dụng hai bộ dữ liệu học có giám sát và một kho tài
 \begin{longtable}{p{3cm}p{4cm}p{7cm}}\caption{Danh mục dữ liệu thực sự dùng trong GlucoGuide.}\label{tab:datasets}\\\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endfirsthead\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endhead
 Phân loại & 50.000 dòng, 41 cột gốc; dùng 8 biến & Kaggle, Diabetes Risk Prediction Dataset (50K patients), tài khoản mobeenfatimah. ZIP lưu tại \path{data/raw/diabetes.zip}; dùng trong \path{scripts/train_models.py}.\\
 Hồi quy & 442 dòng, 10 biến và target số & Bộ diabetes đi kèm scikit-learn, đọc bằng \texttt{load\_diabetes(scaled=False)}. Không dùng ZIP của bài toán phân loại.\\
-Tri thức & 21 đoạn; 9 nguồn đang được tham chiếu & \path{data/knowledge.json}; 20 đoạn kế thừa kho tiểu luận 02 và một đoạn mô tả phạm vi phân loại bổ sung. 32 bộ ba được nạp lên Neo4j.\\\bottomrule\end{longtable}
+Tri thức & 22 đoạn; 9 nguồn đang được tham chiếu & \path{data/knowledge.json}; 20 đoạn kế thừa kho tiểu luận 02 và hai đoạn bổ sung về phạm vi phân loại và định nghĩa tiểu đường. 32 bộ ba được nạp lên Neo4j.\\\bottomrule\end{longtable}
 \section{Nguồn và phiên bản bộ phân loại}
 Trang công bố bộ dữ liệu: \par\noindent\url{https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients}.\par  Tệp nằm trong ZIP có tên \path{diabetes_risk_prediction_dataset.csv}. Báo cáo sử dụng đúng bản chụp dữ liệu đã lưu trên máy, không tự thay bằng bộ 100.000 bản ghi của bài tham khảo. Tệp kiểm kê \path{results/data_audit.json} lưu SHA-256 của ZIP để phân biệt các phiên bản tải về.
 

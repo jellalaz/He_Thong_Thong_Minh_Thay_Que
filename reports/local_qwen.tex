@@ -1,0 +1,41 @@
+\chapter{Tinh chỉnh mô hình hội thoại trên máy cá nhân}
+\section{Mục tiêu và phạm vi}
+Các câu hỏi thử cho thấy phản hồi theo mẫu còn cứng và dễ thiếu bối cảnh. Nhánh hội thoại cục bộ bổ sung Qwen3 1.7B để diễn đạt kiến thức lấy từ KB. Mô hình nền đã được Qwen tiền huấn luyện; thực nghiệm này chỉ tinh chỉnh LoRA trên ví dụ tiếng Việt của project. Việc tải mô hình không được tính là một lần huấn luyện.
+
+Suy luận diễn ra trên máy cá nhân, không gọi dịch vụ mô hình ngôn ngữ bên ngoài. Bản Vercel tiếp tục phục vụ KB, luật và các mô hình dữ liệu bảng; checkpoint Qwen không chạy trong hàm Vercel. Hai chế độ dùng chung giao diện nhưng có điều kiện vận hành khác nhau.
+\section{Dữ liệu và thiết kế đánh giá}
+\subsection{Nguồn và cách xây dựng}
+Tệp \path{experiments/local_qwen/dataset.json} chứa các cặp chỉ dẫn và phản hồi do project biên soạn từ các đoạn KB có nguồn. Mỗi mẫu lưu câu hỏi, lịch sử, mã đoạn kiến thức và câu trả lời đích. Nguồn KB gồm các tài liệu sức khỏe đã liệt kê trong danh mục. Đây không phải dữ liệu bệnh án và chưa được chuyên gia y tế thẩm định.
+
+Tập huấn luyện gồm 76 mẫu; tập validation gồm 21 mẫu diễn đạt khác nhưng cùng nguồn KB. Tập test gồm 16 mẫu, chia đều thành nhóm kiến thức và nhóm hội thoại. Kiểm tra chuẩn hóa câu hỏi loại trùng lặp trực tiếp giữa các tập. Tuy vậy, cùng nguồn và cùng cách biên soạn làm giới hạn tính độc lập của đánh giá. Hai nhóm test không được gọi là hai bộ dữ liệu lâm sàng độc lập.
+\subsection{Đối chiếu trước và sau tinh chỉnh}
+Mô hình nền và checkpoint LoRA nhận cùng tài liệu, câu hỏi, lịch sử và giới hạn sinh. Chọn checkpoint bằng loss validation, không dùng điểm test để chọn epoch. Nhóm kiến thức kiểm tra trả lời đúng trọng tâm và dẫn mã nguồn; nhóm hội thoại kiểm tra thông tin thiếu, câu hỏi tiếp nối, lời cảm ơn, yêu cầu thuốc và câu ngoài phạm vi. Loss giảm chỉ cho thấy mô hình khớp câu trả lời đích tốt hơn; không đủ kết luận độ chính xác y tế tăng.
+\section{Cấu hình và quá trình học}
+Máy thực nghiệm có Intel Core i9-14900HX, RAM khoảng 16 GB và NVIDIA GeForce RTX 4060 Laptop GPU 8 GB. Mô hình nền được tải từ kho chính thức:
+\productlink{Qwen3 1.7B}{https://huggingface.co/Qwen/Qwen3-1.7B}
+
+LoRA giữ cố định trọng số nền $W$ và học hai ma trận nhỏ để tạo $W'=W+\frac{\alpha}{r}BA$. Cấu hình dùng hạng $r=8$, $\alpha=16$, dropout 0,05, áp dụng vào các phép chiếu query và value. Hàm mất mát chỉ tính trên token câu trả lời, bỏ qua phần chỉ dẫn và tài liệu.
+
+Batch size bằng 1 nghĩa là một mẫu được xử lý trong mỗi lượt lan truyền; tích lũy gradient qua 4 mẫu trước khi cập nhật. Một epoch đi qua toàn bộ tập train. AdamW cập nhật tham số từ gradient với learning rate $10^{-4}$. Thực nghiệm đặt 3 epoch, tối đa 768 token cho một mẫu, dùng BF16 và gradient checkpointing để giảm bộ nhớ. Training loss theo bước và validation loss theo epoch được lưu riêng để theo dõi khả năng khái quát hóa.
+\input{local_qwen_results.tex}
+\subsection{Phân tích phản hồi và giới hạn}
+Trên nhóm kiến thức, checkpoint LoRA bám sát các đoạn KB hơn: câu hỏi chia bữa ăn không còn tự thêm số gram; câu hỏi về carbohydrate không còn suy diễn nguyên nhân bệnh ngoài tài liệu. Tuy nhiên, phần lớn phản hồi gần với văn bản KB. Kết quả chủ yếu cho thấy khả năng tuân thủ ngữ cảnh và định dạng, chưa chứng minh suy luận y khoa mới.
+
+Ở nhóm hội thoại, mô hình thuần vẫn có hạn chế: lời bày tỏ thân thiện bị trả lời cứng và kèm mã nguồn không tồn tại; câu thiếu đơn vị HbA1c và câu hỏi tiếp nối chưa được làm rõ đầy đủ. Do đó bản ứng dụng không dùng trực tiếp đầu ra Qwen cho các trường hợp này, mà giữ định tuyến hội thoại và luật kiểm tra thông số. Loss validation rất thấp cần được đọc cùng thực tế rằng train và validation dùng chung đoạn nguồn và nhiều câu trả lời đích. Một nghiên cứu tiếp theo cần tập nguồn độc lập, cách diễn đạt đa dạng hơn và đánh giá chuyên gia.
+\section{Phối hợp đa agent khi trả lời}
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/local_architecture.png}\caption{Luồng xử lý tại máy cá nhân; phản hồi không đạt kiểm tra quay về nội dung KB.}\end{figure}
+Điều phối xác định loại yêu cầu, truy xuất đoạn KB và gửi thông điệp đến agent ngôn ngữ cục bộ khi phù hợp. Agent kiểm chứng đối chiếu mã trích dẫn, số liệu và một số biểu thức không được phép trước khi chuyển câu trả lời ra giao diện. Nếu tải mô hình thất bại hoặc bản sinh không đạt kiểm tra, hệ thống trả về nội dung KB và ghi nguyên nhân trong trace.
+
+Câu chứa thông số, câu về thuốc và tình huống khẩn cấp được ưu tiên xử lý bằng luật có nguồn. Qwen không được tự quyết định liều thuốc hay xác nhận bệnh. Bộ kiểm chứng hiện tại là bộ lọc nhất quán, chưa kiểm tra được mọi sai lệch ngữ nghĩa. Lịch sử gần nhất hỗ trợ diễn đạt nối tiếp; lịch sử gửi từ trình duyệt không phải bộ nhớ bền vững giữa các phiên.
+\section{Tái lập và vận hành}
+Chạy \path{experiments/local_qwen/train.py} bằng môi trường \path{.venv-llm} để tạo checkpoint, log loss và phản hồi kiểm thử. Adapter dùng để chạy được đóng gói tại \path{models/qwen_adapter}; checkpoint huấn luyện gốc nằm tại \path{.local-training/qwen-lora/best}. Mô hình nền và cache được lưu ngoài Git vì dung lượng lớn. Sau khi có đủ tệp, chế độ suy luận đặt biến offline để không tải tài nguyên từ mạng.
+
+Khởi động bằng \path{run-local-qwen.ps1}, giữ cửa sổ tiến trình hoạt động và mở:
+\productlink{Demo Qwen cục bộ}{http://localhost:8766}
+Địa chỉ này chỉ dùng trên máy đang chạy dịch vụ. Neo4j cục bộ phục vụ đồ thị; chức năng hội thoại dựa trên KB vẫn có cơ chế dự phòng khi không kết nối được đồ thị.
+
+\begin{figure}[H]\centering\includegraphics[width=.78\linewidth,height=.58\textheight,keepaspectratio]{demo-local-context.png}\caption{Kiểm tra hai lượt trên web local: hệ thống ghép thông tin bổ sung thành cặp số 150/90. Trường hợp này do luật hội thoại xử lý, không phải đầu ra tự do của Qwen.}\end{figure}
+
+\subsection{Kiểm thử tích hợp trên web local}
+Tám kịch bản qua HTTP đã chạy thành công: chia bữa ăn và định nghĩa tiểu đường dùng Qwen LoRA; chào hỏi, huyết áp, bổ sung số dưới, thiếu đơn vị, yêu cầu liều thuốc và bất tỉnh dùng luật. Mã phản hồi ghi rõ thành phần tạo câu trả lời. Nhật ký tại \path{results/local_qwen/runtime_checks.json} lưu yêu cầu, phản hồi, thông điệp giữa các agent và thời gian đo. Các kiểm tra bổ sung gồm 33 tình huống chatbot và 7 điều kiện của bộ kiểm chứng/MessageBus. Đây là tập kiểm thử chức năng hữu hạn, không phải chứng nhận đúng với mọi cách hỏi.
+\begin{figure}[H]\centering\includegraphics[width=.78\linewidth,height=.58\textheight,keepaspectratio]{demo-local-qwen.png}\caption{Phản hồi Qwen LoRA trên web local sau huấn luyện, kèm các đoạn nguồn truy xuất.}\end{figure}

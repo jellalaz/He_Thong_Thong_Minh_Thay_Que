@@ -1,0 +1,2097 @@
+{
+  "passed": 8,
+  "cases": [
+    {
+      "case": "knowledge",
+      "seconds": 13.956934599998931,
+      "request": {
+        "question": "Một bữa ăn nên chia thế nào?"
+      },
+      "response": {
+        "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "Một bữa ăn nên chia thế nào?"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "meal",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "Một bữa ăn nên chia thế nào?"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.01286729745630282,
+              0.010801256116212962,
+              0.055149129801316296,
+              0.0,
+              0.017737234368309172,
+              0.012240564025460155,
+              0.011117604489550013,
+              0.0,
+              0.29753281393820963,
+              0.15244360703997661,
+              0.0231628064389665,
+              0.04098063558531961,
+              0.014115786983877054,
+              0.045526950796580264,
+              0.03055599543025425,
+              0.016999171914570253,
+              0.012464173094973949,
+              0.07578998470593033,
+              0.073378296464657,
+              0.012197832425505362,
+              0.011448196789288519,
+              0.01231637439863203
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "Một bữa ăn nên chia thế nào?"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: plate, carb"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "4 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "plate",
+                "title": "Một bữa ăn cân bằng",
+                "terms": [
+                  "bữa ăn",
+                  "ăn gì",
+                  "thực đơn",
+                  "ăn sáng",
+                  "ăn trưa",
+                  "ăn tối",
+                  "rau",
+                  "đạm",
+                  "đĩa ăn"
+                ],
+                "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+                "source": "meal",
+                "triples": [
+                  [
+                    "Bữa ăn",
+                    "chia theo",
+                    "phương pháp chiếc đĩa"
+                  ],
+                  [
+                    "Chiếc đĩa",
+                    "ưu tiên",
+                    "rau không tinh bột"
+                  ]
+                ]
+              },
+              {
+                "id": "carb",
+                "title": "Có cần bỏ hoàn toàn tinh bột?",
+                "terms": [
+                  "tinh bột",
+                  "carb",
+                  "carbohydrate",
+                  "cơm",
+                  "gạo",
+                  "bún",
+                  "phở",
+                  "bánh mì",
+                  "kiêng"
+                ],
+                "text": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+                "source": "meal",
+                "triples": [
+                  [
+                    "Carbohydrate",
+                    "ảnh hưởng",
+                    "đường huyết"
+                  ],
+                  [
+                    "Khẩu phần",
+                    "cần điều chỉnh theo",
+                    "nhu cầu cá nhân"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]\n\nKhông cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "Một bữa ăn nên chia thế nào?",
+              "plan": {
+                "topic": "meal",
+                "ids": [
+                  "plate",
+                  "carb"
+                ],
+                "query": "Một bữa ăn nên chia thế nào?",
+                "context_used": false,
+                "intro": "",
+                "override": null,
+                "tone": "normal",
+                "suggestions": [
+                  "Có cần bỏ cơm hoàn toàn không?",
+                  "Người tiểu đường ăn trái cây được không?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "plate",
+                  "title": "Một bữa ăn cân bằng",
+                  "terms": [
+                    "bữa ăn",
+                    "ăn gì",
+                    "thực đơn",
+                    "ăn sáng",
+                    "ăn trưa",
+                    "ăn tối",
+                    "rau",
+                    "đạm",
+                    "đĩa ăn"
+                  ],
+                  "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+                  "source": "meal",
+                  "triples": [
+                    [
+                      "Bữa ăn",
+                      "chia theo",
+                      "phương pháp chiếc đĩa"
+                    ],
+                    [
+                      "Chiếc đĩa",
+                      "ưu tiên",
+                      "rau không tinh bột"
+                    ]
+                  ]
+                },
+                {
+                  "id": "carb",
+                  "title": "Có cần bỏ hoàn toàn tinh bột?",
+                  "terms": [
+                    "tinh bột",
+                    "carb",
+                    "carbohydrate",
+                    "cơm",
+                    "gạo",
+                    "bún",
+                    "phở",
+                    "bánh mì",
+                    "kiêng"
+                  ],
+                  "text": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+                  "source": "meal",
+                  "triples": [
+                    [
+                      "Carbohydrate",
+                      "ảnh hưởng",
+                      "đường huyết"
+                    ],
+                    [
+                      "Khẩu phần",
+                      "cần điều chỉnh theo",
+                      "nhu cầu cá nhân"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]\n\nKhông cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Kiểm chứng phản hồi",
+            "type": "REQUEST",
+            "content": {
+              "draft": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+              "documents": [
+                {
+                  "id": "plate",
+                  "title": "Một bữa ăn cân bằng",
+                  "terms": [
+                    "bữa ăn",
+                    "ăn gì",
+                    "thực đơn",
+                    "ăn sáng",
+                    "ăn trưa",
+                    "ăn tối",
+                    "rau",
+                    "đạm",
+                    "đĩa ăn"
+                  ],
+                  "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+                  "source": "meal",
+                  "triples": [
+                    [
+                      "Bữa ăn",
+                      "chia theo",
+                      "phương pháp chiếc đĩa"
+                    ],
+                    [
+                      "Chiếc đĩa",
+                      "ưu tiên",
+                      "rau không tinh bột"
+                    ]
+                  ]
+                },
+                {
+                  "id": "carb",
+                  "title": "Có cần bỏ hoàn toàn tinh bột?",
+                  "terms": [
+                    "tinh bột",
+                    "carb",
+                    "carbohydrate",
+                    "cơm",
+                    "gạo",
+                    "bún",
+                    "phở",
+                    "bánh mì",
+                    "kiêng"
+                  ],
+                  "text": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+                  "source": "meal",
+                  "triples": [
+                    [
+                      "Carbohydrate",
+                      "ảnh hưởng",
+                      "đường huyết"
+                    ],
+                    [
+                      "Khẩu phần",
+                      "cần điều chỉnh theo",
+                      "nhu cầu cá nhân"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]\n\nKhông cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]"
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "INFORM",
+            "content": {
+              "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
+              "seconds": 4.592
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "plate",
+            "title": "Một bữa ăn cân bằng",
+            "excerpt": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+            "source": {
+              "label": "CDC · Lập kế hoạch bữa ăn",
+              "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            }
+          },
+          {
+            "id": "carb",
+            "title": "Có cần bỏ hoàn toàn tinh bột?",
+            "excerpt": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+            "source": {
+              "label": "CDC · Lập kế hoạch bữa ăn",
+              "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Bữa ăn",
+            "relation": "chia theo",
+            "target": "phương pháp chiếc đĩa"
+          },
+          {
+            "source": "Chiếc đĩa",
+            "relation": "ưu tiên",
+            "target": "rau không tinh bột"
+          },
+          {
+            "source": "Carbohydrate",
+            "relation": "ảnh hưởng",
+            "target": "đường huyết"
+          },
+          {
+            "source": "Khẩu phần",
+            "relation": "cần điều chỉnh theo",
+            "target": "nhu cầu cá nhân"
+          }
+        ],
+        "response_mode": "qwen-lora",
+        "generator": "Qwen3 LoRA cục bộ + KB",
+        "suggestions": [
+          "Có cần bỏ cơm hoàn toàn không?",
+          "Người tiểu đường ăn trái cây được không?"
+        ],
+        "context_used": false,
+        "topic": "meal",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "definition",
+      "seconds": 4.574815900003159,
+      "request": {
+        "question": "Tiểu đường là gì?"
+      },
+      "response": {
+        "answer": "Tiểu đường là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "Tiểu đường là gì?"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "diabetes",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "Tiểu đường là gì?"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.02368587784135351,
+              0.009941374005326787,
+              0.015080599515029755,
+              0.0,
+              0.01624404975933409,
+              0.022532198793173874,
+              0.010232538057126256,
+              0.010444746842033663,
+              0.047207367852467735,
+              0.0,
+              0.051462873781114124,
+              0.034996289925346084,
+              0.059399399617455655,
+              0.029362925966492117,
+              0.044196209612355646,
+              0.0,
+              0.010258623710412326,
+              0.08903307617500386,
+              0.0825005092887352,
+              0.07117281598418884,
+              0.01053681208411173,
+              0.34025821558198155
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "Tiểu đường là gì?"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: overview, testing"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "1 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "overview",
+                "title": "Tiểu đường là gì?",
+                "terms": [
+                  "tiểu đường",
+                  "đái tháo đường",
+                  "insulin",
+                  "bệnh mạn tính"
+                ],
+                "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+                "source": "who",
+                "triples": []
+              },
+              {
+                "id": "testing",
+                "title": "Đọc kết quả xét nghiệm",
+                "terms": [
+                  "đường huyết",
+                  "glucose",
+                  "lúc đói",
+                  "sau ăn",
+                  "xét nghiệm",
+                  "nguy cơ",
+                  "chẩn đoán",
+                  "có bệnh"
+                ],
+                "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+                "source": "diagnosis",
+                "triples": [
+                  [
+                    "Glucose",
+                    "cần có",
+                    "đơn vị và thời điểm đo"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "Tiểu đường là gì?",
+              "plan": {
+                "topic": "diabetes",
+                "ids": [
+                  "overview",
+                  "testing"
+                ],
+                "query": "Tiểu đường là gì?",
+                "context_used": false,
+                "intro": "",
+                "override": null,
+                "tone": "normal",
+                "suggestions": [
+                  "HbA1c là gì?",
+                  "Tôi nên theo dõi đường huyết thế nào?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "overview",
+                  "title": "Tiểu đường là gì?",
+                  "terms": [
+                    "tiểu đường",
+                    "đái tháo đường",
+                    "insulin",
+                    "bệnh mạn tính"
+                  ],
+                  "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+                  "source": "who",
+                  "triples": []
+                },
+                {
+                  "id": "testing",
+                  "title": "Đọc kết quả xét nghiệm",
+                  "terms": [
+                    "đường huyết",
+                    "glucose",
+                    "lúc đói",
+                    "sau ăn",
+                    "xét nghiệm",
+                    "nguy cơ",
+                    "chẩn đoán",
+                    "có bệnh"
+                  ],
+                  "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+                  "source": "diagnosis",
+                  "triples": [
+                    [
+                      "Glucose",
+                      "cần có",
+                      "đơn vị và thời điểm đo"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Kiểm chứng phản hồi",
+            "type": "REQUEST",
+            "content": {
+              "draft": "Tiểu đường là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]",
+              "documents": [
+                {
+                  "id": "overview",
+                  "title": "Tiểu đường là gì?",
+                  "terms": [
+                    "tiểu đường",
+                    "đái tháo đường",
+                    "insulin",
+                    "bệnh mạn tính"
+                  ],
+                  "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+                  "source": "who",
+                  "triples": []
+                },
+                {
+                  "id": "testing",
+                  "title": "Đọc kết quả xét nghiệm",
+                  "terms": [
+                    "đường huyết",
+                    "glucose",
+                    "lúc đói",
+                    "sau ăn",
+                    "xét nghiệm",
+                    "nguy cơ",
+                    "chẩn đoán",
+                    "có bệnh"
+                  ],
+                  "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+                  "source": "diagnosis",
+                  "triples": [
+                    [
+                      "Glucose",
+                      "cần có",
+                      "đơn vị và thời điểm đo"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]"
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "INFORM",
+            "content": {
+              "answer": "Tiểu đường là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]",
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Tiểu đường là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng. [overview]",
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
+              "seconds": 4.542
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "qwen-lora",
+              "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "overview",
+            "title": "Tiểu đường là gì?",
+            "excerpt": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+            "source": {
+              "label": "WHO · Diabetes",
+              "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+            }
+          },
+          {
+            "id": "testing",
+            "title": "Đọc kết quả xét nghiệm",
+            "excerpt": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+            "source": {
+              "label": "NIDDK · Xét nghiệm & chẩn đoán",
+              "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Glucose",
+            "relation": "cần có",
+            "target": "đơn vị và thời điểm đo"
+          }
+        ],
+        "response_mode": "qwen-lora",
+        "generator": "Qwen3 LoRA cục bộ + KB",
+        "suggestions": [
+          "HbA1c là gì?",
+          "Tôi nên theo dõi đường huyết thế nào?"
+        ],
+        "context_used": false,
+        "topic": "diabetes",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "social",
+      "seconds": 0.029610300000058487,
+      "request": {
+        "question": "tôi yêu bạn"
+      },
+      "response": {
+        "answer": "Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "tôi yêu bạn"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "social",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "tôi yêu bạn"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06467462078503339,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.04622781352345576,
+              0.053039375079258363,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "tôi yêu bạn"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: "
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "0 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 0,
+              "action": "Hỏi làm rõ",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "tôi yêu bạn",
+              "plan": {
+                "topic": "social",
+                "ids": [],
+                "query": "tôi yêu bạn",
+                "context_used": false,
+                "intro": "",
+                "override": "Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?",
+                "tone": "normal",
+                "suggestions": [
+                  "Tiểu đường là gì?",
+                  "HbA1c là gì?"
+                ]
+              },
+              "documents": [],
+              "fallback": "Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?",
+              "mode": "rules",
+              "reason": "Thiếu tài liệu; không sinh câu trả lời y tế."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thiếu tài liệu; không sinh câu trả lời y tế."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [],
+        "graph_evidence": [],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [
+          "Tiểu đường là gì?",
+          "HbA1c là gì?"
+        ],
+        "context_used": false,
+        "topic": "social",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "pressure",
+      "seconds": 0.01471769999989192,
+      "request": {
+        "question": "huyết áp 150 có ổn không"
+      },
+      "response": {
+        "answer": "Bạn nói huyết áp 150: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại. Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "huyết áp 150 có ổn không"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "bloodpressure",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "huyết áp 150 có ổn không"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.25529232280171477,
+              0.37963652149160043,
+              0.022122998633089214,
+              0.015894201402571823,
+              0.03200260757596054,
+              0.012082818572081967,
+              0.021948661470825782,
+              0.03919838546115974,
+              0.005726541743695741,
+              0.012695395145754683,
+              0.03921372597098169,
+              0.07856101792927028,
+              0.02630313367017428,
+              0.0705536136495256,
+              0.06779637574802214,
+              0.041413511494325,
+              0.02848469038762417,
+              0.0,
+              0.036940251659612566,
+              0.018325801377567348,
+              0.0054017628692445445,
+              0.03949703801803074
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "huyết áp 150 có ổn không"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: bloodpressure"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "2 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "bloodpressure",
+                "title": "Hiểu số đo huyết áp",
+                "terms": [
+                  "huyết áp",
+                  "tâm thu",
+                  "tâm trương",
+                  "mmhg",
+                  "đo huyết áp"
+                ],
+                "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+                "source": "pressure",
+                "triples": [
+                  [
+                    "Huyết áp",
+                    "gồm",
+                    "tâm thu / tâm trương"
+                  ],
+                  [
+                    "Phân loại",
+                    "cần",
+                    "số đo và bối cảnh"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "huyết áp 150 có ổn không",
+              "plan": {
+                "topic": "bloodpressure",
+                "ids": [
+                  "bloodpressure"
+                ],
+                "query": "huyết áp 150 có ổn không",
+                "context_used": false,
+                "intro": "",
+                "override": "Bạn nói huyết áp 150: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại. Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?",
+                "tone": "normal",
+                "suggestions": [
+                  "Đo huyết áp tại nhà thế nào?",
+                  "Tôi nên ghi gì khi đi khám?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "bloodpressure",
+                  "title": "Hiểu số đo huyết áp",
+                  "terms": [
+                    "huyết áp",
+                    "tâm thu",
+                    "tâm trương",
+                    "mmhg",
+                    "đo huyết áp"
+                  ],
+                  "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+                  "source": "pressure",
+                  "triples": [
+                    [
+                      "Huyết áp",
+                      "gồm",
+                      "tâm thu / tâm trương"
+                    ],
+                    [
+                      "Phân loại",
+                      "cần",
+                      "số đo và bối cảnh"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Bạn nói huyết áp 150: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại. Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Bạn nói huyết áp 150: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại. Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?",
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "bloodpressure",
+            "title": "Hiểu số đo huyết áp",
+            "excerpt": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+            "source": {
+              "label": "AHA · Hiểu số đo huyết áp",
+              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Huyết áp",
+            "relation": "gồm",
+            "target": "tâm thu / tâm trương"
+          },
+          {
+            "source": "Phân loại",
+            "relation": "cần",
+            "target": "số đo và bối cảnh"
+          }
+        ],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [
+          "Đo huyết áp tại nhà thế nào?",
+          "Tôi nên ghi gì khi đi khám?"
+        ],
+        "context_used": false,
+        "topic": "bloodpressure",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "context",
+      "seconds": 0.012985600002139108,
+      "request": {
+        "question": "số dưới là 90",
+        "history": [
+          {
+            "role": "user",
+            "content": "huyết áp 150 có ổn không"
+          }
+        ]
+      },
+      "response": {
+        "answer": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "số dưới là 90"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "bloodpressure",
+              "context_used": true
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "huyết áp 150 có ổn không số dưới là 90"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.3422720444088293,
+              0.3402991848493515,
+              0.025945728105965613,
+              0.022504611173978967,
+              0.022628075351376634,
+              0.027526309766035,
+              0.03191888293759151,
+              0.03651547669035953,
+              0.013459841007821244,
+              0.017975419099005477,
+              0.027726838945028552,
+              0.06502013339380519,
+              0.045238035068702435,
+              0.07232926264153436,
+              0.07418102723801977,
+              0.03761705444540324,
+              0.02793943892267653,
+              0.0,
+              0.02611933405952906,
+              0.03002717355619866,
+              0.012696470686173848,
+              0.05354774761560121
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "số dưới là 90"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: bloodpressure"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "2 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "bloodpressure",
+                "title": "Hiểu số đo huyết áp",
+                "terms": [
+                  "huyết áp",
+                  "tâm thu",
+                  "tâm trương",
+                  "mmhg",
+                  "đo huyết áp"
+                ],
+                "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+                "source": "pressure",
+                "triples": [
+                  [
+                    "Huyết áp",
+                    "gồm",
+                    "tâm thu / tâm trương"
+                  ],
+                  [
+                    "Phân loại",
+                    "cần",
+                    "số đo và bối cảnh"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "số dưới là 90",
+              "plan": {
+                "topic": "bloodpressure",
+                "ids": [
+                  "bloodpressure"
+                ],
+                "query": "huyết áp 150 có ổn không số dưới là 90",
+                "context_used": true,
+                "intro": "",
+                "override": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+                "tone": "normal",
+                "suggestions": [
+                  "Đo huyết áp tại nhà thế nào?",
+                  "Tôi nên ghi gì khi đi khám?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "bloodpressure",
+                  "title": "Hiểu số đo huyết áp",
+                  "terms": [
+                    "huyết áp",
+                    "tâm thu",
+                    "tâm trương",
+                    "mmhg",
+                    "đo huyết áp"
+                  ],
+                  "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+                  "source": "pressure",
+                  "triples": [
+                    [
+                      "Huyết áp",
+                      "gồm",
+                      "tâm thu / tâm trương"
+                    ],
+                    [
+                      "Phân loại",
+                      "cần",
+                      "số đo và bối cảnh"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+              "history": [
+                {
+                  "role": "user",
+                  "content": "huyết áp 150 có ổn không"
+                }
+              ]
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "bloodpressure",
+            "title": "Hiểu số đo huyết áp",
+            "excerpt": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+            "source": {
+              "label": "AHA · Hiểu số đo huyết áp",
+              "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Huyết áp",
+            "relation": "gồm",
+            "target": "tâm thu / tâm trương"
+          },
+          {
+            "source": "Phân loại",
+            "relation": "cần",
+            "target": "số đo và bối cảnh"
+          }
+        ],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [
+          "Đo huyết áp tại nhà thế nào?",
+          "Tôi nên ghi gì khi đi khám?"
+        ],
+        "context_used": true,
+        "topic": "bloodpressure",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "unit",
+      "seconds": 0.038848599997436395,
+      "request": {
+        "question": "đường huyết 7 có cao không"
+      },
+      "response": {
+        "answer": "Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "đường huyết 7 có cao không"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "testing",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "đường huyết 7 có cao không"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.04925472112578382,
+              0.0698327650238777,
+              0.022254808344835744,
+              0.015988899690993753,
+              0.1446710950290724,
+              0.012154808488977303,
+              0.02207943247477841,
+              0.016655132546921178,
+              0.0057606607087176,
+              0.0127710348184059,
+              0.09064693458013187,
+              0.05638377523893464,
+              0.09948898755679479,
+              0.09942243526566621,
+              0.14994660231925694,
+              0.04166025485416565,
+              0.056250602296717925,
+              0.014107857911847103,
+              0.11343389732404181,
+              0.03189147567357321,
+              0.005433946788727018,
+              0.13990286773306565
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "đường huyết 7 có cao không"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: testing"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "1 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "testing",
+                "title": "Đọc kết quả xét nghiệm",
+                "terms": [
+                  "đường huyết",
+                  "glucose",
+                  "lúc đói",
+                  "sau ăn",
+                  "xét nghiệm",
+                  "nguy cơ",
+                  "chẩn đoán",
+                  "có bệnh"
+                ],
+                "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+                "source": "diagnosis",
+                "triples": [
+                  [
+                    "Glucose",
+                    "cần có",
+                    "đơn vị và thời điểm đo"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "đường huyết 7 có cao không",
+              "plan": {
+                "topic": "testing",
+                "ids": [
+                  "testing"
+                ],
+                "query": "đường huyết 7 có cao không",
+                "context_used": false,
+                "intro": "Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.",
+                "override": null,
+                "tone": "normal",
+                "suggestions": [
+                  "Đo lúc đói khác sau ăn thế nào?",
+                  "HbA1c là gì?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "testing",
+                  "title": "Đọc kết quả xét nghiệm",
+                  "terms": [
+                    "đường huyết",
+                    "glucose",
+                    "lúc đói",
+                    "sau ăn",
+                    "xét nghiệm",
+                    "nguy cơ",
+                    "chẩn đoán",
+                    "có bệnh"
+                  ],
+                  "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+                  "source": "diagnosis",
+                  "triples": [
+                    [
+                      "Glucose",
+                      "cần có",
+                      "đơn vị và thời điểm đo"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "testing",
+            "title": "Đọc kết quả xét nghiệm",
+            "excerpt": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+            "source": {
+              "label": "NIDDK · Xét nghiệm & chẩn đoán",
+              "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Glucose",
+            "relation": "cần có",
+            "target": "đơn vị và thời điểm đo"
+          }
+        ],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [
+          "Đo lúc đói khác sau ăn thế nào?",
+          "HbA1c là gì?"
+        ],
+        "context_used": false,
+        "topic": "testing",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "dose",
+      "seconds": 0.030706199999258388,
+      "request": {
+        "question": "tôi phải tiêm mấy đơn vị insulin"
+      },
+      "response": {
+        "answer": "Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.\n\nLoại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "tôi phải tiêm mấy đơn vị insulin"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "medicine",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "tôi phải tiêm mấy đơn vị insulin"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.08160554912576176,
+              0.04109439308441936,
+              0.06927486589997799,
+              0.0,
+              0.0,
+              0.05758553998515679,
+              0.052302594597806826,
+              0.021587585989813588,
+              0.060220559907880056,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.07025801042300671,
+              0.0,
+              0.0,
+              0.04631724362456426,
+              0.05314198249921914,
+              0.0,
+              0.023203899392737568,
+              0.0217778698100049,
+              0.09926616328863624
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "tôi phải tiêm mấy đơn vị insulin"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: medicine"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "1 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "medicine",
+                "title": "Về thuốc và liều dùng",
+                "terms": [
+                  "thuốc",
+                  "metformin",
+                  "insulin",
+                  "liều",
+                  "uống mấy viên",
+                  "ngừng thuốc",
+                  "tăng liều",
+                  "giảm liều"
+                ],
+                "text": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
+                "source": "care",
+                "triples": [
+                  [
+                    "Liều thuốc",
+                    "cần được chỉ định bởi",
+                    "nhân viên y tế"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "tôi phải tiêm mấy đơn vị insulin",
+              "plan": {
+                "topic": "medicine",
+                "ids": [
+                  "medicine"
+                ],
+                "query": "tôi phải tiêm mấy đơn vị insulin",
+                "context_used": false,
+                "intro": "Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.",
+                "override": null,
+                "tone": "normal",
+                "suggestions": [
+                  "Tôi nên ghi gì để trao đổi với bác sĩ?",
+                  "Dấu hiệu hạ đường huyết là gì?"
+                ]
+              },
+              "documents": [
+                {
+                  "id": "medicine",
+                  "title": "Về thuốc và liều dùng",
+                  "terms": [
+                    "thuốc",
+                    "metformin",
+                    "insulin",
+                    "liều",
+                    "uống mấy viên",
+                    "ngừng thuốc",
+                    "tăng liều",
+                    "giảm liều"
+                  ],
+                  "text": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
+                  "source": "care",
+                  "triples": [
+                    [
+                      "Liều thuốc",
+                      "cần được chỉ định bởi",
+                      "nhân viên y tế"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.\n\nLoại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.\n\nLoại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "medicine",
+            "title": "Về thuốc và liều dùng",
+            "excerpt": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
+            "source": {
+              "label": "NIDDK · Quản lý bệnh tiểu đường",
+              "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Liều thuốc",
+            "relation": "cần được chỉ định bởi",
+            "target": "nhân viên y tế"
+          }
+        ],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [
+          "Tôi nên ghi gì để trao đổi với bác sĩ?",
+          "Dấu hiệu hạ đường huyết là gì?"
+        ],
+        "context_used": false,
+        "topic": "medicine",
+        "tone": "normal"
+      }
+    },
+    {
+      "case": "urgent",
+      "seconds": 0.017861600001197075,
+      "request": {
+        "question": "mẹ tôi đang bất tỉnh"
+      },
+      "response": {
+        "answer": "Tình huống bạn mô tả có thể cần trợ giúp y tế khẩn cấp. Đừng chờ câu trả lời tiếp theo trên chat.\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+        "result": null,
+        "trace": [
+          {
+            "sender": "Người dùng",
+            "receiver": "Điều phối",
+            "type": "REQUEST",
+            "content": "mẹ tôi đang bất tỉnh"
+          },
+          {
+            "sender": "Hội thoại",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "topic": "urgent",
+              "context_used": false
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Truy xuất",
+            "type": "REQUEST",
+            "content": "mẹ tôi đang bất tỉnh"
+          },
+          {
+            "sender": "Truy xuất",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.06152496555431067,
+              0.05710773044271354,
+              0.052295735031691694,
+              0.0,
+              0.022036333567269282,
+              0.0,
+              0.0,
+              0.08549895703102724,
+              0.20835126335669008,
+              0.0,
+              0.03334342295703365,
+              0.0,
+              0.02200447876551385,
+              0.0,
+              0.02985602434801674
+            ]
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Tri thức",
+            "type": "REQUEST",
+            "content": "mẹ tôi đang bất tỉnh"
+          },
+          {
+            "sender": "Tri thức",
+            "receiver": "Đối chiếu",
+            "type": "INFORM",
+            "content": "Đã truy xuất: urgent"
+          },
+          {
+            "sender": "Neo4j",
+            "receiver": "Tri thức",
+            "type": "INFORM",
+            "content": "1 quan hệ có nguồn"
+          },
+          {
+            "sender": "Chính sách RL",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": {
+              "state": 1,
+              "action": "Trả lời có nguồn",
+              "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+            }
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Phản hồi",
+            "type": "REQUEST",
+            "content": [
+              {
+                "id": "urgent",
+                "title": "Dấu hiệu cần trợ giúp ngay",
+                "terms": [
+                  "cấp cứu",
+                  "khẩn cấp",
+                  "khó thở",
+                  "bất tỉnh",
+                  "co giật",
+                  "lú lẫn",
+                  "nguy hiểm"
+                ],
+                "text": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+                "source": "low",
+                "triples": [
+                  [
+                    "Rối loạn ý thức",
+                    "cần",
+                    "trợ giúp y tế khẩn cấp"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]"
+          },
+          {
+            "sender": "Đối chiếu",
+            "receiver": "Phản hồi",
+            "type": "INFORM",
+            "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+          },
+          {
+            "sender": "Điều phối",
+            "receiver": "Ngôn ngữ cục bộ",
+            "type": "REQUEST",
+            "content": {
+              "question": "mẹ tôi đang bất tỉnh",
+              "plan": {
+                "topic": "urgent",
+                "ids": [
+                  "urgent"
+                ],
+                "query": "mẹ tôi đang bất tỉnh",
+                "context_used": false,
+                "intro": "Tình huống bạn mô tả có thể cần trợ giúp y tế khẩn cấp. Đừng chờ câu trả lời tiếp theo trên chat.",
+                "override": null,
+                "tone": "urgent",
+                "suggestions": []
+              },
+              "documents": [
+                {
+                  "id": "urgent",
+                  "title": "Dấu hiệu cần trợ giúp ngay",
+                  "terms": [
+                    "cấp cứu",
+                    "khẩn cấp",
+                    "khó thở",
+                    "bất tỉnh",
+                    "co giật",
+                    "lú lẫn",
+                    "nguy hiểm"
+                  ],
+                  "text": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+                  "source": "low",
+                  "triples": [
+                    [
+                      "Rối loạn ý thức",
+                      "cần",
+                      "trợ giúp y tế khẩn cấp"
+                    ]
+                  ]
+                }
+              ],
+              "fallback": "Tình huống bạn mô tả có thể cần trợ giúp y tế khẩn cấp. Đừng chờ câu trả lời tiếp theo trên chat.\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+              "history": []
+            }
+          },
+          {
+            "sender": "Ngôn ngữ cục bộ",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "answer": "Tình huống bạn mô tả có thể cần trợ giúp y tế khẩn cấp. Đừng chờ câu trả lời tiếp theo trên chat.\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Kiểm chứng phản hồi",
+            "receiver": "Điều phối",
+            "type": "INFORM",
+            "content": {
+              "mode": "rules",
+              "reason": "Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn."
+            }
+          },
+          {
+            "sender": "Phản hồi",
+            "receiver": "Người dùng",
+            "type": "INFORM",
+            "content": "Hoàn thành"
+          }
+        ],
+        "sources": [
+          {
+            "id": "urgent",
+            "title": "Dấu hiệu cần trợ giúp ngay",
+            "excerpt": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+            "source": {
+              "label": "CDC · Xử trí hạ đường huyết",
+              "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+            }
+          }
+        ],
+        "graph_evidence": [
+          {
+            "source": "Rối loạn ý thức",
+            "relation": "cần",
+            "target": "trợ giúp y tế khẩn cấp"
+          }
+        ],
+        "response_mode": "rules",
+        "generator": "KB và luật có nguồn",
+        "suggestions": [],
+        "context_used": false,
+        "topic": "urgent",
+        "tone": "urgent"
+      }
+    }
+  ]
+}

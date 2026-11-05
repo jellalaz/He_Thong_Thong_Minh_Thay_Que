@@ -490,6 +490,19 @@
       "text": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
       "source": "classification_data",
       "triples": []
+    },
+    {
+      "id": "overview",
+      "title": "Tiểu đường là gì?",
+      "terms": [
+        "tiểu đường",
+        "đái tháo đường",
+        "insulin",
+        "bệnh mạn tính"
+      ],
+      "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+      "source": "who",
+      "triples": []
     }
   ],
   "sources": {

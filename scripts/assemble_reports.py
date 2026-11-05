@@ -14,7 +14,7 @@ body=body.replace('Hướng ưu tiên là triển khai giao thức agent thực,
 body=body.replace('điểm lớn hơn 0,04','điểm lớn hơn giá trị lớn nhất giữa 0,04 và 65\\% điểm của đoạn đứng đầu')
 body=body.replace(r'\section{Nhánh dữ liệu}',r'\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/architecture.png}\caption{Hai nhánh hội tụ về điều phối và trợ giúp, dựng lại từ sơ đồ trên bảng.}\end{figure}'+'\n'+r'\section{Nhánh dữ liệu}')
 body=body.replace(r'\chapter{Code và demo}',r'\input{project_details.tex}'+'\n'+r'\chapter{Code và demo}')
-body+=r'\input{web_walkthrough.tex}'+'\n'
+body+=r'\input{local_qwen.tex}\chapter{Giao diện và kịch bản sử dụng}\input{web_walkthrough.tex}'+'\n'
 body=body.replace(r'\chapter{Các thành phần và thực nghiệm}',r'\input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}')
 (p/'project_content.tex').write_text(body,encoding='utf-8')
 intro=r'''\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
@@ -30,6 +30,8 @@ bib=r'''\begin{thebibliography}{99}
 \bibitem{linh} Phạm Mai Linh, Tiểu luận 01, nhóm 06--03, báo cáo học phần.
 \bibitem{kien} Nguyễn Tự Kiên, Tiểu luận final CT\_07 và Project01 CT\_07, báo cáo học phần.
 \bibitem{lam} Bùi Văn Lâm, Tiểu luận final CT\_03 và Project01 CT\_03, mã 477, báo cáo học phần.
+\bibitem{lora} E. J. Hu và cộng sự, LoRA: Low-Rank Adaptation of Large Language Models, 2021. \url{https://arxiv.org/abs/2106.09685}.
+\bibitem{qwen} Qwen Team, Qwen3 1.7B, model card và hướng dẫn suy luận. \url{https://huggingface.co/Qwen/Qwen3-1.7B}.
 \bibitem{gcn} T. Kipf và M. Welling, Semi-Supervised Classification with Graph Convolutional Networks, ICLR 2017. \url{https://arxiv.org/abs/1609.02907}.
 \bibitem{sage} W. Hamilton, R. Ying và J. Leskovec, Inductive Representation Learning on Large Graphs, 2017. \url{https://arxiv.org/abs/1706.02216}.
 \bibitem{gat} P. Velickovic và cộng sự, Graph Attention Networks, ICLR 2018. \url{https://arxiv.org/abs/1710.10903}.

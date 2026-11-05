@@ -1,0 +1,195 @@
+[
+  {
+    "id": "test-knowledge-0",
+    "group": "knowledge",
+    "question": "Tôi ăn cơm cùng cá và rau, chia lượng như thế nào?",
+    "context_ids": [
+      "plate"
+    ],
+    "history": [],
+    "answer": "Bạn nên chia lượng ăn cơm, cá và rau theo khẩu phần cân bằng, phù hợp với mục tiêu của bạn. Một gợi ý là:\n\n- **Cơm**: 1/4 đĩa (khoảng 100 gram)  \n- **Cá**: 1/4 phần (khoảng 100 gram)  \n- **Rau**: 1/2 đĩa (khoảng 100 gram)  \n\nBạn có thể điều chỉnh theo nhu cầu và thể trạng cá nhân. Nếu bạn muốn giảm calo hoặc tăng cường dinh dưỡng, hãy tham khảo ý kiến của bác sĩ hoặc chuyên gia dinh dưỡng.",
+    "seconds": 6.9970352000018465,
+    "new_tokens": 146
+  },
+  {
+    "id": "test-knowledge-1",
+    "group": "knowledge",
+    "question": "Tại sao không nên tự bỏ hết carbohydrate?",
+    "context_ids": [
+      "carb"
+    ],
+    "history": [],
+    "answer": "Không nên tự bỏ hết carbohydrate vì việc điều chỉnh lượng đường huyết phụ thuộc vào nhiều yếu tố như thuốc, mức hoạt động, và lượng đường sau bữa ăn. Việc cắt bỏ hoàn toàn tinh bột có thể gây ra tình trạng đường huyết quá cao, dẫn đến các biến chứng như đái tháo đường loại 2, mất cân bằng điện giải, hoặc thậm chí là suy giảm chức năng gan. Vì vậy, cần tuân thủ hướng dẫn của bác sĩ và theo dõi chặt chẽ tình trạng sức khỏe.",
+    "seconds": 5.482065899999725,
+    "new_tokens": 111
+  },
+  {
+    "id": "test-knowledge-2",
+    "group": "knowledge",
+    "question": "Ăn cả quả so với ép lấy nước khác gì?",
+    "context_ids": [
+      "fruit"
+    ],
+    "history": [],
+    "answer": "Ăn quả so với ép lấy nước trái cây có sự khác biệt về lượng đường và tốc độ hấp thụ vào máu. Khi ăn quả nguyên chất, lượng đường trong quả được hấp thụ một cách chậm hơn so với khi ép lấy nước, giúp kiểm soát đường huyết tốt hơn. Trong khi đó, nước ép có thể làm tăng nhanh đường huyết do lượng đường được giải phóng nhanh hơn. Do đó, việc ăn quả nguyên chất thường được khuyến nghị hơn so với ép lấy nước.",
+    "seconds": 5.294677500001853,
+    "new_tokens": 105
+  },
+  {
+    "id": "test-knowledge-3",
+    "group": "knowledge",
+    "question": "Người ít vận động nên bắt đầu tập ra sao?",
+    "context_ids": [
+      "activity"
+    ],
+    "history": [],
+    "answer": "Người ít vận động nên bắt đầu với các buổi tập ngắn, ví dụ như 10–15 phút mỗi ngày, và dần tăng cường theo khả năng của mình. Việc tập luyện nên được thực hiện theo kế hoạch từng bước, đồng thời cần trao đổi với nhân viên y tế nếu có biến chứng hoặc đang dùng thuốc dễ gây hạ đường huyết.",
+    "seconds": 3.802766499997233,
+    "new_tokens": 78
+  },
+  {
+    "id": "test-knowledge-4",
+    "group": "knowledge",
+    "question": "Chỉ số đường trung bình mấy tháng có ý nghĩa gì?",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [],
+    "answer": "Chỉ số đường huyết trung bình khoảng ba tháng là HbA1c (Hemoglobin glycated). Nó phản ánh mức đường huyết trung bình trong cơ thể trong khoảng thời gian ba tháng. Giá trị HbA1c giúp đánh giá hiệu quả của điều trị tiểu đường và theo dõi tình trạng bệnh. \n\nTheo NIDDK, các ngưỡng HbA1c được sử dụng như sau:\n- **Dưới 5,7%** cho người không mang thai: là mức bình thường.\n- **5,7–6,4%** cho người mang thai: là ngưỡng tiền đái tháo đường.\n- **Từ 6,5% trở lên**: là ngưỡng đái tháo đường.\n\nNếu bạn muốn biết thêm chi tiết về cách đo lường hoặc cách theo dõi, vui lòng cung cấp thêm thông tin.",
+    "seconds": 10.977190599998721,
+    "new_tokens": 190
+  },
+  {
+    "id": "test-knowledge-5",
+    "group": "knowledge",
+    "question": "Vì sao một lần đo ở nhà chưa xác nhận bệnh?",
+    "context_ids": [
+      "testing"
+    ],
+    "history": [],
+    "answer": "Một lần đo ở nhà chưa xác nhận bệnh vì:\n\n1. **Không đủ đơn vị hoặc thời điểm đo**: Theo TÀI LIỆU, cần biết đơn vị và thời điểm đo. Ví dụ, xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, và không áp dụng bảng này cho số đo sau ăn.\n\n2. **Máy đo tại nhà không xác lập chẩn đoán**: Máy đo tại nhà không thể chẩn đoán bệnh tiểu đường chính xác, chỉ có thể hỗ trợ đánh giá tạm thời.\n\n3. **Không có xét nghiệm xác nhận**: Bác sĩ sẽ xem xét xét nghiệm xác nhận để đưa ra chẩn đoán chính xác.\n\nDo đó, kết luận: **Một lần đo ở nhà chưa xác nhận bệnh tiểu đường vì thiếu thông tin chính xác và cần xét nghiệm xác nhận của bác sĩ.**",
+    "seconds": 10.897864400001708,
+    "new_tokens": 181
+  },
+  {
+    "id": "test-knowledge-6",
+    "group": "knowledge",
+    "question": "Đi khám lại cần chuẩn bị nhật ký gì?",
+    "context_ids": [
+      "monitor"
+    ],
+    "history": [],
+    "answer": "Để đi khám lại, bạn cần chuẩn bị nhật ký bao gồm:\n\n1. **Thời điểm đo glucose máu**: Ghi rõ thời gian đo, kết quả, và các hoạt động xảy ra trong khoảng thời gian đó (ví dụ: ăn, vận động, uống thuốc).\n2. **Bữa ăn**: Ghi lại các bữa ăn đã ăn trong ngày, bao gồm lượng đường trong các loại thức ăn.\n3. **Vận động**: Ghi lại các hoạt động thể chất đã thực hiện trong ngày.\n4. **Thuốc**: Ghi lại các loại thuốc đang dùng, bao gồm insulin, thuốc khác và liều lượng.\n5. **Triệu chứng**: Ghi lại các triệu chứng hiện tại như cảm giác thèm đường, mệt mỏi, chóng mặt, hoặc bất thường khác.\n6. **Mục tiêu điều trị**: Ghi lại các mục tiêu đã đạt được hoặc cần đạt được trong quá trình điều trị.\n\nNếu bạn đang dùng insulin, hãy ghi lại liều insulin và thời điểm sử dụng. Nếu bạn đang theo dõi theo bảng ngưỡng, hãy ghi lại các ngưỡng glucose máu mà bạn đã đạt được hoặc vượt quá.\n\nNếu bạn chưa có nhật ký, hãy chuẩn bị một cuốn sổ tay hoặc ứng dụng ghi chép để ghi lại thông tin này.",
+    "seconds": 16.845429999997577,
+    "new_tokens": 284
+  },
+  {
+    "id": "test-knowledge-7",
+    "group": "knowledge",
+    "question": "High có nghĩa tôi chắc chắn bị tiểu đường không?",
+    "context_ids": [
+      "classification_scope"
+    ],
+    "history": [],
+    "answer": "Không, nhãn \"High\" trong bộ dữ liệu này chỉ là nhãn phân loại của mô hình, không có nghĩa là bạn chắc chắn bị tiểu đường. Mô hình chỉ tái hiện nhãn trong bộ dữ liệu này, không thể dùng để chẩn đoán hoặc xác định tình trạng bệnh của bạn. Nếu bạn có triệu chứng hoặc lo ngại về tiểu đường, hãy tham khảo ý kiến bác sĩ để được đánh giá chính xác.",
+    "seconds": 4.246242400000483,
+    "new_tokens": 88
+  },
+  {
+    "id": "test-dialogue-0",
+    "group": "dialogue",
+    "question": "huyết áp 150 có ổn không",
+    "context_ids": [
+      "bloodpressure"
+    ],
+    "history": [],
+    "answer": "Huyết áp 150/XX mmHg (trong đó số trên là tâm thu, số dưới là tâm trương) có thể được coi là tăng huyết áp nếu số dưới (tâm trương) là trên 90 mmHg. Tuy nhiên, việc đánh giá huyết áp cần được thực hiện trong bối cảnh toàn diện, bao gồm các yếu tố khác như tuổi, tình trạng sức khỏe tổng quát, và các triệu chứng liên quan.\n\nNếu bạn có bất kỳ triệu chứng nào như mệt mỏi, chóng mặt, hoặc khó thở, hãy liên hệ với bác sĩ để được đánh giá cụ thể. Bạn nên đo huyết áp định kỳ và theo dõi để có cái nhìn rõ hơn về tình trạng của mình.",
+    "seconds": 7.854040800000803,
+    "new_tokens": 158
+  },
+  {
+    "id": "test-dialogue-1",
+    "group": "dialogue",
+    "question": "tôi yêu bạn",
+    "context_ids": [],
+    "history": [],
+    "answer": "Chào bạn! Tôi rất vui khi bạn nói như vậy. Nếu bạn cần hỗ trợ gì đó, hãy nói nhé.",
+    "seconds": 1.3339404000034847,
+    "new_tokens": 27
+  },
+  {
+    "id": "test-dialogue-2",
+    "group": "dialogue",
+    "question": "tôi phải tiêm mấy đơn vị insulin",
+    "context_ids": [
+      "medicine"
+    ],
+    "history": [],
+    "answer": "Bạn cần xác định liều insulin phù hợp dựa trên tình trạng sức khỏe, chế độ ăn, hoạt động thể chất và liều insulin hiện tại. Vì vậy, bạn nên tham khảo ý kiến bác sĩ hoặc chuyên gia y tế để được tư vấn cụ thể.",
+    "seconds": 2.7569929999990563,
+    "new_tokens": 57
+  },
+  {
+    "id": "test-dialogue-3",
+    "group": "dialogue",
+    "question": "mẹ tôi đang bất tỉnh",
+    "context_ids": [
+      "urgent"
+    ],
+    "history": [],
+    "answer": "Chào bạn, nếu mẹ bạn đang bất tỉnh, hãy gọi cấp cứu ngay hoặc đưa đến cơ sở y tế để được hỗ trợ kịp thời. Trong trường hợp này, không nên tự lái xe hoặc cố gắng cho mẹ bạn ăn uống khi có dấu hiệu khó nuốt. Hãy đảm bảo an toàn và hỗ trợ người bệnh trong tình huống khẩn cấp.",
+    "seconds": 3.845969399997557,
+    "new_tokens": 78
+  },
+  {
+    "id": "test-dialogue-4",
+    "group": "dialogue",
+    "question": "đường huyết 7 có cao không",
+    "context_ids": [
+      "testing"
+    ],
+    "history": [],
+    "answer": "Đường huyết 7 mmol/L (khoảng 126 mg/dL) được coi là **cao** trong phạm vi **đái tháo đường mellitus type 2**. Đây là mức đường huyết **trên ngưỡng đái tháo đường** (126 mg/dL), và cần được theo dõi và điều trị nếu có các triệu chứng hoặc nguy cơ tăng bệnh lý liên quan.\n\nNếu bạn đang có đường huyết 7 mmol/L, hãy tham khảo ý kiến bác sĩ để được đánh giá và tư vấn điều trị phù hợp.",
+    "seconds": 6.55917529999715,
+    "new_tokens": 126
+  },
+  {
+    "id": "test-dialogue-5",
+    "group": "dialogue",
+    "question": "HbA1c 6,2 nhưng không biết đơn vị",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [],
+    "answer": "HbA1c 6,2 có thể là giá trị đo lường theo đơn vị % (phần trăm). Đây là chỉ số phản ánh đường huyết trung bình trong 2–3 tháng. Tuy nhiên, nếu bạn không biết đơn vị, có thể cần xác nhận lại để đảm bảo chính xác. Nếu bạn đang điều trị bệnh tiểu đường, hãy tham khảo ý kiến bác sĩ để được tư vấn phù hợp.",
+    "seconds": 5.729960900000151,
+    "new_tokens": 94
+  },
+  {
+    "id": "test-dialogue-6",
+    "group": "dialogue",
+    "question": "ai thắng trận bóng tối qua",
+    "context_ids": [],
+    "history": [],
+    "answer": "Không có thông tin cụ thể về \"trận bóng tối qua\" trong tài liệu cung cấp. Vui lòng cung cấp thêm thông tin hoặc bối cảnh để tôi có thể hỗ trợ bạn tốt hơn.",
+    "seconds": 2.986912600001233,
+    "new_tokens": 45
+  },
+  {
+    "id": "test-dialogue-7",
+    "group": "dialogue",
+    "question": "Vậy 7,1% thì sao?",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "HbA1c là gì?"
+      }
+    ],
+    "answer": "HbA1c (giá trị đường huyết trung bình 3 tháng) là chỉ số đo lường mức đường huyết trung bình trong cơ thể trong khoảng 3 tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7% là bình thường, từ 5,7% đến 6,4% là tiền đái tháo đường, và trên 6,5% là đái tháo đường.\n\nNếu HbA1c là 7,1%, thì đây là mức đái tháo đường. Bạn cần xét nghiệm xác nhận để确诊 (chẩn đoán chính xác).",
+    "seconds": 8.72700050000276,
+    "new_tokens": 136
+  }
+]

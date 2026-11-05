@@ -1,11 +1,11 @@
 \section{Triển khai công khai trên Vercel và Neo4j Aura}
 \productlink{GlucoGuide -- bản demo công khai}{https://glucoguide-giang254.vercel.app}
 \subsection{Kiến trúc triển khai}
-Vercel Hobby phục vụ giao diện và API FastAPI từ cùng tên miền. Các checkpoint được đóng gói cùng mã nguồn; đồ thị nằm trên Neo4j AuraDB Free. Vì vậy bản demo không phụ thuộc tiến trình chạy trên máy cá nhân. Người xem không cần cài Neo4j hoặc đăng nhập để sử dụng bốn chức năng trên web.
+Vercel Hobby phục vụ giao diện và API FastAPI từ cùng tên miền. Các checkpoint dữ liệu bảng và nhận diện ý định được đóng gói cùng mã nguồn; đồ thị nằm trên Neo4j AuraDB Free. Vì vậy bản demo không phụ thuộc tiến trình chạy trên máy cá nhân. Người xem không cần cài Neo4j hoặc đăng nhập để sử dụng bốn chức năng trên web.
 
 Các biến môi trường kết nối (URI, tài khoản, mật khẩu và tên cơ sở dữ liệu) được cấu hình trên máy chủ. Trình duyệt gọi API của ứng dụng, không nhận thông tin đăng nhập cơ sở dữ liệu. Các tệp môi trường, dữ liệu thô và tài liệu báo cáo không được đóng gói vào hàm phục vụ web.
 \subsection{Nạp dữ liệu và kiểm tra}
-Script \path{scripts/ingest_graph.py} nạp kho tri thức theo phép MERGE để có thể chạy lại. Tùy chọn \texttt{--https} sử dụng Query API khi môi trường phát triển không kết nối được Bolt. Đồ thị triển khai có 60 nút Concept và 32 quan hệ; kho văn bản gồm 21 đoạn kiến thức.
+Script \path{scripts/ingest_graph.py} nạp kho tri thức theo phép MERGE để có thể chạy lại. Tùy chọn \texttt{--https} sử dụng Query API khi môi trường phát triển không kết nối được Bolt. Đồ thị triển khai có 60 nút Concept và 32 quan hệ; kho văn bản ở lần kiểm tra công khai trước gồm 21 đoạn; bản mã nguồn mới bổ sung đoạn định nghĩa tiểu đường, thành 22 đoạn.
 
 Ngày 05/11/2026, script \path{scripts/check_deployment.py} đã kiểm tra thành công 12 nhóm điều kiện trên địa chỉ công khai, gồm tải giao diện, trạng thái cơ sở dữ liệu, đồ thị, hội thoại có căn cứ, câu hỏi tiếp nối, thiếu đơn vị, câu ngoài phạm vi, nhận diện tình huống cần trợ giúp, hai bài toán mô hình, dữ liệu đầu vào không hợp lệ và tra cứu KB. Kết quả lưu tại \path{results/deployment_checks.json}. Kiểm tra này xác nhận các tình huống đã chạy; không thay thế đánh giá chuyên gia hoặc kiểm thử tải.
 \subsection{Vận hành trong gói miễn phí}

@@ -1,0 +1,195 @@
+[
+  {
+    "id": "test-knowledge-0",
+    "group": "knowledge",
+    "question": "Tôi ăn cơm cùng cá và rau, chia lượng như thế nào?",
+    "context_ids": [
+      "plate"
+    ],
+    "history": [],
+    "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+    "seconds": 8.540841099998943,
+    "new_tokens": 74
+  },
+  {
+    "id": "test-knowledge-1",
+    "group": "knowledge",
+    "question": "Tại sao không nên tự bỏ hết carbohydrate?",
+    "context_ids": [
+      "carb"
+    ],
+    "history": [],
+    "answer": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+    "seconds": 7.514840700001514,
+    "new_tokens": 67
+  },
+  {
+    "id": "test-knowledge-2",
+    "group": "knowledge",
+    "question": "Ăn cả quả so với ép lấy nước khác gì?",
+    "context_ids": [
+      "fruit"
+    ],
+    "history": [],
+    "answer": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người. [fruit]",
+    "seconds": 5.890892899999017,
+    "new_tokens": 57
+  },
+  {
+    "id": "test-knowledge-3",
+    "group": "knowledge",
+    "question": "Người ít vận động nên bắt đầu tập ra sao?",
+    "context_ids": [
+      "activity"
+    ],
+    "history": [],
+    "answer": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế. [activity]",
+    "seconds": 6.971101600000111,
+    "new_tokens": 70
+  },
+  {
+    "id": "test-knowledge-4",
+    "group": "knowledge",
+    "question": "Chỉ số đường trung bình mấy tháng có ý nghĩa gì?",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [],
+    "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+    "seconds": 10.286018900002091,
+    "new_tokens": 107
+  },
+  {
+    "id": "test-knowledge-5",
+    "group": "knowledge",
+    "question": "Vì sao một lần đo ở nhà chưa xác nhận bệnh?",
+    "context_ids": [
+      "testing"
+    ],
+    "history": [],
+    "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+    "seconds": 10.303595599998516,
+    "new_tokens": 111
+  },
+  {
+    "id": "test-knowledge-6",
+    "group": "knowledge",
+    "question": "Đi khám lại cần chuẩn bị nhật ký gì?",
+    "context_ids": [
+      "monitor"
+    ],
+    "history": [],
+    "answer": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+    "seconds": 5.757780899999489,
+    "new_tokens": 66
+  },
+  {
+    "id": "test-knowledge-7",
+    "group": "knowledge",
+    "question": "High có nghĩa tôi chắc chắn bị tiểu đường không?",
+    "context_ids": [
+      "classification_scope"
+    ],
+    "history": [],
+    "answer": "High là nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+    "seconds": 5.271237299999484,
+    "new_tokens": 65
+  },
+  {
+    "id": "test-dialogue-0",
+    "group": "dialogue",
+    "question": "huyết áp 150 có ổn không",
+    "context_ids": [
+      "bloodpressure"
+    ],
+    "history": [],
+    "answer": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]",
+    "seconds": 4.9873765999982425,
+    "new_tokens": 65
+  },
+  {
+    "id": "test-dialogue-1",
+    "group": "dialogue",
+    "question": "tôi yêu bạn",
+    "context_ids": [],
+    "history": [],
+    "answer": "Tôi không thể tham gia vào các mối quan hệ tình cảm hoặc yêu đương. Tôi là trợ lý tư vấn tiểu đường. Nếu bạn cần hỗ trợ về tiểu đường, hãy cung cấp thông tin cụ thể và tôi sẽ giúp bạn. [id]",
+    "seconds": 3.637342500001978,
+    "new_tokens": 54
+  },
+  {
+    "id": "test-dialogue-2",
+    "group": "dialogue",
+    "question": "tôi phải tiêm mấy đơn vị insulin",
+    "context_ids": [
+      "medicine"
+    ],
+    "history": [],
+    "answer": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+    "seconds": 4.988632499997038,
+    "new_tokens": 77
+  },
+  {
+    "id": "test-dialogue-3",
+    "group": "dialogue",
+    "question": "mẹ tôi đang bất tỉnh",
+    "context_ids": [
+      "urgent"
+    ],
+    "history": [],
+    "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+    "seconds": 4.217209300000832,
+    "new_tokens": 66
+  },
+  {
+    "id": "test-dialogue-4",
+    "group": "dialogue",
+    "question": "đường huyết 7 có cao không",
+    "context_ids": [
+      "testing"
+    ],
+    "history": [],
+    "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+    "seconds": 7.057842200003506,
+    "new_tokens": 111
+  },
+  {
+    "id": "test-dialogue-5",
+    "group": "dialogue",
+    "question": "HbA1c 6,2 nhưng không biết đơn vị",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [],
+    "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+    "seconds": 6.9094245999986015,
+    "new_tokens": 107
+  },
+  {
+    "id": "test-dialogue-6",
+    "group": "dialogue",
+    "question": "ai thắng trận bóng tối qua",
+    "context_ids": [],
+    "history": [],
+    "answer": "Không có tài liệu cho chủ đề này.",
+    "seconds": 0.6794657000027655,
+    "new_tokens": 10
+  },
+  {
+    "id": "test-dialogue-7",
+    "group": "dialogue",
+    "question": "Vậy 7,1% thì sao?",
+    "context_ids": [
+      "a1c"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "HbA1c là gì?"
+      }
+    ],
+    "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+    "seconds": 6.945172200001252,
+    "new_tokens": 107
+  }
+]

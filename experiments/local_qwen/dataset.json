@@ -1,0 +1,1165 @@
+{
+  "provenance": "Author-written Vietnamese instruction examples grounded in existing cited project KB. Internal benchmark; not clinician-validated patient data. Validation paraphrases share source documents with train. Test sets measure in-domain generalization, not independent clinical validation.",
+  "train": [
+    {
+      "id": "kb-bloodpressure-0",
+      "group": "knowledge",
+      "question": "Đọc huyết áp trên máy thế nào?",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "answer": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-bloodpressure-1",
+      "group": "knowledge",
+      "question": "Hai số trên máy huyết áp khác nhau thế nào?",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "answer": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-bloodpressure-2",
+      "group": "knowledge",
+      "question": "Tôi muốn hiểu tâm thu và tâm trương",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "answer": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-meanpressure-0",
+      "group": "knowledge",
+      "question": "Huyết áp trung bình trong dữ liệu là gì?",
+      "context_ids": [
+        "meanpressure"
+      ],
+      "answer": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc. [meanpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-meanpressure-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về huyết áp trung bình trong dữ liệu",
+      "context_ids": [
+        "meanpressure"
+      ],
+      "answer": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc. [meanpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-meanpressure-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về huyết áp trung bình trong dữ liệu",
+      "context_ids": [
+        "meanpressure"
+      ],
+      "answer": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc. [meanpressure]",
+      "history": []
+    },
+    {
+      "id": "kb-lipids-0",
+      "group": "knowledge",
+      "question": "Đọc bảng mỡ máu là gì?",
+      "context_ids": [
+        "lipids"
+      ],
+      "answer": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân. [lipids]",
+      "history": []
+    },
+    {
+      "id": "kb-lipids-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về đọc bảng mỡ máu",
+      "context_ids": [
+        "lipids"
+      ],
+      "answer": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân. [lipids]",
+      "history": []
+    },
+    {
+      "id": "kb-lipids-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về đọc bảng mỡ máu",
+      "context_ids": [
+        "lipids"
+      ],
+      "answer": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân. [lipids]",
+      "history": []
+    },
+    {
+      "id": "kb-hdl-0",
+      "group": "knowledge",
+      "question": "HDL cholesterol là gì?",
+      "context_ids": [
+        "hdl"
+      ],
+      "answer": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích. [hdl]",
+      "history": []
+    },
+    {
+      "id": "kb-hdl-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về hdl cholesterol",
+      "context_ids": [
+        "hdl"
+      ],
+      "answer": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích. [hdl]",
+      "history": []
+    },
+    {
+      "id": "kb-hdl-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về hdl cholesterol",
+      "context_ids": [
+        "hdl"
+      ],
+      "answer": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích. [hdl]",
+      "history": []
+    },
+    {
+      "id": "kb-ldl-0",
+      "group": "knowledge",
+      "question": "LDL cholesterol là gì?",
+      "context_ids": [
+        "ldl"
+      ],
+      "answer": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot. [ldl]",
+      "history": []
+    },
+    {
+      "id": "kb-ldl-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về ldl cholesterol",
+      "context_ids": [
+        "ldl"
+      ],
+      "answer": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot. [ldl]",
+      "history": []
+    },
+    {
+      "id": "kb-ldl-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về ldl cholesterol",
+      "context_ids": [
+        "ldl"
+      ],
+      "answer": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot. [ldl]",
+      "history": []
+    },
+    {
+      "id": "kb-triglyceride-0",
+      "group": "knowledge",
+      "question": "Triglyceride và log triglyceride là gì?",
+      "context_ids": [
+        "triglyceride"
+      ],
+      "answer": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu. [triglyceride]",
+      "history": []
+    },
+    {
+      "id": "kb-triglyceride-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về triglyceride và log triglyceride",
+      "context_ids": [
+        "triglyceride"
+      ],
+      "answer": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu. [triglyceride]",
+      "history": []
+    },
+    {
+      "id": "kb-triglyceride-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về triglyceride và log triglyceride",
+      "context_ids": [
+        "triglyceride"
+      ],
+      "answer": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu. [triglyceride]",
+      "history": []
+    },
+    {
+      "id": "kb-ratio-0",
+      "group": "knowledge",
+      "question": "Tỷ lệ cholesterol trên HDL là gì?",
+      "context_ids": [
+        "ratio"
+      ],
+      "answer": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc. [ratio]",
+      "history": []
+    },
+    {
+      "id": "kb-ratio-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về tỷ lệ cholesterol trên hdl",
+      "context_ids": [
+        "ratio"
+      ],
+      "answer": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc. [ratio]",
+      "history": []
+    },
+    {
+      "id": "kb-ratio-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về tỷ lệ cholesterol trên hdl",
+      "context_ids": [
+        "ratio"
+      ],
+      "answer": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc. [ratio]",
+      "history": []
+    },
+    {
+      "id": "kb-demographics-0",
+      "group": "knowledge",
+      "question": "Tuổi và mã giới tính của mô hình là gì?",
+      "context_ids": [
+        "demographics"
+      ],
+      "answer": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng. [demographics]",
+      "history": []
+    },
+    {
+      "id": "kb-demographics-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về tuổi và mã giới tính của mô hình",
+      "context_ids": [
+        "demographics"
+      ],
+      "answer": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng. [demographics]",
+      "history": []
+    },
+    {
+      "id": "kb-demographics-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về tuổi và mã giới tính của mô hình",
+      "context_ids": [
+        "demographics"
+      ],
+      "answer": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng. [demographics]",
+      "history": []
+    },
+    {
+      "id": "kb-plate-0",
+      "group": "knowledge",
+      "question": "Tôi muốn biết cách chia một bữa ăn",
+      "context_ids": [
+        "plate"
+      ],
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+      "history": []
+    },
+    {
+      "id": "kb-plate-1",
+      "group": "knowledge",
+      "question": "Cho tôi ví dụ bữa cơm dễ áp dụng",
+      "context_ids": [
+        "plate"
+      ],
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+      "history": []
+    },
+    {
+      "id": "kb-plate-2",
+      "group": "knowledge",
+      "question": "Người tiểu đường nên sắp xếp đĩa ăn ra sao?",
+      "context_ids": [
+        "plate"
+      ],
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+      "history": []
+    },
+    {
+      "id": "kb-carb-0",
+      "group": "knowledge",
+      "question": "Có nên bỏ hẳn cơm không?",
+      "context_ids": [
+        "carb"
+      ],
+      "answer": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+      "history": []
+    },
+    {
+      "id": "kb-carb-1",
+      "group": "knowledge",
+      "question": "Tôi sợ tinh bột nên nhịn ăn được chứ?",
+      "context_ids": [
+        "carb"
+      ],
+      "answer": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+      "history": []
+    },
+    {
+      "id": "kb-carb-2",
+      "group": "knowledge",
+      "question": "Tại sao vẫn cần xem khẩu phần tinh bột?",
+      "context_ids": [
+        "carb"
+      ],
+      "answer": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+      "history": []
+    },
+    {
+      "id": "kb-fruit-0",
+      "group": "knowledge",
+      "question": "Tôi uống nước ép thay trái cây được không?",
+      "context_ids": [
+        "fruit"
+      ],
+      "answer": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người. [fruit]",
+      "history": []
+    },
+    {
+      "id": "kb-fruit-1",
+      "group": "knowledge",
+      "question": "Ăn hoa quả cần lưu ý gì?",
+      "context_ids": [
+        "fruit"
+      ],
+      "answer": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người. [fruit]",
+      "history": []
+    },
+    {
+      "id": "kb-fruit-2",
+      "group": "knowledge",
+      "question": "Chọn đồ uống hằng ngày thế nào?",
+      "context_ids": [
+        "fruit"
+      ],
+      "answer": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người. [fruit]",
+      "history": []
+    },
+    {
+      "id": "kb-activity-0",
+      "group": "knowledge",
+      "question": "Tôi muốn bắt đầu tập thể dục",
+      "context_ids": [
+        "activity"
+      ],
+      "answer": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế. [activity]",
+      "history": []
+    },
+    {
+      "id": "kb-activity-1",
+      "group": "knowledge",
+      "question": "Đi bộ nên bắt đầu thế nào?",
+      "context_ids": [
+        "activity"
+      ],
+      "answer": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế. [activity]",
+      "history": []
+    },
+    {
+      "id": "kb-activity-2",
+      "group": "knowledge",
+      "question": "Mục tiêu vận động cho người lớn là bao nhiêu?",
+      "context_ids": [
+        "activity"
+      ],
+      "answer": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế. [activity]",
+      "history": []
+    },
+    {
+      "id": "kb-a1c-0",
+      "group": "knowledge",
+      "question": "HbA1c là gì?",
+      "context_ids": [
+        "a1c"
+      ],
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "history": []
+    },
+    {
+      "id": "kb-a1c-1",
+      "group": "knowledge",
+      "question": "Chỉ số A1c cho biết điều gì?",
+      "context_ids": [
+        "a1c"
+      ],
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "history": []
+    },
+    {
+      "id": "kb-a1c-2",
+      "group": "knowledge",
+      "question": "Vì sao HbA1c khác số đo hôm nay?",
+      "context_ids": [
+        "a1c"
+      ],
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "history": []
+    },
+    {
+      "id": "kb-testing-0",
+      "group": "knowledge",
+      "question": "Đọc kết quả xét nghiệm là gì?",
+      "context_ids": [
+        "testing"
+      ],
+      "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "history": []
+    },
+    {
+      "id": "kb-testing-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về đọc kết quả xét nghiệm",
+      "context_ids": [
+        "testing"
+      ],
+      "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "history": []
+    },
+    {
+      "id": "kb-testing-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về đọc kết quả xét nghiệm",
+      "context_ids": [
+        "testing"
+      ],
+      "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "history": []
+    },
+    {
+      "id": "kb-low-0",
+      "group": "knowledge",
+      "question": "Khi đường huyết thấp là gì?",
+      "context_ids": [
+        "low"
+      ],
+      "answer": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]",
+      "history": []
+    },
+    {
+      "id": "kb-low-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về khi đường huyết thấp",
+      "context_ids": [
+        "low"
+      ],
+      "answer": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]",
+      "history": []
+    },
+    {
+      "id": "kb-low-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về khi đường huyết thấp",
+      "context_ids": [
+        "low"
+      ],
+      "answer": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]",
+      "history": []
+    },
+    {
+      "id": "kb-urgent-0",
+      "group": "knowledge",
+      "question": "Dấu hiệu cần trợ giúp ngay là gì?",
+      "context_ids": [
+        "urgent"
+      ],
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "history": []
+    },
+    {
+      "id": "kb-urgent-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về dấu hiệu cần trợ giúp ngay",
+      "context_ids": [
+        "urgent"
+      ],
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "history": []
+    },
+    {
+      "id": "kb-urgent-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về dấu hiệu cần trợ giúp ngay",
+      "context_ids": [
+        "urgent"
+      ],
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "history": []
+    },
+    {
+      "id": "kb-medicine-0",
+      "group": "knowledge",
+      "question": "Tôi nên tự tăng liều thuốc không?",
+      "context_ids": [
+        "medicine"
+      ],
+      "answer": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+      "history": []
+    },
+    {
+      "id": "kb-medicine-1",
+      "group": "knowledge",
+      "question": "Tôi có thể ngừng thuốc đang dùng không?",
+      "context_ids": [
+        "medicine"
+      ],
+      "answer": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+      "history": []
+    },
+    {
+      "id": "kb-medicine-2",
+      "group": "knowledge",
+      "question": "Bác sĩ dựa vào gì để chọn thuốc?",
+      "context_ids": [
+        "medicine"
+      ],
+      "answer": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+      "history": []
+    },
+    {
+      "id": "kb-monitor-0",
+      "group": "knowledge",
+      "question": "Tôi cần ghi gì trước khi tái khám?",
+      "context_ids": [
+        "monitor"
+      ],
+      "answer": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+      "history": []
+    },
+    {
+      "id": "kb-monitor-1",
+      "group": "knowledge",
+      "question": "Ghi nhật ký đường huyết ra sao?",
+      "context_ids": [
+        "monitor"
+      ],
+      "answer": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+      "history": []
+    },
+    {
+      "id": "kb-monitor-2",
+      "group": "knowledge",
+      "question": "Tôi cần mang thông tin gì cho bác sĩ?",
+      "context_ids": [
+        "monitor"
+      ],
+      "answer": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+      "history": []
+    },
+    {
+      "id": "kb-symptoms-0",
+      "group": "knowledge",
+      "question": "Triệu chứng và thăm khám là gì?",
+      "context_ids": [
+        "symptoms"
+      ],
+      "answer": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng. [symptoms]",
+      "history": []
+    },
+    {
+      "id": "kb-symptoms-1",
+      "group": "knowledge",
+      "question": "Giải thích giúp tôi về triệu chứng và thăm khám",
+      "context_ids": [
+        "symptoms"
+      ],
+      "answer": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng. [symptoms]",
+      "history": []
+    },
+    {
+      "id": "kb-symptoms-2",
+      "group": "knowledge",
+      "question": "Tôi cần biết gì về triệu chứng và thăm khám",
+      "context_ids": [
+        "symptoms"
+      ],
+      "answer": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng. [symptoms]",
+      "history": []
+    },
+    {
+      "id": "kb-model-0",
+      "group": "knowledge",
+      "question": "Điểm dự đoán 200 có ý nghĩa gì?",
+      "context_ids": [
+        "model"
+      ],
+      "answer": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "history": []
+    },
+    {
+      "id": "kb-model-1",
+      "group": "knowledge",
+      "question": "Điểm tiến triển có phải glucose không?",
+      "context_ids": [
+        "model"
+      ],
+      "answer": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "history": []
+    },
+    {
+      "id": "kb-model-2",
+      "group": "knowledge",
+      "question": "Mô hình hồi quy dự đoán điều gì?",
+      "context_ids": [
+        "model"
+      ],
+      "answer": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "history": []
+    },
+    {
+      "id": "kb-classification_scope-0",
+      "group": "knowledge",
+      "question": "Nhãn High nghĩa là mắc bệnh à?",
+      "context_ids": [
+        "classification_scope"
+      ],
+      "answer": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "history": []
+    },
+    {
+      "id": "kb-classification_scope-1",
+      "group": "knowledge",
+      "question": "Kết quả Low có chắc không bị bệnh không?",
+      "context_ids": [
+        "classification_scope"
+      ],
+      "answer": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "history": []
+    },
+    {
+      "id": "kb-classification_scope-2",
+      "group": "knowledge",
+      "question": "Mô hình phân loại có dùng chẩn đoán được không?",
+      "context_ids": [
+        "classification_scope"
+      ],
+      "answer": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "history": []
+    },
+    {
+      "id": "dialogue-0",
+      "group": "dialogue",
+      "question": "Máy đo hiện số trên 150, bạn giải thích giúp mình với",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "answer": "Bạn cho biết 150 là số trên hay số dưới, và gửi cả cặp số cùng đơn vị mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu người lớn, không nên coi là bình thường. Hãy đo lại khi nghỉ, ghi kết quả và trao đổi với nhân viên y tế nếu cao lặp lại. [bloodpressure]",
+      "history": []
+    },
+    {
+      "id": "dialogue-1",
+      "group": "dialogue",
+      "question": "Mình quý bạn ghê, cảm ơn vì đã giúp mình",
+      "context_ids": [],
+      "answer": "Cảm ơn bạn đã quý mến. Tôi có thể hỗ trợ bạn tìm hiểu tiểu đường và các chỉ số sức khỏe. Hôm nay bạn muốn trao đổi điều gì?",
+      "history": []
+    },
+    {
+      "id": "dialogue-2",
+      "group": "dialogue",
+      "question": "Tiểu đường là gì?",
+      "context_ids": [
+        "overview"
+      ],
+      "answer": "Tiểu đường là bệnh mạn tính liên quan đến đường huyết cao. Cần xét nghiệm để xác định; không thể kết luận chỉ từ triệu chứng. Bạn đang muốn tìm hiểu bệnh nói chung hay có kết quả xét nghiệm cần giải thích? [testing]",
+      "history": []
+    },
+    {
+      "id": "dialogue-3",
+      "group": "dialogue",
+      "question": "HbA1c 7 thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "answer": "Bạn cho biết đơn vị của HbA1c là % hay mmol/mol nhé. Tôi cần đúng đơn vị trước khi đối chiếu ngưỡng. [a1c]",
+      "history": []
+    },
+    {
+      "id": "dialogue-4",
+      "group": "dialogue",
+      "question": "Đường huyết 8 có cao không?",
+      "context_ids": [
+        "testing"
+      ],
+      "answer": "Bạn bổ sung đơn vị mg/dL hay mmol/L, đo lúc đói hay sau ăn, và đo tại nhà hay xét nghiệm nhé. Thiếu những thông tin này thì chưa thể diễn giải con số. [testing]",
+      "history": []
+    },
+    {
+      "id": "dialogue-5",
+      "group": "dialogue",
+      "question": "Tôi tiêm bao nhiêu insulin?",
+      "context_ids": [
+        "medicine"
+      ],
+      "answer": "Tôi không thể chọn liều insulin cho bạn. Hãy làm theo chỉ định và trao đổi với bác sĩ nếu số đo thay đổi; chuẩn bị tên thuốc, liều hiện tại, thời điểm dùng và nhật ký đường huyết. [medicine]",
+      "history": []
+    },
+    {
+      "id": "dialogue-6",
+      "group": "dialogue",
+      "question": "Bố tôi đang bất tỉnh",
+      "context_ids": [
+        "urgent"
+      ],
+      "answer": "Đây có thể là tình huống khẩn cấp. Nhờ người bên cạnh gọi cấp cứu địa phương ngay; không cho ăn uống khi bất tỉnh hoặc không nuốt được. Đừng chờ chatbot để xử trí. [urgent]",
+      "history": []
+    },
+    {
+      "id": "dialogue-7",
+      "group": "dialogue",
+      "question": "Bạn có biết kết quả bóng đá không?",
+      "context_ids": [],
+      "answer": "Tôi chưa có tài liệu cho chủ đề này. Tôi có thể giúp bạn tìm hiểu tiểu đường, ăn uống, vận động và cách đọc chỉ số.",
+      "history": []
+    },
+    {
+      "id": "a1c-5.1",
+      "group": "dialogue",
+      "question": "Vậy 5.1% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "Tôi hỏi về HbA1c"
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cho biết giá trị và đơn vị nhé."
+        }
+      ],
+      "answer": "HbA1c 5.1% dưới ngưỡng tiền đái tháo đường theo bảng sàng lọc cho người không mang thai. Cần bác sĩ đối chiếu và xét nghiệm xác nhận; mục tiêu điều trị của người đã mắc bệnh khác ngưỡng sàng lọc. [a1c]"
+    },
+    {
+      "id": "a1c-5.8",
+      "group": "dialogue",
+      "question": "Vậy 5.8% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "Tôi hỏi về HbA1c"
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cho biết giá trị và đơn vị nhé."
+        }
+      ],
+      "answer": "HbA1c 5.8% trong khoảng tiền đái tháo đường theo bảng sàng lọc cho người không mang thai. Cần bác sĩ đối chiếu và xét nghiệm xác nhận; mục tiêu điều trị của người đã mắc bệnh khác ngưỡng sàng lọc. [a1c]"
+    },
+    {
+      "id": "a1c-6.1",
+      "group": "dialogue",
+      "question": "Vậy 6.1% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "Tôi hỏi về HbA1c"
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cho biết giá trị và đơn vị nhé."
+        }
+      ],
+      "answer": "HbA1c 6.1% trong khoảng tiền đái tháo đường theo bảng sàng lọc cho người không mang thai. Cần bác sĩ đối chiếu và xét nghiệm xác nhận; mục tiêu điều trị của người đã mắc bệnh khác ngưỡng sàng lọc. [a1c]"
+    },
+    {
+      "id": "a1c-6.7",
+      "group": "dialogue",
+      "question": "Vậy 6.7% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "Tôi hỏi về HbA1c"
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cho biết giá trị và đơn vị nhé."
+        }
+      ],
+      "answer": "HbA1c 6.7% đạt ngưỡng xét nghiệm dùng để chẩn đoán đái tháo đường theo bảng sàng lọc cho người không mang thai. Cần bác sĩ đối chiếu và xét nghiệm xác nhận; mục tiêu điều trị của người đã mắc bệnh khác ngưỡng sàng lọc. [a1c]"
+    },
+    {
+      "id": "a1c-7.3",
+      "group": "dialogue",
+      "question": "Vậy 7.3% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "Tôi hỏi về HbA1c"
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn cho biết giá trị và đơn vị nhé."
+        }
+      ],
+      "answer": "HbA1c 7.3% đạt ngưỡng xét nghiệm dùng để chẩn đoán đái tháo đường theo bảng sàng lọc cho người không mang thai. Cần bác sĩ đối chiếu và xét nghiệm xác nhận; mục tiêu điều trị của người đã mắc bệnh khác ngưỡng sàng lọc. [a1c]"
+    }
+  ],
+  "validation": [
+    {
+      "id": "val-bloodpressure",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: hiểu số đo huyết áp?",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "answer": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế. [bloodpressure]",
+      "history": []
+    },
+    {
+      "id": "val-meanpressure",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: huyết áp trung bình trong dữ liệu?",
+      "context_ids": [
+        "meanpressure"
+      ],
+      "answer": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc. [meanpressure]",
+      "history": []
+    },
+    {
+      "id": "val-lipids",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: đọc bảng mỡ máu?",
+      "context_ids": [
+        "lipids"
+      ],
+      "answer": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân. [lipids]",
+      "history": []
+    },
+    {
+      "id": "val-hdl",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: hdl cholesterol?",
+      "context_ids": [
+        "hdl"
+      ],
+      "answer": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích. [hdl]",
+      "history": []
+    },
+    {
+      "id": "val-ldl",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: ldl cholesterol?",
+      "context_ids": [
+        "ldl"
+      ],
+      "answer": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot. [ldl]",
+      "history": []
+    },
+    {
+      "id": "val-triglyceride",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: triglyceride và log triglyceride?",
+      "context_ids": [
+        "triglyceride"
+      ],
+      "answer": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu. [triglyceride]",
+      "history": []
+    },
+    {
+      "id": "val-ratio",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: tỷ lệ cholesterol trên hdl?",
+      "context_ids": [
+        "ratio"
+      ],
+      "answer": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc. [ratio]",
+      "history": []
+    },
+    {
+      "id": "val-demographics",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: tuổi và mã giới tính của mô hình?",
+      "context_ids": [
+        "demographics"
+      ],
+      "answer": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng. [demographics]",
+      "history": []
+    },
+    {
+      "id": "val-plate",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: một bữa ăn cân bằng?",
+      "context_ids": [
+        "plate"
+      ],
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]",
+      "history": []
+    },
+    {
+      "id": "val-carb",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: có cần bỏ hoàn toàn tinh bột??",
+      "context_ids": [
+        "carb"
+      ],
+      "answer": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+      "history": []
+    },
+    {
+      "id": "val-fruit",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: trái cây và đồ uống?",
+      "context_ids": [
+        "fruit"
+      ],
+      "answer": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người. [fruit]",
+      "history": []
+    },
+    {
+      "id": "val-activity",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: vận động theo khả năng?",
+      "context_ids": [
+        "activity"
+      ],
+      "answer": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế. [activity]",
+      "history": []
+    },
+    {
+      "id": "val-a1c",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: hiểu chỉ số hba1c?",
+      "context_ids": [
+        "a1c"
+      ],
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "history": []
+    },
+    {
+      "id": "val-testing",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: đọc kết quả xét nghiệm?",
+      "context_ids": [
+        "testing"
+      ],
+      "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "history": []
+    },
+    {
+      "id": "val-low",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: khi đường huyết thấp?",
+      "context_ids": [
+        "low"
+      ],
+      "answer": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]",
+      "history": []
+    },
+    {
+      "id": "val-urgent",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: dấu hiệu cần trợ giúp ngay?",
+      "context_ids": [
+        "urgent"
+      ],
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "history": []
+    },
+    {
+      "id": "val-medicine",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: về thuốc và liều dùng?",
+      "context_ids": [
+        "medicine"
+      ],
+      "answer": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+      "history": []
+    },
+    {
+      "id": "val-monitor",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: theo dõi để trao đổi khi tái khám?",
+      "context_ids": [
+        "monitor"
+      ],
+      "answer": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+      "history": []
+    },
+    {
+      "id": "val-symptoms",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: triệu chứng và thăm khám?",
+      "context_ids": [
+        "symptoms"
+      ],
+      "answer": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng. [symptoms]",
+      "history": []
+    },
+    {
+      "id": "val-model",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: điểm mô hình có ý nghĩa gì??",
+      "context_ids": [
+        "model"
+      ],
+      "answer": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "history": []
+    },
+    {
+      "id": "val-classification_scope",
+      "group": "knowledge",
+      "question": "Bạn giải thích dễ hiểu: phân loại nhãn tổng hợp?",
+      "context_ids": [
+        "classification_scope"
+      ],
+      "answer": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "history": []
+    }
+  ],
+  "test": [
+    {
+      "id": "test-knowledge-0",
+      "group": "knowledge",
+      "question": "Tôi ăn cơm cùng cá và rau, chia lượng như thế nào?",
+      "context_ids": [
+        "plate"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-1",
+      "group": "knowledge",
+      "question": "Tại sao không nên tự bỏ hết carbohydrate?",
+      "context_ids": [
+        "carb"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-2",
+      "group": "knowledge",
+      "question": "Ăn cả quả so với ép lấy nước khác gì?",
+      "context_ids": [
+        "fruit"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-3",
+      "group": "knowledge",
+      "question": "Người ít vận động nên bắt đầu tập ra sao?",
+      "context_ids": [
+        "activity"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-4",
+      "group": "knowledge",
+      "question": "Chỉ số đường trung bình mấy tháng có ý nghĩa gì?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-5",
+      "group": "knowledge",
+      "question": "Vì sao một lần đo ở nhà chưa xác nhận bệnh?",
+      "context_ids": [
+        "testing"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-6",
+      "group": "knowledge",
+      "question": "Đi khám lại cần chuẩn bị nhật ký gì?",
+      "context_ids": [
+        "monitor"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-knowledge-7",
+      "group": "knowledge",
+      "question": "High có nghĩa tôi chắc chắn bị tiểu đường không?",
+      "context_ids": [
+        "classification_scope"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-0",
+      "group": "dialogue",
+      "question": "huyết áp 150 có ổn không",
+      "context_ids": [
+        "bloodpressure"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-1",
+      "group": "dialogue",
+      "question": "tôi yêu bạn",
+      "context_ids": [],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-2",
+      "group": "dialogue",
+      "question": "tôi phải tiêm mấy đơn vị insulin",
+      "context_ids": [
+        "medicine"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-3",
+      "group": "dialogue",
+      "question": "mẹ tôi đang bất tỉnh",
+      "context_ids": [
+        "urgent"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-4",
+      "group": "dialogue",
+      "question": "đường huyết 7 có cao không",
+      "context_ids": [
+        "testing"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-5",
+      "group": "dialogue",
+      "question": "HbA1c 6,2 nhưng không biết đơn vị",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-6",
+      "group": "dialogue",
+      "question": "ai thắng trận bóng tối qua",
+      "context_ids": [],
+      "history": []
+    },
+    {
+      "id": "test-dialogue-7",
+      "group": "dialogue",
+      "question": "Vậy 7,1% thì sao?",
+      "context_ids": [
+        "a1c"
+      ],
+      "history": [
+        {
+          "role": "user",
+          "content": "HbA1c là gì?"
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
+from app import local_llm
 from app.settings import database, browser_url
 from typing import Literal
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -107,8 +108,18 @@ def chat(req:Request):
   verdict=bus.request('Điều phối','Đối chiếu',result)
   answer=verdict['scope']+'\n\n'+answer
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
+ response_mode="kb-rules"
+ if local_llm.enabled():
+  bus.register(Agent('Kiểm chứng phản hồi',local_llm.verify))
+  bus.register(Agent('Ngôn ngữ cục bộ',local_llm.respond))
+  try:
+   generated=bus.request('Điều phối','Ngôn ngữ cục bộ',{'question':q,'plan':plan,'documents':selected,'fallback':answer,'history':[h.model_dump() for h in req.history]})
+   answer=generated['answer'];response_mode=generated['mode']
+   msg('Kiểm chứng phản hồi','Điều phối','INFORM',{'mode':generated['mode'],'reason':generated['reason']})
+  except Exception as exc:
+   msg('Ngôn ngữ cục bộ','Điều phối','FAILURE',type(exc).__name__+'; sử dụng phản hồi KB')
  msg('Phản hồi','Người dùng','INFORM','Hoàn thành')
- return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'generator':'Nhận diện ý định đã huấn luyện · KB và luật có nguồn · không gọi LLM','suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
+ return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'response_mode':response_mode,'generator':('Qwen3 LoRA cục bộ + KB' if response_mode=='qwen-lora' else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
 
 @app.get('/api/knowledge')
@@ -120,5 +131,5 @@ def knowledge(q:str=''):
 @app.get('/api/status')
 def status():
  try:
-  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url()}
- except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url()}
+  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
+ except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
