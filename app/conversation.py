@@ -5,7 +5,7 @@ from app.intent import predict_intent
 def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
 
-TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['overview','testing']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
+TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem','do tieu duong','kiem tra tieu duong'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['overview','testing']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
 FOLLOW={
  'bloodpressure':['Đo huyết áp tại nhà thế nào?','Tôi nên ghi gì khi đi khám?'],
  'a1c':['Ngưỡng HbA1c được hiểu thế nào?','Tôi nên chuẩn bị gì khi đi khám?'],
@@ -51,6 +51,8 @@ def _route(question,history):
   result.update(override='Chào bạn. Tôi có thể cùng bạn tìm hiểu tiểu đường: giải thích HbA1c, cách ăn uống, theo dõi đường huyết và đọc ý nghĩa kết quả nghiên cứu. Bạn đang muốn hỏi về chỉ số hay sinh hoạt hằng ngày?',ids=[]);return result
  if 'chuan bi' in q or 'ghi gi' in q:
   result.update(topic='monitor',ids=['monitor','medicine'],intro='Để buổi khám hữu ích hơn, hãy chuẩn bị phiếu xét nghiệm và ghi lại các thông tin sau.');return result
+ if key=='testing' and any(t in q for t in ['do tieu duong','kiem tra tieu duong']):
+  result.update(ids=['testing','a1c'],override='Để kiểm tra tiểu đường, bác sĩ thường dùng xét nghiệm đường huyết lúc đói hoặc HbA1c. Bạn cần ghi tên xét nghiệm, kết quả, đơn vị, thời điểm đo và có nhịn ăn hay không. Máy đo tại nhà dùng để theo dõi, không tự xác nhận bệnh. Bạn đang có phiếu HbA1c hay một số đo đường huyết?');return result
  if key=='medicine':
   result['intro']='Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.'
  # Avoid assigning adult screening ranges during pregnancy or in children.
@@ -111,6 +113,8 @@ def _route(question,history):
 def contextual_route(question, history):
  """Resolve explicitly supplied follow-up fields, without silently inventing values."""
  q=norm(question)
+ if re.fullmatch(r'(toi |mình )?(ghet|chan) ban[.!? ]*',q) or q.strip(' .!?') in ['do ngoc','ban tra loi sai','ban noi sai']:
+  return {'topic':'social','ids':[],'query':question,'context_used':False,'intro':'','override':'Mình xin lỗi vì câu trả lời vừa rồi không đúng ý bạn. Bạn nói giúp mình chỗ nào sai hoặc muốn hỏi lại phần nào; mình sẽ trả lời sát câu đó hơn.','tone':'normal','suggestions':['Giải thích lại câu vừa rồi','Tôi cần đo những chỉ số nào?']}
  if q.strip(' .!?') in ['toi yeu ban','yeu ban','cam on ban','ban de thuong qua']:
   return {'topic':'social','ids':[],'query':question,'context_used':False,'intro':'','override':'Cảm ơn bạn đã quý mến. Tôi luôn sẵn sàng giúp bạn tìm hiểu tiểu đường và các chỉ số. Bạn muốn trao đổi điều gì tiếp theo?','tone':'normal','suggestions':['Tiểu đường là gì?','HbA1c là gì?']}
  users=[h['content'] for h in history if h['role']=='user']
@@ -119,6 +123,22 @@ def contextual_route(question, history):
  for i in range(len(users)-1,-1,-1):
   if topic(users[i])[0]:anchor=i;break
  current=topic(question)[0]
+ # A short clarification refers to the last meaningful user question, not to random retrieval hits.
+ if anchor is not None and re.fullmatch(r'(la sao|y la sao|y la gi|giai thich lai|toi khong hieu)[?.! ]*',q):
+  old_topic=topic(users[anchor])[0]
+  if old_topic=='testing':
+   answer='Để kiểm tra tiểu đường, hai xét nghiệm thường gặp là đường huyết lúc đói (ghi kết quả cùng đơn vị mg/dL hoặc mmol/L) và HbA1c (thường ghi bằng %). Máy đo tại nhà giúp theo dõi nhưng không tự xác nhận bệnh. Bạn đang có kết quả nào? Gửi tên xét nghiệm, số đo, đơn vị và lúc đo; mình sẽ giải thích đúng chỉ số đó.'
+   ids=['testing','a1c']
+  elif old_topic=='meal':
+   answer='Với bữa ăn, bạn có thể hình dung nửa đĩa là rau, một phần tư là đạm như cá hoặc đậu phụ, phần còn lại là cơm hay tinh bột. Đây là gợi ý chia đĩa, lượng ăn thực tế cần theo nhu cầu và thuốc của bạn. Bạn muốn mình giải thích phần nào?'
+   ids=['plate','carb']
+  elif old_topic=='a1c':
+   answer='HbA1c cho biết mức đường huyết trung bình khoảng ba tháng. Để hiểu con số trên phiếu, bạn gửi thêm giá trị và đơn vị; kết quả đơn lẻ chưa đủ xác nhận chẩn đoán.'
+   ids=['a1c']
+  else:
+   answer='Bạn muốn mình giải thích lại phần nào trong câu trả lời trước? Bạn có thể nhắc tên chỉ số hoặc chép đúng câu chưa rõ.'
+   ids=[]
+  return {'topic':old_topic or 'knowledge','ids':ids,'query':users[anchor],'context_used':True,'intro':'','override':answer,'tone':'normal','suggestions':FOLLOW.get(old_topic,[])}
  if anchor is not None:
   old_topic=topic(users[anchor])[0]
   short=bool(re.fullmatch(r'[\d.,% /a-z]+',q)) and len(q)<45

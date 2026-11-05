@@ -1,5 +1,5 @@
 {
-  "passed": 33,
+  "passed": 35,
   "cases": [
     {
       "case": "blood_pressure_single",
@@ -220,6 +220,21 @@
       "sources": [
         "plate",
         "carb"
+      ]
+    },
+    {
+      "case": "social_negative",
+      "passed": true,
+      "answer": "Mình xin lỗi vì câu trả lời vừa rồi không đúng ý bạn. Bạn nói giúp mình chỗ nào sai hoặc muốn hỏi lại phần nào; mình sẽ trả lời sát câu đó hơn.",
+      "sources": []
+    },
+    {
+      "case": "clarification_focus",
+      "passed": true,
+      "answer": "Để kiểm tra tiểu đường, hai xét nghiệm thường gặp là đường huyết lúc đói (ghi kết quả cùng đơn vị mg/dL hoặc mmol/L) và HbA1c (thường ghi bằng %). Máy đo tại nhà giúp theo dõi nhưng không tự xác nhận bệnh. Bạn đang có kết quả nào? Gửi tên xét nghiệm, số đo, đơn vị và lúc đo; mình sẽ giải thích đúng chỉ số đó.",
+      "sources": [
+        "testing",
+        "a1c"
       ]
     },
     {

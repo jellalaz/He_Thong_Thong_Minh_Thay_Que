@@ -31,6 +31,8 @@ cases=[
  ('dose',{'question':'Tôi nên tiêm bao nhiêu đơn vị insulin?'},lambda b:b['topic']=='medicine' and 'không chọn thuốc' in b['answer']),
  ('pregnancy',{'question':'Tôi mang thai HbA1c 6,2%'},lambda b:'không áp bảng ngưỡng' in b['answer'] and '6.2%' not in b['answer']),
  ('food',{'question':'Có cần bỏ cơm hoàn toàn không?'},lambda b:any(s['id']=='carb' for s in b['sources'])),
+ ('social_negative',{'question':'tôi ghét bạn','history':[{'role':'user','content':'Gợi ý cách chia một bữa ăn cho người tiểu đường'}]},lambda b:b['topic']=='social' and not b['sources'] and 'xin lỗi' in b['answer']),
+ ('clarification_focus',{'question':'là sao','history':[{'role':'user','content':'Gợi ý cách chia một bữa ăn cho người tiểu đường'},{'role':'user','content':'đo tiểu đường cần số đo gì'}]},lambda b:b['context_used'] and set(x['id'] for x in b['sources'])=={'testing','a1c'} and 'huyết áp' not in b['answer'].lower()),
  ('unknown',{'question':'zzzxxyy'},lambda b:not b['sources']),
  ('context_isolation',{'question':'Vậy 7,1% thì sao?'},lambda b:not b['context_used']),
 ]
