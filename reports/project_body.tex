@@ -32,7 +32,7 @@ Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu 
 
 Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
 \section{Luồng người dùng}
-Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 12 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
+Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 64 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
 \chapter{Các thành phần và thực nghiệm}
 \section{Phân loại}
 Dữ liệu tổng hợp gồm 50.000 dòng. Tám biến đầu vào là tuổi, BMI, HbA1c, đường huyết lúc đói, glucose, huyết áp tâm thu, HDL và LDL. Các biến chứa điểm nguy cơ, khuyến nghị sức khỏe và yêu cầu gặp bác sĩ không được đưa vào mô hình. Phép chia phân tầng với seed 254 giữ 40.000 dòng huấn luyện và 10.000 dòng kiểm tra.
@@ -53,7 +53,16 @@ Văn bản được biểu diễn bằng TF-IDF với unigram và bigram, bỏ d
 Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất. Do đó đồ thị cung cấp cấu trúc và căn cứ bổ sung cho truy xuất văn bản; đây chưa phải một bộ máy suy luận đa bước tổng quát. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu người dùng làm rõ.
 \chapter{Code và demo}
 \section{Địa chỉ và cách chạy}
-Demo công khai: \url{https://glucoguide-giang254.vercel.app}. Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
+\noindent\textbf{Demo công khai}\par
+\noindent\url{https://glucoguide-giang254.vercel.app}\par\medskip
+\noindent\textbf{Mã nguồn}\par
+\noindent\url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}\par\medskip
+\noindent\textbf{Demo cục bộ}\par
+\noindent\url{http://localhost:8765}\par\medskip
+\noindent\textbf{Neo4j Browser cục bộ}\par
+\noindent\url{http://localhost:7474/browser/}\par\medskip
+Địa chỉ localhost dành cho máy chạy dịch vụ. Bản demo công khai kết nối Neo4j AuraDB Free.
+
 
 Cài requirements.txt để chạy ứng dụng; dùng requirements-training.txt khi huấn luyện và tái lập thực nghiệm. Chạy \path{scripts/train_models.py} để tạo checkpoint, \path{scripts/train_policy.py} để tạo chính sách và \path{scripts/ingest_graph.py} để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
 \section{Kịch bản trình diễn}

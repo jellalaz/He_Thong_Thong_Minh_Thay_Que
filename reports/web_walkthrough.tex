@@ -3,7 +3,7 @@ Giao diện có bốn khu vực: Trò chuyện, Phân loại \& dự đoán, Đ�
 
 \subsection{Trợ lý kiến thức}
 Người dùng nhập câu hỏi hoặc chọn câu hỏi gợi ý. Ví dụ ``HbA1c là gì?'' được gửi đến POST /api/chat với nhiệm vụ kiến thức. Bộ truy xuất tìm tối đa ba đoạn phù hợp; agent đối chiếu phạm vi và agent phản hồi tổng hợp nội dung có mã tài liệu. Người xem cần mở liên kết nguồn và đối chiếu nhật ký, không chỉ đọc câu trả lời. Nếu không có bằng chứng đạt ngưỡng, phản hồi yêu cầu làm rõ. Giao diện khóa nút gửi trong thời gian chờ và hiển thị lỗi kết nối khi yêu cầu thất bại.
-\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.62\textheight,keepaspectratio]{demo-chat.png}\caption{Trợ lý kiến thức: câu trả lời, mã tài liệu và liên kết nguồn.}\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.62\textheight,keepaspectratio]{demo-chat.png}\caption{Hội thoại tiếp nối: bổ sung đơn vị và thời điểm đo cho số đường huyết đã nhập.}\end{figure}
 \clearpage
 \subsection{Thực nghiệm dữ liệu: phân loại}
 \productlink{Mở giao diện thực nghiệm}{https://glucoguide-giang254.vercel.app/\#models}
@@ -36,9 +36,9 @@ Giao diện sử dụng nền sáng, chữ không chân và màu xanh cho các t
 \productlink{Truy cập trợ lý tiểu đường}{https://glucoguide-giang254.vercel.app/\#chat}
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{demo-home.png}\caption{Giao diện trợ lý tiểu đường với thanh điều hướng, vùng hội thoại và tài liệu đối chiếu.}\end{figure}
 \subsection{Ngữ cảnh, phạm vi và cơ chế trả lời}
-API tiếp nhận history gồm tối đa 12 thông điệp, mỗi thông điệp tối đa 3.000 ký tự, role chỉ là user hoặc assistant. Khi câu hiện tại là câu hỏi tiếp nối ngắn, lớp luật tìm chủ đề có thể nhận diện trong những câu hỏi người dùng trước đó. Ví dụ, sau câu ``HbA1c là gì?'', câu ``Vậy 7,1\% thì sao?'' được hiểu là tiếp tục về HbA1c. Các con số cũ không tự điền vào câu mới; hệ thống không dựng hồ sơ lâm sàng đầy đủ từ lịch sử.
+API tiếp nhận history gồm tối đa 64 thông điệp, mỗi thông điệp tối đa 3.000 ký tự, role chỉ là user hoặc assistant. Khi câu hiện tại là câu hỏi tiếp nối ngắn, lớp luật tìm chủ đề có thể nhận diện trong những câu hỏi người dùng trước đó. Ví dụ, sau câu ``HbA1c là gì?'', câu ``Vậy 7,1\% thì sao?'' được hiểu là tiếp tục về HbA1c. Các con số cũ không tự điền vào câu mới; hệ thống không dựng hồ sơ lâm sàng đầy đủ từ lịch sử.
 
-Lịch sử nằm trong bộ nhớ JavaScript của tab, không được ghi vào cơ sở dữ liệu. Nút cuộc trò chuyện mới xóa lịch sử ở giao diện. Tải lại trang cũng bắt đầu phiên mới. Nút lưu hội thoại tạo tệp văn bản cục bộ theo thao tác người dùng. Máy chủ xử lý lịch sử trong từng yêu cầu; đây chưa phải hệ thống quản lý bệnh án hoặc bộ nhớ dài hạn.
+Lịch sử nằm trong bộ nhớ JavaScript của tab, không được ghi vào cơ sở dữ liệu. Nút cuộc trò chuyện mới xóa lịch sử ở giao diện. Tải lại trang cũng bắt đầu phiên mới. Nút nguồn tham khảo mở trích đoạn và liên kết gốc ngay dưới câu trả lời. Nút lưu hội thoại tạo tệp văn bản cục bộ theo thao tác người dùng. Máy chủ xử lý lịch sử trong từng yêu cầu; đây chưa phải hệ thống quản lý bệnh án hoặc bộ nhớ dài hạn.
 
 Module conversation.py phân loại chủ đề và kiểm tra đơn vị bằng luật. Nếu có chủ đề rõ, nó chọn các mã tài liệu đã định nghĩa; trường hợp còn lại dùng TF-IDF. Vì vậy phần truy xuất là kết hợp luật định tuyến và tìm kiếm văn bản. ``Hội thoại'' trong trace là nhãn của module luật, không phải một agent tự chủ mới. Bốn đối tượng agent và MessageBus vẫn là các thành phần thực thi được mô tả trong kiến trúc.
 
@@ -54,8 +54,15 @@ Mục Nguồn \& tài liệu có tra cứu không dấu trên 21 đoạn kiến 
 
 Neo4j có bản cục bộ để phát triển và AuraDB Free cho demo công khai. Khi trạng thái kết nối thành công, người dùng vào Bản đồ tri thức, chọn HbA1c, bấm nút hoặc mã tài liệu để đọc căn cứ. Đồ thị có 60 khái niệm và 32 quan hệ. Tài liệu classification\_scope có văn bản nhưng chưa có bộ ba; chọn tài liệu này trả về không có cạnh thay vì hiển thị các cạnh không liên quan. Khi dịch vụ tắt, chạy start-neo4j.ps1 từ thư mục project. Muốn dùng Neo4j Browser, mở localhost:7474/browser và dùng tài khoản trong cấu hình cục bộ; không đưa mật khẩu vào báo cáo hoặc GitHub.
 \subsection{Kiểm thử bổ sung và thiết bị}
-Tệp scripts/test\_chatbot.py kiểm tra 16 tình huống hội thoại và 4 điều kiện API: lời chào, HbA1c, tiếp nối một và nhiều lượt, thiếu đơn vị, lúc đói, sau ăn, hạ đường huyết, khẩn cấp, câu hỏi kiến thức, liều thuốc, thai kỳ, ăn uống, ngoài miền và tách ngữ cảnh giữa yêu cầu. Bốn điều kiện API kiểm tra role không hợp lệ, lịch sử vượt giới hạn, tìm kiếm không dấu và trạng thái Neo4j. Cả 20 kiểm tra đạt; 8 kịch bản tích hợp trước đó cũng được chạy lại và đạt. Kết quả lưu tại results/chatbot\_scenarios.json và results/api\_scenarios.json.
+Tệp scripts/test\_chatbot.py kiểm tra 29 tình huống hội thoại và 4 điều kiện API: lời chào, HbA1c, tiếp nối một và nhiều lượt, thiếu đơn vị, lúc đói, sau ăn, hạ đường huyết, khẩn cấp, câu hỏi kiến thức, liều thuốc, thai kỳ, ăn uống, ngoài miền và tách ngữ cảnh giữa yêu cầu. Bốn điều kiện API kiểm tra role không hợp lệ, lịch sử vượt giới hạn, tìm kiếm không dấu và trạng thái Neo4j. Cả 33 kiểm tra đạt; 8 kịch bản tích hợp trước đó cũng được chạy lại và đạt. Kết quả lưu tại results/chatbot\_scenarios.json và results/api\_scenarios.json.
 
 Kiểm tra thủ công trên web bao gồm bấm nguồn sang đồ thị, chọn nút, tài liệu không có cạnh, phân loại, hồi quy, thay đổi đầu vào, chuyển kết quả sang chat, tìm kiếm không dấu và xóa phiên. Bố cục được kiểm tra tại viewport desktop 1366\,px và điện thoại 390\,px; trang chat không bị tràn ngang ở kích thước điện thoại kiểm tra. Chưa kiểm thử toàn bộ trình duyệt hay đánh giá trải nghiệm với người dùng thật.
 \begin{figure}[htbp]\centering\includegraphics[height=.48\textheight,keepaspectratio]{demo-mobile.png}\caption{Bố cục điện thoại: điều hướng hai hàng và hội thoại một cột.}\end{figure}
 \clearpage
+
+\subsection{Hội thoại tiếp nối và đối chiếu nhiều chỉ số}
+Lớp hội thoại nhận tối đa 64 thông điệp trong phiên. Khi người dùng hỏi ``đường huyết 7'' rồi bổ sung ``mmol/L, lúc đói'', hệ thống ghép phần thông tin làm rõ với câu hỏi đang xét, công bố đơn vị và điều kiện áp dụng. Khi người dùng đưa một số đo mới, giá trị mới được xét riêng, không tự sao chép đơn vị từ số đo cũ. Với câu chứa cả HbA1c và đường huyết, mỗi chỉ số được đối chiếu theo loại xét nghiệm tương ứng, sau đó tổng hợp thành một phản hồi.
+
+Nút nguồn dưới từng câu trả lời mở trực tiếp trích đoạn cùng liên kết đến tài liệu gốc. Nhờ đó người xem có thể kiểm tra căn cứ ngay cả trên màn hình hẹp. Nội dung chi tiết được xây dựng từ quy tắc và tài liệu đã biên soạn; chưa có mô hình ngôn ngữ được huấn luyện để sinh hội thoại tự do. Giới hạn này được giữ rõ khi đánh giá các câu nhiều ý, phủ định hoặc thay đổi chủ thể.
+
+\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{demo-sources.png}\caption{Mở trích đoạn và liên kết nguồn ngay bên dưới câu trả lời.}\end{figure}
