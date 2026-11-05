@@ -108,7 +108,7 @@ def chat(req:Request):
   answer=verdict['scope']+'\n\n'+answer
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
  msg('Phản hồi','Người dùng','INFORM','Hoàn thành')
- return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'generator':'Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM','suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
+ return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'generator':'Nhận diện ý định đã huấn luyện · KB và luật có nguồn · không gọi LLM','suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
 
 @app.get('/api/knowledge')

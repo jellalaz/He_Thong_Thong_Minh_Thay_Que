@@ -1,0 +1,405 @@
+{
+  "provenance": "Manually authored Vietnamese development examples; synthetic, not clinical records. Test phrases authored separately before training. Small internal benchmark, not external validation.",
+  "rows": [
+    {
+      "text": "Một ngày nên ăn mấy bữa",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Cho tôi ví dụ khẩu phần bữa trưa",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn thay đổi chế độ ăn",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Nên chọn món gì vào buổi sáng",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Ăn cơm gạo lứt hay gạo trắng",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Có phải nhịn ăn để giảm đường không",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Tôi hay bỏ bữa tối",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Hướng dẫn chia đĩa thức ăn",
+      "label": "meal",
+      "split": "train"
+    },
+    {
+      "text": "Tôi có ăn được xoài không",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Chuối có nhiều đường không",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Ăn cam hay uống nước cam tốt hơn",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Có thể uống nước ép mỗi ngày không",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Mít và sầu riêng nên ăn thế nào",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Một lần nên ăn bao nhiêu hoa quả",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Có cần kiêng tất cả trái cây ngọt không",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Táo có phù hợp với người tiểu đường không",
+      "label": "fruit",
+      "split": "train"
+    },
+    {
+      "text": "Tôi nên tập bao nhiêu phút mỗi tuần",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Chạy bộ có phù hợp không",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Tập yoga có giúp kiểm soát đường không",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Nên tập vào buổi sáng hay chiều",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Tôi ít vận động nên bắt đầu ra sao",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Mỗi ngày đi bộ bao lâu",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Có thể đạp xe thay cho chạy không",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn bắt đầu tập thể thao",
+      "label": "activity",
+      "split": "train"
+    },
+    {
+      "text": "Quên uống thuốc hôm qua thì làm gì",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Tôi tự ngưng thuốc được không",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Có nên tăng liều khi đường cao",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Insulin cần dùng theo hướng dẫn nào",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn đổi thuốc đang uống",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Uống metformin bao nhiêu viên",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn dùng thuốc thay người nhà",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Có thể tự mua thuốc điều trị không",
+      "label": "medicine",
+      "split": "train"
+    },
+    {
+      "text": "Tôi nên ghi những gì vào sổ theo dõi",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Tái khám cần mang theo gì",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Làm sao lưu lại số đo mỗi ngày",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn lập nhật ký sức khỏe",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Theo dõi bữa ăn và thuốc bằng cách nào",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Bác sĩ cần biết thông tin gì",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Chuẩn bị cho buổi khám tiểu đường",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Tôi đo xong có cần ghi giờ không",
+      "label": "monitor",
+      "split": "train"
+    },
+    {
+      "text": "Máy đo báo 150 trên 90 có cao không",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Số trên máy đo áp lực máu nghĩa là gì",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Chỉ số tâm thu cao cần làm sao",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Huyết áp của tôi tăng sau khi chạy",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Đo áp huyết tại nhà thế nào",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Cả số trên và số dưới đều tăng",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Tôi đo được 140/90 mmHg",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Bao nhiêu là huyết áp cao",
+      "label": "bloodpressure",
+      "split": "train"
+    },
+    {
+      "text": "Chỉ số đường trung bình ba tháng là gì",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "HbA1c của tôi 6,2 phần trăm",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "Xét nghiệm A1C khác đường lúc đói thế nào",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "HbA1c phản ánh khoảng thời gian nào",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "Tại sao đường hôm nay thấp mà HbA1c cao",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "Tôi muốn hiểu xét nghiệm huyết sắc tố đường hóa",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "A1c bảy phần trăm nghĩa là sao",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "Chỉ số HbA1c trên phiếu xét nghiệm",
+      "label": "a1c",
+      "split": "train"
+    },
+    {
+      "text": "Ai vô địch bóng đá",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Viết giúp bài văn về mùa thu",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Giá vàng hôm nay",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Dự báo thời tiết ngày mai",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Lập trình python như thế nào",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Tôi cần mua điện thoại",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Thủ đô nước Pháp ở đâu",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Tính giúp căn bậc hai của 100",
+      "label": "out_of_scope",
+      "split": "train"
+    },
+    {
+      "text": "Bữa tối nên chia khẩu phần ra sao",
+      "label": "meal",
+      "split": "test"
+    },
+    {
+      "text": "Nhịn bữa sáng có tốt không",
+      "label": "meal",
+      "split": "test"
+    },
+    {
+      "text": "Người bệnh có được ăn chuối không",
+      "label": "fruit",
+      "split": "test"
+    },
+    {
+      "text": "Uống nước cam thay ăn quả cam được chứ",
+      "label": "fruit",
+      "split": "test"
+    },
+    {
+      "text": "Tập thể thao mấy phút là đủ",
+      "label": "activity",
+      "split": "test"
+    },
+    {
+      "text": "Tôi muốn thử đạp xe hằng ngày",
+      "label": "activity",
+      "split": "test"
+    },
+    {
+      "text": "Hôm nay tôi quên uống viên thuốc",
+      "label": "medicine",
+      "split": "test"
+    },
+    {
+      "text": "Tự đổi thuốc khác có được không",
+      "label": "medicine",
+      "split": "test"
+    },
+    {
+      "text": "Sắp tái khám cần chuẩn bị những gì",
+      "label": "monitor",
+      "split": "test"
+    },
+    {
+      "text": "Ghi số đo hằng ngày vào sổ ra sao",
+      "label": "monitor",
+      "split": "test"
+    },
+    {
+      "text": "Áp huyết đo ở nhà cao hơn bình thường",
+      "label": "bloodpressure",
+      "split": "test"
+    },
+    {
+      "text": "Máy đo báo số trên 150 số dưới 90",
+      "label": "bloodpressure",
+      "split": "test"
+    },
+    {
+      "text": "Xét nghiệm huyết sắc tố đường hóa dùng làm gì",
+      "label": "a1c",
+      "split": "test"
+    },
+    {
+      "text": "A1c cho biết đường trung bình bao lâu",
+      "label": "a1c",
+      "split": "test"
+    },
+    {
+      "text": "Đội bóng nào đá hôm nay",
+      "label": "out_of_scope",
+      "split": "test"
+    },
+    {
+      "text": "Tôi muốn viết chương trình python",
+      "label": "out_of_scope",
+      "split": "test"
+    }
+  ]
+}

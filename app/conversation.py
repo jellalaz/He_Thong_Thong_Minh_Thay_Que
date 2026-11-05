@@ -1,5 +1,6 @@
 """Conversation routing with bounded user-turn context and cited, deterministic responses."""
 import re, unicodedata
+from app.intent import predict_intent
 
 def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
@@ -23,6 +24,10 @@ FOLLOW={
 def topic(q):
  for key,terms,ids in TOPICS:
   if any(re.search(r'(?<!\w)'+re.escape(t)+r'(?!\w)',norm(q)) for t in terms):return key,ids
+ if re.search(r"\d|so duoi|so tren|thi sao|chi tiet|giai thich them",norm(q)):return None,[]
+ learned=predict_intent(norm(q))
+ if learned:
+  return next((key,ids) for key,terms,ids in TOPICS if key==learned)
  return None,[]
 
 def _route(question,history):

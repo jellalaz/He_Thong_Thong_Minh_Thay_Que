@@ -1,0 +1,168 @@
+{
+  "train": 64,
+  "test": 16,
+  "accuracy": 1.0,
+  "macro_f1": 1.0,
+  "report": {
+    "a1c": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "activity": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "bloodpressure": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "fruit": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "meal": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "medicine": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "monitor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "out_of_scope": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 16.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 16.0
+    }
+  },
+  "predictions": [
+    {
+      "text": "Bữa tối nên chia khẩu phần ra sao",
+      "label": "meal",
+      "split": "test",
+      "predicted": "meal"
+    },
+    {
+      "text": "Nhịn bữa sáng có tốt không",
+      "label": "meal",
+      "split": "test",
+      "predicted": "meal"
+    },
+    {
+      "text": "Người bệnh có được ăn chuối không",
+      "label": "fruit",
+      "split": "test",
+      "predicted": "fruit"
+    },
+    {
+      "text": "Uống nước cam thay ăn quả cam được chứ",
+      "label": "fruit",
+      "split": "test",
+      "predicted": "fruit"
+    },
+    {
+      "text": "Tập thể thao mấy phút là đủ",
+      "label": "activity",
+      "split": "test",
+      "predicted": "activity"
+    },
+    {
+      "text": "Tôi muốn thử đạp xe hằng ngày",
+      "label": "activity",
+      "split": "test",
+      "predicted": "activity"
+    },
+    {
+      "text": "Hôm nay tôi quên uống viên thuốc",
+      "label": "medicine",
+      "split": "test",
+      "predicted": "medicine"
+    },
+    {
+      "text": "Tự đổi thuốc khác có được không",
+      "label": "medicine",
+      "split": "test",
+      "predicted": "medicine"
+    },
+    {
+      "text": "Sắp tái khám cần chuẩn bị những gì",
+      "label": "monitor",
+      "split": "test",
+      "predicted": "monitor"
+    },
+    {
+      "text": "Ghi số đo hằng ngày vào sổ ra sao",
+      "label": "monitor",
+      "split": "test",
+      "predicted": "monitor"
+    },
+    {
+      "text": "Áp huyết đo ở nhà cao hơn bình thường",
+      "label": "bloodpressure",
+      "split": "test",
+      "predicted": "bloodpressure"
+    },
+    {
+      "text": "Máy đo báo số trên 150 số dưới 90",
+      "label": "bloodpressure",
+      "split": "test",
+      "predicted": "bloodpressure"
+    },
+    {
+      "text": "Xét nghiệm huyết sắc tố đường hóa dùng làm gì",
+      "label": "a1c",
+      "split": "test",
+      "predicted": "a1c"
+    },
+    {
+      "text": "A1c cho biết đường trung bình bao lâu",
+      "label": "a1c",
+      "split": "test",
+      "predicted": "a1c"
+    },
+    {
+      "text": "Đội bóng nào đá hôm nay",
+      "label": "out_of_scope",
+      "split": "test",
+      "predicted": "out_of_scope"
+    },
+    {
+      "text": "Tôi muốn viết chương trình python",
+      "label": "out_of_scope",
+      "split": "test",
+      "predicted": "out_of_scope"
+    }
+  ],
+  "limitations": "Small author-written internal benchmark. No patient data, no language-model fine-tuning; confidence scores are not medical probabilities."
+}
