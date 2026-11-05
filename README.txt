@@ -7,7 +7,7 @@ Kiều Trường Giang · B23DCCN254 · Nhóm 06–02
 - Địa chỉ kết nối Neo4j: neo4j://127.0.0.1:7687; tài khoản neo4j.
 - Mật khẩu nằm trong tệp .env trên máy, dòng NEO4J_PASSWORD. Tệp này không đưa lên GitHub.
 - Browser đã được đăng nhập và mở truy vấn đồ thị ở phiên hoàn thiện.
-- Demo công khai tạm thời: https://bear-parental-pair-mercury.trycloudflare.com
+- Demo công khai tạm thời: https://dirt-lucky-capture-mighty.trycloudflare.com
   Link chỉ hoạt động khi máy và tiến trình tunnel còn chạy. Không phải hosting cố định.
 
 2. CHẠY LẠI

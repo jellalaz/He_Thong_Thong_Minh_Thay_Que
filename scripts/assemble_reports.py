@@ -14,23 +14,23 @@ body=body.replace('Hướng ưu tiên là triển khai giao thức agent thực,
 body=body.replace('điểm lớn hơn 0,04','điểm lớn hơn giá trị lớn nhất giữa 0,04 và 65\\% điểm của đoạn đứng đầu')
 body=body.replace(r'\section{Nhánh dữ liệu}',r'\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/architecture.png}\caption{Hai nhánh hội tụ về điều phối và trợ giúp, dựng lại từ sơ đồ trên bảng.}\end{figure}'+'\n'+r'\section{Nhánh dữ liệu}')
 body=body.replace(r'\chapter{Code và demo}',r'\input{project_details.tex}'+'\n'+r'\chapter{Code và demo}')
-body=body.replace('Địa chỉ localhost chỉ hoạt động',r'Demo công khai tại thời điểm hoàn thiện: \url{https://bear-parental-pair-mercury.trycloudflare.com}. Đây là đường hầm tạm thời, phụ thuộc máy và tiến trình đang chạy; không phải hosting thường trực. Địa chỉ localhost chỉ hoạt động')
+body=body.replace('Địa chỉ localhost chỉ hoạt động',r'Demo công khai tại thời điểm hoàn thiện: \url{https://dirt-lucky-capture-mighty.trycloudflare.com}. Đây là đường hầm tạm thời, phụ thuộc máy và tiến trình đang chạy; không phải hosting thường trực. Địa chỉ localhost chỉ hoạt động')
 body+=r'\input{web_walkthrough.tex}'+'\n'
 body=body.replace(r'\chapter{Các thành phần và thực nghiệm}',r'\input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}')
 (p/'project_content.tex').write_text(body,encoding='utf-8')
 intro=r'''\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
-Báo cáo tổng hợp nền tảng trí tuệ nhân tạo, học máy, mạng nơ-ron, đồ thị tri thức và cơ chế phối hợp đa agent. Phần thứ nhất kế thừa nội dung của tiểu luận 02 và 03 của Kiều Trường Giang, đồng thời bổ sung học sâu trên đồ thị và hệ đa agent. Tiểu luận 01 của Phạm Mai Linh được dùng làm tài liệu tham khảo nền tảng theo lựa chọn của sinh viên; các số liệu không được nhận là kết quả mới nếu chỉ xuất hiện trong tài liệu tham khảo.
+Báo cáo nghiên cứu cách kết hợp học máy, học sâu và biểu diễn tri thức trong một hệ thống hỗ trợ người dùng. Các chương đầu trình bày nền tảng, dữ liệu và thực nghiệm trên dữ liệu bảng, ảnh, chuỗi thời gian và đồ thị. Chương 6 và chương 7 mở rộng sang học sâu trên đồ thị, cơ chế phối hợp đa agent và học tăng cường.
 
-Phần thứ hai triển khai một sản phẩm mới theo sơ đồ trên lớp: dữ liệu có sẵn đi qua mô hình Deep Learning để tạo kết quả phân loại và dự đoán; nguồn tri thức đi qua KB và RAG; các thành phần được điều phối bằng agent, chính sách học và luật để đưa ra phản hồi. Báo cáo project riêng trình bày chi tiết kiến trúc, thực nghiệm, API và kịch bản demo. Các số liệu mới đều có tệp kết quả trong thư mục results.
+Phần II trình bày GlucoGuide, ứng dụng hỗ trợ tìm hiểu bệnh tiểu đường. Hệ thống gồm hai nhánh: các mô hình MLP xử lý bài toán phân loại và hồi quy; kho tri thức cùng Neo4j cung cấp căn cứ cho câu trả lời. Bộ điều phối kết nối kết quả mô hình với thông tin truy xuất, kiểm tra phạm vi diễn giải và trả phản hồi cho người dùng.
 
-Bố cục tham khảo hai báo cáo của Nguyễn Tự Kiên và hai báo cáo CT\_03 của Bùi Văn Lâm do sinh viên cung cấp. Các bản CT\_03 được dùng để đối chiếu cách công bố nguồn dữ liệu, tổ chức kết quả và mô tả giao diện. Bản hiện thực không nhận các bộ dữ liệu, số agent hoặc kết quả của bài tham khảo là thành phần đã được triển khai. Cơ chế sinh phản hồi hiện là tổng hợp trích đoạn có nguồn; GNN trong phần lý thuyết chưa được huấn luyện trong demo.
+Các thực nghiệm sử dụng tập kiểm tra độc lập và lưu kết quả để đối chiếu. Phần đánh giá phân tích sai số, hạn chế của dữ liệu và phạm vi áp dụng; phần triển khai trình bày giao diện, đường dẫn sản phẩm và kịch bản sử dụng. Nội dung kế thừa từ các tiểu luận học phần được dẫn trong danh mục tài liệu tham khảo.
 '''
 bib=r'''\begin{thebibliography}{99}
-\bibitem{tl02} Kiều Trường Giang, Tiểu luận 02, nhóm 06--02, tài liệu học phần do sinh viên cung cấp.
-\bibitem{tl03} Kiều Trường Giang, Tiểu luận 03, B23DCCN254, tài liệu và thực nghiệm học phần do sinh viên cung cấp.
-\bibitem{linh} Phạm Mai Linh, Tiểu luận 01, nhóm 06--03, tài liệu tham khảo do sinh viên chỉ định.
-\bibitem{kien} Nguyễn Tự Kiên, Tiểu luận final CT\_07 và Project01 CT\_07, hai PDF tham khảo về bố cục do sinh viên cung cấp.
-\bibitem{lam} Bùi Văn Lâm, Tiểu luận final CT\_03 và Project01 CT\_03, mã 477, hai PDF tham khảo do sinh viên cung cấp.
+\bibitem{tl02} Kiều Trường Giang, Tiểu luận 02, nhóm 06--02, báo cáo học phần.
+\bibitem{tl03} Kiều Trường Giang, Tiểu luận 03, B23DCCN254, báo cáo và thực nghiệm học phần.
+\bibitem{linh} Phạm Mai Linh, Tiểu luận 01, nhóm 06--03, báo cáo học phần.
+\bibitem{kien} Nguyễn Tự Kiên, Tiểu luận final CT\_07 và Project01 CT\_07, báo cáo học phần.
+\bibitem{lam} Bùi Văn Lâm, Tiểu luận final CT\_03 và Project01 CT\_03, mã 477, báo cáo học phần.
 \bibitem{gcn} T. Kipf và M. Welling, Semi-Supervised Classification with Graph Convolutional Networks, ICLR 2017. \url{https://arxiv.org/abs/1609.02907}.
 \bibitem{sage} W. Hamilton, R. Ying và J. Leskovec, Inductive Representation Learning on Large Graphs, 2017. \url{https://arxiv.org/abs/1706.02216}.
 \bibitem{gat} P. Velickovic và cộng sự, Graph Attention Networks, ICLR 2018. \url{https://arxiv.org/abs/1710.10903}.
@@ -42,11 +42,11 @@ bib=r'''\begin{thebibliography}{99}
 \end{thebibliography}
 '''
 (p/'bibliography.tex').write_text(bib,encoding='utf-8')
-for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINAL',intro+r'\input{data_overview.tex}\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\part{Project tích hợp}\setcounter{chapter}{0}\renewcommand{\thefigure}{P.\thechapter.\arabic{figure}}\renewcommand{\thetable}{P.\thechapter.\arabic{table}}\setcounter{secnumdepth}{1}\input{project_content.tex}'),('project01_06_02_giangkt.254','PROJECT 01',r'\setcounter{secnumdepth}{1}\input{project_content.tex}')]:
+for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINAL',intro+r'\input{data_overview.tex}\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\part{Project tích hợp}\setcounter{chapter}{0}\renewcommand{\thefigure}{P.\thechapter.\arabic{figure}}\renewcommand{\thetable}{P.\thechapter.\arabic{table}}\setcounter{secnumdepth}{2}\input{project_content.tex}'),('project01_06_02_giangkt.254','PROJECT 01',r'\setcounter{secnumdepth}{2}\input{project_content.tex}')]:
  cover=r'''\begin{document}\begin{titlepage}\centering
 {\large HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\\KHOA CÔNG NGHỆ THÔNG TIN 1}\vfill
 {\LARGE\bfseries '''+title+r'''}\par\vspace{1cm}
-{\Large\bfseries '''+('AI, HỌC MÁY VÀ HỆ ĐA AGENT' if 'final' in fn else 'HỆ ĐA AGENT CHO BỆNH TIỂU ĐƯỜNG')+r'''}\par\vspace{1cm}
+{\Large\bfseries '''+('HỌC MÁY, BIỂU DIỄN TRI THỨC VÀ HỆ ĐA AGENT' if 'final' in fn else 'HỆ ĐA AGENT CHO BỆNH TIỂU ĐƯỜNG')+r'''}\par\vspace{1cm}
 {\large PHÁT TRIỂN CÁC HỆ THỐNG THÔNG MINH}\vfill
 \begin{tabular}{ll}Giảng viên:&PGS. TS. Trần Đình Quế\\Sinh viên:&Kiều Trường Giang\\Mã sinh viên:&B23DCCN254\\Nhóm học phần:&06\\Nhóm thực hiện:&02\end{tabular}\vfill
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}

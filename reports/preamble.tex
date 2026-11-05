@@ -1,15 +1,33 @@
-\documentclass[12pt,a4paper]{report}
+\documentclass[12pt,a4paper,oneside]{report}
 \usepackage{fontspec}\setmainfont{Times New Roman}\setmonofont{Consolas}
-\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm,headheight=15pt]{geometry}
 \usepackage{amsmath,amssymb,graphicx,longtable,booktabs,array,calc,etoolbox,fancyvrb,fvextra,caption,unicode-math}
+\usepackage{needspace,fancyhdr,float}\usepackage[section]{placeins}
 \newcounter{none}
-\usepackage[unicode,hidelinks]{hyperref}\usepackage{setspace}\onehalfspacing
-\setlength{\emergencystretch}{3em}
+\usepackage[unicode,hidelinks]{hyperref}\usepackage{xurl,setspace}\onehalfspacing
+\hypersetup{hypertexnames=false}
+\setlength{\emergencystretch}{3em}\setlength{\parindent}{1cm}
+\setlength{\parskip}{3pt}\setlength{\textfloatsep}{16pt}\setlength{\intextsep}{14pt}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\pandocbounded}[1]{#1}
 \renewcommand{\contentsname}{Mục lục}\renewcommand{\chaptername}{Chương}
 \renewcommand{\tablename}{Bảng}\renewcommand{\figurename}{Hình}
-\setcounter{secnumdepth}{0}
-\usepackage{xurl}
-\usepackage{xurl}\hypersetup{hypertexnames=false}\renewcommand{\bibname}{Tài liệu tham khảo}\renewcommand{\appendixname}{Phụ lục}\renewcommand{\partname}{Phần}\makeatletter\patchcmd{\@makechapterhead}{50\p@}{15\p@}{}{}\patchcmd{\@makechapterhead}{40\p@}{20\p@}{}{}\makeatother
-\renewcommand{\listfigurename}{Danh mục hình có đánh số}\renewcommand{\listtablename}{Danh mục bảng có đánh số}
+\renewcommand{\bibname}{Tài liệu tham khảo}\renewcommand{\appendixname}{Phụ lục}\renewcommand{\partname}{Phần}
+\renewcommand{\listfigurename}{Danh mục hình}\renewcommand{\listtablename}{Danh mục bảng}
+\setcounter{secnumdepth}{2}\setcounter{tocdepth}{2}
+\captionsetup{font=small,labelfont=bf,skip=8pt,justification=centering}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Phát triển các hệ thống thông minh}\fancyhead[R]{\small B23DCCN254}\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\makeatletter
+\renewcommand*\l@part[2]{\addpenalty{-\@highpenalty}\vskip 1em\begingroup\bfseries\@dottedtocline{-1}{0em}{3em}{#1}{#2}\endgroup}
+\renewcommand*\l@chapter[2]{\addpenalty{-\@highpenalty}\vskip .6em\begingroup\bfseries\@dottedtocline{0}{0em}{2.8em}{#1}{#2}\endgroup}
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4.5em}{3.8em}}
+\renewcommand*\numberline[1]{\hb@xt@\@tempdima{#1.\hfil}}
+\renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad}
+\renewcommand\@makechapterhead[1]{\vspace*{10pt}{\parindent\z@\centering\normalfont\ifnum\c@secnumdepth>\m@ne\large\bfseries\@chapapp\space\thechapter\par\nobreak\vskip 10pt\fi\LARGE\bfseries #1\par\nobreak\vskip 25pt}}
+\renewcommand\@makeschapterhead[1]{\vspace*{10pt}{\parindent\z@\centering\normalfont\LARGE\bfseries #1\par\nobreak\vskip 25pt}}
+\pretocmd{\chapter}{\clearpage}{}{}\pretocmd{\part}{\clearpage}{}{}
+\makeatother
+\newcommand{\productlink}[2]{\par\medskip\noindent\begin{minipage}{\linewidth}\hrule\vspace{7pt}\textbf{#1}\par\small\url{#2}\par\vspace{7pt}\hrule\end{minipage}\medskip}

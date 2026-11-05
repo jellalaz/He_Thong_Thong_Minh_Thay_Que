@@ -2,7 +2,7 @@
 \section{Bài toán và sản phẩm}
 Project xây dựng GlucoGuide, một ứng dụng web tích hợp hai nhánh xử lý của sơ đồ học phần. Nhánh dữ liệu sử dụng mô hình mạng nơ-ron nhiều lớp để phân loại nhãn nguy cơ tổng hợp và dự đoán điểm tiến triển bệnh trong dữ liệu nghiên cứu. Nhánh tri thức kế thừa kho tài liệu của tiểu luận 02, tổ chức các khái niệm cùng quan hệ trên Neo4j và truy xuất văn bản theo câu hỏi. Kết quả hai nhánh được trình bày cùng nguồn bằng chứng và nhật ký xử lý.
 
-Sinh viên thực hiện là Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 02. Project được phát triển từ các sản phẩm của sinh viên, có tham khảo bố cục và cách mô tả kiến trúc trong báo cáo của Nguyễn Tự Kiên. Các số liệu của bài tham khảo không được dùng làm kết quả của project này.
+GlucoGuide phát triển từ các thực nghiệm học phần, bổ sung cơ chế phối hợp giữa mô hình, truy xuất và phản hồi. Toàn bộ kết quả đánh giá được lưu cùng mã nguồn để thuận tiện đối chiếu.
 \section{Phạm vi đầu ra}
 Hai bộ dữ liệu có định nghĩa nhãn khác nhau. Bộ phân loại gồm các nhãn High, Moderate và Low của dữ liệu tổng hợp. Bộ hồi quy gồm những người đã mắc bệnh và một thước đo tiến triển sau một năm. Vì vậy không thể ghép một nhãn High với một điểm hồi quy để suy ra xác suất mắc bệnh. Ứng dụng dùng hai biểu mẫu riêng và công bố phạm vi ngay tại đầu ra.
 
@@ -29,7 +29,7 @@ Việc hiển thị nhiều vai trò trong nhật ký không tự chứng minh t
 \section{Nhánh dữ liệu}
 DB có sẵn cung cấp dữ liệu cho quá trình huấn luyện. Pipeline phân loại gồm điền trung vị, chuẩn hóa và MLP. Pipeline hồi quy chuẩn hóa dữ liệu rồi suy luận bằng MLP. Hai đầu ra đều đi tới vùng phản hồi của ứng dụng. Trong lúc phục vụ, mô hình được nạp từ checkpoint; ứng dụng không huấn luyện lại theo câu hỏi của người dùng.
 \section{Nhánh tri thức}
-Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu luận 02. Mỗi tài liệu có mã, tiêu đề, từ khóa, văn bản, định danh nguồn và các bộ ba. Project bảo toàn những trường này khi chuyển sang kho tri thức mới. Việc cập nhật hướng dẫn y tế từ web chưa tự động hóa; phiên bản kho tài liệu phải được xem như một snapshot cần rà soát trước khi mở rộng phạm vi sử dụng.
+Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu luận 02. Mỗi tài liệu có mã, tiêu đề, từ khóa, văn bản, định danh nguồn và các bộ ba. Project bảo toàn những trường này khi chuyển sang kho tri thức mới. Việc cập nhật hướng dẫn y tế từ web chưa tự động hóa; phiên bản kho tài liệu phải được xem như một bản chụp dữ liệu cần rà soát trước khi mở rộng phạm vi sử dụng.
 
 Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
 \section{Luồng người dùng}
@@ -55,9 +55,9 @@ Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu 
 \input{project_details.tex}
 \chapter{Code và demo}
 \section{Địa chỉ và cách chạy}
-Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Demo công khai tại thời điểm hoàn thiện: \url{https://bear-parental-pair-mercury.trycloudflare.com}. Đây là đường hầm tạm thời, phụ thuộc máy và tiến trình đang chạy; không phải hosting thường trực. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
+Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Demo công khai tại thời điểm hoàn thiện: \url{https://dirt-lucky-capture-mighty.trycloudflare.com}. Đây là đường hầm tạm thời, phụ thuộc máy và tiến trình đang chạy; không phải hosting thường trực. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
 
-Cài các thư viện trong requirements.txt vào môi trường riêng. Chạy scripts/train\_models.py để tạo checkpoint, scripts/train\_policy.py để tạo chính sách và scripts/ingest\_graph.py để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
+Cài các thư viện trong requirements.txt vào môi trường riêng. Chạy \path{scripts/train_models.py} để tạo checkpoint, \path{scripts/train_policy.py} để tạo chính sách và \path{scripts/ingest_graph.py} để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
 \section{Kịch bản trình diễn}
 Kịch bản thứ nhất: hỏi ``HbA1c là gì?''. Kiểm tra câu trả lời có mã tài liệu, kiểm tra bước truy xuất và số quan hệ Neo4j. Kịch bản thứ hai: hỏi một chủ đề không có trong kho, chẳng hạn lịch sử một đội bóng. Hệ thống phải yêu cầu làm rõ hoặc báo thiếu bằng chứng, không tự tạo nguồn.
 
@@ -69,7 +69,7 @@ MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
 RETURN a,r,b LIMIT 100;
 \end{verbatim}
 \section{Hạn chế và hướng hoàn thiện}
-Bản hiện tại có ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Các phần này không được nhận là đã hoàn thành. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
+Hệ thống duy trì ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
 
 Hướng ưu tiên là mở rộng giao thức agent và bộ nhớ hội thoại, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.
 \input{web_walkthrough.tex}
