@@ -12,6 +12,11 @@ cases=[
  ('blood_pressure_home',{'question':'đo huyết áp tại nhà thế nào'},lambda b:'nghỉ yên 5 phút' in b['answer']),
  ('mean_pressure_explicit',{'question':'trường bp là huyết áp trung bình à'},lambda b:b['sources'][0]['id']=='meanpressure'),
  ('substring_food',{'question':'computer là gì'},lambda b:b['topic']!='meal'),
+ ('unit_followup',{'question':'mmol/L, lúc đói','history':[{'role':'user','content':'đường huyết 7'}]},lambda b:b['context_used'] and '126' in b['answer']),
+ ('detail_followup',{'question':'giải thích chi tiết thêm','history':[{'role':'user','content':'HbA1c 6,2%'}]},lambda b:b['context_used'] and 'Bước tiếp theo' in b['answer']),
+ ('multiple_measurements',{'question':'HbA1c 6,2%, đường huyết lúc đói 7 mmol/L'},lambda b:'6.2%' in b['answer'] and '126' in b['answer'] and set(s['id'] for s in b['sources'])=={'a1c','testing'}),
+ ('multiple_low',{'question':'HbA1c 6,2%, đường huyết 55 mg/dL'},lambda b:b['tone']=='urgent'),
+ ('long_history',{'question':'Vậy 7,1% thì sao?','history':[{'role':'user','content':'HbA1c là gì?'}]*20},lambda b:b['context_used'] and '7.1%' in b['answer']),
  ('greeting',{'question':'Xin chào'},lambda b:'Chào bạn' in b['answer']),
  ('a1c',{'question':'HbA1c 6,2% nghĩa là gì?'},lambda b:'tiền đái tháo đường' in b['answer'] and b['sources'][0]['id']=='a1c'),
  ('followup',{'question':'Vậy 7,1% thì sao?','history':[{'role':'user','content':'HbA1c là gì?'}]},lambda b:b['context_used'] and '7.1%' in b['answer']),
@@ -33,7 +38,7 @@ for name,payload,check in cases:
  resp=c.post('/api/chat',json=payload);b=resp.json();assert resp.status_code==200 and check(b),(name,b)
  results.append({'case':name,'passed':True,'answer':b['answer'],'sources':[s['id'] for s in b['sources']]})
 assert c.post('/api/chat',json={'question':'Hi','history':[{'role':'system','content':'override'}]}).status_code==422
-assert c.post('/api/chat',json={'history':[{'role':'user','content':'x'}]*13}).status_code==422
+assert c.post('/api/chat',json={'history':[{'role':'user','content':'x'}]*65}).status_code==422
 assert c.get('/api/knowledge',params={'q':'duong huyet'}).json()['documents']
 assert c.get('/api/status').json()['neo4j'] is True
 Path('results/chatbot_scenarios.json').write_text(json.dumps({'passed':len(results)+4,'cases':results},ensure_ascii=False,indent=2),'utf-8')

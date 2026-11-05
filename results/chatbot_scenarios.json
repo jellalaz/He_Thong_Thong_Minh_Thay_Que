@@ -1,5 +1,5 @@
 {
-  "passed": 28,
+  "passed": 33,
   "cases": [
     {
       "case": "blood_pressure_single",
@@ -64,6 +64,49 @@
       "sources": [
         "plate",
         "model"
+      ]
+    },
+    {
+      "case": "unit_followup",
+      "passed": true,
+      "answer": "Bạn ghi số đo lúc đói tương đương khoảng 126 mg/dL, từ 126 mg/dL trở lên. Bảng sàng lọc chỉ áp dụng cho xét nghiệm huyết tương sau nhịn ăn ít nhất 8 giờ. Máy đo tại nhà không tự xác lập chẩn đoán; hãy xác nhận loại xét nghiệm với cơ sở y tế.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "sources": [
+        "testing"
+      ]
+    },
+    {
+      "case": "detail_followup",
+      "passed": true,
+      "answer": "HbA1c 6.2% trong khoảng sàng lọc tiền đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nBước tiếp theo: kiểm tra đúng tên xét nghiệm và đơn vị trên phiếu, mang các kết quả trước đây khi đi khám, và trao đổi việc xét nghiệm xác nhận nếu kết quả cao. HbA1c phản ánh nhiều tuần, nên không đánh giá thay đổi chỉ sau một bữa ăn. Bạn đã được chẩn đoán tiểu đường trước đây hay đang kiểm tra lần đầu?",
+      "sources": [
+        "a1c"
+      ]
+    },
+    {
+      "case": "multiple_measurements",
+      "passed": true,
+      "answer": "Đối chiếu từng chỉ số bạn cung cấp:\n\nHbA1c 6.2% trong khoảng sàng lọc tiền đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nBạn ghi số đo lúc đói tương đương khoảng 126 mg/dL, từ 126 mg/dL trở lên. Bảng sàng lọc chỉ áp dụng cho xét nghiệm huyết tương sau nhịn ăn ít nhất 8 giờ. Máy đo tại nhà không tự xác lập chẩn đoán; hãy xác nhận loại xét nghiệm với cơ sở y tế.\n\nHai phép đo phản ánh những khoảng thời gian khác nhau. Hãy mang phiếu xét nghiệm để bác sĩ đối chiếu và xác nhận; không quy đổi điểm mô hình nghiên cứu thành chẩn đoán.",
+      "sources": [
+        "a1c",
+        "testing"
+      ]
+    },
+    {
+      "case": "multiple_low",
+      "passed": true,
+      "answer": "Đối chiếu từng chỉ số bạn cung cấp:\n\nHbA1c 6.2% trong khoảng sàng lọc tiền đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nSố đo bạn nhập tương đương khoảng 55 mg/dL, dưới mức 70 mg/dL mà CDC coi là thấp. Nếu đây là số đo hiện tại, cần xử trí ngay; nếu khó nuốt, lú lẫn hoặc bất tỉnh, nhờ người bên cạnh gọi cấp cứu.\n\nHai phép đo phản ánh những khoảng thời gian khác nhau. Hãy mang phiếu xét nghiệm để bác sĩ đối chiếu và xác nhận; không quy đổi điểm mô hình nghiên cứu thành chẩn đoán.",
+      "sources": [
+        "a1c",
+        "low",
+        "urgent"
+      ]
+    },
+    {
+      "case": "long_history",
+      "passed": true,
+      "answer": "HbA1c 7.1% đạt ngưỡng xét nghiệm dùng để chẩn đoán đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "sources": [
+        "a1c"
       ]
     },
     {

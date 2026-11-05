@@ -4,7 +4,7 @@ import re, unicodedata
 def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
 
-TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
+TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('diabetes',['tieu duong','dai thao duong'],['testing','a1c','monitor']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
 FOLLOW={
  'bloodpressure':['Đo huyết áp tại nhà thế nào?','Tôi nên ghi gì khi đi khám?'],
  'a1c':['Ngưỡng HbA1c được hiểu thế nào?','Tôi nên chuẩn bị gì khi đi khám?'],
@@ -17,6 +17,7 @@ FOLLOW={
  'monitor':['Gợi ý cách chia một bữa ăn','HbA1c là gì?'],
  'symptoms':['Tôi nên chuẩn bị gì khi đi khám?'],
  'classification':['Nhãn High có phải chẩn đoán không?'],
+ 'diabetes':['HbA1c là gì?','Tôi nên theo dõi đường huyết thế nào?'],
  'model':['Điểm tiến triển có phải đường huyết không?']}
 
 def topic(q):
@@ -24,7 +25,7 @@ def topic(q):
   if any(re.search(r'(?<!\w)'+re.escape(t)+r'(?!\w)',norm(q)) for t in terms):return key,ids
  return None,[]
 
-def route(question,history):
+def _route(question,history):
  q=norm(question); key,ids=topic(question);used=False; prior=''
  if any(t in q for t in ['lieu thuoc','lieu insulin','bao nhieu don vi','tang lieu','giam lieu']):key,ids='medicine',['medicine']
  # Only the most recent user question can supply a topic; never reuse old numeric values.
@@ -100,3 +101,55 @@ def route(question,history):
    else:result['intro']='Bạn đo lúc đói, sau ăn hay ngẫu nhiên, và đo tại nhà hay xét nghiệm ở cơ sở y tế? Tôi chưa áp ngưỡng lúc đói cho số đo thiếu bối cảnh.'
   elif re.search(r'\d',q):result['intro']='Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.'
  return result
+
+
+def contextual_route(question, history):
+ """Resolve explicitly supplied follow-up fields, without silently inventing values."""
+ q=norm(question)
+ users=[h['content'] for h in history if h['role']=='user']
+ # Retain only the active topic; a new explicit topic starts a new context.
+ anchor=None
+ for i in range(len(users)-1,-1,-1):
+  if topic(users[i])[0]:anchor=i;break
+ current=topic(question)[0]
+ if anchor is not None:
+  old_topic=topic(users[anchor])[0]
+  short=bool(re.fullmatch(r'[\d.,% /a-z]+',q)) and len(q)<45
+  clarify=any(t in q for t in ['mmol','mg/dl','phan tram','luc doi','sau an','so duoi','so tren','noi ro','chi tiet','giai thich them','toi nen lam gi'])
+  if not current and (short or clarify):
+   recent=' '.join(users[anchor:])
+   # Unit-only clarification attaches to the last measurement; a new number replaces it.
+   if old_topic in ['a1c','testing'] and not re.search(r'\d',q) and any(t in q for t in ['mmol','mg/dl','%','phan tram','luc doi','sau an']):
+    enriched=recent+' '+question.replace('phần trăm','%')
+    result=_route(enriched,history);result['context_used']=True;return result
+   if old_topic in ['a1c','testing'] and re.search(r'\d',q):
+    result=_route(('HbA1c ' if old_topic=='a1c' else 'đường huyết ')+question,history);result['context_used']=True;return result
+   if any(t in q for t in ['noi ro','chi tiet','giai thich them','toi nen lam gi']):
+    result=_route(users[anchor],history);result['context_used']=True
+    extra={
+     'a1c':'Bước tiếp theo: kiểm tra đúng tên xét nghiệm và đơn vị trên phiếu, mang các kết quả trước đây khi đi khám, và trao đổi việc xét nghiệm xác nhận nếu kết quả cao. HbA1c phản ánh nhiều tuần, nên không đánh giá thay đổi chỉ sau một bữa ăn. Bạn đã được chẩn đoán tiểu đường trước đây hay đang kiểm tra lần đầu?',
+     'testing':'Để đọc kết quả sát hơn, cần biết đơn vị, lúc đói hay sau ăn, thời gian nhịn ăn và đây là máy đo tại nhà hay xét nghiệm tại cơ sở y tế. Bạn đã có thông tin nào trong số này?',
+     'bloodpressure':'Bạn nên ghi cả hai số đo, giờ đo, có vừa vận động hay không, thuốc đang dùng và triệu chứng. Nghỉ yên trước khi đo lại; kết quả cao lặp lại cần trao đổi với nhân viên y tế. Bạn đã đo lại lần thứ hai chưa?',
+     'meal':'Bạn có thể bắt đầu từ một bữa quen thuộc: chia rau, đạm và phần tinh bột theo gợi ý trong nguồn. Không tự bỏ hết tinh bột, đặc biệt khi dùng thuốc dễ gây hạ đường huyết. Bạn thường ăn gì ở bữa chính và muốn điều chỉnh bữa nào?'}
+    if old_topic in extra:
+     result['override']=(result['override'] or result['intro'] or '')+'\n\n'+extra[old_topic]
+    return result
+ return _route(question,history)
+
+
+def route(question, history):
+ # Parse independent measurements separately, so one topic cannot hide the other.
+ q=norm(question)
+ if 'hba1c' in q and any(t in q for t in ['duong huyet','glucose']):
+  a=re.search(r'(?:hba1c|a1c)\s*(?:la|:|=)?\s*\d+(?:[.,]\d+)?\s*%?',q)
+  g=re.search(r'(?:duong huyet|glucose)\s*(?:luc doi|sau an)?\s*(?:la|:|=)?\s*\d+(?:[.,]\d+)?\s*(?:mg/dl|mmol/l)?',q)
+  if a and g:
+   plans=[contextual_route(x.group(),history) for x in [a,g]]
+   # Special populations and urgent flags must still govern the whole question.
+   guard=_route(question,history)
+   if guard['tone']=='urgent' or any(t in q for t in ['mang thai','thai ky','tre em','con toi']):return guard
+   result=plans[0].copy();result['ids']=list(dict.fromkeys(i for p in plans for i in p['ids']))
+   result['override']='Đối chiếu từng chỉ số bạn cung cấp:\n\n'+'\n\n'.join((p['override'] or p['intro']) for p in plans)+'\n\nHai phép đo phản ánh những khoảng thời gian khác nhau. Hãy mang phiếu xét nghiệm để bác sĩ đối chiếu và xác nhận; không quy đổi điểm mô hình nghiên cứu thành chẩn đoán.'
+   if any(p['tone']=='urgent' for p in plans):result.update(tone='urgent',suggestions=[])
+   return result
+ return contextual_route(question,history)

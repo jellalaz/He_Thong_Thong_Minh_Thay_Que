@@ -33,7 +33,7 @@ class Request(BaseModel):
  question:str=Field(default='',max_length=3000)
  task:str='knowledge'
  values:dict=Field(default_factory=dict)
- history:list[Turn]=Field(default_factory=list,max_length=12)
+ history:list[Turn]=Field(default_factory=list,max_length=64)
 def graph_driver():
  return GraphDatabase.driver(os.environ.get('NEO4J_URI','bolt://127.0.0.1:7687'),auth=(os.environ.get('NEO4J_USER','neo4j'),os.environ.get('NEO4J_PASSWORD','')),connection_timeout=3,connection_acquisition_timeout=4,max_transaction_retry_time=0)
 @app.get('/')
