@@ -1,0 +1,33 @@
+{
+  "dataset": "MNIST",
+  "model": "DigitCNN (PyTorch, from scratch)",
+  "seed": 42,
+  "mode": "full",
+  "epochs": 8,
+  "best_epoch": 8,
+  "parameters": 52138,
+  "split": {
+    "train": 48000,
+    "validation": 12000,
+    "test": 10000
+  },
+  "learning_rate": 0.001,
+  "batch_size": 128,
+  "optimizer": "Adam; weight_decay=1e-4; gradient_clip=1",
+  "augmentation": "train-only translation ±1 pixel",
+  "metrics": {
+    "Accuracy": 0.9866,
+    "Precision_macro": 0.9865707375340553,
+    "Recall_macro": 0.9865831357943989,
+    "F1_macro": 0.9864867875394406
+  },
+  "validation_metrics": {
+    "Accuracy": 0.9849166666666667,
+    "Precision_macro": 0.9848707457358531,
+    "Recall_macro": 0.9847803582723623,
+    "F1_macro": 0.9847972256088999
+  },
+  "seconds": 93.52457283900003,
+  "checkpoint_sha256": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d",
+  "pretrained": false
+}

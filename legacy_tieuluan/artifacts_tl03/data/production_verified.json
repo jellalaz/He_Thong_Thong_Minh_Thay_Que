@@ -1,0 +1,126 @@
+{
+  "url": "https://rag-httm-chatbot.vercel.app",
+  "checked_at": "2026-10-23T04:08:56.323422+07:00",
+  "frontend_HTTP": 200,
+  "health_endpoint": true,
+  "invalid_input_HTTP": 400,
+  "invalid_cases": [
+    {
+      "task": "cnn",
+      "HTTP": 400,
+      "error": "Ảnh phải có 784 pixel (28 × 28)."
+    },
+    {
+      "task": "cnn",
+      "HTTP": 400,
+      "error": "Ảnh trống. Hãy vẽ chữ số hoặc chọn ảnh test."
+    },
+    {
+      "task": "sequence",
+      "HTTP": 400,
+      "error": "Cần đúng 30 log-return hữu hạn trong [-1, 1]."
+    },
+    {
+      "task": "housing",
+      "HTTP": 400,
+      "error": "Area: cần số hữu hạn."
+    }
+  ],
+  "cases": [
+    {
+      "task": "cnn",
+      "domain": null,
+      "HTTP": 200,
+      "seconds": 1.1091750790001242,
+      "result": {
+        "digit": 7,
+        "probabilities": [
+          4.8260073675297864e-09,
+          1.189167557405421e-08,
+          2.3427081078105596e-06,
+          8.706592017521783e-07,
+          4.898064650964921e-12,
+          8.58187651344306e-09,
+          3.845021929629949e-13,
+          0.9999966739487713,
+          4.6454137184661416e-08,
+          4.0924939881224505e-08
+        ],
+        "logits": [
+          -1.4760285121172483,
+          -0.5742093822126885,
+          4.709014844262029,
+          3.719202621948229,
+          -8.368963127028964,
+          -0.9003954085044126,
+          -10.913609071571729,
+          17.67321450493795,
+          0.7884175228265099,
+          0.661691648305628
+        ]
+      }
+    },
+    {
+      "task": "housing",
+      "domain": null,
+      "HTTP": 200,
+      "seconds": 0.3779955610007164,
+      "result": {
+        "prediction": 7.549916755898363,
+        "unit": "tỷ VND",
+        "warnings": [
+          "Frontage: dùng trung vị train",
+          "Access Road: dùng trung vị train",
+          "Bedrooms: dùng trung vị train",
+          "Bathrooms: dùng trung vị train"
+        ],
+        "model": "Log Random Forest"
+      }
+    },
+    {
+      "task": "diabetes_classifier",
+      "domain": null,
+      "HTTP": 200,
+      "seconds": 0.3683426649986359,
+      "result": {
+        "label": "Moderate",
+        "scores": {
+          "High": 0.469346135567176,
+          "Low": 0.005982650934011393,
+          "Moderate": 0.5246712134988124
+        },
+        "warnings": [],
+        "model": "Random Forest",
+        "meaning": "Nhãn của dataset tổng hợp; không phải xác suất mắc bệnh."
+      }
+    },
+    {
+      "task": "sequence",
+      "domain": "fpt",
+      "HTTP": 200,
+      "seconds": 0.3461368089992902,
+      "result": {
+        "prediction": 57147.79480484828,
+        "predicted_log_return": 0.0008366867424990554,
+        "model": "GRU",
+        "unit": "VND",
+        "as_of": "2026-10-14",
+        "neural_validation_winner": "GRU"
+      }
+    },
+    {
+      "task": "sequence",
+      "domain": "gold",
+      "HTTP": 200,
+      "seconds": 0.3411231360005331,
+      "result": {
+        "prediction": 4107.89990234375,
+        "predicted_log_return": 0.0,
+        "model": "Persistence",
+        "unit": "USD/oz",
+        "as_of": "2026-10-14",
+        "neural_validation_winner": "GRU"
+      }
+    }
+  ]
+}

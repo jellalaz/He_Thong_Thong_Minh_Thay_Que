@@ -1,0 +1,27 @@
+Miền,Mô hình,CV_MAE,CV_STD,Cấu hình đã thử,Tham số
+Tiểu đường,Median baseline,65.89436090225564,1.5886336439035804,1,{}
+Tiểu đường,Linear,44.47909549516262,2.7356947920393626,1,{}
+Tiểu đường,Ridge,44.442606227087346,2.7764332459593817,6,{'model__alpha': 1}
+Tiểu đường,ElasticNet,44.44655684929047,2.8199794975115196,9,"{'model__alpha': 0.05, 'model__l1_ratio': 0.1}"
+Tiểu đường,Huber,44.45261031348066,2.954691260962454,3,{'model__epsilon': 1.35}
+Tiểu đường,SVR RBF,44.83326435130829,2.6395947201870853,24,"{'model__C': 100, 'model__epsilon': 5, 'model__gamma': 0.01}"
+Tiểu đường,Random Forest,46.35064211285323,3.7482608859504656,6,"{'max_features': 1.0, 'min_samples_leaf': 8}"
+Tiểu đường,Gradient Boosting,46.07909405262151,2.9071454352713397,8,"{'learning_rate': 0.05, 'max_depth': 2, 'min_samples_leaf': 10, 'n_estimators': 160}"
+Chứng khoán FPT,Persistence,1215.973685515873,282.28756709472356,1,{}
+Chứng khoán FPT,Ridge price,1278.8808172187985,313.5712761552993,4,{'model__alpha': 0.01}
+Chứng khoán FPT,Median return,1215.973685515873,282.28756709472356,8,"{'shrinkage': 0.25, 'window': 504}"
+Chứng khoán FPT,Ridge return,1218.573953204471,283.79507362945697,18,"{'estimator__model__alpha': 1000, 'shrinkage': 0.1, 'window': 252}"
+Chứng khoán FPT,Huber return,1225.2876210553397,287.7283227165093,8,"{'estimator__model__epsilon': 1.1, 'shrinkage': 0.25, 'window': 504}"
+Chứng khoán FPT,SVR return,1220.350177751578,284.27252441898383,24,"{'estimator__model__C': 0.001, 'estimator__model__epsilon': 0.001, 'estimator__model__gamma': 0.1, 'shrinkage': 0.25, 'window': 504}"
+Chứng khoán FPT,Forest return,1219.2453422996573,283.33524764996,4,"{'estimator__min_samples_leaf': 20, 'shrinkage': 0.1}"
+Chứng khoán FPT,Boost return,1216.9987719333117,282.30073689515064,3,{'shrinkage': 0.1}
+Chứng khoán FPT,Median boost return,1218.1475430877833,283.61154384591714,6,"{'shrinkage': 0.1, 'window': 504}"
+Giá vàng GC=F,Persistence,39.828578404017854,15.955707857463294,1,{}
+Giá vàng GC=F,Ridge price,39.37715841286325,16.173630884993166,4,{'model__alpha': 0.01}
+Giá vàng GC=F,Median return,38.896079127104315,15.059318507361628,8,"{'shrinkage': 1.0, 'window': 252}"
+Giá vàng GC=F,Ridge return,39.20112168634721,15.796312237112636,18,"{'estimator__model__alpha': 1000, 'shrinkage': 1.0, 'window': 252}"
+Giá vàng GC=F,Huber return,39.64941789611184,15.977322476509855,8,"{'estimator__model__epsilon': 1.1, 'shrinkage': 0.25, 'window': 504}"
+Giá vàng GC=F,SVR return,38.791988549904985,15.112358841079523,24,"{'estimator__model__C': 0.001, 'estimator__model__epsilon': 0.001, 'estimator__model__gamma': 0.03, 'shrinkage': 1.0, 'window': 504}"
+Giá vàng GC=F,Forest return,39.62417515773215,16.20929562810437,4,"{'estimator__min_samples_leaf': 8, 'shrinkage': 0.35}"
+Giá vàng GC=F,Boost return,39.713472353462876,16.11068641134989,3,{'shrinkage': 0.35}
+Giá vàng GC=F,Median boost return,39.407110484051806,15.498256407302891,6,"{'shrinkage': 1.0, 'window': 504}"

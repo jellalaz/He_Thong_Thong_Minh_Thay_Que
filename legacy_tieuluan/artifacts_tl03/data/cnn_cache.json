@@ -1,0 +1,25 @@
+{
+  "key": {
+    "source": "b8867b8f323b0727d3330e6d1b98e17f6784ed1553af51af062c50a426c216b1",
+    "mode": "full",
+    "seed": 42,
+    "torch": "2.14.0+cpu",
+    "sklearn": "1.9.0",
+    "inputs": {
+      "fpt_stock_processed.csv": "51610eb83851230763e6d85097127a8fedf23cfc8525976c79a5568400af8e83",
+      "gold_futures_processed.csv": "2579882ed82e6696300ce7f6db3b9244fe02d308afcfcd2aa18c9fd8f06b0747"
+    }
+  },
+  "outputs": {
+    "data/cnn_results.json": "f8bf523d8f09c90814e65924f532059aee0249829a6ec3c3b1c4c7cf0d3fcb9e",
+    "data/cnn_parity.json": "f69cafbb1b69c6d3bd01b7ea56b52ce4a9509a3b9ae4ee4fa5c072e6c9299633",
+    "data/cnn_demo_samples.json": "fa81ca07f2881237b3e555e8b76a50ab23ad84da72bcb03af836a1ba3e103b00",
+    "data/cnn_history.csv": "f29bc0c17c4767fb32e6901b1a8c65aff7190a8bf10dc6e90355f95bf59683d1",
+    "data/cnn_predictions.csv": "8b018a53212d9abb25b4c521f681fb48c36061248cbe2682c633fe0846a4011e",
+    "models/mnist_cnn.pt": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d",
+    "models/mnist_cnn.json": "a203878fbff08f7d59200bfbb62f3a5860336b1caa9fe6372808705c9e896d43",
+    "figures/cnn_learning.png": "1509bde0f8de1e84e8427a01dfe009d986f1c9194e5c511f5e27628a47cd0803",
+    "figures/cnn_examples.png": "3039c958ca6b799d22f194296e4dadcdb380d997b3ba146611d4eb161cbb4031",
+    "figures/cnn_confusion.png": "f2cc43722621c6c35ca6eb1aeb98c916bb5c249c7197c4aeda7cbe581ca0a6e4"
+  }
+}

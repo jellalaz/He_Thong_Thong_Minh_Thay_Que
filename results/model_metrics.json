@@ -1,0 +1,34 @@
+[
+  {
+    "task": "classification",
+    "model": "LogisticRegression",
+    "n_train": 40000,
+    "n_test": 10000,
+    "accuracy": 0.6965,
+    "macro_f1": 0.5004666461203509
+  },
+  {
+    "task": "classification",
+    "model": "MLPClassifier",
+    "n_train": 40000,
+    "n_test": 10000,
+    "accuracy": 0.818,
+    "macro_f1": 0.5441279817933019
+  },
+  {
+    "task": "regression",
+    "model": "Ridge",
+    "n_train": 353,
+    "n_test": 89,
+    "mae": 44.055497923360946,
+    "r2": 0.47908577049304535
+  },
+  {
+    "task": "regression",
+    "model": "MLPRegressor",
+    "n_train": 353,
+    "n_test": 89,
+    "mae": 44.322512322323455,
+    "r2": 0.4758458986392792
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "key": {
+    "source": "b8867b8f323b0727d3330e6d1b98e17f6784ed1553af51af062c50a426c216b1",
+    "mode": "full",
+    "seed": 42,
+    "torch": "2.14.0+cpu",
+    "sklearn": "1.9.0",
+    "inputs": {
+      "fpt_stock_processed.csv": "51610eb83851230763e6d85097127a8fedf23cfc8525976c79a5568400af8e83",
+      "gold_futures_processed.csv": "2579882ed82e6696300ce7f6db3b9244fe02d308afcfcd2aa18c9fd8f06b0747"
+    }
+  },
+  "outputs": {
+    "data/tabular_results.json": "6db540ed8dbe93a8af74dc8b11c277ada790a480e49bb1986878b892399f0977",
+    "data/housing_cv.csv": "9278ee7131245ccf3af0fd3e2145f455ed563d7052f861a4faab4d12aba6242e",
+    "data/diabetes_cv.csv": "fdb828a96563a3273ec3c5848cbb8dd19363bb7152565ea403a6001e692fa8f3",
+    "data/diabetes_split.csv": "2b293b5eb5aced8dd786b2ebc1dc5eec70883f8cad8d582531e8adb7e4d7f399",
+    "data/gold_sequence_split.csv": "2bd075bc929f0e0f4a360c88131a8bc166a38fef91568d083e2fb28ec99d6f03",
+    "data/fpt_sequence_split.csv": "97d253d628765976b7feb27b02a172ea5e9c270f90f3c160a2304b6d989986e1",
+    "data/housing_split.csv": "7f56c4adfbff62b422c62c111402acd9275b0bc43ea60ce7979351e03e7420fd",
+    "data/gold_rnn_predictions.csv": "f03455dfdb9f6c3236321f563debe518575720f009e60f767f719ea18140183c",
+    "data/gold_lstm_predictions.csv": "50f43ea4b46cf1e79a89421deb9624696f429621e46172a8441a48aedf330d3c",
+    "data/fpt_lstm_predictions.csv": "aeacf39f95ffacffd424c2fb8f6d2c711a1d93d6b6581ad2e5aa161b4129493e",
+    "data/gold_gru_predictions.csv": "9c2e18f2b01c5b7d213d46b76b756a24d5b5cb64f999b1f1d7821d9ee556ab47",
+    "data/diabetes_predictions.csv": "1954cb236f12294969d5817f889056be96905ed4ba0a99035d35fb948f7bfa8b",
+    "data/housing_predictions.csv": "e5510c527e3190d0e6bc2f37736e53ef8ca1e69d24217ac2902101767b7ef448",
+    "data/cnn_predictions.csv": "8b018a53212d9abb25b4c521f681fb48c36061248cbe2682c633fe0846a4011e",
+    "data/fpt_rnn_predictions.csv": "6d1dea54c93f14caea2cb6cfe6d5d9d46f7ef0c78ad4450e76bfd206e7db7a67",
+    "data/fpt_gru_predictions.csv": "31b1862c23bbc64c317fb6545f0a6e77d2d772f77222f4877471237c51eb3e92",
+    "models/diabetes_classifier.joblib": "2f1e071440bd51601919c9ea00aae0d461712fa9360bf5cc20c5c3866770caa6",
+    "models/housing.joblib": "d0dba9a1ddb72dc528fe0735c2075747fbe569f5a856269e1ea176ead20aefe5",
+    "figures/diabetes_confusion.png": "090046a6df6a9dd1783f463d8d6613e4e7db038ae20a76e0ad5be19d1eaac38c",
+    "figures/housing_predictions.png": "0792ba95fce11757492bfd5874ff8b6200802dda4faa6de0a5d8127873526ea5",
+    "figures/housing_eda.png": "33c509a3daa1a2d758c7c13a54de575a2ab0d22484e05ab346b2634648a66cff"
+  }
+}

@@ -1,0 +1,533 @@
+{
+  "version": "2.2",
+  "reviewed_at": "2026-10-16",
+  "documents": [
+    {
+      "id": "bloodpressure",
+      "title": "Hiểu số đo huyết áp",
+      "terms": [
+        "huyết áp",
+        "tâm thu",
+        "tâm trương",
+        "mmhg",
+        "đo huyết áp"
+      ],
+      "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+      "source": "pressure",
+      "triples": [
+        [
+          "Huyết áp",
+          "gồm",
+          "tâm thu / tâm trương"
+        ],
+        [
+          "Phân loại",
+          "cần",
+          "số đo và bối cảnh"
+        ]
+      ]
+    },
+    {
+      "id": "meanpressure",
+      "title": "Huyết áp trung bình trong dữ liệu",
+      "terms": [
+        "huyết áp trung bình",
+        "huyết áp động mạch trung bình",
+        "map",
+        "bp"
+      ],
+      "text": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc.",
+      "source": "dataset",
+      "triples": [
+        [
+          "bp",
+          "biểu diễn",
+          "huyết áp trung bình"
+        ],
+        [
+          "bp",
+          "không đồng nhất với",
+          "huyết áp tâm thu"
+        ]
+      ]
+    },
+    {
+      "id": "lipids",
+      "title": "Đọc bảng mỡ máu",
+      "terms": [
+        "cholesterol",
+        "mỡ máu",
+        "lipid",
+        "toàn phần"
+      ],
+      "text": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân.",
+      "source": "lipids",
+      "triples": [
+        [
+          "Bảng mỡ máu",
+          "gồm",
+          "toàn phần / LDL / HDL / triglyceride"
+        ],
+        [
+          "Mục tiêu LDL",
+          "phụ thuộc",
+          "nguy cơ cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "hdl",
+      "title": "HDL cholesterol",
+      "terms": [
+        "hdl",
+        "cholesterol tốt"
+      ],
+      "text": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích.",
+      "source": "lipids",
+      "triples": [
+        [
+          "HDL",
+          "cần đối chiếu",
+          "giới và bảng mỡ máu"
+        ]
+      ]
+    },
+    {
+      "id": "ldl",
+      "title": "LDL cholesterol",
+      "terms": [
+        "ldl",
+        "cholesterol xấu"
+      ],
+      "text": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot.",
+      "source": "lipids",
+      "triples": [
+        [
+          "LDL",
+          "liên quan",
+          "nguy cơ xơ vữa"
+        ],
+        [
+          "Mục tiêu LDL",
+          "cần",
+          "đánh giá cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "triglyceride",
+      "title": "Triglyceride và log triglyceride",
+      "terms": [
+        "triglyceride",
+        "triglycerid",
+        "triglycerides",
+        "log triglyceride",
+        "s5",
+        "ltg"
+      ],
+      "text": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu.",
+      "source": "dataset",
+      "triples": [
+        [
+          "s5 / ltg",
+          "không tự coi là",
+          "xét nghiệm triglyceride gốc"
+        ],
+        [
+          "Triglyceride",
+          "cần có",
+          "đơn vị xét nghiệm"
+        ]
+      ]
+    },
+    {
+      "id": "ratio",
+      "title": "Tỷ lệ cholesterol trên HDL",
+      "terms": [
+        "tỷ lệ cholesterol",
+        "cholesterol/hdl",
+        "cholesterol / hdl",
+        "tỉ lệ cholesterol",
+        "s4"
+      ],
+      "text": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc.",
+      "source": "lipids",
+      "triples": [
+        [
+          "Tỷ lệ cholesterol / HDL",
+          "không thay thế",
+          "hồ sơ nguy cơ đầy đủ"
+        ]
+      ]
+    },
+    {
+      "id": "demographics",
+      "title": "Tuổi và mã giới tính của mô hình",
+      "terms": [
+        "tuổi",
+        "mã giới tính",
+        "giới tính",
+        "sex"
+      ],
+      "text": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng.",
+      "source": "dataset",
+      "triples": [
+        [
+          "Mã giới tính nghiên cứu",
+          "không tự dùng để",
+          "chọn ngưỡng HDL"
+        ]
+      ]
+    },
+    {
+      "id": "plate",
+      "title": "Một bữa ăn cân bằng",
+      "terms": [
+        "bữa ăn",
+        "ăn gì",
+        "thực đơn",
+        "ăn sáng",
+        "ăn trưa",
+        "ăn tối",
+        "rau",
+        "đạm",
+        "đĩa ăn"
+      ],
+      "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+      "source": "meal",
+      "triples": [
+        [
+          "Bữa ăn",
+          "chia theo",
+          "phương pháp chiếc đĩa"
+        ],
+        [
+          "Chiếc đĩa",
+          "ưu tiên",
+          "rau không tinh bột"
+        ]
+      ]
+    },
+    {
+      "id": "carb",
+      "title": "Có cần bỏ hoàn toàn tinh bột?",
+      "terms": [
+        "tinh bột",
+        "carb",
+        "carbohydrate",
+        "cơm",
+        "gạo",
+        "bún",
+        "phở",
+        "bánh mì",
+        "kiêng"
+      ],
+      "text": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+      "source": "meal",
+      "triples": [
+        [
+          "Carbohydrate",
+          "ảnh hưởng",
+          "đường huyết"
+        ],
+        [
+          "Khẩu phần",
+          "cần điều chỉnh theo",
+          "nhu cầu cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "fruit",
+      "title": "Trái cây và đồ uống",
+      "terms": [
+        "trái cây",
+        "hoa quả",
+        "nước ép",
+        "sữa",
+        "trà sữa",
+        "nước ngọt",
+        "uống gì",
+        "chuối"
+      ],
+      "text": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người.",
+      "source": "meal",
+      "triples": [
+        [
+          "Nước ép",
+          "có thể làm tăng nhanh",
+          "đường huyết"
+        ]
+      ]
+    },
+    {
+      "id": "activity",
+      "title": "Vận động theo khả năng",
+      "terms": [
+        "vận động",
+        "tập",
+        "thể dục",
+        "đi bộ",
+        "thể thao",
+        "bao nhiêu phút"
+      ],
+      "text": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế.",
+      "source": "who",
+      "triples": [
+        [
+          "Vận động",
+          "hỗ trợ",
+          "quản lý đường huyết"
+        ],
+        [
+          "Kế hoạch tập",
+          "phụ thuộc",
+          "thể trạng"
+        ]
+      ]
+    },
+    {
+      "id": "a1c",
+      "title": "Hiểu chỉ số HbA1c",
+      "terms": [
+        "hba1c",
+        "a1c",
+        "đường trung bình",
+        "ba tháng"
+      ],
+      "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+      "source": "diagnosis",
+      "triples": [
+        [
+          "HbA1c",
+          "phản ánh",
+          "đường huyết trung bình"
+        ],
+        [
+          "Thai kỳ / bệnh máu",
+          "có thể ảnh hưởng",
+          "HbA1c"
+        ]
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Đọc kết quả xét nghiệm",
+      "terms": [
+        "đường huyết",
+        "glucose",
+        "lúc đói",
+        "sau ăn",
+        "xét nghiệm",
+        "nguy cơ",
+        "chẩn đoán",
+        "có bệnh"
+      ],
+      "text": "Bạn cho biết giá trị, đơn vị mg/dL hoặc mmol/L và thời điểm đo. Đo tại nhà, đo lúc đói, sau ăn và nghiệm pháp glucose có cách diễn giải khác nhau. Chẩn đoán thường cần xét nghiệm xác nhận.",
+      "source": "diagnosis",
+      "triples": [
+        [
+          "Glucose",
+          "cần có",
+          "đơn vị và thời điểm đo"
+        ]
+      ]
+    },
+    {
+      "id": "low",
+      "title": "Khi đường huyết thấp",
+      "terms": [
+        "hạ đường huyết",
+        "run tay",
+        "vã mồ hôi",
+        "đói cồn cào",
+        "tụt đường"
+      ],
+      "text": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp.",
+      "source": "low",
+      "triples": [
+        [
+          "Glucose dưới 70",
+          "gợi ý",
+          "hạ đường huyết"
+        ],
+        [
+          "Không nuốt được",
+          "không được",
+          "cho ăn uống"
+        ]
+      ]
+    },
+    {
+      "id": "urgent",
+      "title": "Dấu hiệu cần trợ giúp ngay",
+      "terms": [
+        "cấp cứu",
+        "khẩn cấp",
+        "khó thở",
+        "bất tỉnh",
+        "co giật",
+        "lú lẫn",
+        "nguy hiểm"
+      ],
+      "text": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+      "source": "low",
+      "triples": [
+        [
+          "Rối loạn ý thức",
+          "cần",
+          "trợ giúp y tế khẩn cấp"
+        ]
+      ]
+    },
+    {
+      "id": "medicine",
+      "title": "Về thuốc và liều dùng",
+      "terms": [
+        "thuốc",
+        "metformin",
+        "insulin",
+        "liều",
+        "uống mấy viên",
+        "ngừng thuốc",
+        "tăng liều",
+        "giảm liều"
+      ],
+      "text": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
+      "source": "care",
+      "triples": [
+        [
+          "Liều thuốc",
+          "cần được chỉ định bởi",
+          "nhân viên y tế"
+        ]
+      ]
+    },
+    {
+      "id": "monitor",
+      "title": "Theo dõi để trao đổi khi tái khám",
+      "terms": [
+        "theo dõi",
+        "tái khám",
+        "đo mấy lần",
+        "nhật ký",
+        "mục tiêu",
+        "đã mắc",
+        "đã bị"
+      ],
+      "text": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu.",
+      "source": "care",
+      "triples": [
+        [
+          "Nhật ký",
+          "hỗ trợ",
+          "tái khám"
+        ],
+        [
+          "Mục tiêu điều trị",
+          "phụ thuộc",
+          "từng người"
+        ]
+      ]
+    },
+    {
+      "id": "symptoms",
+      "title": "Triệu chứng và thăm khám",
+      "terms": [
+        "triệu chứng",
+        "khát",
+        "tiểu nhiều",
+        "sụt cân",
+        "mờ mắt",
+        "mệt mỏi",
+        "dấu hiệu sớm"
+      ],
+      "text": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng.",
+      "source": "who",
+      "triples": [
+        [
+          "Triệu chứng",
+          "cần được xác nhận bằng",
+          "khám và xét nghiệm"
+        ]
+      ]
+    },
+    {
+      "id": "model",
+      "title": "Điểm mô hình có ý nghĩa gì?",
+      "terms": [
+        "mô hình",
+        "điểm tiến triển",
+        "dự đoán",
+        "r2",
+        "sai số",
+        "độ chính xác",
+        "phần trăm"
+      ],
+      "text": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+      "source": "dataset",
+      "triples": [
+        [
+          "Mô hình diabetes",
+          "dự báo",
+          "điểm tiến triển nghiên cứu"
+        ],
+        [
+          "Điểm tiến triển",
+          "không phải",
+          "xác suất mắc bệnh"
+        ]
+      ]
+    }
+  ],
+  "sources": {
+    "diagnosis": {
+      "label": "NIDDK · Xét nghiệm & chẩn đoán",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+    },
+    "low": {
+      "label": "CDC · Xử trí hạ đường huyết",
+      "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+    },
+    "meal": {
+      "label": "CDC · Lập kế hoạch bữa ăn",
+      "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+    },
+    "who": {
+      "label": "WHO · Diabetes",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+    },
+    "care": {
+      "label": "NIDDK · Quản lý bệnh tiểu đường",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+    },
+    "dataset": {
+      "label": "scikit-learn · Dữ liệu diabetes",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+    },
+    "pressure": {
+      "label": "AHA · Hiểu số đo huyết áp",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+    },
+    "lowpressure": {
+      "label": "AHA · Huyết áp thấp",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/the-facts-about-high-blood-pressure/low-blood-pressure-when-blood-pressure-is-too-low"
+    },
+    "pregnancyPressure": {
+      "label": "ACOG · Huyết áp trong thai kỳ",
+      "url": "https://www.acog.org/womens-health/faqs/preeclampsia-and-high-blood-pressure-during-pregnancy"
+    },
+    "lipids": {
+      "label": "MedlinePlus · Các chỉ số cholesterol",
+      "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+    },
+    "cholesterol": {
+      "label": "Mayo Clinic · Xét nghiệm cholesterol",
+      "url": "https://www.mayoclinic.org/tests-procedures/cholesterol-test/about/pac-20384601"
+    },
+    "triglycerides": {
+      "label": "MedlinePlus · Triglyceride",
+      "url": "https://medlineplus.gov/triglycerides.html"
+    }
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "diabetes_classes": {
+    "High": {
+      "precision": 0.9330842942991717,
+      "recall": 0.7849432982647903,
+      "f1-score": 0.852626892252894,
+      "support": 7319.0
+    },
+    "Low": {
+      "precision": 0.22568093385214008,
+      "recall": 0.6170212765957447,
+      "f1-score": 0.33048433048433046,
+      "support": 94.0
+    },
+    "Moderate": {
+      "precision": 0.5535415504740658,
+      "recall": 0.7672980286045613,
+      "f1-score": 0.6431232787947513,
+      "support": 2587.0
+    },
+    "accuracy": 0.7788,
+    "macro avg": {
+      "precision": 0.5707689262084593,
+      "recall": 0.7230875344883655,
+      "f1-score": 0.6087448338439919,
+      "support": 10000.0
+    },
+    "weighted avg": {
+      "precision": 0.8282469948834147,
+      "recall": 0.7788,
+      "f1-score": 0.793520167370648,
+      "support": 10000.0
+    }
+  },
+  "diabetes_missing": {
+    "Patient_ID": 0,
+    "Age": 497,
+    "Gender": 0,
+    "Country": 0,
+    "Height_cm": 2945,
+    "Weight_kg": 2962,
+    "BMI": 0,
+    "Waist_Circumference_cm": 0,
+    "Blood_Glucose": 959,
+    "HbA1c": 1974,
+    "Fasting_Blood_Sugar": 0,
+    "Insulin_Level": 0,
+    "Blood_Pressure_Systolic": 0,
+    "Blood_Pressure_Diastolic": 0,
+    "Total_Cholesterol": 1000,
+    "HDL": 1000,
+    "LDL": 1000,
+    "Triglycerides": 1000,
+    "Heart_Rate": 0,
+    "Physical_Activity_Level": 500,
+    "Exercise_Hours_Per_Week": 1992,
+    "Daily_Walking_Minutes": 1964,
+    "Diet_Quality": 0,
+    "Sugar_Intake_Level": 0,
+    "Sleep_Hours": 2017,
+    "Stress_Level": 0,
+    "Smoking_Status": 0,
+    "Alcohol_Consumption": 0,
+    "Family_History_Diabetes": 0,
+    "Hypertension": 0,
+    "Heart_Disease": 0,
+    "Fatty_Liver": 0,
+    "PCOS": 0,
+    "Medication_Adherence": 1000,
+    "Work_Type": 0,
+    "Residence_Type": 0,
+    "Daily_Water_Intake_L": 0,
+    "Diabetes_Risk_Score": 0,
+    "AI_Health_Recommendation": 0,
+    "Doctor_Consultation_Needed": 0,
+    "Diabetes_Risk": 0
+  },
+  "housing_missing": {
+    "Address": 0.0,
+    "Area": 0.0,
+    "Frontage": 38.25465612491316,
+    "Access Road": 43.98756161302061,
+    "House direction": 70.2603460253399,
+    "Balcony direction": 82.64580369843529,
+    "Floors": 11.919018161368221,
+    "Bedrooms": 17.076317443514505,
+    "Bathrooms": 23.401369545800392,
+    "Legal status": 14.906215885408052,
+    "Furniture state": 46.706804723940586,
+    "Price": 0.0
+  },
+  "housing_error_bands": [
+    {
+      "price_band": "(0.999, 4.3]",
+      "n": 1607.0,
+      "actual_mean": 3.138058494088363,
+      "prediction_mean": 4.125590588743478,
+      "MAE": 1.1971084168046964,
+      "bias": 0.9875320946551146
+    },
+    {
+      "price_band": "(4.3, 5.95]",
+      "n": 1594.0,
+      "actual_mean": 5.178375156838143,
+      "prediction_mean": 5.598708448661199,
+      "MAE": 0.9949259975910691,
+      "bias": 0.42033329182305673
+    },
+    {
+      "price_band": "(5.95, 7.56]",
+      "n": 1570.0,
+      "actual_mean": 6.730987261146496,
+      "prediction_mean": 6.2614360335307255,
+      "MAE": 0.9665698106570467,
+      "bias": -0.4695512276157718
+    },
+    {
+      "price_band": "(7.56, 10.9]",
+      "n": 1590.0,
+      "actual_mean": 8.758685534591194,
+      "prediction_mean": 6.827130501143587,
+      "MAE": 1.943178552031524,
+      "bias": -1.9315550334476073
+    }
+  ],
+  "housing_residual": {
+    "mean": -0.24389130439580817,
+    "median": -0.17415015699429892,
+    "abs_p50": 1.0384022707902245,
+    "abs_p90": 2.687903418827079
+  },
+  "housing_group_overlap": {
+    "train_test": 0,
+    "train_validation": 0,
+    "validation_test": 0
+  },
+  "housing_unique_groups": {
+    "test": 2051,
+    "train": 6560,
+    "validation": 1640
+  },
+  "convolution_example": {
+    "test_index": 0,
+    "label": 7,
+    "channel": 0,
+    "row": 9,
+    "column": 19,
+    "patch": [
+      [
+        0.7764705882352941,
+        0.7764705882352941,
+        0.6666666666666666
+      ],
+      [
+        0.8980392156862745,
+        0.996078431372549,
+        0.996078431372549
+      ],
+      [
+        0.08235294117647059,
+        0.9254901960784314,
+        0.996078431372549
+      ]
+    ],
+    "kernel": [
+      [
+        0.5240790247917175,
+        0.46509814262390137,
+        -0.11255147308111191
+      ],
+      [
+        0.46286240220069885,
+        0.17751258611679077,
+        0.18900135159492493
+      ],
+      [
+        -0.18768297135829926,
+        0.3012276589870453,
+        0.41428637504577637
+      ]
+    ],
+    "bias": 0.09658630192279816,
+    "preactivation": 2.246352903457249,
+    "relu": 2.2463529109954834
+  },
+  "cnn_class_report": {
+    "0": {
+      "precision": 0.9839034205231388,
+      "recall": 0.9979591836734694,
+      "f1-score": 0.9908814589665653,
+      "support": 980.0
+    },
+    "1": {
+      "precision": 0.9938488576449912,
+      "recall": 0.9964757709251101,
+      "f1-score": 0.9951605807303123,
+      "support": 1135.0
+    },
+    "2": {
+      "precision": 0.9960707269155207,
+      "recall": 0.9825581395348837,
+      "f1-score": 0.9892682926829268,
+      "support": 1032.0
+    },
+    "3": {
+      "precision": 0.9764705882352941,
+      "recall": 0.9861386138613861,
+      "f1-score": 0.9812807881773399,
+      "support": 1010.0
+    },
+    "4": {
+      "precision": 0.9938587512794268,
+      "recall": 0.9887983706720977,
+      "f1-score": 0.9913221031138336,
+      "support": 982.0
+    },
+    "5": {
+      "precision": 0.9736263736263736,
+      "recall": 0.9932735426008968,
+      "f1-score": 0.9833518312985572,
+      "support": 892.0
+    },
+    "6": {
+      "precision": 0.9947478991596639,
+      "recall": 0.988517745302714,
+      "f1-score": 0.9916230366492147,
+      "support": 958.0
+    },
+    "7": {
+      "precision": 0.9696969696969697,
+      "recall": 0.9961089494163424,
+      "f1-score": 0.982725527831094,
+      "support": 1028.0
+    },
+    "8": {
+      "precision": 0.9876288659793815,
+      "recall": 0.9835728952772074,
+      "f1-score": 0.98559670781893,
+      "support": 974.0
+    },
+    "9": {
+      "precision": 0.9958549222797928,
+      "recall": 0.9524281466798811,
+      "f1-score": 0.9736575481256332,
+      "support": 1009.0
+    },
+    "accuracy": 0.9866,
+    "macro avg": {
+      "precision": 0.9865707375340553,
+      "recall": 0.9865831357943989,
+      "f1-score": 0.9864867875394406,
+      "support": 10000.0
+    },
+    "weighted avg": {
+      "precision": 0.9867453213152998,
+      "recall": 0.9866,
+      "f1-score": 0.9865826072994843,
+      "support": 10000.0
+    }
+  },
+  "cnn_confidence_bins": [
+    {
+      "lower": 0.2,
+      "upper": 0.30000000000000004,
+      "n": 2,
+      "confidence": 0.26258883499999996,
+      "accuracy": 0.5
+    },
+    {
+      "lower": 0.30000000000000004,
+      "upper": 0.4,
+      "n": 6,
+      "confidence": 0.37255460666666657,
+      "accuracy": 0.6666666666666666
+    },
+    {
+      "lower": 0.4,
+      "upper": 0.5,
+      "n": 18,
+      "confidence": 0.4562373944444445,
+      "accuracy": 0.6111111111111112
+    },
+    {
+      "lower": 0.5,
+      "upper": 0.6,
+      "n": 56,
+      "confidence": 0.5530904742857142,
+      "accuracy": 0.5892857142857143
+    },
+    {
+      "lower": 0.6000000000000001,
+      "upper": 0.7000000000000001,
+      "n": 58,
+      "confidence": 0.6508031198275862,
+      "accuracy": 0.6896551724137931
+    },
+    {
+      "lower": 0.7000000000000001,
+      "upper": 0.8,
+      "n": 99,
+      "confidence": 0.7536790864646464,
+      "accuracy": 0.696969696969697
+    },
+    {
+      "lower": 0.8,
+      "upper": 0.9,
+      "n": 169,
+      "confidence": 0.8565502078698224,
+      "accuracy": 0.8816568047337278
+    },
+    {
+      "lower": 0.9,
+      "upper": 1.0,
+      "n": 9592,
+      "confidence": 0.9960276578982485,
+      "accuracy": 0.9965596330275229
+    }
+  ],
+  "cnn_ece_10_bins": 0.0024267523949999927,
+  "cnn_wrong_confidence_ge_99": 5,
+  "sequence_paired_bootstrap": [
+    {
+      "domain": "fpt",
+      "model": "RNN",
+      "relative_MAE_improvement_pct": 1.8595702693212095,
+      "low95": -1.2517575424369767,
+      "high95": 5.105471384308614,
+      "block": 5,
+      "replicates": 2000
+    },
+    {
+      "domain": "fpt",
+      "model": "LSTM",
+      "relative_MAE_improvement_pct": -1.5662785032484845,
+      "low95": -3.271728913461086,
+      "high95": -0.11020926975802929,
+      "block": 5,
+      "replicates": 2000
+    },
+    {
+      "domain": "fpt",
+      "model": "GRU",
+      "relative_MAE_improvement_pct": -0.38069522780713927,
+      "low95": -1.0867717128401515,
+      "high95": 0.26606679938530686,
+      "block": 5,
+      "replicates": 2000
+    },
+    {
+      "domain": "gold",
+      "model": "RNN",
+      "relative_MAE_improvement_pct": 1.5532772250542246,
+      "low95": 0.2911623238382402,
+      "high95": 2.731851726523735,
+      "block": 5,
+      "replicates": 2000
+    },
+    {
+      "domain": "gold",
+      "model": "LSTM",
+      "relative_MAE_improvement_pct": -0.16376975535717073,
+      "low95": -1.6764685069773613,
+      "high95": 1.3681569132720919,
+      "block": 5,
+      "replicates": 2000
+    },
+    {
+      "domain": "gold",
+      "model": "GRU",
+      "relative_MAE_improvement_pct": -0.017076679924769633,
+      "low95": -0.9761914664657888,
+      "high95": 0.9261224593879367,
+      "block": 5,
+      "replicates": 2000
+    }
+  ],
+  "sequence_window_example": {
+    "input_start": "2026-09-02",
+    "as_of": "2026-10-14",
+    "prices": [
+      66545.453125,
+      65636.3671875,
+      66181.8203125,
+      65818.1796875,
+      65636.3671875,
+      65636.3671875,
+      67727.2734375,
+      66090.90625,
+      65818.1796875,
+      66090.90625,
+      67090.90625,
+      67545.453125,
+      65181.81640625,
+      65181.81640625,
+      66400.0,
+      66100.0,
+      65300.0,
+      64700.0,
+      63700.0,
+      63200.0,
+      63000.0,
+      62700.0,
+      62100.0,
+      61900.0,
+      60400.0,
+      59700.0,
+      59700.0,
+      57900.0,
+      57100.0,
+      56300.0,
+      57100.0
+    ],
+    "log_returns": [
+      -0.013755299619672812,
+      0.008275887395043924,
+      -0.005509720377576244,
+      -0.00276616701746768,
+      0.0,
+      0.03135903587012656,
+      -0.024457794317486403,
+      -0.004135074535172478,
+      0.004135074535172478,
+      0.015017347707647843,
+      0.006752241431851047,
+      -0.03562021032876572,
+      0.0,
+      0.018516515921374932,
+      -0.004528309624747706,
+      -0.012176710575253935,
+      -0.009230834775530994,
+      -0.015576638928736841,
+      -0.0078802614253064,
+      -0.0031695747612783265,
+      -0.0047732787526584275,
+      -0.009615458699441248,
+      -0.0032258092488834933,
+      -0.024531074749781112,
+      -0.011657084542212814,
+      0.0,
+      -0.03061463581960666,
+      -0.013913267916985106,
+      -0.014109581516319025,
+      0.014109581516319025
+    ],
+    "last_close": 57100.0
+  },
+  "retrieval_example": {
+    "query": "Giá FPT gần nhất và RSI là bao nhiêu?",
+    "ranking": [
+      {
+        "id": "STK01",
+        "domain": "stock",
+        "source": "Yahoo snapshot lưu trước - FPT.VN",
+        "text": "Chuỗi FPT.VN gồm 1304 phiên từ 15/10/2021 đến 14/10/2026; giá đóng cửa gần nhất 57,100 VND.",
+        "score": 0.21891302267496568
+      },
+      {
+        "id": "GLD01",
+        "domain": "gold",
+        "source": "Yahoo snapshot lưu trước - GC=F",
+        "text": "Chuỗi vàng GC=F gồm 1257 phiên từ 15/10/2021 đến 14/10/2026; giá gần nhất 4,107.90 USD/oz.",
+        "score": 0.16633443123943548
+      },
+      {
+        "id": "STK03",
+        "domain": "stock",
+        "source": "Kiến thức phân tích kỹ thuật",
+        "text": "Đường trung bình động mô tả xu hướng quá khứ chứ không bảo đảm giá tương lai. RSI là chỉ báo động lượng và cần kết hợp thanh khoản, cơ bản doanh nghiệp cùng bối cảnh thị trường.",
+        "score": 0.1556848102211118
+      },
+      {
+        "id": "DIA03",
+        "domain": "diabetes",
+        "source": "Kết quả mô hình tại lần chạy",
+        "text": "Ridge trên tập test giữ riêng đạt MAE 42.94 và R2 0.452. Biến quan trọng nhất là s5.",
+        "score": 0.08919212549811317
+      },
+      {
+        "id": "STK02",
+        "domain": "stock",
+        "source": "Tính toán từ dữ liệu FPT.VN",
+        "text": "FPT.VN có MA20 62,260, MA60 63,396, RSI14 8.2 và biến động năm hóa 27.6%.",
+        "score": 0.06770388923354617
+      },
+      {
+        "id": "DIA02",
+        "domain": "diabetes",
+        "source": "WHO/clinical knowledge summary",
+        "text": "Theo dõi đường huyết, HbA1c, huyết áp, cân nặng, chế độ ăn và vận động là các thành phần thường gặp trong quản lý bệnh đái tháo đường; quyết định điều trị cần bác sĩ.",
+        "score": 0.03683746361208602
+      },
+      {
+        "id": "GLD03",
+        "domain": "gold",
+        "source": "Tổng hợp cơ chế kinh tế vĩ mô",
+        "text": "Giá vàng thường nhạy với lãi suất thực, sức mạnh đồng USD, kỳ vọng lạm phát, nhu cầu dự trữ và rủi ro địa chính trị; quan hệ có thể thay đổi theo từng giai đoạn.",
+        "score": 0.031941766239730274
+      },
+      {
+        "id": "GLD02",
+        "domain": "gold",
+        "source": "Tính toán từ dữ liệu GC=F",
+        "text": "GC=F có MA20 4,237.78, MA60 4,330.82, RSI14 31.6 và biến động năm hóa 19.1%.",
+        "score": 0.012378196184054517
+      },
+      {
+        "id": "DIA01",
+        "domain": "diabetes",
+        "source": "scikit-learn diabetes dataset description",
+        "text": "Bộ dữ liệu diabetes của scikit-learn có 442 quan sát, 10 biến nền ở thang đo gốc và biến đích phản ánh mức tiến triển bệnh sau một năm.",
+        "score": 0.009915972351161461
+      },
+      {
+        "id": "RAG02",
+        "domain": "method",
+        "source": "Edge et al. (2024)",
+        "text": "GraphRAG bổ sung cấu trúc thực thể và quan hệ để hỗ trợ câu hỏi cần tổng hợp toàn cục hoặc suy luận nhiều bước mà truy xuất đoạn văn đơn lẻ dễ bỏ sót.",
+        "score": 0.009223075156255407
+      },
+      {
+        "id": "RAG01",
+        "domain": "method",
+        "source": "Lewis et al. (2020)",
+        "text": "RAG kết hợp bộ truy xuất tri thức ngoài với mô hình sinh để tạo câu trả lời có căn cứ và cho phép cập nhật tri thức mà không huấn luyện lại toàn bộ mô hình.",
+        "score": 0.008219215951824184
+      }
+    ],
+    "corpus_size": 11,
+    "vocabulary_size": 508
+  }
+}

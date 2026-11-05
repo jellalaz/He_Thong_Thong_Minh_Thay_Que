@@ -1,0 +1,475 @@
+{
+  "headings": [
+    [
+      1,
+      "CHƯƠNG 1. LỊCH SỬ VÀ PHÁT TRIỂN AI"
+    ],
+    [
+      2,
+      "1.1. AI là gì? Bản chất của Trí tuệ Nhân tạo"
+    ],
+    [
+      2,
+      "1.2. Biên niên sử phát triển AI qua các kỷ nguyên"
+    ],
+    [
+      2,
+      "1.3. Bản đồ phân loại toàn cảnh các kỹ thuật AI"
+    ],
+    [
+      2,
+      "1.4. Ba trụ cột tạo nên sự bùng nổ của Deep Learning sau 2012"
+    ],
+    [
+      2,
+      "1.5. Phân loại AI theo mức độ năng lực và Trường phái tiếp cận"
+    ],
+    [
+      3,
+      "1.5.1. Phân loại theo cấp độ năng lực"
+    ],
+    [
+      3,
+      "1.5.2. Hai trường phái tư tưởng lớn trong AI"
+    ],
+    [
+      2,
+      "1.6. Xu hướng AI tại Việt Nam và Những thách thức đương đại"
+    ],
+    [
+      3,
+      "1.6.1. Bức tranh phát triển AI tại Việt Nam"
+    ],
+    [
+      3,
+      "1.6.2. Những thách thức cốt lõi đặt ra"
+    ],
+    [
+      2,
+      "1.7. Mối liên hệ giữa các giai đoạn phát triển"
+    ],
+    [
+      3,
+      "1.7.1. Từ biểu diễn tri thức đến biểu diễn học được"
+    ],
+    [
+      3,
+      "1.7.2. Tiêu chí lựa chọn công nghệ trong hệ thống"
+    ],
+    [
+      2,
+      "1.8. Tiểu kết chương 1"
+    ],
+    [
+      1,
+      "CHƯƠNG 2. CÁC KỸ THUẬT MACHINE LEARNING CƠ BẢN"
+    ],
+    [
+      2,
+      "2.1. Cơ sở lý thuyết Học máy (Machine Learning Foundations)"
+    ],
+    [
+      3,
+      "2.1.1. Khái niệm và Các dạng học máy"
+    ],
+    [
+      3,
+      "2.1.2. Quy trình chuẩn xây dựng một mô hình Học máy"
+    ],
+    [
+      3,
+      "2.1.3. Phương pháp Tối ưu hóa bằng Hạ Gradient (Gradient Descent)"
+    ],
+    [
+      3,
+      "2.1.4. Hồi quy tuyến tính (Linear Regression)"
+    ],
+    [
+      3,
+      "2.1.5. Hồi quy Logistic (Logistic Regression & Softmax)"
+    ],
+    [
+      3,
+      "2.1.6. Tổng quan các thuật toán Học máy kinh điển tiêu biểu"
+    ],
+    [
+      3,
+      "2.1.7. Hiện tượng Overfitting, Underfitting & Kỹ thuật Điều chuẩn"
+    ],
+    [
+      3,
+      "2.1.8. Từ Học máy truyền thống đến Mạng Nơ-ron Sâu (Deep Neural Network – DNN)"
+    ],
+    [
+      3,
+      "2.1.9. Kiểm định chéo và lựa chọn siêu tham số"
+    ],
+    [
+      3,
+      "2.1.10. Các thước đo đánh giá"
+    ],
+    [
+      2,
+      "2.2. Phân tích và chuẩn bị dữ liệu thực nghiệm"
+    ],
+    [
+      3,
+      "2.2.1. Định nghĩa mẫu, nhãn và đơn vị sử dụng"
+    ],
+    [
+      3,
+      "2.2.2. Dữ liệu nhà ở và ý nghĩa của phép chia theo địa chỉ"
+    ],
+    [
+      3,
+      "2.2.3. Pipeline và kiểm soát thông tin giữa các tập"
+    ],
+    [
+      2,
+      "2.3. So sánh và lựa chọn mô hình"
+    ],
+    [
+      2,
+      "2.4. Kết quả test độc lập và phân tích sai số"
+    ],
+    [
+      3,
+      "2.4.1. Hiệu năng từng lớp và tác động của mất cân bằng"
+    ],
+    [
+      3,
+      "2.4.2. Sai số nhà ở theo phân khúc và phần dư"
+    ],
+    [
+      3,
+      "2.4.3. Hai tình huống sử dụng trên web"
+    ],
+    [
+      2,
+      "2.5. Kết luận chương"
+    ],
+    [
+      1,
+      "CHƯƠNG 3. MẠNG NƠ-RON TÍCH CHẬP CNN"
+    ],
+    [
+      2,
+      "3.1. Lý thuyết CNN"
+    ],
+    [
+      3,
+      "3.1.1. Tại sao cần CNN?"
+    ],
+    [
+      3,
+      "3.1.2. Phép Tích chập (Convolution)"
+    ],
+    [
+      3,
+      "3.1.3. Pooling"
+    ],
+    [
+      3,
+      "3.1.4. Kiến trúc CNN điển hình"
+    ],
+    [
+      3,
+      "3.1.5. Các kiến trúc CNN tiêu biểu"
+    ],
+    [
+      3,
+      "3.1.6. Backpropagation, loss và optimizer"
+    ],
+    [
+      3,
+      "3.1.7. Transfer learning và data augmentation"
+    ],
+    [
+      2,
+      "3.2. Dữ liệu ảnh và kiến trúc thực nghiệm"
+    ],
+    [
+      3,
+      "3.2.1. Theo dõi một phép tích chập từ ảnh và trọng số thật"
+    ],
+    [
+      3,
+      "3.2.2. Feature map, receptive field và số tham số"
+    ],
+    [
+      2,
+      "3.3. Kết quả và phân tích dự đoán"
+    ],
+    [
+      3,
+      "3.3.1. Đọc đường học và đánh giá theo từng chữ số"
+    ],
+    [
+      3,
+      "3.3.2. Confidence không thay thế kiểm tra độ đúng"
+    ],
+    [
+      3,
+      "3.3.3. Đường đi của ảnh trên giao diện"
+    ],
+    [
+      2,
+      "3.4. Suy luận, triển khai và phạm vi mở rộng"
+    ],
+    [
+      1,
+      "CHƯƠNG 4. MẠNG NƠ-RON HỒI TIẾP RNN"
+    ],
+    [
+      2,
+      "4.1. Lý thuyết RNN"
+    ],
+    [
+      3,
+      "4.1.1. Vấn đề với dữ liệu tuần tự"
+    ],
+    [
+      3,
+      "4.1.2. RNN cơ bản — Vanilla RNN"
+    ],
+    [
+      3,
+      "4.1.3. LSTM — Long Short-Term Memory"
+    ],
+    [
+      3,
+      "4.1.4. GRU — Gated Recurrent Unit"
+    ],
+    [
+      3,
+      "4.1.5. Cửa sổ trượt và các kiểu đầu vào đầu ra"
+    ],
+    [
+      3,
+      "4.1.6. BPTT và ổn định gradient"
+    ],
+    [
+      2,
+      "4.2. Dữ liệu, phép chia và cấu hình"
+    ],
+    [
+      3,
+      "4.2.1. Từ giá quan sát đến một mẫu dự báo cụ thể"
+    ],
+    [
+      3,
+      "4.2.2. Vai trò của trạng thái và cổng trong thực nghiệm"
+    ],
+    [
+      2,
+      "4.3. So sánh RNN, LSTM, GRU và Persistence"
+    ],
+    [
+      3,
+      "4.3.1. Đường học và tính nhất quán của quy tắc lựa chọn"
+    ],
+    [
+      3,
+      "4.3.2. Chênh lệch so với baseline và độ bất định theo khối"
+    ],
+    [
+      3,
+      "4.3.3. Hai demo chuỗi và cách đọc kết quả"
+    ],
+    [
+      2,
+      "4.4. Hạn chế và khả năng mở rộng"
+    ],
+    [
+      1,
+      "CHƯƠNG 5. KNOWLEDGE GRAPH VÀ RAG"
+    ],
+    [
+      2,
+      "5.1. MỞ ĐẦU"
+    ],
+    [
+      3,
+      "5.1.1. LỊCH SỬ PHÁT TRIỂN CỦA KNOWLEDGE GRAPH"
+    ],
+    [
+      3,
+      "5.1.2. LỊCH SỬ PHÁT TRIỂN CỦA RAG"
+    ],
+    [
+      3,
+      "5.1.3. VAI TRÒ VÀ Ý NGHĨA TRONG AI"
+    ],
+    [
+      3,
+      "5.1.4. PHẠM VI, CÂU HỎI VÀ ĐÓNG GÓP"
+    ],
+    [
+      2,
+      "5.2. KNOWLEDGE GRAPH - KNOWLEDGE BASE"
+    ],
+    [
+      3,
+      "5.2.1. BỘ BA, THỰC THỂ VÀ QUAN HỆ"
+    ],
+    [
+      3,
+      "5.2.2. KNOWLEDGE GRAPH CORE ENGINE"
+    ],
+    [
+      3,
+      "5.2.3. RDF VÀ LABELED PROPERTY GRAPH"
+    ],
+    [
+      3,
+      "5.2.4. CHẤT LƯỢNG VÀ QUẢN TRỊ TRI THỨC"
+    ],
+    [
+      2,
+      "5.3. RAG - RETRIEVAL-AUGMENTED GENERATION"
+    ],
+    [
+      3,
+      "5.3.1. NẠP, LẬP CHỈ MỤC VÀ TRUY XUẤT"
+    ],
+    [
+      3,
+      "5.3.2. TRUY XUẤT ĐỒ THỊ VÀ SUY LUẬN NHIỀU BƯỚC"
+    ],
+    [
+      3,
+      "5.3.3. TỔNG HỢP CÂU TRẢ LỜI CÓ CĂN CỨ"
+    ],
+    [
+      3,
+      "5.3.4. ĐÁNH GIÁ RAG VÀ GRAPHRAG"
+    ],
+    [
+      2,
+      "5.4. KB VÀ RAG CHO BỆNH TIỂU ĐƯỜNG"
+    ],
+    [
+      3,
+      "5.4.1. ONTOLOGY VÀ XỬ LÝ DỮ LIỆU Y TẾ"
+    ],
+    [
+      3,
+      "5.4.2. THỰC NGHIỆM HỎI ĐÁP Y TẾ"
+    ],
+    [
+      3,
+      "5.4.3. GIỚI HẠN VÀ HƯỚNG MỞ RỘNG Y TẾ"
+    ],
+    [
+      2,
+      "5.5. KB VÀ RAG CHO CHỨNG KHOÁN"
+    ],
+    [
+      3,
+      "5.5.1. DỮ LIỆU VÀ TIỀN XỬ LÝ FPT"
+    ],
+    [
+      3,
+      "5.5.2. HUẤN LUYỆN VÀ ĐÁNH GIÁ MÔ HÌNH FPT"
+    ],
+    [
+      3,
+      "5.5.3. HỎI ĐÁP CHỨNG KHOÁN VỚI GRAPHRAG"
+    ],
+    [
+      3,
+      "5.5.4. RỦI RO VÀ HƯỚNG MỞ RỘNG"
+    ],
+    [
+      2,
+      "5.6. KB VÀ RAG CHO GIÁ VÀNG"
+    ],
+    [
+      3,
+      "5.6.1. DỮ LIỆU, CHỈ BÁO VÀ KNOWLEDGE GRAPH VÀNG"
+    ],
+    [
+      3,
+      "5.6.2. HUẤN LUYỆN VÀ ĐÁNH GIÁ MÔ HÌNH VÀNG"
+    ],
+    [
+      3,
+      "5.6.3. HỎI ĐÁP VĨ MÔ VỚI GRAPHRAG"
+    ],
+    [
+      3,
+      "5.6.4. GIỚI HẠN VÀ HƯỚNG MỞ RỘNG"
+    ],
+    [
+      2,
+      "5.7. DEPLOYMENT"
+    ],
+    [
+      3,
+      "5.7.1. SUY LUẬN MÔ HÌNH TRÊN TRÌNH DUYỆT"
+    ],
+    [
+      3,
+      "5.7.2. CHATBOT DỰ ĐOÁN, TƯ VẤN VÀ HỎI ĐÁP"
+    ],
+    [
+      2,
+      "5.8. Đánh giá tổng hợp"
+    ],
+    [
+      3,
+      "5.8.1. Kết quả huấn luyện ba miền"
+    ],
+    [
+      3,
+      "5.8.2. Kết quả truy xuất và bộ ba tri thức"
+    ],
+    [
+      3,
+      "5.8.3. Chunking, embedding và giới hạn đánh giá"
+    ],
+    [
+      3,
+      "5.8.4. Đồng bộ notebook và các chức năng web bổ sung"
+    ],
+    [
+      3,
+      "5.8.5. Theo dõi một câu hỏi qua các bước truy xuất"
+    ],
+    [
+      3,
+      "5.8.6. Hai luồng hỏi đáp và giới hạn của câu trả lời"
+    ],
+    [
+      3,
+      "5.8.7. Phân biệt ba miền dự đoán gốc và các mô hình bổ sung"
+    ],
+    [
+      3,
+      "5.8.8. Đường triển khai, kiểm thử và khả năng tái lập"
+    ],
+    [
+      2,
+      "5.9. Kết luận chương"
+    ]
+  ],
+  "figures": {
+    "1": 2,
+    "2": 6,
+    "3": 8,
+    "4": 5,
+    "5": 22
+  },
+  "tables": {
+    "1": 3,
+    "2": 9,
+    "3": 6,
+    "4": 4,
+    "5": 4
+  },
+  "equations": {
+    "2": 24,
+    "3": 4,
+    "4": 10
+  }
+}

@@ -1,0 +1,23 @@
+Subject,Predicate,Object
+Bệnh đái tháo đường,ĐƯỢC_THEO_DÕI_BẰNG,Theo dõi HbA1c
+Bệnh đái tháo đường,CẦN_TƯ_VẤN_BỞI,Bác sĩ chuyên khoa
+Glucose,LIÊN_QUAN_ĐẾN,Bệnh đái tháo đường
+BMI,LÀ_YẾU_TỐ_NGUY_CƠ_CỦA,Bệnh đái tháo đường
+Huyết áp,CẦN_THEO_DÕI_KHI,Bệnh đái tháo đường
+Tuổi,ĐIỀU_CHỈNH_NGUY_CƠ,Bệnh đái tháo đường
+Chế độ ăn,HỖ_TRỢ_QUẢN_LÝ,Bệnh đái tháo đường
+Vận động,HỖ_TRỢ_QUẢN_LÝ,Bệnh đái tháo đường
+FPT.VN,CÓ_GIÁ_GẦN_NHẤT,"Giá FPT 57,100 VND"
+MA20,MÔ_TẢ_XU_HƯỚNG_NGẮN_HẠN_CỦA,FPT.VN
+MA60,MÔ_TẢ_XU_HƯỚNG_TRUNG_HẠN_CỦA,FPT.VN
+RSI14,ĐO_ĐỘNG_LƯỢNG_CỦA,FPT.VN
+Thanh khoản,PHẢN_ÁNH_MỨC_QUAN_TÂM_ĐẾN,FPT.VN
+Kết quả kinh doanh,CÓ_THỂ_TÁC_ĐỘNG,FPT.VN
+Tâm lý thị trường,CÓ_THỂ_TÁC_ĐỘNG,FPT.VN
+Vàng quốc tế GC=F,CÓ_GIÁ_GẦN_NHẤT,"Giá vàng 4,107.90 USD/oz"
+Vàng quốc tế GC=F,LÀ_THAM_CHIẾU_CHO,Giá vàng SJC
+Lãi suất Fed,CÓ_QUAN_HỆ_NGHỊCH_THƯỜNG_GẶP_VỚI,Vàng quốc tế GC=F
+Đồng USD,CÓ_QUAN_HỆ_NGHỊCH_THƯỜNG_GẶP_VỚI,Vàng quốc tế GC=F
+Lạm phát,CÓ_THỂ_TĂNG_NHU_CẦU,Vàng quốc tế GC=F
+Rủi ro địa chính trị,KÍCH_HOẠT,Nhu cầu trú ẩn
+Nhu cầu trú ẩn,CÓ_THỂ_HỖ_TRỢ,Vàng quốc tế GC=F

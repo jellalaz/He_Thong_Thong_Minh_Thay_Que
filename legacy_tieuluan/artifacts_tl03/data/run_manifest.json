@@ -1,0 +1,27 @@
+{
+  "cache_key": {
+    "version": "tl03-20261023-1",
+    "mode": "full",
+    "seed": 42,
+    "source_hash": "039033b251632dcf68bc17586b2d6e785cb18db28111eb6f869ca309dddda6d6",
+    "torch": "2.14.0+cpu",
+    "sklearn": "1.9.0",
+    "market_hashes": {
+      "fpt_stock_processed.csv": "51610eb83851230763e6d85097127a8fedf23cfc8525976c79a5568400af8e83",
+      "gold_futures_processed.csv": "2579882ed82e6696300ce7f6db3b9244fe02d308afcfcd2aa18c9fd8f06b0747"
+    }
+  },
+  "completed_at": "2026-10-23T02:22:35.024679+07:00",
+  "seconds": 189.06730759100174,
+  "python": "3.14.6 | packaged by Anaconda, Inc. | (main, Jun 18 2026, 21:28:09) [GCC 14.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "device": "CPU",
+  "artifact_hashes": {
+    "artifacts_tl03/data/tabular_results.json": "4ee2c0e0c5b6e3774b7b0fc6757c0811fff72daecd02834fb1353ecdeabb635e",
+    "artifacts_tl03/data/cnn_results.json": "582deeb392e0701d4436929967dfc1325ff024fa07a19033f8cb1a6795c5a9ca",
+    "artifacts_tl03/data/sequence_results.json": "0737af6e969a0581c988c501bcb1e0aecd048432a65dd4883d9c60a62ad62c63",
+    "artifacts_tl03/models/mnist_cnn.pt": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d",
+    "artifacts_tl03/models/housing.joblib": "d0dba9a1ddb72dc528fe0735c2075747fbe569f5a856269e1ea176ead20aefe5",
+    "artifacts_tl03/models/diabetes_classifier.joblib": "2f1e071440bd51601919c9ea00aae0d461712fa9360bf5cc20c5c3866770caa6"
+  }
+}

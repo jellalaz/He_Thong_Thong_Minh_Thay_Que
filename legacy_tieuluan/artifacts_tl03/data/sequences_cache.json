@@ -1,0 +1,44 @@
+{
+  "key": {
+    "source": "b8867b8f323b0727d3330e6d1b98e17f6784ed1553af51af062c50a426c216b1",
+    "mode": "full",
+    "seed": 42,
+    "torch": "2.14.0+cpu",
+    "sklearn": "1.9.0",
+    "inputs": {
+      "fpt_stock_processed.csv": "51610eb83851230763e6d85097127a8fedf23cfc8525976c79a5568400af8e83",
+      "gold_futures_processed.csv": "2579882ed82e6696300ce7f6db3b9244fe02d308afcfcd2aa18c9fd8f06b0747"
+    }
+  },
+  "outputs": {
+    "data/sequence_results.json": "ee6a5699eee1ebb54c2b7ffb6960afed7d67b8b2f48757c49e5b4ee099ec2fed",
+    "data/sequence_comparison.csv": "c011e3df3946c316c8ed13ab8ba73cd70e9bee24bace878a43ed8eafb484a88b",
+    "data/gold_sequence_split.csv": "2bd075bc929f0e0f4a360c88131a8bc166a38fef91568d083e2fb28ec99d6f03",
+    "data/fpt_sequence_split.csv": "97d253d628765976b7feb27b02a172ea5e9c270f90f3c160a2304b6d989986e1",
+    "data/gold_gru_history.csv": "c85ffd7d1fea06d1fb1c3dcdaaf83a0620561e63521e364fb1737fc5dc08233a",
+    "data/gold_rnn_history.csv": "935a8530be76b662c0518a2c6709da2849ed866e10e83e3004e2c8cee6297d2a",
+    "data/cnn_history.csv": "f29bc0c17c4767fb32e6901b1a8c65aff7190a8bf10dc6e90355f95bf59683d1",
+    "data/fpt_lstm_history.csv": "8990cd8c7523a70cfcdad32ed1959a7d7db76d054485a9c6c883d47817ebb206",
+    "data/fpt_gru_history.csv": "71e27d34133467ff754cdaa9c46e3b097e42bc8103d03ae4f975c5bd16adafbd",
+    "data/gold_lstm_history.csv": "d78ba645d68e6c8bba99e03567be1c4a86bb0b1501d0d1bb578f806f4d778866",
+    "data/fpt_rnn_history.csv": "332ab31d16d459fd636cad73503d47ace95f7196a4d0056786df14568f0d089f",
+    "data/gold_rnn_predictions.csv": "f03455dfdb9f6c3236321f563debe518575720f009e60f767f719ea18140183c",
+    "data/gold_lstm_predictions.csv": "50f43ea4b46cf1e79a89421deb9624696f429621e46172a8441a48aedf330d3c",
+    "data/fpt_lstm_predictions.csv": "aeacf39f95ffacffd424c2fb8f6d2c711a1d93d6b6581ad2e5aa161b4129493e",
+    "data/gold_gru_predictions.csv": "9c2e18f2b01c5b7d213d46b76b756a24d5b5cb64f999b1f1d7821d9ee556ab47",
+    "data/diabetes_predictions.csv": "1954cb236f12294969d5817f889056be96905ed4ba0a99035d35fb948f7bfa8b",
+    "data/housing_predictions.csv": "e5510c527e3190d0e6bc2f37736e53ef8ca1e69d24217ac2902101767b7ef448",
+    "data/cnn_predictions.csv": "8b018a53212d9abb25b4c521f681fb48c36061248cbe2682c633fe0846a4011e",
+    "data/fpt_rnn_predictions.csv": "6d1dea54c93f14caea2cb6cfe6d5d9d46f7ef0c78ad4450e76bfd206e7db7a67",
+    "data/fpt_gru_predictions.csv": "31b1862c23bbc64c317fb6545f0a6e77d2d772f77222f4877471237c51eb3e92",
+    "models/gold_rnn.pt": "0651ada3ec59471ea55f21bf33ea34908eae4699a05deb6596a5cf4736fc4a4a",
+    "models/fpt_rnn.pt": "a29090415c0810e8792f643c2655355b6024f0970e54a14f00275f0f557e1702",
+    "models/gold_lstm.pt": "7fe3603bf36ba3409163ca9c5912923b98ce4a2d5a9388459aac72428f6d2065",
+    "models/fpt_lstm.pt": "2dd5b8a3473bf8a9506e9c59b48522d1782ab95705c97974ae774fec438e69d8",
+    "models/gold_gru.pt": "3f2c26a32e75643ee892ed8e14216dbe331cca3323092d0c0cc4682bcc3a3187",
+    "models/fpt_gru.pt": "31f9ee041ad341bbed62f30dbd6f28fd7704d74afe8663124abda4be0aff4fa6",
+    "models/sequences.json": "1d9e831ddf8c3217aed9d51cac87292aed8e550783f110362eead18374071b58",
+    "figures/gold_sequences.png": "0d6f8941d46408c8a54f0e5281650e196f545a2ce37de2df93d45b38185325ae",
+    "figures/fpt_sequences.png": "c915d88fbdb30dd34f326161814bb78d50219342f9c1d0c4209711dcb67e7ce5"
+  }
+}

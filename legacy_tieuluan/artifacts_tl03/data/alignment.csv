@@ -1,0 +1,6 @@
+Chương,Bài toán,Dataset,Model,Metric,Website
+2,Diabetes classifier,50k synthetic,Random Forest,0.6087448338439919,/api/predict task=diabetes_classifier
+2,Giá nhà,Vietnam Housing 2024,Log Random Forest,1.2760310904617194,/api/predict task=housing
+3,Chữ số,MNIST,CNN from scratch,0.9866,/api/predict task=cnn
+4,Chuỗi giá,FPT.VN / GC=F snapshot,RNN / LSTM / GRU / Persistence,Xem sequence_comparison.csv,/api/predict task=sequence
+5,KG/RAG,"11 docs, 25 nodes, 22 edges",TF-IDF + NetworkX + deterministic generator,0.49999999999999994,Chatbot sức khỏe BM25+KG

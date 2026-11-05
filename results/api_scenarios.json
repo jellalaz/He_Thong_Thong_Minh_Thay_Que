@@ -1,0 +1,796 @@
+[
+  {
+    "case": "knowledge",
+    "status": 200,
+    "passed": true,
+    "response": {
+      "answer": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]",
+      "result": null,
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "HbA1c là gì?"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "REQUEST",
+          "content": "HbA1c là gì?"
+        },
+        {
+          "sender": "Truy xuất",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": [
+            0.038644912606152944,
+            0.016202678272344853,
+            0.0,
+            0.0,
+            0.0,
+            0.03710587988574229,
+            0.0168306244039586,
+            0.017190398605177792,
+            0.06051100519285106,
+            0.0,
+            0.03775341683758104,
+            0.018294256631480946,
+            0.16759335432006928,
+            0.0,
+            0.018167116161084157,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0933493360306731,
+            0.01724975402497905
+          ]
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Tri thức",
+          "type": "REQUEST",
+          "content": "HbA1c là gì?"
+        },
+        {
+          "sender": "Tri thức",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "Đã truy xuất: a1c"
+        },
+        {
+          "sender": "Neo4j",
+          "receiver": "Tri thức",
+          "type": "INFORM",
+          "content": "2 quan hệ có nguồn"
+        },
+        {
+          "sender": "Chính sách RL",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": {
+            "state": 1,
+            "action": "Trả lời có nguồn",
+            "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+          }
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Phản hồi",
+          "type": "REQUEST",
+          "content": [
+            {
+              "id": "a1c",
+              "title": "Hiểu chỉ số HbA1c",
+              "terms": [
+                "hba1c",
+                "a1c",
+                "đường trung bình",
+                "ba tháng"
+              ],
+              "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+              "source": "diagnosis",
+              "triples": [
+                [
+                  "HbA1c",
+                  "phản ánh",
+                  "đường huyết trung bình"
+                ],
+                [
+                  "Thai kỳ / bệnh máu",
+                  "có thể ảnh hưởng",
+                  "HbA1c"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]"
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Người dùng",
+          "type": "INFORM",
+          "content": "Hoàn thành"
+        }
+      ],
+      "sources": [
+        {
+          "id": "a1c",
+          "title": "Hiểu chỉ số HbA1c",
+          "source": {
+            "label": "NIDDK · Xét nghiệm & chẩn đoán",
+            "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+          }
+        }
+      ],
+      "graph_evidence": [
+        {
+          "source": "Thai kỳ / bệnh máu",
+          "relation": "có thể ảnh hưởng",
+          "target": "HbA1c"
+        },
+        {
+          "source": "HbA1c",
+          "relation": "phản ánh",
+          "target": "đường huyết trung bình"
+        }
+      ],
+      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+    }
+  },
+  {
+    "case": "unknown",
+    "status": 200,
+    "passed": true,
+    "response": {
+      "answer": "Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.",
+      "result": null,
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "zzzxxyy"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "REQUEST",
+          "content": "zzzxxyy"
+        },
+        {
+          "sender": "Truy xuất",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Tri thức",
+          "type": "REQUEST",
+          "content": "zzzxxyy"
+        },
+        {
+          "sender": "Tri thức",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "Đã truy xuất: "
+        },
+        {
+          "sender": "Neo4j",
+          "receiver": "Tri thức",
+          "type": "INFORM",
+          "content": "0 quan hệ có nguồn"
+        },
+        {
+          "sender": "Chính sách RL",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": {
+            "state": 0,
+            "action": "Hỏi làm rõ",
+            "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+          }
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Người dùng",
+          "type": "INFORM",
+          "content": "Hoàn thành"
+        }
+      ],
+      "sources": [],
+      "graph_evidence": [],
+      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+    }
+  },
+  {
+    "case": "classification",
+    "status": 200,
+    "passed": true,
+    "response": {
+      "answer": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.\n\nHigh, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]",
+      "result": {
+        "label": "High",
+        "scores": {
+          "High": 0.7055380043429438,
+          "Low": 0.00016474222167046237,
+          "Moderate": 0.2942972534353858
+        },
+        "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh."
+      },
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "classification"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Mô hình",
+          "type": "REQUEST",
+          "content": "{'task': 'classification', 'x':     Age   BMI  HbA1c  ...  Blood_Pressure_Systolic   HDL    LDL\n0  32.0  19.8   10.4  ...                     94.0  40.1  152.3\n\n[1 rows x 8 columns]}"
+        },
+        {
+          "sender": "Mô hình",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": "High"
+        },
+        {
+          "sender": "Mô hình",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "{\"label\": \"High\", \"scores\": {\"High\": 0.7055380043429438, \"Low\": 0.00016474222167046237, \"Moderate\": 0.2942972534353858}, \"scope\": \"Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.\"}"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "REQUEST",
+          "content": "phân loại nhãn tổng hợp classification High Moderate Low"
+        },
+        {
+          "sender": "Truy xuất",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": [
+            0.0,
+            0.025906736320634692,
+            0.0325188874939009,
+            0.0,
+            0.0,
+            0.038897863441329075,
+            0.005218233746049518,
+            0.005946713354535132,
+            0.023490166857590557,
+            0.037837902873423125,
+            0.024326767466337988,
+            0.006328573450818797,
+            0.013089792920657435,
+            0.007119614545281335,
+            0.0,
+            0.0,
+            0.019530274888214537,
+            0.006575235810082188,
+            0.01864238044185433,
+            0.011379577434017634,
+            0.6149489810532972
+          ]
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Tri thức",
+          "type": "REQUEST",
+          "content": "phân loại nhãn tổng hợp classification High Moderate Low"
+        },
+        {
+          "sender": "Tri thức",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "Đã truy xuất: classification_scope"
+        },
+        {
+          "sender": "Neo4j",
+          "receiver": "Tri thức",
+          "type": "INFORM",
+          "content": "0 quan hệ có nguồn"
+        },
+        {
+          "sender": "Chính sách RL",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": {
+            "state": 3,
+            "action": "Giải thích mô hình và dẫn nguồn",
+            "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+          }
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Phản hồi",
+          "type": "REQUEST",
+          "content": [
+            {
+              "id": "classification_scope",
+              "title": "Phân loại nhãn tổng hợp",
+              "terms": [
+                "phân loại nhãn tổng hợp",
+                "classification",
+                "High Moderate Low"
+              ],
+              "text": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+              "source": "classification_data",
+              "triples": []
+            }
+          ]
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Đối chiếu",
+          "type": "REQUEST",
+          "content": {
+            "label": "High",
+            "scores": {
+              "High": 0.7055380043429438,
+              "Low": 0.00016474222167046237,
+              "Moderate": 0.2942972534353858
+            },
+            "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh."
+          }
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.",
+            "allow_diagnosis": false
+          }
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Người dùng",
+          "type": "INFORM",
+          "content": "Hoàn thành"
+        }
+      ],
+      "sources": [
+        {
+          "id": "classification_scope",
+          "title": "Phân loại nhãn tổng hợp",
+          "source": {
+            "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
+            "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+          }
+        }
+      ],
+      "graph_evidence": [],
+      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+    }
+  },
+  {
+    "case": "regression",
+    "status": 200,
+    "passed": true,
+    "response": {
+      "answer": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.\n\nMô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "result": {
+        "value": 207.53014411590692,
+        "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c."
+      },
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "regression"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Mô hình",
+          "type": "REQUEST",
+          "content": "{'task': 'regression', 'x': array([[ 59.    ,   2.    ,  32.1   , 101.    , 157.    ,  93.2   ,\n         38.    ,   4.    ,   4.8598,  87.    ]])}"
+        },
+        {
+          "sender": "Mô hình",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": 207.53014411590692
+        },
+        {
+          "sender": "Mô hình",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "{\"value\": 207.53014411590692, \"scope\": \"Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.\"}"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "REQUEST",
+          "content": "điểm tiến triển diabetes"
+        },
+        {
+          "sender": "Truy xuất",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": [
+            0.0,
+            0.02649478757499498,
+            0.0,
+            0.0,
+            0.0,
+            0.030337959836986415,
+            0.0,
+            0.0,
+            0.0,
+            0.025893454029606536,
+            0.022051545325954314,
+            0.0,
+            0.0,
+            0.023144945341754704,
+            0.0,
+            0.0,
+            0.018873602844100973,
+            0.02137524053663313,
+            0.0,
+            0.3637340268759089,
+            0.0
+          ]
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Tri thức",
+          "type": "REQUEST",
+          "content": "điểm tiến triển diabetes"
+        },
+        {
+          "sender": "Tri thức",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "Đã truy xuất: model"
+        },
+        {
+          "sender": "Neo4j",
+          "receiver": "Tri thức",
+          "type": "INFORM",
+          "content": "2 quan hệ có nguồn"
+        },
+        {
+          "sender": "Chính sách RL",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": {
+            "state": 3,
+            "action": "Giải thích mô hình và dẫn nguồn",
+            "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+          }
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Phản hồi",
+          "type": "REQUEST",
+          "content": [
+            {
+              "id": "model",
+              "title": "Điểm mô hình có ý nghĩa gì?",
+              "terms": [
+                "mô hình",
+                "điểm tiến triển",
+                "dự đoán",
+                "r2",
+                "sai số",
+                "độ chính xác",
+                "phần trăm"
+              ],
+              "text": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+              "source": "dataset",
+              "triples": [
+                [
+                  "Mô hình diabetes",
+                  "dự báo",
+                  "điểm tiến triển nghiên cứu"
+                ],
+                [
+                  "Điểm tiến triển",
+                  "không phải",
+                  "xác suất mắc bệnh"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Đối chiếu",
+          "type": "REQUEST",
+          "content": {
+            "value": 207.53014411590692,
+            "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c."
+          }
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.",
+            "allow_diagnosis": false
+          }
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Người dùng",
+          "type": "INFORM",
+          "content": "Hoàn thành"
+        }
+      ],
+      "sources": [
+        {
+          "id": "model",
+          "title": "Điểm mô hình có ý nghĩa gì?",
+          "source": {
+            "label": "scikit-learn · Dữ liệu diabetes",
+            "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+          }
+        }
+      ],
+      "graph_evidence": [
+        {
+          "source": "Mô hình diabetes",
+          "relation": "dự báo",
+          "target": "điểm tiến triển nghiên cứu"
+        },
+        {
+          "source": "Điểm tiến triển",
+          "relation": "không phải",
+          "target": "xác suất mắc bệnh"
+        }
+      ],
+      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+    }
+  },
+  {
+    "case": "missing",
+    "status": 200,
+    "passed": true,
+    "response": {
+      "answer": "Cần bổ sung các trường: Age, BMI, HbA1c, Fasting_Blood_Sugar, Blood_Glucose, Blood_Pressure_Systolic, HDL, LDL",
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "classification"
+        },
+        {
+          "sender": "Kiểm tra",
+          "receiver": "Phản hồi",
+          "type": "REQUEST",
+          "content": "Bổ sung: Age, BMI, HbA1c, Fasting_Blood_Sugar, Blood_Glucose, Blood_Pressure_Systolic, HDL, LDL"
+        }
+      ],
+      "sources": [],
+      "result": null
+    }
+  },
+  {
+    "case": "invalid",
+    "status": 422,
+    "passed": true,
+    "response": {
+      "detail": "Các giá trị phải là số hữu hạn trong miền nhập liệu."
+    }
+  },
+  {
+    "case": "bad_task",
+    "status": 422,
+    "passed": true,
+    "response": {
+      "detail": "Bài toán không hợp lệ"
+    }
+  },
+  {
+    "case": "controlled_neo4j_outage",
+    "passed": true,
+    "response": {
+      "answer": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]",
+      "result": null,
+      "trace": [
+        {
+          "sender": "Người dùng",
+          "receiver": "Điều phối",
+          "type": "REQUEST",
+          "content": "HbA1c"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "REQUEST",
+          "content": "HbA1c"
+        },
+        {
+          "sender": "Truy xuất",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.24711736043673838,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.07575480232626285,
+            0.0
+          ]
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Tri thức",
+          "type": "REQUEST",
+          "content": "HbA1c"
+        },
+        {
+          "sender": "Tri thức",
+          "receiver": "Đối chiếu",
+          "type": "INFORM",
+          "content": "Đã truy xuất: a1c"
+        },
+        {
+          "sender": "Neo4j",
+          "receiver": "Tri thức",
+          "type": "FAILURE",
+          "content": "Không kết nối; câu trả lời chỉ dùng truy xuất văn bản."
+        },
+        {
+          "sender": "Chính sách RL",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": {
+            "state": 1,
+            "action": "Trả lời có nguồn",
+            "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+          }
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Phản hồi",
+          "type": "REQUEST",
+          "content": [
+            {
+              "id": "a1c",
+              "title": "Hiểu chỉ số HbA1c",
+              "terms": [
+                "hba1c",
+                "a1c",
+                "đường trung bình",
+                "ba tháng"
+              ],
+              "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+              "source": "diagnosis",
+              "triples": [
+                [
+                  "HbA1c",
+                  "phản ánh",
+                  "đường huyết trung bình"
+                ],
+                [
+                  "Thai kỳ / bệnh máu",
+                  "có thể ảnh hưởng",
+                  "HbA1c"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]"
+        },
+        {
+          "sender": "Đối chiếu",
+          "receiver": "Phản hồi",
+          "type": "INFORM",
+          "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+        },
+        {
+          "sender": "Phản hồi",
+          "receiver": "Người dùng",
+          "type": "INFORM",
+          "content": "Hoàn thành"
+        }
+      ],
+      "sources": [
+        {
+          "id": "a1c",
+          "title": "Hiểu chỉ số HbA1c",
+          "source": {
+            "label": "NIDDK · Xét nghiệm & chẩn đoán",
+            "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+          }
+        }
+      ],
+      "graph_evidence": [],
+      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+    }
+  }
+]

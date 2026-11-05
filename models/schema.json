@@ -1,0 +1,27 @@
+{
+  "classification": [
+    "Age",
+    "BMI",
+    "HbA1c",
+    "Fasting_Blood_Sugar",
+    "Blood_Glucose",
+    "Blood_Pressure_Systolic",
+    "HDL",
+    "LDL"
+  ],
+  "regression": [
+    "age",
+    "sex",
+    "bmi",
+    "bp",
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6"
+  ],
+  "seed": 254,
+  "classification_scope": "synthetic dataset labels",
+  "regression_scope": "research progression score, not glucose or personal disease probability"
+}

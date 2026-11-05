@@ -1,0 +1,7 @@
+{
+  "figures": 12,
+  "empirical_figures": 8,
+  "source_hashes_match": true,
+  "diagnostics_match_predictions": true,
+  "retraining_or_test_based_reselection": false
+}

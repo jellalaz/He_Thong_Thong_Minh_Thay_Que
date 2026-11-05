@@ -1,0 +1,111 @@
+{
+  "diabetes": {
+    "Model": "Ridge",
+    "MAE": 42.936402329294516,
+    "RMSE": 53.86183486469432,
+    "R2": 0.4524322079291402,
+    "CV_MAE": 44.442606227087346,
+    "train_size": 282,
+    "calibration_size": 71,
+    "test_size": 89,
+    "Baseline_MAE": 62.2752808988764
+  },
+  "stock": {
+    "Model": "Persistence",
+    "MAE": 728.1284466911765,
+    "RMSE": 1045.0169287984245,
+    "R2": 0.871403496629464,
+    "CV_MAE": 1215.973685515873,
+    "MAPE": 1.1562488016089398,
+    "Direction_Accuracy": 8.235294117647058,
+    "Direction_Coverage": 0.0,
+    "Persistence_MAE": 728.1284466911765,
+    "best_params": {},
+    "train_size": 988,
+    "calibration_size": 67,
+    "test_size": 85,
+    "test_start": "2026-06-04",
+    "test_end": "2026-10-13",
+    "train_end": "2026-02-11",
+    "cv_fold_size": 63,
+    "Improvement_vs_Persistence_pct": 0.0,
+    "Improvement_CI95_pct": [
+      0.0,
+      0.0
+    ]
+  },
+  "gold": {
+    "Model": "SVR return",
+    "MAE": 49.440493752245054,
+    "RMSE": 65.13993596877687,
+    "R2": 0.8802855722598921,
+    "CV_MAE": 38.791988549904985,
+    "MAPE": 1.1627358192616315,
+    "Direction_Accuracy": 50.0,
+    "Direction_Coverage": 100.0,
+    "Persistence_MAE": 48.26744753815407,
+    "best_params": {
+      "estimator__model__C": 0.001,
+      "estimator__model__epsilon": 0.001,
+      "estimator__model__gamma": 0.03,
+      "shrinkage": 1.0,
+      "window": 504
+    },
+    "train_size": 1026,
+    "calibration_size": 68,
+    "test_size": 86,
+    "test_start": "2026-06-09",
+    "test_end": "2026-10-13",
+    "train_end": "2026-02-24",
+    "cv_fold_size": 63,
+    "Improvement_vs_Persistence_pct": -2.4303050480631194,
+    "Improvement_CI95_pct": [
+      -6.103455923755689,
+      2.681825632834538
+    ]
+  },
+  "retrieval": [
+    {
+      "query": "Theo dõi gì khi quản lý bệnh tiểu đường?",
+      "expected_domain": "diabetes",
+      "vector_precision@3": 0.6666666666666666,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.9166666666666666
+    },
+    {
+      "query": "Mô hình tiểu đường có sai số bao nhiêu?",
+      "expected_domain": "diabetes",
+      "vector_precision@3": 0.3333333333333333,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.5833333333333333
+    },
+    {
+      "query": "Giá FPT gần nhất và RSI là bao nhiêu?",
+      "expected_domain": "stock",
+      "vector_precision@3": 0.6666666666666666,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.9166666666666666
+    },
+    {
+      "query": "MA20 của cổ phiếu có ý nghĩa gì?",
+      "expected_domain": "stock",
+      "vector_precision@3": 0.3333333333333333,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.5833333333333333
+    },
+    {
+      "query": "Giá vàng gần nhất là bao nhiêu?",
+      "expected_domain": "gold",
+      "vector_precision@3": 0.3333333333333333,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.5833333333333333
+    },
+    {
+      "query": "Fed, USD và địa chính trị ảnh hưởng vàng ra sao?",
+      "expected_domain": "gold",
+      "vector_precision@3": 0.6666666666666666,
+      "graph_evidence": 1,
+      "hybrid_evidence_score": 0.9166666666666666
+    }
+  ]
+}

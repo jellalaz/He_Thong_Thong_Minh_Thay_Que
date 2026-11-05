@@ -1,0 +1,5 @@
+model,CV_MAE,params
+Median,1.8622820870103733,{}
+Log Ridge,1.4915357505960578,{'regressor__model__alpha': 1}
+Log Random Forest,1.309073840197576,{}
+Log Gradient Boosting,1.324602442550482,{'regressor__model__learning_rate': 0.08}

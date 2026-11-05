@@ -1,0 +1,12 @@
+{
+  "checked_on": "2026-10-23",
+  "production": "https://rag-httm-chatbot.vercel.app/",
+  "cnn": {"sample_label": 7, "displayed_prediction": 7, "screenshot": "artifacts_tl03/figures/web_detail_cnn.png"},
+  "direct_links": {"cnn_selected": true, "housing_selected": true, "sequence_gold_selected": true},
+  "housing_defaults": {"Province": "Hồ Chí Minh", "House direction": "Unknown", "Balcony direction": "Unknown", "Legal status": "Have certificate", "Furniture state": "Unknown"},
+  "sequence_empty_token": "Rejected with a visible validation message, not converted to zero",
+  "gold_result": {"prediction_display": "4.107,9 USD/oz", "model": "Persistence"},
+  "mobile": {"window_inner_width": 390, "document_scroll_width": 375, "body_scroll_width": 375, "horizontal_overflow": false},
+  "viewport_override_reset": true,
+  "scope": "Public dataset examples and synthetic input checks; not medical or investment validation"
+}

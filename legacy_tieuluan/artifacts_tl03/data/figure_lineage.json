@@ -1,0 +1,76 @@
+{
+  "diabetes_class_balance.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/data/raw/diabetes.zip": "88d0f29bae180d6a31df2103527d192aec2f97d9a1252b38fe9ee0ad20e829aa"
+    }
+  },
+  "housing_residual_missing.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/data/housing_predictions.csv": "e5510c527e3190d0e6bc2f37736e53ef8ca1e69d24217ac2902101767b7ef448",
+      "artifacts_tl03/data/raw/housing.zip": "2eba4312ea1f89abbe9a58f5601427f71989224d6e906c722821832dea0ea254"
+    }
+  },
+  "cnn_feature_maps.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/models/mnist_cnn.pt": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d",
+      "artifacts_tl03/data/raw/mnist/t10k-images-idx3-ubyte.gz": "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6"
+    }
+  },
+  "cnn_convolution_actual.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/models/mnist_cnn.pt": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d",
+      "artifacts_tl03/data/raw/mnist/t10k-images-idx3-ubyte.gz": "8d422c7b0a1c1c79245a5bcf07fe86e33eeafee792b84584aec276f5a2dbc4e6"
+    }
+  },
+  "cnn_reliability.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/data/cnn_predictions.csv": "8b018a53212d9abb25b4c521f681fb48c36061248cbe2682c633fe0846a4011e"
+    }
+  },
+  "sequence_learning_curves.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/data/fpt_rnn_history.csv": "332ab31d16d459fd636cad73503d47ace95f7196a4d0056786df14568f0d089f",
+      "artifacts_tl03/data/fpt_lstm_history.csv": "8990cd8c7523a70cfcdad32ed1959a7d7db76d054485a9c6c883d47817ebb206",
+      "artifacts_tl03/data/fpt_gru_history.csv": "71e27d34133467ff754cdaa9c46e3b097e42bc8103d03ae4f975c5bd16adafbd",
+      "artifacts_tl03/data/gold_rnn_history.csv": "935a8530be76b662c0518a2c6709da2849ed866e10e83e3004e2c8cee6297d2a",
+      "artifacts_tl03/data/gold_lstm_history.csv": "d78ba645d68e6c8bba99e03567be1c4a86bb0b1501d0d1bb578f806f4d778866",
+      "artifacts_tl03/data/gold_gru_history.csv": "c85ffd7d1fea06d1fb1c3dcdaaf83a0620561e63521e364fb1737fc5dc08233a"
+    }
+  },
+  "sequence_window_actual.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_giangkt/data/fpt_stock_processed.csv": "51610eb83851230763e6d85097127a8fedf23cfc8525976c79a5568400af8e83"
+    }
+  },
+  "rag_retrieval_scores.png": {
+    "kind": "analysis",
+    "inputs": {
+      "artifacts_tl03/data/retrieval_example.json": "6f8c7e0e5f6a72ed0e4264adfc8f665e8df87b9794d4f8b73b00515648ed875c"
+    }
+  },
+  "mechanism_ml.png": {
+    "kind": "mechanism schematic",
+    "inputs": {}
+  },
+  "mechanism_cnn.png": {
+    "kind": "mechanism schematic",
+    "inputs": {
+      "artifacts_tl03/models/mnist_cnn.pt": "c80b50fe20b7131f0fde189031668290e79a709fd971d7a0fa0c173e4d024b5d"
+    }
+  },
+  "mechanism_rnn.png": {
+    "kind": "mechanism schematic",
+    "inputs": {}
+  },
+  "mechanism_rag.png": {
+    "kind": "mechanism schematic",
+    "inputs": {}
+  }
+}

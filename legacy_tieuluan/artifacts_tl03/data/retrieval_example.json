@@ -1,0 +1,84 @@
+{
+  "query": "Giá FPT gần nhất và RSI là bao nhiêu?",
+  "ranking": [
+    {
+      "id": "STK01",
+      "domain": "stock",
+      "source": "Yahoo snapshot lưu trước - FPT.VN",
+      "text": "Chuỗi FPT.VN gồm 1304 phiên từ 15/10/2021 đến 14/10/2026; giá đóng cửa gần nhất 57,100 VND.",
+      "score": 0.21891302267496568
+    },
+    {
+      "id": "GLD01",
+      "domain": "gold",
+      "source": "Yahoo snapshot lưu trước - GC=F",
+      "text": "Chuỗi vàng GC=F gồm 1257 phiên từ 15/10/2021 đến 14/10/2026; giá gần nhất 4,107.90 USD/oz.",
+      "score": 0.16633443123943548
+    },
+    {
+      "id": "STK03",
+      "domain": "stock",
+      "source": "Kiến thức phân tích kỹ thuật",
+      "text": "Đường trung bình động mô tả xu hướng quá khứ chứ không bảo đảm giá tương lai. RSI là chỉ báo động lượng và cần kết hợp thanh khoản, cơ bản doanh nghiệp cùng bối cảnh thị trường.",
+      "score": 0.1556848102211118
+    },
+    {
+      "id": "DIA03",
+      "domain": "diabetes",
+      "source": "Kết quả mô hình tại lần chạy",
+      "text": "Ridge trên tập test giữ riêng đạt MAE 42.94 và R2 0.452. Biến quan trọng nhất là s5.",
+      "score": 0.08919212549811317
+    },
+    {
+      "id": "STK02",
+      "domain": "stock",
+      "source": "Tính toán từ dữ liệu FPT.VN",
+      "text": "FPT.VN có MA20 62,260, MA60 63,396, RSI14 8.2 và biến động năm hóa 27.6%.",
+      "score": 0.06770388923354617
+    },
+    {
+      "id": "DIA02",
+      "domain": "diabetes",
+      "source": "WHO/clinical knowledge summary",
+      "text": "Theo dõi đường huyết, HbA1c, huyết áp, cân nặng, chế độ ăn và vận động là các thành phần thường gặp trong quản lý bệnh đái tháo đường; quyết định điều trị cần bác sĩ.",
+      "score": 0.03683746361208602
+    },
+    {
+      "id": "GLD03",
+      "domain": "gold",
+      "source": "Tổng hợp cơ chế kinh tế vĩ mô",
+      "text": "Giá vàng thường nhạy với lãi suất thực, sức mạnh đồng USD, kỳ vọng lạm phát, nhu cầu dự trữ và rủi ro địa chính trị; quan hệ có thể thay đổi theo từng giai đoạn.",
+      "score": 0.031941766239730274
+    },
+    {
+      "id": "GLD02",
+      "domain": "gold",
+      "source": "Tính toán từ dữ liệu GC=F",
+      "text": "GC=F có MA20 4,237.78, MA60 4,330.82, RSI14 31.6 và biến động năm hóa 19.1%.",
+      "score": 0.012378196184054517
+    },
+    {
+      "id": "DIA01",
+      "domain": "diabetes",
+      "source": "scikit-learn diabetes dataset description",
+      "text": "Bộ dữ liệu diabetes của scikit-learn có 442 quan sát, 10 biến nền ở thang đo gốc và biến đích phản ánh mức tiến triển bệnh sau một năm.",
+      "score": 0.009915972351161461
+    },
+    {
+      "id": "RAG02",
+      "domain": "method",
+      "source": "Edge et al. (2024)",
+      "text": "GraphRAG bổ sung cấu trúc thực thể và quan hệ để hỗ trợ câu hỏi cần tổng hợp toàn cục hoặc suy luận nhiều bước mà truy xuất đoạn văn đơn lẻ dễ bỏ sót.",
+      "score": 0.009223075156255407
+    },
+    {
+      "id": "RAG01",
+      "domain": "method",
+      "source": "Lewis et al. (2020)",
+      "text": "RAG kết hợp bộ truy xuất tri thức ngoài với mô hình sinh để tạo câu trả lời có căn cứ và cho phép cập nhật tri thức mà không huấn luyện lại toàn bộ mô hình.",
+      "score": 0.008219215951824184
+    }
+  ],
+  "corpus_size": 11,
+  "vocabulary_size": 508
+}

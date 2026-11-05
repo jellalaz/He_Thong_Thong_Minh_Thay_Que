@@ -1,0 +1,7 @@
+query,expected_domain,vector_precision@3,graph_evidence,hybrid_evidence_score
+Theo dõi gì khi quản lý bệnh tiểu đường?,diabetes,0.6666666666666666,1,0.9166666666666666
+Mô hình tiểu đường có sai số bao nhiêu?,diabetes,0.3333333333333333,1,0.5833333333333333
+Giá FPT gần nhất và RSI là bao nhiêu?,stock,0.6666666666666666,1,0.9166666666666666
+MA20 của cổ phiếu có ý nghĩa gì?,stock,0.3333333333333333,1,0.5833333333333333
+Giá vàng gần nhất là bao nhiêu?,gold,0.3333333333333333,1,0.5833333333333333
+"Fed, USD và địa chính trị ảnh hưởng vàng ra sao?",gold,0.6666666666666666,1,0.9166666666666666

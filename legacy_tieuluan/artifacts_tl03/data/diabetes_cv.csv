@@ -1,0 +1,7 @@
+model,CV_F1_macro,params
+Majority,0.28172046881176843,{}
+Logistic Regression,0.5027324092777765,{'model__C': 10}
+KNN,0.5055118822147203,{'model__n_neighbors': 5}
+Decision Tree,0.5609651521403739,{'model__max_depth': 10}
+Random Forest,0.6202529179646623,{'model__max_depth': 10}
+SVM RBF,0.5729353156970899,{'model__C': 10}

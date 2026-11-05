@@ -1,0 +1,41 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{fontspec}\setmainfont{Times New Roman}\setmonofont{Consolas}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,longtable,booktabs,array,calc,etoolbox,fancyvrb,fvextra,caption,unicode-math}
+\newcounter{none}
+\usepackage[unicode,hidelinks]{hyperref}\usepackage{setspace}\onehalfspacing
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\renewcommand{\contentsname}{Mục lục}\renewcommand{\chaptername}{Chương}
+\renewcommand{\tablename}{Bảng}\renewcommand{\figurename}{Hình}
+\setcounter{secnumdepth}{0}
+\usepackage{xurl}
+\usepackage{xurl}\hypersetup{hypertexnames=false}\renewcommand{\bibname}{Tài liệu tham khảo}\renewcommand{\appendixname}{Phụ lục}\renewcommand{\partname}{Phần}\makeatletter\patchcmd{\@makechapterhead}{50\p@}{15\p@}{}{}\patchcmd{\@makechapterhead}{40\p@}{20\p@}{}{}\makeatother
+\begin{document}\begin{titlepage}\centering
+{\large HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\\KHOA CÔNG NGHỆ THÔNG TIN 1}\vfill
+{\LARGE\bfseries TIỂU LUẬN FINAL}\par\vspace{1cm}
+{\Large\bfseries AI, HỌC MÁY VÀ HỆ ĐA AGENT}\par\vspace{1cm}
+{\large PHÁT TRIỂN CÁC HỆ THỐNG THÔNG MINH}\vfill
+\begin{tabular}{ll}Giảng viên:&PGS. TS. Trần Đình Quế\\Sinh viên:&Kiều Trường Giang\\Mã sinh viên:&B23DCCN254\\Nhóm học phần:&06\\Nhóm thực hiện:&02\end{tabular}\vfill
+Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\pagenumbering{arabic}
+\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
+Báo cáo tổng hợp nền tảng trí tuệ nhân tạo, học máy, mạng nơ-ron, đồ thị tri thức và cơ chế phối hợp đa agent. Phần thứ nhất kế thừa nội dung của tiểu luận 02 và 03 của Kiều Trường Giang, đồng thời bổ sung học sâu trên đồ thị và hệ đa agent. Tiểu luận 01 của Phạm Mai Linh được dùng làm tài liệu tham khảo nền tảng theo lựa chọn của sinh viên; các số liệu không được nhận là kết quả mới nếu chỉ xuất hiện trong tài liệu tham khảo.
+
+Phần thứ hai triển khai một sản phẩm mới theo sơ đồ trên lớp: dữ liệu có sẵn đi qua mô hình Deep Learning để tạo kết quả phân loại và dự đoán; nguồn tri thức đi qua KB và RAG; các thành phần được điều phối bằng agent, chính sách học và luật để đưa ra phản hồi. Báo cáo project riêng trình bày chi tiết kiến trúc, thực nghiệm, API và kịch bản demo. Các số liệu mới đều có tệp kết quả trong thư mục results.
+
+Bố cục tham khảo hai báo cáo của Nguyễn Tự Kiên do sinh viên cung cấp. Bản hiện thực không nhận các bộ dữ liệu, số agent hoặc kết quả của bài tham khảo là thành phần đã được triển khai. Cơ chế sinh phản hồi hiện là tổng hợp trích đoạn có nguồn; GNN trong phần lý thuyết chưa được huấn luyện trong demo.
+\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\part{Project tích hợp}\setcounter{chapter}{0}\setcounter{secnumdepth}{1}\input{project_content.tex}\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}
+\section{scripts/ingest\_graph.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../scripts/ingest_graph.py}
+\section{scripts/train\_models.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../scripts/train_models.py}
+\section{scripts/train\_policy.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../scripts/train_policy.py}
+\section{app/agents.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../app/agents.py}
+\section{app/main.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../app/main.py}
+\section{scripts/test\_scenarios.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../scripts/test_scenarios.py}
+\end{document}

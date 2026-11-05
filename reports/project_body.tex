@@ -1,0 +1,72 @@
+\chapter{Giới thiệu}
+\section{Bài toán và sản phẩm}
+Project xây dựng GlucoGuide, một ứng dụng web tích hợp hai nhánh xử lý của sơ đồ học phần. Nhánh dữ liệu sử dụng mô hình mạng nơ-ron nhiều lớp để phân loại nhãn nguy cơ tổng hợp và dự đoán điểm tiến triển bệnh trong dữ liệu nghiên cứu. Nhánh tri thức kế thừa kho tài liệu của tiểu luận 02, tổ chức các khái niệm cùng quan hệ trên Neo4j và truy xuất văn bản theo câu hỏi. Kết quả hai nhánh được trình bày cùng nguồn bằng chứng và nhật ký xử lý.
+
+Sinh viên thực hiện là Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 02. Project được phát triển từ các sản phẩm của sinh viên, có tham khảo bố cục và cách mô tả kiến trúc trong báo cáo của Nguyễn Tự Kiên. Các số liệu của bài tham khảo không được dùng làm kết quả của project này.
+\section{Phạm vi đầu ra}
+Hai bộ dữ liệu có định nghĩa nhãn khác nhau. Bộ phân loại gồm các nhãn High, Moderate và Low của dữ liệu tổng hợp. Bộ hồi quy gồm những người đã mắc bệnh và một thước đo tiến triển sau một năm. Vì vậy không thể ghép một nhãn High với một điểm hồi quy để suy ra xác suất mắc bệnh. Ứng dụng dùng hai biểu mẫu riêng và công bố phạm vi ngay tại đầu ra.
+
+Sản phẩm hiện sử dụng tổng hợp trích đoạn xác định. Câu trả lời được ghép từ các đoạn văn truy xuất được và thông tin về phạm vi mô hình; không gọi mô hình ngôn ngữ bên ngoài. Lựa chọn này giúp kiểm tra nguồn và tái lập kết quả, nhưng khả năng đối thoại tự nhiên bị giới hạn bởi từ vựng và độ phủ của kho tài liệu.
+\section{Mục tiêu đánh giá}
+Phân loại được đo bằng accuracy và macro-F1. Hồi quy được đo bằng MAE và hệ số xác định. Truy xuất cần kiểm tra cả tài liệu được chọn và quan hệ có nguồn trên Neo4j. Kiểm tra ứng dụng tập trung vào các tình huống có bằng chứng, thiếu bằng chứng, thiếu đầu vào, giá trị không hợp lệ và cơ sở dữ liệu đồ thị không hoạt động.
+\chapter{Agent và cơ chế phối hợp}
+\section{Vai trò xử lý}
+Hệ thống phân chia trách nhiệm thành tiếp nhận, kiểm tra dữ liệu, mô hình, tri thức, chính sách lựa chọn bước phản hồi, đối chiếu phạm vi và phản hồi. Bản triển khai hiện điều phối các vai trò này trong một tiến trình FastAPI. Nhật ký lưu người gửi, người nhận, loại thông điệp và nội dung. Đây là mô hình điều phối tập trung; các vai trò chưa chạy như những dịch vụ tự chủ độc lập.
+
+Một thông điệp REQUEST thể hiện yêu cầu xử lý. INFORM ghi nhận kết quả và FAILURE thể hiện thành phần không thực hiện được. Khi Neo4j không hoạt động, hệ thống ghi FAILURE và chỉ dùng các đoạn văn cục bộ, không giả lập kết quả đồ thị. Khi thiếu đầu vào mô hình, hệ thống trả lại danh sách trường cần bổ sung trước khi suy luận.
+\section{Reinforcement Learning kết hợp luật}
+Chính sách được học trong môi trường mô phỏng luồng xử lý, không mô phỏng hiệu quả điều trị. Trạng thái gồm hai biến nhị phân: đã có kết quả mô hình và đã có bằng chứng truy xuất. Bốn trạng thái tương ứng với bốn tổ hợp của hai biến này. Ba hành động là hỏi làm rõ, trả lời có nguồn và giải thích mô hình kèm nguồn.
+
+Hàm thưởng bằng một nếu hành động phù hợp trạng thái, bằng âm một trong trường hợp còn lại. Khi chưa có bằng chứng, hành động mục tiêu là hỏi làm rõ. Khi có bằng chứng nhưng chưa có kết quả mô hình, hành động mục tiêu là trả lời có nguồn. Khi có cả hai, hành động mục tiêu là giải thích mô hình và dẫn nguồn. Đây là hàm thưởng do người thiết kế quy định; không phải đánh giá của bệnh nhân hay chuyên gia.
+\[
+Q(s,a)\leftarrow Q(s,a)+\alpha[r-Q(s,a)].
+\]
+Mỗi episode kết thúc sau một hành động, nên không có thành phần bootstrap tương lai. Cấu hình gồm 3.000 episode, seed 254, tốc độ học 0,15 và xác suất khám phá 0,2. Vì bài toán chỉ có một bước, thí nghiệm minh họa cơ chế học giá trị hành động nhưng chưa chứng minh khả năng lập kế hoạch dài hạn. Luật thiếu bằng chứng luôn ép hành động hỏi làm rõ, kể cả khi chính sách học đề xuất hành động khác.
+\section{Giới hạn của kiến trúc}
+Việc hiển thị nhiều vai trò trong nhật ký không tự chứng minh tính tự chủ của một hệ đa agent. Bản hiện tại cần được mở rộng bằng trạng thái riêng, giao thức yêu cầu và phản hồi thực giữa các agent, cơ chế chất vấn khi có bất đồng và kiểm tra lỗi riêng từng thành phần. Báo cáo phân biệt rõ những vai trò đã điều phối được với các năng lực còn cần phát triển.
+\chapter{Kiến trúc tổng quan}
+\section{Nhánh dữ liệu}
+DB có sẵn cung cấp dữ liệu cho quá trình huấn luyện. Pipeline phân loại gồm điền trung vị, chuẩn hóa và MLP. Pipeline hồi quy chuẩn hóa dữ liệu rồi suy luận bằng MLP. Hai đầu ra đều đi tới vùng phản hồi của ứng dụng. Trong lúc phục vụ, mô hình được nạp từ checkpoint; ứng dụng không huấn luyện lại theo câu hỏi của người dùng.
+\section{Nhánh tri thức}
+Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu luận 02. Mỗi tài liệu có mã, tiêu đề, từ khóa, văn bản, định danh nguồn và các bộ ba. Project bảo toàn những trường này khi chuyển sang kho tri thức mới. Việc cập nhật hướng dẫn y tế từ web chưa tự động hóa; phiên bản kho tài liệu phải được xem như một snapshot cần rà soát trước khi mở rộng phạm vi sử dụng.
+
+Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
+\section{Luồng người dùng}
+Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
+\chapter{Các thành phần và thực nghiệm}
+\section{Phân loại}
+Dữ liệu tổng hợp gồm 50.000 dòng. Tám biến đầu vào là tuổi, BMI, HbA1c, đường huyết lúc đói, glucose, huyết áp tâm thu, HDL và LDL. Các biến chứa điểm nguy cơ, khuyến nghị sức khỏe và yêu cầu gặp bác sĩ không được đưa vào mô hình. Phép chia phân tầng với seed 254 giữ 40.000 dòng huấn luyện và 10.000 dòng kiểm tra.
+
+MLP có ba tầng ẩn 64, 32 và 16 đơn vị, dừng sớm và tối đa 150 vòng lặp. Trung vị và tham số chuẩn hóa được học trên tập huấn luyện ngoài. Cơ chế early stopping của thư viện chia tiếp một phần dữ liệu cho validation; do tiền xử lý nằm trước MLP, các tham số tiền xử lý đã nhìn thấy phần validation nội bộ này. Tập test ngoài vẫn độc lập, nhưng để kiểm soát validation nghiêm ngặt hơn cần tách validation trước toàn bộ pipeline.
+
+Logistic Regression dùng trọng số lớp cân bằng làm đối chứng. MLP dùng cấu hình mặc định không cân bằng trọng số. Vì hai cấu hình có cách xử lý mất cân bằng khác nhau, chênh lệch kết quả không chỉ phản ánh kiến trúc mạng. Accuracy cần đọc cùng macro-F1, đặc biệt với lớp Low hiếm.
+\section{Hồi quy}
+Bộ diabetes từ scikit-learn được tải ở dạng chưa chuẩn hóa, gồm 442 quan sát với 10 biến đầu vào. Phép chia seed 254 giữ 353 mẫu huấn luyện và 89 mẫu kiểm tra. Ridge với hệ số điều chuẩn 10 là đối chứng. MLP có ba tầng ẩn 64, 32 và 16, dừng sớm và tối đa 1.000 vòng lặp.
+
+Các biến s1 đến s6 là những trường nghiên cứu của bộ dữ liệu. Không được thay tên hoặc đơn vị bằng suy đoán khi nhập hồ sơ ngoài đời. Mục tiêu của demo là minh họa quy trình suy luận từ mô hình đã lưu. Chất lượng trên bộ dữ liệu nhỏ không chứng minh khả năng chuyển sang quần thể Việt Nam.
+\section{Kết quả kiểm tra}
+\input{metrics.tex}
+MLP cải thiện accuracy và macro-F1 so với Logistic Regression trong lần chạy này. Tuy nhiên macro-F1 còn thấp so với accuracy, phản ánh hiệu năng không đồng đều giữa các lớp. Ở hồi quy, Ridge có MAE thấp hơn và hệ số xác định cao hơn MLP. Báo cáo vẫn trình diễn MLP để minh họa nhánh Deep Learning, đồng thời công bố đầy đủ đối chứng và không nhận MLP là mô hình tốt nhất.
+\section{Truy xuất và đồ thị}
+Văn bản được biểu diễn bằng TF-IDF với unigram và bigram, bỏ dấu khi chuẩn hóa. Câu hỏi được biến đổi bằng cùng từ vựng. Điểm truy xuất là tích vô hướng của các vector đã chuẩn hóa. Hệ thống giữ tối đa ba đoạn có điểm lớn hơn 0,04. Ngưỡng này là quy tắc triển khai chưa được chọn trên một bộ validation độc lập.
+
+Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất. Do đó đồ thị cung cấp cấu trúc và căn cứ bổ sung cho truy xuất văn bản; đây chưa phải một bộ máy suy luận đa bước tổng quát. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu người dùng làm rõ.
+\chapter{Code và demo}
+\section{Địa chỉ và cách chạy}
+Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
+
+Cài các thư viện trong requirements.txt vào môi trường riêng. Chạy scripts/train\_models.py để tạo checkpoint, scripts/train\_policy.py để tạo chính sách và scripts/ingest\_graph.py để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
+\section{Kịch bản trình diễn}
+Kịch bản thứ nhất: hỏi ``HbA1c là gì?''. Kiểm tra câu trả lời có mã tài liệu, kiểm tra bước truy xuất và số quan hệ Neo4j. Kịch bản thứ hai: hỏi một chủ đề không có trong kho, chẳng hạn lịch sử một đội bóng. Hệ thống phải yêu cầu làm rõ hoặc báo thiếu bằng chứng, không tự tạo nguồn.
+
+Kịch bản thứ ba: nhập đủ tám trường phân loại bằng một mẫu của dữ liệu. Ghi lại nhãn, thông báo phạm vi và nhật ký mô hình. Kịch bản thứ tư: nhập đủ mười trường hồi quy từ mẫu nghiên cứu, kiểm tra đầu ra số và thông báo đây là điểm tiến triển. Hai kịch bản không dùng chung biểu mẫu.
+
+Kịch bản thứ năm: bỏ một trường bắt buộc. Hệ thống phải nêu trường còn thiếu. Kịch bản thứ sáu: nhập giá trị không hữu hạn hoặc chuỗi ký tự vào API, hệ thống phải từ chối. Kịch bản thứ bảy: tắt Neo4j rồi hỏi kiến thức, kiểm tra nhật ký FAILURE và việc công bố chỉ dùng văn bản. Kịch bản thứ tám: mở Neo4j Browser và thực hiện truy vấn dưới đây để đối chiếu với giao diện đồ thị.
+\begin{verbatim}
+MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
+RETURN a,r,b LIMIT 100;
+\end{verbatim}
+\section{Hạn chế và hướng hoàn thiện}
+Bản hiện tại chưa có bộ nhớ hội thoại, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Các phần này không được nhận là đã hoàn thành. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
+
+Hướng ưu tiên là triển khai giao thức agent thực, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.

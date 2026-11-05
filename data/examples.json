@@ -1,0 +1,24 @@
+{
+  "classification": {
+    "Age": 32.0,
+    "BMI": 19.8,
+    "HbA1c": 10.4,
+    "Fasting_Blood_Sugar": 149.5,
+    "Blood_Glucose": 88.4,
+    "Blood_Pressure_Systolic": 94.0,
+    "HDL": 40.1,
+    "LDL": 152.3
+  },
+  "regression": {
+    "age": 59.0,
+    "sex": 2.0,
+    "bmi": 32.1,
+    "bp": 101.0,
+    "s1": 157.0,
+    "s2": 93.2,
+    "s3": 38.0,
+    "s4": 4.0,
+    "s5": 4.8598,
+    "s6": 87.0
+  }
+}

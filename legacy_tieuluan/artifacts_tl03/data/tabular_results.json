@@ -1,0 +1,106 @@
+{
+  "diabetes_classifier": {
+    "dataset": "Diabetes Risk Prediction 50k (Kaggle)",
+    "url": "https://www.kaggle.com/api/v1/datasets/download/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients",
+    "sha256": "88d0f29bae180d6a31df2103527d192aec2f97d9a1252b38fe9ee0ad20e829aa",
+    "model": "Random Forest",
+    "params": {
+      "model__max_depth": 10
+    },
+    "features": [
+      "Age",
+      "BMI",
+      "HbA1c",
+      "Fasting_Blood_Sugar",
+      "Blood_Glucose",
+      "Blood_Pressure_Systolic",
+      "HDL",
+      "LDL"
+    ],
+    "class_counts": {
+      "High": 36593,
+      "Moderate": 12937,
+      "Low": 470
+    },
+    "classes": [
+      "High",
+      "Low",
+      "Moderate"
+    ],
+    "split": {
+      "train": 32000,
+      "validation": 8000,
+      "test": 10000
+    },
+    "CV_F1_macro": 0.6202529179646623,
+    "metrics": {
+      "Accuracy": 0.7788,
+      "Precision_macro": 0.5707689262084593,
+      "Recall_macro": 0.7230875344883655,
+      "F1_macro": 0.6087448338439919
+    },
+    "validation_metrics": {
+      "Accuracy": 0.77375,
+      "Precision_macro": 0.5692607589613989,
+      "Recall_macro": 0.7109736506639933,
+      "F1_macro": 0.6058560117862134
+    },
+    "train_metrics": {
+      "Accuracy": 0.8198125,
+      "Precision_macro": 0.6479687717714152,
+      "Recall_macro": 0.880637219156528,
+      "F1_macro": 0.7105072206168833
+    },
+    "seconds": 105.96924327600027,
+    "label_warning": "Nhãn nguy cơ của dataset; chưa được xác nhận lâm sàng. Loại Patient_ID, Diabetes_Risk_Score, AI_Health_Recommendation và Doctor_Consultation_Needed."
+  },
+  "housing": {
+    "dataset": "Vietnam Housing Dataset 2024",
+    "url": "https://www.kaggle.com/api/v1/datasets/download/nguyentiennhan/vietnam-housing-dataset-2024",
+    "sha256": "2eba4312ea1f89abbe9a58f5601427f71989224d6e906c722821832dea0ea254",
+    "raw_rows": 30229,
+    "clean_rows": 30229,
+    "model": "Log Random Forest",
+    "params": {},
+    "unit": "tỷ VND",
+    "features": [
+      "Area",
+      "Frontage",
+      "Access Road",
+      "Floors",
+      "Bedrooms",
+      "Bathrooms",
+      "House direction",
+      "Balcony direction",
+      "Legal status",
+      "Furniture state",
+      "Province"
+    ],
+    "split": {
+      "train": 19377,
+      "validation": 4491,
+      "test": 6361
+    },
+    "groups_disjoint": true,
+    "CV_MAE": 1.309073840197576,
+    "metrics": {
+      "MAE": 1.2760310904617194,
+      "MSE": 2.6876752773149755,
+      "RMSE": 1.6394130892837764,
+      "R2": 0.427331205503402
+    },
+    "validation_metrics": {
+      "MAE": 1.2935525724155317,
+      "MSE": 2.785772802221243,
+      "RMSE": 1.6690634506276993,
+      "R2": 0.42946128444053744
+    },
+    "train_metrics": {
+      "MAE": 1.0276143417482428,
+      "MSE": 1.79842415466581,
+      "RMSE": 1.3410533750249503,
+      "R2": 0.6370590952411781
+    },
+    "seconds": 44.33234128600088
+  }
+}
