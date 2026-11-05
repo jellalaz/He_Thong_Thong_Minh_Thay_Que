@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
+from app.settings import database, browser_url
 from typing import Literal
 from sklearn.feature_extraction.text import TfidfVectorizer
 ROOT=Path(__file__).resolve().parents[1]
@@ -47,10 +48,10 @@ def examples():return json.loads((ROOT/'data/examples.json').read_text(encoding=
 def graph():
  try:
   with graph_driver() as driver:
-   rows=driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) RETURN a.name AS source,b.name AS target,r.label AS label,r.document AS document LIMIT 500').records
+   rows=driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) RETURN a.name AS source,b.name AS target,r.label AS label,r.document AS document LIMIT 500', database_=database()).records
    edges=[dict(r) for r in rows]
    return {'storage':'Neo4j','nodes':sorted(set(e[k] for e in edges for k in ['source','target'])),'edges':edges}
- except Exception:raise HTTPException(503,'Neo4j chưa kết nối được. Khởi động cơ sở dữ liệu và kiểm tra cấu hình .env.')
+ except Exception:raise HTTPException(503,'Chưa kết nối được đồ thị. Vui lòng thử lại sau.')
 @app.post('/api/chat')
 def chat(req:Request):
  bus=MessageBus();trace=bus.trace
@@ -91,7 +92,7 @@ def chat(req:Request):
  graph_evidence=[]
  try:
   with graph_driver() as driver:
-   graph_evidence=[dict(r) for r in driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) WHERE r.document IN $ids RETURN a.name AS source,r.label AS relation,b.name AS target LIMIT 12',ids=[d['id'] for d in selected]).records]
+   graph_evidence=[dict(r) for r in driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) WHERE r.document IN $ids RETURN a.name AS source,r.label AS relation,b.name AS target LIMIT 12',ids=[d['id'] for d in selected],database_=database()).records]
   msg('Neo4j','Tri thức','INFORM',str(len(graph_evidence))+' quan hệ có nguồn')
  except Exception:msg('Neo4j','Tri thức','FAILURE','Không kết nối; câu trả lời chỉ dùng truy xuất văn bản.')
  # Learned workflow policy; rules constrain output when no evidence exists.
@@ -119,5 +120,5 @@ def knowledge(q:str=''):
 @app.get('/api/status')
 def status():
  try:
-  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs)}
- except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs)}
+  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url()}
+ except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url()}

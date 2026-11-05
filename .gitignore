@@ -16,3 +16,4 @@ runtime/
 reports/converted.tex
 reports/legacy.tex
 *.xdv
+.vercel/
