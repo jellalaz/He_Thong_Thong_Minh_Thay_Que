@@ -1,6 +1,71 @@
 {
-  "passed": 20,
+  "passed": 28,
   "cases": [
+    {
+      "case": "blood_pressure_single",
+      "passed": true,
+      "answer": "Bạn nói huyết áp 150: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu 150 là số trên thì đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại. Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "blood_pressure_pair",
+      "passed": true,
+      "answer": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "blood_pressure_followup",
+      "passed": true,
+      "answer": "Nếu đây là số đo huyết áp ở người lớn, 150/90 mmHg là cao theo bảng tham chiếu AHA cho người lớn. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "blood_pressure_severe",
+      "passed": true,
+      "answer": "Số đo 190/125 mmHg rất cao. Nếu có đau ngực, khó thở, yếu liệt, nhìn mờ hoặc khó nói, hãy gọi cấp cứu địa phương ngay. Nếu không có các triệu chứng đó, nghỉ yên, đo lại sau ít nhất một phút và liên hệ nhân viên y tế ngay nếu số đo vẫn rất cao. Không tự tăng liều thuốc.",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "blood_pressure_invalid",
+      "passed": true,
+      "answer": "Bạn kiểm tra lại hai số và thứ tự trên/dưới trên máy đo nhé; cặp số này chưa hợp lý để diễn giải.",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "blood_pressure_home",
+      "passed": true,
+      "answer": "Để đo huyết áp tại nhà: nghỉ yên 5 phút, ngồi tựa lưng, hai chân đặt trên sàn, tay đỡ ngang tim và không nói chuyện khi đo. Tránh hút thuốc, caffeine và vận động trong 30 phút trước đo. Dùng vòng bít phù hợp, đo hai lần cách nhau một phút và ghi cả số trên/số dưới cùng thời điểm.",
+      "sources": [
+        "bloodpressure"
+      ]
+    },
+    {
+      "case": "mean_pressure_explicit",
+      "passed": true,
+      "answer": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc. [meanpressure]",
+      "sources": [
+        "meanpressure"
+      ]
+    },
+    {
+      "case": "substring_food",
+      "passed": true,
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]\n\nMô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]",
+      "sources": [
+        "plate",
+        "model"
+      ]
+    },
     {
       "case": "greeting",
       "passed": true,

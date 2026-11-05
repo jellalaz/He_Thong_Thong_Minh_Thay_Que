@@ -4,6 +4,14 @@ from fastapi.testclient import TestClient
 from app.main import app
 c=TestClient(app);results=[]
 cases=[
+ ('blood_pressure_single',{'question':'huyết áp 150 có ổn không'},lambda b:b['topic']=='bloodpressure' and 'số trên' in b['answer'] and all(x['id']=='bloodpressure' for x in b['sources']) and 'bp của bộ' not in b['answer']),
+ ('blood_pressure_pair',{'question':'huyết áp 150/90 có cao không'},lambda b:'150/90' in b['answer'] and 'cao theo' in b['answer']),
+ ('blood_pressure_followup',{'question':'số dưới là 90','history':[{'role':'user','content':'huyết áp 150 có ổn không'}]},lambda b:b['context_used'] and '150/90' in b['answer']),
+ ('blood_pressure_severe',{'question':'huyết áp 190/125'},lambda b:b['tone']=='urgent' and 'cấp cứu' in b['answer']),
+ ('blood_pressure_invalid',{'question':'huyết áp 90/150'},lambda b:'kiểm tra lại' in b['answer']),
+ ('blood_pressure_home',{'question':'đo huyết áp tại nhà thế nào'},lambda b:'nghỉ yên 5 phút' in b['answer']),
+ ('mean_pressure_explicit',{'question':'trường bp là huyết áp trung bình à'},lambda b:b['sources'][0]['id']=='meanpressure'),
+ ('substring_food',{'question':'computer là gì'},lambda b:b['topic']!='meal'),
  ('greeting',{'question':'Xin chào'},lambda b:'Chào bạn' in b['answer']),
  ('a1c',{'question':'HbA1c 6,2% nghĩa là gì?'},lambda b:'tiền đái tháo đường' in b['answer'] and b['sources'][0]['id']=='a1c'),
  ('followup',{'question':'Vậy 7,1% thì sao?','history':[{'role':'user','content':'HbA1c là gì?'}]},lambda b:b['context_used'] and '7.1%' in b['answer']),

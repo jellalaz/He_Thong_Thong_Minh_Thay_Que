@@ -4,8 +4,9 @@ import re, unicodedata
 def norm(s):
  return ''.join(c for c in unicodedata.normalize('NFD',s.lower().replace('đ','d')) if unicodedata.category(c)!='Mn')
 
-TOPICS=[('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
+TOPICS=[('meanpressure',['huyet ap trung binh','bien bp','truong bp'],['meanpressure']),('bloodpressure',['huyet ap','tam thu','tam truong','mmhg'],['bloodpressure']),('a1c',['hba1c','a1c'],['a1c']),('meal',['an gi','an uong','bua an','thuc don','com','tinh bot','dinh duong'],['plate','carb']),('fruit',['trai cay','hoa qua','nuoc ep'],['fruit','carb']),('activity',['van dong','the duc','di bo','tap luyen'],['activity']),('medicine',['thuoc','insulin','metformin','lieu'],['medicine']),('symptoms',['trieu chung','khat nhieu','tieu nhieu','sut can'],['symptoms','testing']),('low',['ha duong','duong huyet thap','run tay','va mo hoi'],['low','urgent']),('testing',['duong huyet','glucose','xet nghiem'],['testing']),('monitor',['theo doi','ghi chep','nhat ky','do luc nao'],['monitor']),('model',['diem tien trien','hoi quy'],['model']),('classification',['nhan high','nhan low','nhan moderate','phan loai','nhan tong hop'],['classification_scope'])]
 FOLLOW={
+ 'bloodpressure':['Đo huyết áp tại nhà thế nào?','Tôi nên ghi gì khi đi khám?'],
  'a1c':['Ngưỡng HbA1c được hiểu thế nào?','Tôi nên chuẩn bị gì khi đi khám?'],
  'meal':['Có cần bỏ cơm hoàn toàn không?','Người tiểu đường ăn trái cây được không?'],
  'fruit':['Gợi ý cách chia một bữa ăn','Tôi nên theo dõi đường huyết thế nào?'],
@@ -20,7 +21,7 @@ FOLLOW={
 
 def topic(q):
  for key,terms,ids in TOPICS:
-  if any(t in norm(q) for t in terms):return key,ids
+  if any(re.search(r'(?<!\w)'+re.escape(t)+r'(?!\w)',norm(q)) for t in terms):return key,ids
  return None,[]
 
 def route(question,history):
@@ -30,7 +31,7 @@ def route(question,history):
  previous=[h['content'] for h in history if h['role']=='user']
  if previous:
   prior=next((text for text in reversed(previous) if topic(text)[0]),previous[-1])
- if not key and prior and (len(q)<90 and any(t in q for t in ['vay','the con','chi so do','no la','co cao','bao nhieu','nghia la','nen lam','6.','7.','%'])):
+ if not key and prior and (len(q)<90 and any(t in q for t in ['vay','the con','chi so do','no la','co cao','bao nhieu','nghia la','nen lam','6.','7.','%','so duoi','so tren','con ','thi sao','co on'])):
   key,ids=topic(prior);used=bool(key)
  query=(key+' '+question) if used else question
  if used:query=prior+' '+question
@@ -50,6 +51,30 @@ def route(question,history):
  special=any(t in q+' '+norm(prior) for t in ['mang thai','thai ky','tre em','be nha','con toi'])
  if special and key in ['a1c','testing','low']:
   result.update(intro='Trẻ em và thai kỳ cần cách đánh giá riêng. Tôi không áp bảng ngưỡng người lớn cho trường hợp này; hãy trao đổi với cơ sở đang theo dõi.',ids=['demographics','monitor']);return result
+ if key=='bloodpressure':
+  result.update(ids=['bloodpressure'])
+  if special:
+   result['override']='Với trẻ em hoặc thai kỳ, cách đánh giá huyết áp cần theo bối cảnh riêng. Bạn cho biết tuổi hoặc tuần thai, cả hai số đo và triệu chứng hiện tại; liên hệ cơ sở đang theo dõi để được hướng dẫn.';return result
+  pair=re.search(r'(\d{2,3})\s*[/\-]\s*(\d{2,3})',q)
+  # A short follow-up can explicitly provide the missing lower number.
+  if not pair and used and re.search(r'so duoi|tam truong',q):
+   upper=re.search(r'huyet ap\s*(\d{2,3})',norm(prior))
+   lower=re.search(r'(?:so duoi|tam truong)\s*(?:la\s*)?(\d{2,3})',q)
+   if upper and lower:pair=(upper[1],lower[1])
+  if pair:
+   top,bottom=int(pair[1] if not isinstance(pair,tuple) else pair[0]),int(pair[2] if not isinstance(pair,tuple) else pair[1])
+   if not (40<=top<=300 and 20<=bottom<=200 and top>bottom):
+    result['override']='Bạn kiểm tra lại hai số và thứ tự trên/dưới trên máy đo nhé; cặp số này chưa hợp lý để diễn giải.';return result
+   if top>=180 or bottom>=120:
+    result.update(tone='urgent',override=f'Số đo {top}/{bottom} mmHg rất cao. Nếu có đau ngực, khó thở, yếu liệt, nhìn mờ hoặc khó nói, hãy gọi cấp cứu địa phương ngay. Nếu không có các triệu chứng đó, nghỉ yên, đo lại sau ít nhất một phút và liên hệ nhân viên y tế ngay nếu số đo vẫn rất cao. Không tự tăng liều thuốc.',suggestions=[]);return result
+   band='cao theo bảng tham chiếu AHA cho người lớn' if top>=130 or bottom>=80 else ('tăng nhẹ ở số trên' if top>=120 else 'dưới ngưỡng tăng huyết áp theo bảng AHA')
+   result['override']=f'Nếu đây là số đo huyết áp ở người lớn, {top}/{bottom} mmHg là {band}. Một lần đo chưa xác lập chẩn đoán. Hãy nghỉ yên 5 phút, đo lại hai lần cách nhau một phút, ghi kết quả và trao đổi với nhân viên y tế nếu số đo cao lặp lại. Bạn đo khi nghỉ hay vừa vận động, và hiện có triệu chứng gì không?';return result
+  number=re.search(r'(?<!\w)(\d{2,3})(?!\w)',q)
+  if number:
+   v=int(number[1]);result['override']=f'Bạn nói huyết áp {v}: đây là số trên (tâm thu) hay số dưới (tâm trương)? Hãy gửi cả cặp số và đơn vị, ví dụ 150/90 mmHg. Nếu {v} là số trên thì '+('đã cao theo bảng tham chiếu AHA cho người lớn; nên đo lại khi nghỉ và trao đổi với nhân viên y tế nếu lặp lại.' if v>=130 else 'cần xem thêm số dưới và điều kiện đo để nhận xét.')+' Bạn hiện có đau ngực, khó thở hoặc triệu chứng bất thường không?';return result
+  if any(t in q for t in ['do the nao','cach do','tai nha']):
+   result['override']='Để đo huyết áp tại nhà: nghỉ yên 5 phút, ngồi tựa lưng, hai chân đặt trên sàn, tay đỡ ngang tim và không nói chuyện khi đo. Tránh hút thuốc, caffeine và vận động trong 30 phút trước đo. Dùng vòng bít phù hợp, đo hai lần cách nhau một phút và ghi cả số trên/số dưới cùng thời điểm.';return result
+  result['override']='Huyết áp có hai số: số trên là tâm thu, số dưới là tâm trương, thường ghi bằng mmHg. Bạn gửi cả cặp số (ví dụ 120/80), thời điểm đo và triệu chứng hiện tại để tôi giải thích đúng bối cảnh.';return result
  if key=='a1c':
   match=re.search(r'(?:hba1c|a1c)\s*(?:cua toi|la|=|:)?\s*(\d+(?:[.,]\d+)?)',q) or re.search(r'(\d+(?:[.,]\d+)?)\s*%',q)
   if match:
