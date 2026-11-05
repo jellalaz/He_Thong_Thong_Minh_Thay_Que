@@ -1,0 +1,90 @@
+{
+  "dataset": "Cora",
+  "source": "https://raw.githubusercontent.com/tkipf/pygcn/master/data/cora/",
+  "sha256": {
+    "cora.content": "b8ebed0fd45e53995abafd1b70cf6a9fcc8f86abc5826d69b97fe6ca46e9c8ee",
+    "cora.cites": "ec1a372391b7f0f60a6aff0084e8abd8f19f0faa7e1f2441a41c492042d5945e"
+  },
+  "nodes": 2708,
+  "features": 1433,
+  "raw_citations": 5429,
+  "undirected_edges": 5278,
+  "classes": [
+    "Case_Based",
+    "Genetic_Algorithms",
+    "Neural_Networks",
+    "Probabilistic_Methods",
+    "Reinforcement_Learning",
+    "Rule_Learning",
+    "Theory"
+  ],
+  "split_seed": 254,
+  "train": 140,
+  "validation": 500,
+  "test": 1000,
+  "unlabelled": 1068,
+  "split_type": "custom stratified 20 labels per class, fixed split; not canonical Planetoid",
+  "transductive": true,
+  "hidden": 16,
+  "epochs": 200,
+  "learning_rate": 0.01,
+  "regularization_first_layer": 0.0005,
+  "dropout": 0,
+  "gradient_check_max_error": 2.9509542726069427e-10,
+  "results": [
+    {
+      "model": "MLP",
+      "seed": 254,
+      "best_epoch": 200,
+      "validation_loss": 1.3501223181933637,
+      "test_accuracy": 0.545,
+      "test_macro_f1": 0.540004670700435,
+      "seconds": 0.5234842999998364
+    },
+    {
+      "model": "MLP",
+      "seed": 255,
+      "best_epoch": 200,
+      "validation_loss": 1.3287599196117197,
+      "test_accuracy": 0.55,
+      "test_macro_f1": 0.5444275590864419,
+      "seconds": 0.5206691000021237
+    },
+    {
+      "model": "MLP",
+      "seed": 256,
+      "best_epoch": 200,
+      "validation_loss": 1.334820281360548,
+      "test_accuracy": 0.546,
+      "test_macro_f1": 0.5351375888074541,
+      "seconds": 0.49835479999819654
+    },
+    {
+      "model": "GCN",
+      "seed": 254,
+      "best_epoch": 200,
+      "validation_loss": 0.734201546184764,
+      "test_accuracy": 0.805,
+      "test_macro_f1": 0.7879366097142863,
+      "seconds": 1.1293468000003486
+    },
+    {
+      "model": "GCN",
+      "seed": 255,
+      "best_epoch": 200,
+      "validation_loss": 0.7289738057088254,
+      "test_accuracy": 0.804,
+      "test_macro_f1": 0.7895496253299408,
+      "seconds": 1.1077819999991334
+    },
+    {
+      "model": "GCN",
+      "seed": 256,
+      "best_epoch": 200,
+      "validation_loss": 0.7298754485628288,
+      "test_accuracy": 0.802,
+      "test_macro_f1": 0.7885866683462853,
+      "seconds": 1.1341920000013488
+    }
+  ]
+}

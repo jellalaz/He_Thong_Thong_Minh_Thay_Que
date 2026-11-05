@@ -1,3 +1,9 @@
+# Bản demo công khai
+
+Mở https://glucoguide-giang254.vercel.app/#graph để xem đồ thị, không cần cài Neo4j. Dữ liệu chạy trên AuraDB Free. Chủ tài khoản mở https://console.neo4j.io rồi chọn instance GlucoGuide và Query để truy vấn trực tiếp. Không chia sẻ mật khẩu hoặc tệp môi trường.
+
+Các bước dưới đây dành cho môi trường cục bộ.
+
 # Xem đồ thị tri thức
 
 Máy này đã có Neo4j Community trong thư mục `.runtime`. Bạn không cần tải lại để dùng bản demo hiện tại.

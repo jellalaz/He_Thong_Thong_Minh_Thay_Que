@@ -1,0 +1,3 @@
+agent,total_reward,mean_reward_per_step,no_discount_actions,discount_actions,discount_action_rate
+RL,369541.0,36.9541,1859,8141,0.8141
+Rule-based,317155.5,31.71555,6180,3820,0.382

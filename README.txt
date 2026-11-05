@@ -7,14 +7,14 @@ Kiều Trường Giang · B23DCCN254 · Nhóm 06–02
 - Địa chỉ kết nối Neo4j: neo4j://127.0.0.1:7687; tài khoản neo4j.
 - Mật khẩu nằm trong tệp .env trên máy, dòng NEO4J_PASSWORD. Tệp này không đưa lên GitHub.
 - Browser đã được đăng nhập và mở truy vấn đồ thị ở phiên hoàn thiện.
-- Demo công khai tạm thời: https://dirt-lucky-capture-mighty.trycloudflare.com
-  Link chỉ hoạt động khi máy và tiến trình tunnel còn chạy. Không phải hosting cố định.
+- Demo công khai: https://glucoguide-giang254.vercel.app
+  Vercel Hobby + Neo4j AuraDB Free. Không cần bật máy cá nhân; chỉ dùng gói miễn phí.
 
 2. CHẠY LẠI
 Mở PowerShell trong thư mục này:
   .\start-neo4j.ps1
   .\run.ps1
-Để chạy trên máy khác, cài Python 3.12, tạo venv, cài requirements.txt.
+Để chạy trên máy khác, cài Python 3.14, tạo venv, cài requirements.txt.
 Sao chép .env.example thành .env và điền mật khẩu Neo4j của máy đó.
 Có thể dùng Docker Compose (docker compose up -d neo4j) hoặc Neo4j cài riêng.
 Sau khi Neo4j sẵn sàng:
@@ -35,7 +35,7 @@ Checkpoint đã kèm trong models, không cần train lại để demo.
 
 4. BÁO CÁO VÀ TÁI LẬP
 Hai PDF và mã LaTeX ở reports/.
-- tieuluan_final_06_02_giangkt.254.pdf: tổng hợp nền tảng + project.
+- tieuluan_final_06_02_giangkt.254.pdf: tiểu luận độc lập, 7 chương nền tảng và thực nghiệm; không ghép project.
 - project01_06_02_giangkt.254.pdf: kiến trúc, mô hình, KB, agent, kiểm thử và demo.
 Chạy scripts/assemble_reports.py để ghép nguồn; biên dịch từng tệp chính bằng XeLaTeX hoặc Tectonic, từ reports/.
 Dùng Times New Roman và Consolas; máy build cần có hai font này.
@@ -55,7 +55,7 @@ Huấn luyện lại:
 FastAPI + web, hai MLP có checkpoint, TF-IDF retrieval, Neo4j thật,
 MessageBus định tuyến handler của các agent, Q-table mô phỏng và luật thiếu bằng chứng.
 Câu trả lời tổng hợp trích đoạn xác định, không gọi LLM. Chưa có bộ nhớ hội thoại lâu dài,
-chưa có hội đồng tranh biện, chưa huấn luyện GNN. Dữ liệu phân loại là tổng hợp.
+chưa có hội đồng tranh biện. Thực nghiệm GCN Cora nằm riêng trong tiểu luận, chưa tích hợp vào chatbot. Dữ liệu phân loại là tổng hợp.
 Không dùng đầu ra demo làm chẩn đoán hoặc quyết định điều trị.
 Không công khai cổng Neo4j, .env hoặc dữ liệu người dùng.
 
@@ -74,3 +74,9 @@ BẢN CHATBOT VÀ GIAO DIỆN MỚI
 - Nguồn & tài liệu: tìm kiếm không dấu, xem đoạn nguồn và hỏi tiếp.
 - Kiểm thử: python -m scripts.test_chatbot (20 kiểm tra), python -m scripts.test_scenarios (8 kịch bản).
 - Hướng dẫn Neo4j: HUONG_DAN_NEO4J.md. Không phải cài lại trên máy đã thiết lập này.
+
+TÁCH HAI BÁO CÁO
+- Chương 6: GCN so với MLP trên Cora, 3 seed, mã scripts/train_cora.py; kết quả results/cora/.
+- Chương 7: mô phỏng đa agent, kết quả AGENT02 lưu trong experiments/agent02/.
+- Huấn luyện: cài requirements-training.txt. Chạy sản phẩm: requirements.txt.
+- Kiểm tra demo công khai: python scripts/check_deployment.py.

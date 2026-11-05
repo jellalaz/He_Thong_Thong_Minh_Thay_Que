@@ -9,3 +9,6 @@ legacy_tieuluan
 data/raw
 __pycache__
 *.log
+
+experiments
+results/cora

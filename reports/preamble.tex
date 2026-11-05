@@ -4,7 +4,7 @@
 \usepackage{amsmath,amssymb,graphicx,longtable,booktabs,array,calc,etoolbox,fancyvrb,fvextra,caption,unicode-math}
 \usepackage{needspace,fancyhdr,float}\usepackage[section]{placeins}
 \newcounter{none}
-\usepackage[unicode,hidelinks]{hyperref}\usepackage{xurl,setspace}\onehalfspacing
+\usepackage{xcolor}\definecolor{LinkBlue}{HTML}{1565C0}\usepackage[unicode,colorlinks=true,urlcolor=LinkBlue,linkcolor=black,citecolor=black]{hyperref}\usepackage{xurl,setspace}\onehalfspacing
 \hypersetup{hypertexnames=false}
 \setlength{\emergencystretch}{3em}\setlength{\parindent}{1cm}
 \setlength{\parskip}{3pt}\setlength{\textfloatsep}{16pt}\setlength{\intextsep}{14pt}
@@ -20,14 +20,25 @@
 \renewcommand{\headrulewidth}{0.3pt}\renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
 \makeatletter
-\renewcommand*\l@part[2]{\addpenalty{-\@highpenalty}\vskip 1em\begingroup\bfseries\@dottedtocline{-1}{0em}{3em}{#1}{#2}\endgroup}
-\renewcommand*\l@chapter[2]{\addpenalty{-\@highpenalty}\vskip .6em\begingroup\bfseries\@dottedtocline{0}{0em}{2.8em}{#1}{#2}\endgroup}
-\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{4.5em}{3.8em}}
+\renewcommand{\thepart}{\Roman{part}.}
+\renewcommand*\l@part[2]{\addpenalty{-\@highpenalty}\vskip 1em\begingroup\renewcommand*\numberline[1]{\hb@xt@\@tempdima{##1\hfil}}\bfseries\@dottedtocline{-1}{0em}{1.65em}{#1}{#2}\endgroup}
+\renewcommand*\l@chapter[2]{\addpenalty{-\@highpenalty}\vskip .6em\begingroup\bfseries\@dottedtocline{0}{0em}{1.65em}{#1}{#2}\endgroup}
+\renewcommand*\l@section{\@dottedtocline{1}{1.65em}{2.45em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{4.1em}{3.15em}}
 \renewcommand*\numberline[1]{\hb@xt@\@tempdima{#1.\hfil}}
-\renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad}
+\renewcommand\@seccntformat[1]{\csname the#1\endcsname.\hspace{.55em}}
 \renewcommand\@makechapterhead[1]{\vspace*{10pt}{\parindent\z@\centering\normalfont\ifnum\c@secnumdepth>\m@ne\large\bfseries\@chapapp\space\thechapter\par\nobreak\vskip 10pt\fi\LARGE\bfseries #1\par\nobreak\vskip 25pt}}
 \renewcommand\@makeschapterhead[1]{\vspace*{10pt}{\parindent\z@\centering\normalfont\LARGE\bfseries #1\par\nobreak\vskip 25pt}}
 \pretocmd{\chapter}{\clearpage}{}{}\pretocmd{\part}{\clearpage}{}{}
+\def\@part[#1]#2{%
+  \ifnum\c@secnumdepth>-2\relax
+    \refstepcounter{part}%
+    \addcontentsline{toc}{part}{\protect\numberline{\thepart}#1}%
+  \else\addcontentsline{toc}{part}{#1}\fi
+  \markboth{}{}%
+  {\centering\interlinepenalty\@M\normalfont
+    \ifnum\c@secnumdepth>-2\relax\huge\bfseries\partname\nobreakspace\thepart\par\vskip20pt\fi
+    \Huge\bfseries#2\par}%
+  \@endpart}
 \makeatother
 \newcommand{\productlink}[2]{\par\medskip\noindent\begin{minipage}{\linewidth}\hrule\vspace{7pt}\textbf{#1}\par\small\url{#2}\par\vspace{7pt}\hrule\end{minipage}\medskip}

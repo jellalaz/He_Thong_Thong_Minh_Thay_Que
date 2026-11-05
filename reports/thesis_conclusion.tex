@@ -1,0 +1,8 @@
+\chapter*{Kết luận và hướng phát triển}\addcontentsline{toc}{chapter}{Kết luận và hướng phát triển}
+Tiểu luận khảo sát quá trình hình thành các hệ thống thông minh và đối chiếu những cách khai thác dữ liệu khác nhau. Dữ liệu bảng phù hợp với các mô hình học máy và MLP; cấu trúc không gian trong ảnh được khai thác bằng CNN; quan hệ theo thời gian được biểu diễn bởi mô hình hồi tiếp; cấu trúc liên kết được đưa vào phép học thông qua GCN. Kho tri thức và truy xuất bổ sung một yêu cầu khác: đầu ra cần gắn với nguồn có thể kiểm tra.
+
+Các thực nghiệm cho thấy độ phức tạp của mô hình không bảo đảm ưu thế trong mọi bài toán. Với dự báo chuỗi, cần so với baseline đơn giản và giữ đúng thứ tự thời gian. Với đồ thị Cora, GCN đạt kết quả tốt hơn MLP trong cấu hình nhãn ít được khảo sát, nhưng phép chia riêng giới hạn việc so trực tiếp với các công bố khác. Với môi trường hai người bán, luật cố định và Q-learning có kết quả gần nhau ở cấu hình gốc; lợi ích của học lại chỉ xuất hiện rõ khi thay đổi chiết khấu.
+
+Một quy trình đánh giá đầy đủ cần xác định nguồn dữ liệu, mục tiêu đầu ra, phép chia và điều kiện so sánh trước khi lựa chọn kiến trúc. Sau huấn luyện phải lưu cấu hình, dự đoán và kết quả kiểm tra để đối chiếu. Đường cong, ma trận nhầm lẫn và phân tích theo lớp giúp nhận diện hạn chế mà một chỉ số tổng hợp dễ che khuất.
+
+Hướng phát triển gồm mở rộng đánh giá qua nhiều phép chia, khảo sát độ bền khi dữ liệu thay đổi, bổ sung đối chứng loại bỏ thành phần và kiểm soát chất lượng nguồn tri thức. Với đa agent, cần đánh giá cả khi nhiều chính sách cùng thay đổi và phân tích chi phí phối hợp. Các nghiên cứu ứng dụng y tế cần dữ liệu, quy trình thẩm định và đánh giá chuyên môn riêng trước khi chuyển từ thực nghiệm học phần sang sử dụng thực tế.

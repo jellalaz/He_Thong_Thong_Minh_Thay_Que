@@ -53,9 +53,9 @@ Văn bản được biểu diễn bằng TF-IDF với unigram và bigram, bỏ d
 Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất. Do đó đồ thị cung cấp cấu trúc và căn cứ bổ sung cho truy xuất văn bản; đây chưa phải một bộ máy suy luận đa bước tổng quát. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu người dùng làm rõ.
 \chapter{Code và demo}
 \section{Địa chỉ và cách chạy}
-Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
+Demo công khai: \url{https://glucoguide-giang254.vercel.app}. Demo cục bộ: \url{http://localhost:8765}. Neo4j Browser: \url{http://localhost:7474/browser/}. Repository đích: \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Địa chỉ localhost chỉ hoạt động trên máy đang chạy dịch vụ. Báo cáo không coi địa chỉ này là một website công khai.
 
-Cài các thư viện trong requirements.txt vào môi trường riêng. Chạy \path{scripts/train_models.py} để tạo checkpoint, \path{scripts/train_policy.py} để tạo chính sách và \path{scripts/ingest_graph.py} để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
+Cài requirements.txt để chạy ứng dụng; dùng requirements-training.txt khi huấn luyện và tái lập thực nghiệm. Chạy \path{scripts/train_models.py} để tạo checkpoint, \path{scripts/train_policy.py} để tạo chính sách và \path{scripts/ingest_graph.py} để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
 \section{Kịch bản trình diễn}
 Kịch bản thứ nhất: hỏi ``HbA1c là gì?''. Kiểm tra câu trả lời có mã tài liệu, kiểm tra bước truy xuất và số quan hệ Neo4j. Kịch bản thứ hai: hỏi một chủ đề không có trong kho, chẳng hạn lịch sử một đội bóng. Hệ thống phải yêu cầu làm rõ hoặc báo thiếu bằng chứng, không tự tạo nguồn.
 
@@ -70,3 +70,5 @@ RETURN a,r,b LIMIT 100;
 Hệ thống duy trì ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
 
 Hướng ưu tiên là triển khai giao thức agent thực, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.
+
+\input{cloud_deployment.tex}

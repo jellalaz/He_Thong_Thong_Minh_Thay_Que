@@ -1,0 +1,36 @@
+{
+  "url": "https://glucoguide-giang254.vercel.app",
+  "checked_at": "2026-11-05T13:14:48.961564+00:00",
+  "passed": 12,
+  "checks": [
+    "page_and_assets",
+    "neo4j_live_connection",
+    "graph_relations",
+    "sourced_answer_with_graph",
+    "contextual_followup",
+    "unknown_question",
+    "missing_measurement_unit",
+    "urgent_routing",
+    "classification",
+    "regression_and_changed_input",
+    "input_validation",
+    "knowledge_search"
+  ],
+  "graph": {
+    "neo4j": true,
+    "nodes": 60,
+    "edges": 32,
+    "documents": 21,
+    "neo4j_browser": "https://console.neo4j.io/"
+  },
+  "classification": {
+    "label": "High",
+    "scores": {
+      "High": 0.7055380043429438,
+      "Low": 0.00016474222167046237,
+      "Moderate": 0.2942972534353858
+    },
+    "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh."
+  },
+  "regression": 207.53014411590692
+}

@@ -14,16 +14,15 @@ body=body.replace('Hướng ưu tiên là triển khai giao thức agent thực,
 body=body.replace('điểm lớn hơn 0,04','điểm lớn hơn giá trị lớn nhất giữa 0,04 và 65\\% điểm của đoạn đứng đầu')
 body=body.replace(r'\section{Nhánh dữ liệu}',r'\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/architecture.png}\caption{Hai nhánh hội tụ về điều phối và trợ giúp, dựng lại từ sơ đồ trên bảng.}\end{figure}'+'\n'+r'\section{Nhánh dữ liệu}')
 body=body.replace(r'\chapter{Code và demo}',r'\input{project_details.tex}'+'\n'+r'\chapter{Code và demo}')
-body=body.replace('Địa chỉ localhost chỉ hoạt động',r'Demo công khai tại thời điểm hoàn thiện: \url{https://dirt-lucky-capture-mighty.trycloudflare.com}. Đây là đường hầm tạm thời, phụ thuộc máy và tiến trình đang chạy; không phải hosting thường trực. Địa chỉ localhost chỉ hoạt động')
 body+=r'\input{web_walkthrough.tex}'+'\n'
 body=body.replace(r'\chapter{Các thành phần và thực nghiệm}',r'\input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}')
 (p/'project_content.tex').write_text(body,encoding='utf-8')
 intro=r'''\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
 Báo cáo nghiên cứu cách kết hợp học máy, học sâu và biểu diễn tri thức trong một hệ thống hỗ trợ người dùng. Các chương đầu trình bày nền tảng, dữ liệu và thực nghiệm trên dữ liệu bảng, ảnh, chuỗi thời gian và đồ thị. Chương 6 và chương 7 mở rộng sang học sâu trên đồ thị, cơ chế phối hợp đa agent và học tăng cường.
 
-Phần II trình bày GlucoGuide, ứng dụng hỗ trợ tìm hiểu bệnh tiểu đường. Hệ thống gồm hai nhánh: các mô hình MLP xử lý bài toán phân loại và hồi quy; kho tri thức cùng Neo4j cung cấp căn cứ cho câu trả lời. Bộ điều phối kết nối kết quả mô hình với thông tin truy xuất, kiểm tra phạm vi diễn giải và trả phản hồi cho người dùng.
+Phần II nghiên cứu biểu diễn tri thức, học sâu trên đồ thị và hệ đa agent. Thực nghiệm Cora đối chiếu GCN với MLP trên cùng phép chia dữ liệu; mô phỏng Agent02 khảo sát chính sách học tăng cường và chính sách theo luật. Kết quả được phân tích cùng giới hạn dữ liệu, cách đánh giá và điều kiện tái lập.
 
-Các thực nghiệm sử dụng tập kiểm tra độc lập và lưu kết quả để đối chiếu. Phần đánh giá phân tích sai số, hạn chế của dữ liệu và phạm vi áp dụng; phần triển khai trình bày giao diện, đường dẫn sản phẩm và kịch bản sử dụng. Nội dung kế thừa từ các tiểu luận học phần được dẫn trong danh mục tài liệu tham khảo.
+Báo cáo kế thừa các tiểu luận học phần, bổ sung thực nghiệm và tổng hợp mối liên hệ giữa các phương pháp. Sản phẩm ứng dụng được trình bày trong báo cáo Project 01 độc lập.
 '''
 bib=r'''\begin{thebibliography}{99}
 \bibitem{tl02} Kiều Trường Giang, Tiểu luận 02, nhóm 06--02, báo cáo học phần.
@@ -42,7 +41,8 @@ bib=r'''\begin{thebibliography}{99}
 \end{thebibliography}
 '''
 (p/'bibliography.tex').write_text(bib,encoding='utf-8')
-for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINAL',intro+r'\input{data_overview.tex}\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\part{Project tích hợp}\setcounter{chapter}{0}\renewcommand{\thefigure}{P.\thechapter.\arabic{figure}}\renewcommand{\thetable}{P.\thechapter.\arabic{table}}\setcounter{secnumdepth}{2}\input{project_content.tex}'),('project01_06_02_giangkt.254','PROJECT 01',r'\setcounter{secnumdepth}{2}\input{project_content.tex}')]:
+(p/'bibliography_thesis.tex').write_text('\n'.join(line for line in bib.splitlines() if not any(key in line for key in [r'\bibitem{diabetes}',r'\bibitem{niddk}',r'\bibitem{kb}'])),encoding='utf-8')
+for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINAL',intro+r'\input{abbreviations.tex}\input{data_overview.tex}\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\input{thesis_conclusion.tex}'),('project01_06_02_giangkt.254','PROJECT 01',r'\setcounter{secnumdepth}{2}\input{project_content.tex}')]:
  cover=r'''\begin{document}\begin{titlepage}\centering
 {\large HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\\KHOA CÔNG NGHỆ THÔNG TIN 1}\vfill
 {\LARGE\bfseries '''+title+r'''}\par\vspace{1cm}
@@ -52,7 +52,9 @@ for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINA
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}
 '''
  appendix=r'\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}'+'\n'
- for f in ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','scripts/test_scenarios.py','scripts/test_chatbot.py']:
+ for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
   appendix+=r'\section{'+f.replace('_',r'\_')+'}\n'+r'\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../'+f+'}\n'
+ if 'final' in fn:
+  appendix=appendix.replace(r'\input{bibliography.tex}',r'\input{bibliography_thesis.tex}')
  (p/(fn+'.tex')).write_text(pre+cover+content+appendix+r'\end{document}',encoding='utf-8')
 print('Report sources assembled')

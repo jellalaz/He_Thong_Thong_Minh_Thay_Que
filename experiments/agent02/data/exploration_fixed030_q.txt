@@ -1,0 +1,7 @@
+Q-table: Q[demand, competitor_previous_action, action]
+Action 0 = no discount; Action 1 = discount
+
+State=(0, 0) | Q0=190.066628 | Q1=217.179932 | Greedy action=1
+State=(0, 1) | Q0=188.215751 | Q1=196.188540 | Greedy action=1
+State=(1, 0) | Q0=230.808866 | Q1=236.961047 | Greedy action=1
+State=(1, 1) | Q0=254.838953 | Q1=199.925543 | Greedy action=0
