@@ -4,7 +4,7 @@
     "status": 200,
     "passed": true,
     "response": {
-      "answer": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]",
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
       "result": null,
       "trace": [
         {
@@ -12,6 +12,15 @@
           "receiver": "Điều phối",
           "type": "REQUEST",
           "content": "HbA1c là gì?"
+        },
+        {
+          "sender": "Hội thoại",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "topic": "a1c",
+            "context_used": false
+          }
         },
         {
           "sender": "Điều phối",
@@ -24,27 +33,27 @@
           "receiver": "Điều phối",
           "type": "INFORM",
           "content": [
-            0.038644912606152944,
-            0.016202678272344853,
+            0.03906201921168464,
+            0.016372547738231973,
             0.0,
             0.0,
             0.0,
-            0.03710587988574229,
-            0.0168306244039586,
-            0.017190398605177792,
-            0.06051100519285106,
+            0.037062783087307864,
+            0.016858020106640812,
+            0.017158540019313575,
+            0.06048275561744941,
             0.0,
-            0.03775341683758104,
-            0.018294256631480946,
-            0.16759335432006928,
+            0.03779049375614172,
+            0.01838077715604164,
+            0.15875281739735295,
             0.0,
-            0.018167116161084157,
-            0.0,
-            0.0,
+            0.018141269159939247,
             0.0,
             0.0,
-            0.0933493360306731,
-            0.01724975402497905
+            0.0,
+            0.0,
+            0.09400593770892479,
+            0.017296138273085262
           ]
         },
         {
@@ -89,7 +98,7 @@
                 "đường trung bình",
                 "ba tháng"
               ],
-              "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+              "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
               "source": "diagnosis",
               "triples": [
                 [
@@ -110,7 +119,7 @@
           "sender": "Phản hồi",
           "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]"
+          "content": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]"
         },
         {
           "sender": "Đối chiếu",
@@ -129,6 +138,7 @@
         {
           "id": "a1c",
           "title": "Hiểu chỉ số HbA1c",
+          "excerpt": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
           "source": {
             "label": "NIDDK · Xét nghiệm & chẩn đoán",
             "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
@@ -147,7 +157,14 @@
           "target": "đường huyết trung bình"
         }
       ],
-      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "suggestions": [
+        "Ngưỡng HbA1c được hiểu thế nào?",
+        "Tôi nên chuẩn bị gì khi đi khám?"
+      ],
+      "context_used": false,
+      "topic": "a1c",
+      "tone": "normal"
     }
   },
   {
@@ -163,6 +180,15 @@
           "receiver": "Điều phối",
           "type": "REQUEST",
           "content": "zzzxxyy"
+        },
+        {
+          "sender": "Hội thoại",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "topic": "knowledge",
+            "context_used": false
+          }
         },
         {
           "sender": "Điều phối",
@@ -241,7 +267,15 @@
       ],
       "sources": [],
       "graph_evidence": [],
-      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "suggestions": [
+        "HbA1c là gì?",
+        "Gợi ý cách chia một bữa ăn",
+        "Tôi nên theo dõi đường huyết thế nào?"
+      ],
+      "context_used": false,
+      "topic": "knowledge",
+      "tone": "normal"
     }
   },
   {
@@ -285,6 +319,15 @@
           "content": "{\"label\": \"High\", \"scores\": {\"High\": 0.7055380043429438, \"Low\": 0.00016474222167046237, \"Moderate\": 0.2942972534353858}, \"scope\": \"Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.\"}"
         },
         {
+          "sender": "Hội thoại",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "topic": "classification",
+            "context_used": false
+          }
+        },
+        {
           "sender": "Điều phối",
           "receiver": "Truy xuất",
           "type": "REQUEST",
@@ -296,26 +339,26 @@
           "type": "INFORM",
           "content": [
             0.0,
-            0.025906736320634692,
-            0.0325188874939009,
+            0.02617834348259236,
+            0.03246343820338126,
             0.0,
             0.0,
-            0.038897863441329075,
-            0.005218233746049518,
-            0.005946713354535132,
-            0.023490166857590557,
-            0.037837902873423125,
-            0.024326767466337988,
-            0.006328573450818797,
-            0.013089792920657435,
-            0.007119614545281335,
+            0.03885268533517924,
+            0.005226727618695112,
+            0.0059356924420847215,
+            0.02347920046829119,
+            0.03797356293058031,
+            0.02435065832580839,
+            0.00635850369098737,
+            0.012399307321778737,
+            0.005502807661820003,
             0.0,
             0.0,
-            0.019530274888214537,
-            0.006575235810082188,
-            0.01864238044185433,
-            0.011379577434017634,
-            0.6149489810532972
+            0.01957973890879254,
+            0.00661012834925586,
+            0.018650304491344485,
+            0.011459619242119152,
+            0.6166025667257966
           ]
         },
         {
@@ -411,6 +454,7 @@
         {
           "id": "classification_scope",
           "title": "Phân loại nhãn tổng hợp",
+          "excerpt": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
           "source": {
             "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
             "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
@@ -418,7 +462,13 @@
         }
       ],
       "graph_evidence": [],
-      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "suggestions": [
+        "Nhãn High có phải chẩn đoán không?"
+      ],
+      "context_used": false,
+      "topic": "classification",
+      "tone": "normal"
     }
   },
   {
@@ -457,6 +507,15 @@
           "content": "{\"value\": 207.53014411590692, \"scope\": \"Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.\"}"
         },
         {
+          "sender": "Hội thoại",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "topic": "model",
+            "context_used": false
+          }
+        },
+        {
           "sender": "Điều phối",
           "receiver": "Truy xuất",
           "type": "REQUEST",
@@ -468,25 +527,25 @@
           "type": "INFORM",
           "content": [
             0.0,
-            0.02649478757499498,
+            0.027261585929959004,
             0.0,
             0.0,
             0.0,
-            0.030337959836986415,
+            0.03085623148249204,
             0.0,
             0.0,
             0.0,
-            0.025893454029606536,
-            0.022051545325954314,
+            0.019122149034152273,
+            0.01624268250317211,
+            0.0,
+            0.018581508746833057,
+            0.03385308718512339,
             0.0,
             0.0,
-            0.023144945341754704,
+            0.019267020996131763,
+            0.021881182508424614,
             0.0,
-            0.0,
-            0.018873602844100973,
-            0.02137524053663313,
-            0.0,
-            0.3637340268759089,
+            0.35903850493239003,
             0.0
           ]
         },
@@ -593,6 +652,7 @@
         {
           "id": "model",
           "title": "Điểm mô hình có ý nghĩa gì?",
+          "excerpt": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
           "source": {
             "label": "scikit-learn · Dữ liệu diabetes",
             "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
@@ -611,7 +671,13 @@
           "target": "xác suất mắc bệnh"
         }
       ],
-      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "suggestions": [
+        "Điểm tiến triển có phải đường huyết không?"
+      ],
+      "context_used": false,
+      "topic": "model",
+      "tone": "normal"
     }
   },
   {
@@ -658,7 +724,7 @@
     "case": "controlled_neo4j_outage",
     "passed": true,
     "response": {
-      "answer": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]",
+      "answer": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
       "result": null,
       "trace": [
         {
@@ -666,6 +732,15 @@
           "receiver": "Điều phối",
           "type": "REQUEST",
           "content": "HbA1c"
+        },
+        {
+          "sender": "Hội thoại",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "topic": "a1c",
+            "context_used": false
+          }
         },
         {
           "sender": "Điều phối",
@@ -690,14 +765,14 @@
             0.0,
             0.0,
             0.0,
-            0.24711736043673838,
+            0.23408193813107256,
             0.0,
             0.0,
             0.0,
             0.0,
             0.0,
             0.0,
-            0.07575480232626285,
+            0.0762876473625329,
             0.0
           ]
         },
@@ -743,7 +818,7 @@
                 "đường trung bình",
                 "ba tháng"
               ],
-              "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+              "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
               "source": "diagnosis",
               "triples": [
                 [
@@ -764,7 +839,7 @@
           "sender": "Phản hồi",
           "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %.  [a1c]"
+          "content": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]"
         },
         {
           "sender": "Đối chiếu",
@@ -783,6 +858,7 @@
         {
           "id": "a1c",
           "title": "Hiểu chỉ số HbA1c",
+          "excerpt": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
           "source": {
             "label": "NIDDK · Xét nghiệm & chẩn đoán",
             "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
@@ -790,7 +866,14 @@
         }
       ],
       "graph_evidence": [],
-      "generator": "Tổng hợp trích đoạn xác định, không gọi LLM"
+      "generator": "Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM",
+      "suggestions": [
+        "Ngưỡng HbA1c được hiểu thế nào?",
+        "Tôi nên chuẩn bị gì khi đi khám?"
+      ],
+      "context_used": false,
+      "topic": "a1c",
+      "tone": "normal"
     }
   }
 ]

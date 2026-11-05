@@ -65,3 +65,12 @@ CẬP NHẬT ĐỐI CHIẾU THAM KHẢO CT_03
 - Tái kiểm kê: python scripts/audit_data.py (cần ZIP dữ liệu gốc ở data/raw).
 - Chỉ số dòng chia tập: results/classification_split.csv và regression_split.csv.
 - Báo cáo bổ sung bản đồ dữ liệu kế thừa, danh mục hình/bảng, thuyết minh từng màn hình.
+
+BẢN CHATBOT VÀ GIAO DIỆN MỚI
+- Trợ lý kiến thức: HbA1c, xét nghiệm có đơn vị, ăn uống, vận động, theo dõi; hỏi tiếp theo chủ đề.
+- Chat dùng KB + luật hội thoại, không gọi LLM. Lịch sử chỉ trong tab, gửi tối đa 12 thông điệp mỗi yêu cầu.
+- Bằng chứng cạnh câu trả lời; mở trực tiếp quan hệ tài liệu trên Neo4j.
+- Thực nghiệm dữ liệu: so sánh lần chạy trước và đưa kết quả sang chat. Không diễn giải thay đổi mô hình thành hiệu quả điều trị.
+- Nguồn & tài liệu: tìm kiếm không dấu, xem đoạn nguồn và hỏi tiếp.
+- Kiểm thử: python -m scripts.test_chatbot (20 kiểm tra), python -m scripts.test_scenarios (8 kịch bản).
+- Hướng dẫn Neo4j: HUONG_DAN_NEO4J.md. Không phải cài lại trên máy đã thiết lập này.

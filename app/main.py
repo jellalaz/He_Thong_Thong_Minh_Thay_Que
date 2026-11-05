@@ -9,6 +9,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
+from app.conversation import route
+from typing import Literal
 from sklearn.feature_extraction.text import TfidfVectorizer
 ROOT=Path(__file__).resolve().parents[1]
 for line in (ROOT/'.env').read_text().splitlines() if (ROOT/'.env').exists() else []:
@@ -22,10 +24,15 @@ schema=json.loads((ROOT/'models/schema.json').read_text())
 models={k:joblib.load(ROOT/'models'/f'{v}.joblib') for k,v in [('classification','MLPClassifier'),('regression','MLPRegressor')]}
 app=FastAPI(title='GlucoGuide • Giang KT')
 app.mount('/assets',StaticFiles(directory=ROOT/'web'),name='assets')
+class Turn(BaseModel):
+ role:Literal["user","assistant"]
+ content:str=Field(max_length=3000)
+
 class Request(BaseModel):
  question:str=Field(default='',max_length=3000)
  task:str='knowledge'
  values:dict=Field(default_factory=dict)
+ history:list[Turn]=Field(default_factory=list,max_length=12)
 def graph_driver():
  return GraphDatabase.driver(os.environ.get('NEO4J_URI','bolt://127.0.0.1:7687'),auth=(os.environ.get('NEO4J_USER','neo4j'),os.environ.get('NEO4J_PASSWORD','')),connection_timeout=3,connection_acquisition_timeout=4,max_transaction_retry_time=0)
 @app.get('/')
@@ -72,8 +79,13 @@ def chat(req:Request):
   else:result={'value':float(pred),'scope':'Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.'}
   msg('Mô hình','Đối chiếu','INFORM',json.dumps(result,ensure_ascii=False))
  q=req.question or ('phân loại nhãn tổng hợp classification High Moderate Low' if req.task=='classification' else 'điểm tiến triển diabetes')
- scores=bus.request('Điều phối','Truy xuất',q)
+ plan=route(q,[h.model_dump() for h in req.history])
+ msg('Hội thoại','Điều phối','INFORM',{'topic':plan['topic'],'context_used':plan['context_used']})
+ scores=bus.request('Điều phối','Truy xuất',plan['query'])
  selected=[docs[i] for i in np.argsort(-scores)[:3] if scores[i]>max(.04,float(scores.max())*.65)]
+ if plan['ids']:
+  selected=[next(d for d in docs if d['id']==doc_id) for doc_id in plan['ids']]
+ if plan['override'] and not plan['ids']:selected=[]
  msg('Điều phối','Tri thức','REQUEST',q)
  msg('Tri thức','Đối chiếu','INFORM','Đã truy xuất: '+', '.join(d['id'] for d in selected))
  graph_evidence=[]
@@ -88,10 +100,24 @@ def chat(req:Request):
  if not selected:action=0
  msg('Chính sách RL','Phản hồi','INFORM',{'state':state,'action':policy['actions'][action],'rule':'Thiếu bằng chứng thì yêu cầu làm rõ'})
  answer=bus.request('Điều phối','Phản hồi',selected) if action in (1,2) else 'Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.'
+ if plan['override'] is not None:answer=plan['override']
+ elif plan['intro']:answer=plan['intro']+'\n\n'+answer
  if result:
   verdict=bus.request('Điều phối','Đối chiếu',result)
   answer=verdict['scope']+'\n\n'+answer
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
  msg('Phản hồi','Người dùng','INFORM','Hoàn thành')
- return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'generator':'Tổng hợp trích đoạn xác định, không gọi LLM'}
+ return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'generator':'Hội thoại có ngữ cảnh · KB và luật có nguồn · không gọi LLM','suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
+
+@app.get('/api/knowledge')
+def knowledge(q:str=''):
+ from app.conversation import norm
+ found=[d for d in docs if not q or norm(q) in norm(d['title']+' '+' '.join(d['terms'])+' '+d['text'])]
+ return {'documents':[dict(d,source_info=kb['sources'].get(d['source'],{})) for d in found],'total':len(docs)}
+
+@app.get('/api/status')
+def status():
+ try:
+  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs)}
+ except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs)}

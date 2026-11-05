@@ -1,6 +1,6 @@
 {
-  "version": "2.2",
-  "reviewed_at": "2026-10-16",
+  "version": "3.0",
+  "reviewed_at": "2026-11-05",
   "documents": [
     {
       "id": "bloodpressure",
@@ -295,7 +295,7 @@
         "đường trung bình",
         "ba tháng"
       ],
-      "text": "HbA1c phản ánh mức đường huyết trung bình trong khoảng ba tháng. Ngưỡng xét nghiệm chẩn đoán không giống mục tiêu điều trị đã cá nhân hóa. Kết quả có thể bị ảnh hưởng bởi thai kỳ và một số bệnh máu. Nếu có con số cụ thể, bạn có thể nhập kèm dấu %. ",
+      "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
       "source": "diagnosis",
       "triples": [
         [
@@ -323,7 +323,7 @@
         "chẩn đoán",
         "có bệnh"
       ],
-      "text": "Bạn cho biết giá trị, đơn vị mg/dL hoặc mmol/L và thời điểm đo. Đo tại nhà, đo lúc đói, sau ăn và nghiệm pháp glucose có cách diễn giải khác nhau. Chẩn đoán thường cần xét nghiệm xác nhận.",
+      "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
       "source": "diagnosis",
       "triples": [
         [

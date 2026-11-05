@@ -1,0 +1,131 @@
+{
+  "passed": 20,
+  "cases": [
+    {
+      "case": "greeting",
+      "passed": true,
+      "answer": "Chào bạn. Tôi có thể cùng bạn tìm hiểu tiểu đường: giải thích HbA1c, cách ăn uống, theo dõi đường huyết và đọc ý nghĩa kết quả nghiên cứu. Bạn đang muốn hỏi về chỉ số hay sinh hoạt hằng ngày?",
+      "sources": []
+    },
+    {
+      "case": "a1c",
+      "passed": true,
+      "answer": "HbA1c 6.2% trong khoảng sàng lọc tiền đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "sources": [
+        "a1c"
+      ]
+    },
+    {
+      "case": "followup",
+      "passed": true,
+      "answer": "HbA1c 7.1% đạt ngưỡng xét nghiệm dùng để chẩn đoán đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "sources": [
+        "a1c"
+      ]
+    },
+    {
+      "case": "continued_context",
+      "passed": true,
+      "answer": "HbA1c 8% đạt ngưỡng xét nghiệm dùng để chẩn đoán đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
+      "sources": [
+        "a1c"
+      ]
+    },
+    {
+      "case": "no_unit",
+      "passed": true,
+      "answer": "Bạn xác nhận HbA1c này có đơn vị % không? Nếu phiếu ghi mmol/mol, cần diễn giải theo đơn vị đó; tôi chưa áp ngưỡng khi thiếu đơn vị.",
+      "sources": [
+        "a1c"
+      ]
+    },
+    {
+      "case": "glucose_unit",
+      "passed": true,
+      "answer": "Bạn bổ sung đơn vị mg/dL hoặc mmol/L và thời điểm đo nhé. Một con số chưa đủ để diễn giải đường huyết.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "sources": [
+        "testing"
+      ]
+    },
+    {
+      "case": "fasting",
+      "passed": true,
+      "answer": "Bạn ghi số đo lúc đói tương đương khoảng 126 mg/dL, từ 126 mg/dL trở lên. Bảng sàng lọc chỉ áp dụng cho xét nghiệm huyết tương sau nhịn ăn ít nhất 8 giờ. Máy đo tại nhà không tự xác lập chẩn đoán; hãy xác nhận loại xét nghiệm với cơ sở y tế.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "sources": [
+        "testing"
+      ]
+    },
+    {
+      "case": "after_meal",
+      "passed": true,
+      "answer": "Bạn đo lúc đói, sau ăn hay ngẫu nhiên, và đo tại nhà hay xét nghiệm ở cơ sở y tế? Tôi chưa áp ngưỡng lúc đói cho số đo thiếu bối cảnh.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận. [testing]",
+      "sources": [
+        "testing"
+      ]
+    },
+    {
+      "case": "hypoglycemia",
+      "passed": true,
+      "answer": "Số đo bạn nhập tương đương khoảng 55 mg/dL, dưới mức 70 mg/dL mà CDC coi là thấp. Nếu đây là số đo hiện tại, cần xử trí ngay; nếu khó nuốt, lú lẫn hoặc bất tỉnh, nhờ người bên cạnh gọi cấp cứu.\n\nDưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "sources": [
+        "low",
+        "urgent"
+      ]
+    },
+    {
+      "case": "emergency",
+      "passed": true,
+      "answer": "Tình huống bạn mô tả có thể cần trợ giúp y tế khẩn cấp. Đừng chờ câu trả lời tiếp theo trên chat.\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "sources": [
+        "urgent"
+      ]
+    },
+    {
+      "case": "education",
+      "passed": true,
+      "answer": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp. [low]\n\nNếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng. [urgent]",
+      "sources": [
+        "low",
+        "urgent"
+      ]
+    },
+    {
+      "case": "dose",
+      "passed": true,
+      "answer": "Tôi có thể giải thích nguyên tắc dùng thuốc, nhưng không chọn thuốc hoặc tính liều cho bạn.\n\nLoại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc. [medicine]",
+      "sources": [
+        "medicine"
+      ]
+    },
+    {
+      "case": "pregnancy",
+      "passed": true,
+      "answer": "Trẻ em và thai kỳ cần cách đánh giá riêng. Tôi không áp bảng ngưỡng người lớn cho trường hợp này; hãy trao đổi với cơ sở đang theo dõi.\n\nTuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng. [demographics]\n\nGhi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu. [monitor]",
+      "sources": [
+        "demographics",
+        "monitor"
+      ]
+    },
+    {
+      "case": "food",
+      "passed": true,
+      "answer": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân. [plate]\n\nKhông cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn. [carb]",
+      "sources": [
+        "plate",
+        "carb"
+      ]
+    },
+    {
+      "case": "unknown",
+      "passed": true,
+      "answer": "Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.",
+      "sources": []
+    },
+    {
+      "case": "context_isolation",
+      "passed": true,
+      "answer": "Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.",
+      "sources": []
+    }
+  ]
+}

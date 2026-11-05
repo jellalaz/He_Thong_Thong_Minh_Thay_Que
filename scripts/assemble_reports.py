@@ -52,7 +52,7 @@ for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINA
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}
 '''
  appendix=r'\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}'+'\n'
- for f in ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/main.py','scripts/test_scenarios.py']:
+ for f in ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','scripts/test_scenarios.py','scripts/test_chatbot.py']:
   appendix+=r'\section{'+f.replace('_',r'\_')+'}\n'+r'\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../'+f+'}\n'
  (p/(fn+'.tex')).write_text(pre+cover+content+appendix+r'\end{document}',encoding='utf-8')
 print('Report sources assembled')

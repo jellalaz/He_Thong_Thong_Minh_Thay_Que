@@ -33,7 +33,7 @@ Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu 
 
 Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
 \section{Luồng người dùng}
-Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
+Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 12 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
 \input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}
 \section{Phân loại}
 Dữ liệu tổng hợp gồm 50.000 dòng. Tám biến đầu vào là tuổi, BMI, HbA1c, đường huyết lúc đói, glucose, huyết áp tâm thu, HDL và LDL. Các biến chứa điểm nguy cơ, khuyến nghị sức khỏe và yêu cầu gặp bác sĩ không được đưa vào mô hình. Phép chia phân tầng với seed 254 giữ 40.000 dòng huấn luyện và 10.000 dòng kiểm tra.
@@ -69,7 +69,7 @@ MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
 RETURN a,r,b LIMIT 100;
 \end{verbatim}
 \section{Hạn chế và hướng hoàn thiện}
-Bản hiện tại chưa có bộ nhớ hội thoại, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Các phần này không được nhận là đã hoàn thành. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
+Bản hiện tại có ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, chưa dùng LLM để diễn đạt và chưa có hội đồng tranh biện độc lập. Các phần này không được nhận là đã hoàn thành. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
 
 Hướng ưu tiên là mở rộng giao thức agent và bộ nhớ hội thoại, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.
 \input{web_walkthrough.tex}
