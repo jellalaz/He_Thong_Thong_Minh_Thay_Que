@@ -19,9 +19,11 @@ def load():
  _model=PeftModel.from_pretrained(m,adapter,local_files_only=True).to('cuda' if torch.cuda.is_available() else 'cpu').eval()
  torch.set_num_threads(6)
 def respond(payload,bus):
+ if payload['plan']['topic']=='social':
+  return {'answer':payload['fallback'],'mode':'rules','reason':'Câu giao tiếp dùng nhánh đã kiểm tra; checkpoint hội thoại thử nghiệm không được triển khai.'}
  if payload['plan']['tone']=='urgent' or payload['plan']['topic'] in GUARDED or re.search(r'\d',payload['question']):
   return {'answer':payload['fallback'],'mode':'rules','reason':'Thông số, thuốc và tình huống khẩn cấp được đối chiếu bằng luật có nguồn.'}
- if not payload['documents']:return {'answer':payload['fallback'],'mode':'rules','reason':'Thiếu tài liệu; không sinh câu trả lời y tế.'}
+ if not payload['documents'] and payload['plan']['topic']!='social':return {'answer':payload['fallback'],'mode':'rules','reason':'Thiếu tài liệu; không sinh câu trả lời y tế.'}
  with _lock:
   load();import torch
   from app.local_prompt import SYSTEM
@@ -40,6 +42,6 @@ def verify(payload,bus):
  unknown=set(re.findall(r'\[([a-z0-9_]+)\]',draft))-ids
  numbers=set(re.findall(r'\d+(?:[.,]\d+)?',draft))-set(re.findall(r'\d+(?:[.,]\d+)?',context))
  unsafe=any(x in draft.lower() for x in ['chắc chắn mắc','chẩn đoán của tôi','tăng liều','ngừng thuốc ngay'])
- if not draft or unknown or numbers or unsafe or len(draft)<30:
+ if not draft or unknown or numbers or unsafe or len(draft)<30 or (ids and not set(re.findall(r'\[([a-z0-9_]+)\]',draft))):
   return {'answer':payload['fallback'],'mode':'rules','reason':'Bản sinh không vượt kiểm tra nhất quán; dùng nội dung KB.'}
  return {'answer':draft,'mode':'qwen-lora','reason':'Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.'}

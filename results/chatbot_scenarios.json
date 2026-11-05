@@ -1,5 +1,5 @@
 {
-  "passed": 35,
+  "passed": 37,
   "cases": [
     {
       "case": "blood_pressure_single",
@@ -221,6 +221,18 @@
         "plate",
         "carb"
       ]
+    },
+    {
+      "case": "self_identity",
+      "passed": true,
+      "answer": "Mình là GlucoGuide, trợ lý tìm hiểu về tiểu đường. Mình có thể giải thích chỉ số xét nghiệm, gợi ý cách theo dõi và tìm thông tin có nguồn trong kho tài liệu. Bạn muốn bắt đầu từ câu hỏi nào?",
+      "sources": []
+    },
+    {
+      "case": "self_intro",
+      "passed": true,
+      "answer": "Mình là GlucoGuide, trợ lý tìm hiểu về tiểu đường. Mình có thể giải thích chỉ số xét nghiệm, gợi ý cách theo dõi và tìm thông tin có nguồn trong kho tài liệu. Bạn muốn bắt đầu từ câu hỏi nào?",
+      "sources": []
     },
     {
       "case": "social_negative",

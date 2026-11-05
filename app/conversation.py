@@ -113,6 +113,8 @@ def _route(question,history):
 def contextual_route(question, history):
  """Resolve explicitly supplied follow-up fields, without silently inventing values."""
  q=norm(question)
+ if re.fullmatch(r'(ban la ai|ban ten gi|ban lam gi|ban co the lam gi|gioi thieu( di| ban than)?|tu gioi thieu( di)?|noi ve ban( di)?)\s*[?.!]*',q.strip()):
+  return {'topic':'social','ids':[],'query':question,'context_used':False,'intro':'','override':'Mình là GlucoGuide, trợ lý tìm hiểu về tiểu đường. Mình có thể giải thích chỉ số xét nghiệm, gợi ý cách theo dõi và tìm thông tin có nguồn trong kho tài liệu. Bạn muốn bắt đầu từ câu hỏi nào?','tone':'normal','suggestions':['Tiểu đường là gì?','HbA1c là gì?']}
  if re.fullmatch(r'(toi |mình )?(ghet|chan) ban[.!? ]*',q) or q.strip(' .!?') in ['do ngoc','ban tra loi sai','ban noi sai']:
   return {'topic':'social','ids':[],'query':question,'context_used':False,'intro':'','override':'Mình xin lỗi vì câu trả lời vừa rồi không đúng ý bạn. Bạn nói giúp mình chỗ nào sai hoặc muốn hỏi lại phần nào; mình sẽ trả lời sát câu đó hơn.','tone':'normal','suggestions':['Giải thích lại câu vừa rồi','Tôi cần đo những chỉ số nào?']}
  if q.strip(' .!?') in ['toi yeu ban','yeu ban','cam on ban','ban de thuong qua']:

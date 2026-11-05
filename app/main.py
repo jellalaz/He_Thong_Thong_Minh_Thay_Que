@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
-from app import local_llm
+from app import local_llm, feedback
 from app.settings import database, browser_url
 from typing import Literal
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -109,6 +109,10 @@ def chat(req:Request):
   answer=verdict['scope']+'\n\n'+answer
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
  response_mode="kb-rules"
+ feedback_id=None;presentation=0
+ if local_llm.enabled() and plan['topic'] in {'meal','fruit','activity','monitor','diabetes','symptoms','knowledge'} and selected and not re.search(r'\d',q):
+  feedback_id,presentation=feedback.choose(plan['topic'])
+  msg('Chính sách phản hồi','Điều phối','INFORM',{'strategy':('trực tiếp','từng bước')[presentation]})
  if local_llm.enabled():
   bus.register(Agent('Kiểm chứng phản hồi',local_llm.verify))
   bus.register(Agent('Ngôn ngữ cục bộ',local_llm.respond))
@@ -118,8 +122,10 @@ def chat(req:Request):
    msg('Kiểm chứng phản hồi','Điều phối','INFORM',{'mode':generated['mode'],'reason':generated['reason']})
   except Exception as exc:
    msg('Ngôn ngữ cục bộ','Điều phối','FAILURE',type(exc).__name__+'; sử dụng phản hồi KB')
+ if feedback_id and presentation==1 and plan['tone']!='urgent' and '?' not in answer:
+  answer+='\n\nBạn muốn mình hướng dẫn từng bước theo trường hợp của bạn không? Hãy nói rõ bữa ăn, chỉ số hoặc việc bạn đang cần làm.'
  msg('Phản hồi','Người dùng','INFORM','Hoàn thành')
- return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'response_mode':response_mode,'generator':('Qwen3 LoRA cục bộ + KB' if response_mode=='qwen-lora' else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
+ return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'feedback_supported':bool(feedback_id),'response_id':feedback_id,'response_mode':response_mode,'generator':('Qwen3 LoRA cục bộ + KB' if response_mode=='qwen-lora' else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
 
 @app.get('/api/knowledge')
@@ -133,3 +139,13 @@ def status():
  try:
   g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
  except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
+
+class FeedbackRequest(BaseModel):
+ response_id:str=Field(min_length=10,max_length=80)
+ helpful:bool
+@app.post('/api/feedback')
+def rate(req:FeedbackRequest):
+ if not local_llm.enabled():raise HTTPException(404,'Phản hồi chỉ có ở bản local.')
+ result=feedback.record(req.response_id,req.helpful)
+ if result is None:raise HTTPException(409,'Lượt này đã được đánh giá hoặc đã hết hạn.')
+ return result

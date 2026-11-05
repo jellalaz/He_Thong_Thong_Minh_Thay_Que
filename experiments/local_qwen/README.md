@@ -18,3 +18,9 @@ The base model stays in `.local-models/Qwen3-1.7B`. The training checkpoint is s
 Checkpoints are chosen only by validation loss. `results/local_qwen` retains baseline/adapted answers, timings, learning curves and run metadata. The benchmark uses retrieved gold context to isolate generation; application tests separately exercise retrieval and routing. Lower loss alone does not prove safer medical answers. Numeric, medication and emergency requests remain handled by sourced deterministic rules.
 
 Model: https://huggingface.co/Qwen/Qwen3-1.7B (Apache-2.0).
+
+## Second conversation experiment
+
+`conversation_round2.json` contains 20 new train, 6 validation, and 8 held-out social questions. `train_round2.py` starts from the first adapter and mixes 26/7/8 old train/validation/test examples. Results are in `results/local_qwen_round2`. The second checkpoint is intentionally **not deployed**: lower validation loss did not eliminate prompt copying or inappropriate social answers. The product retains the first adapter for grounded knowledge and routes social turns to checked responses.
+
+On the local demo, helpful/not helpful feedback updates a separate two-action Q table for presentation style. This does not update Qwen weights or clinical rules. The file `.local-training/feedback_q.json` holds Q values and a rating count, not transcripts.

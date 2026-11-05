@@ -1,0 +1,23 @@
+{
+  "model": "Qwen/Qwen3-1.7B",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "train_examples": 46,
+  "validation_examples": 13,
+  "test_examples": 16,
+  "epochs": 3,
+  "batch_size": 1,
+  "gradient_accumulation": 4,
+  "max_tokens": 768,
+  "learning_rate": 3e-05,
+  "lora_rank": 8,
+  "trainable_parameters": 1605632,
+  "total_parameters": 1722180608,
+  "baseline_validation_loss": 0.5872722583839014,
+  "best_validation_loss": 0.5201072654593151,
+  "best_epoch": 3,
+  "training_seconds": 70.27274340000076,
+  "peak_gpu_gib": 3.986388683319092,
+  "dataset_sha256": "abec9800457c1a3c914faff36ca2e3d8efedfb3cad5708cb1b5f3187d2117d1a",
+  "conversation_sha256": "cd838d53a34377ba9ab99bc9cf97d1d2da4aa6853cf10fb26a200bf25b9a59d7",
+  "replay_sha256": "2a092745b8315395ce0dcbe12d418cd21ed452212fed002d2150ee7de8f088e7"
+}

@@ -17,3 +17,5 @@ Hai báo cáo LaTeX độc lập nằm trong `reports/`: tiểu luận final và
 Qwen hỗ trợ diễn đạt kiến thức có tài liệu. Thông số, thuốc và tình huống khẩn cấp đi qua luật; sản phẩm phục vụ học tập và hỗ trợ tra cứu, không xác nhận chẩn đoán hoặc kê đơn. Hai tập kiểm tra hội thoại nội bộ không phải dữ liệu lâm sàng độc lập.
 
 Không đưa `.env`, thông tin đăng nhập, mô hình nền hoặc cache lên Git. Neo4j local dùng cấu hình `.env`; thông tin mẫu ở `.env.example`.
+
+Bản local có nút phản hồi dưới câu trả lời kiến thức. Bảng Q học cách trình bày từ phản hồi; checkpoint Qwen của lượt thử hội thoại thứ hai chưa được triển khai vì còn lỗi câu trả lời.
