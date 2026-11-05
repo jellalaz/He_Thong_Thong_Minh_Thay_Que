@@ -58,3 +58,10 @@ Câu trả lời tổng hợp trích đoạn xác định, không gọi LLM. Ch�
 chưa có hội đồng tranh biện, chưa huấn luyện GNN. Dữ liệu phân loại là tổng hợp.
 Không dùng đầu ra demo làm chẩn đoán hoặc quyết định điều trị.
 Không công khai cổng Neo4j, .env hoặc dữ liệu người dùng.
+
+CẬP NHẬT ĐỐI CHIẾU THAM KHẢO CT_03
+- Nguồn dữ liệu và xử lý: reports/data_methodology.tex; kiểm kê: results/data_audit.json.
+- Trang web: mục 04 · Dữ liệu & nguồn, có URL gốc và danh mục nguồn KB.
+- Tái kiểm kê: python scripts/audit_data.py (cần ZIP dữ liệu gốc ở data/raw).
+- Chỉ số dòng chia tập: results/classification_split.csv và regression_split.csv.
+- Báo cáo bổ sung bản đồ dữ liệu kế thừa, danh mục hình/bảng, thuyết minh từng màn hình.

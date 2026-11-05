@@ -1,0 +1,200 @@
+{
+  "classification": {
+    "name": "Diabetes Risk Prediction Dataset (50K patients)",
+    "publisher": "Mobeen Fatimah / Kaggle",
+    "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients",
+    "file": "data/raw/diabetes.zip → diabetes_risk_prediction_dataset.csv",
+    "rows": 50000,
+    "columns": 41,
+    "used_features": 8,
+    "target": "Diabetes_Risk",
+    "labels": {
+      "High": 36593,
+      "Moderate": 12937,
+      "Low": 470
+    },
+    "train": 40000,
+    "test": 10000,
+    "missing_target": 0,
+    "duplicate_rows": 0,
+    "fields": [
+      {
+        "name": "Age",
+        "missing": 497,
+        "min": 18.0,
+        "median": 54.0,
+        "max": 90.0
+      },
+      {
+        "name": "BMI",
+        "missing": 0,
+        "min": 11.9,
+        "median": 30.0,
+        "max": 61.7
+      },
+      {
+        "name": "HbA1c",
+        "missing": 1974,
+        "min": 4.5,
+        "median": 8.5,
+        "max": 12.5
+      },
+      {
+        "name": "Fasting_Blood_Sugar",
+        "missing": 0,
+        "min": 65.0,
+        "median": 142.6,
+        "max": 220.0
+      },
+      {
+        "name": "Blood_Glucose",
+        "missing": 959,
+        "min": 70.0,
+        "median": 159.9,
+        "max": 250.0
+      },
+      {
+        "name": "Blood_Pressure_Systolic",
+        "missing": 0,
+        "min": 90.0,
+        "median": 140.0,
+        "max": 190.0
+      },
+      {
+        "name": "HDL",
+        "missing": 1000,
+        "min": 25.0,
+        "median": 57.3,
+        "max": 90.0
+      },
+      {
+        "name": "LDL",
+        "missing": 1000,
+        "min": 50.0,
+        "median": 135.1,
+        "max": 220.0
+      }
+    ],
+    "sha256": "88d0f29bae180d6a31df2103527d192aec2f97d9a1252b38fe9ee0ad20e829aa",
+    "scope": "Dữ liệu tổng hợp; học nhãn High / Moderate / Low, không chẩn đoán cá nhân."
+  },
+  "regression": {
+    "name": "Diabetes regression / scikit-learn",
+    "publisher": "Bộ dữ liệu nghiên cứu được phân phối cùng scikit-learn",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+    "file": "sklearn.datasets.load_diabetes(scaled=False)",
+    "rows": 442,
+    "used_features": 10,
+    "train": 353,
+    "test": 89,
+    "target": "Điểm tiến triển sau một năm",
+    "target_min": 25.0,
+    "target_max": 346.0,
+    "missing_values": 0,
+    "scope": "442 người đã mắc bệnh; điểm nghiên cứu không phải glucose, HbA1c hoặc % nguy cơ."
+  },
+  "knowledge": {
+    "file": "data/knowledge.json",
+    "documents": 21,
+    "used_sources": 9,
+    "source_registry_entries": 13,
+    "triples": 32,
+    "sources": [
+      {
+        "id": "diagnosis",
+        "label": "NIDDK · Xét nghiệm & chẩn đoán",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+        "documents": [
+          "a1c",
+          "testing"
+        ],
+        "count": 2
+      },
+      {
+        "id": "low",
+        "label": "CDC · Xử trí hạ đường huyết",
+        "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+        "documents": [
+          "low",
+          "urgent"
+        ],
+        "count": 2
+      },
+      {
+        "id": "meal",
+        "label": "CDC · Lập kế hoạch bữa ăn",
+        "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+        "documents": [
+          "plate",
+          "carb",
+          "fruit"
+        ],
+        "count": 3
+      },
+      {
+        "id": "who",
+        "label": "WHO · Diabetes",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+        "documents": [
+          "activity",
+          "symptoms"
+        ],
+        "count": 2
+      },
+      {
+        "id": "care",
+        "label": "NIDDK · Quản lý bệnh tiểu đường",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+        "documents": [
+          "medicine",
+          "monitor"
+        ],
+        "count": 2
+      },
+      {
+        "id": "dataset",
+        "label": "scikit-learn · Dữ liệu diabetes",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+        "documents": [
+          "meanpressure",
+          "triglyceride",
+          "demographics",
+          "model"
+        ],
+        "count": 4
+      },
+      {
+        "id": "pressure",
+        "label": "AHA · Hiểu số đo huyết áp",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+        "documents": [
+          "bloodpressure"
+        ],
+        "count": 1
+      },
+      {
+        "id": "lipids",
+        "label": "MedlinePlus · Các chỉ số cholesterol",
+        "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+        "documents": [
+          "lipids",
+          "hdl",
+          "ldl",
+          "ratio"
+        ],
+        "count": 4
+      },
+      {
+        "id": "classification_data",
+        "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
+        "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients",
+        "documents": [
+          "classification_scope"
+        ],
+        "count": 1
+      }
+    ],
+    "scope": "Các đoạn biên soạn kế thừa TL02 và mô tả mô hình bổ sung; chưa có bộ nạp PDF/web tự động."
+  },
+  "seed": 254
+}

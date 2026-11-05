@@ -1,0 +1,42 @@
+\chapter{Nguồn dữ liệu và quy trình chuẩn bị}
+\section{Phân biệt dữ liệu mô hình với tài liệu tri thức}
+Project sử dụng hai bộ dữ liệu học có giám sát và một kho tài liệu. Bộ phân loại cung cấp nhãn High, Moderate, Low; bộ hồi quy cung cấp một điểm tiến triển sau một năm; KB cung cấp văn bản giải thích và nguồn. Ba thành phần này có mục tiêu khác nhau. Dữ liệu mô hình không tự trở thành hướng dẫn y khoa, còn tài liệu y khoa không được coi là nhãn huấn luyện cho hai MLP.
+
+\begin{longtable}{p{3cm}p{4cm}p{7cm}}\caption{Danh mục dữ liệu thực sự dùng trong GlucoGuide.}\label{tab:datasets}\\\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endfirsthead\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endhead
+Phân loại & 50.000 dòng, 41 cột gốc; dùng 8 biến & Kaggle, Diabetes Risk Prediction Dataset (50K patients), tài khoản mobeenfatimah. ZIP lưu tại \path{data/raw/diabetes.zip}; dùng trong \path{scripts/train_models.py}.\\
+Hồi quy & 442 dòng, 10 biến và target số & Bộ diabetes đi kèm scikit-learn, đọc bằng \texttt{load\_diabetes(scaled=False)}. Không dùng ZIP của bài toán phân loại.\\
+Tri thức & 21 đoạn; 9 nguồn đang được tham chiếu & \path{data/knowledge.json}; 20 đoạn kế thừa kho tiểu luận 02 và một đoạn mô tả phạm vi phân loại bổ sung. 32 bộ ba được nạp lên Neo4j.\\\bottomrule\end{longtable}
+\section{Nguồn và phiên bản bộ phân loại}
+Trang công bố bộ dữ liệu: \url{https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients}. Tệp nằm trong ZIP có tên \path{diabetes_risk_prediction_dataset.csv}. Báo cáo sử dụng đúng snapshot đã lưu trên máy, không tự thay bằng bộ 100.000 bản ghi của bài tham khảo. Tệp kiểm kê \path{results/data_audit.json} lưu SHA-256 của ZIP để phân biệt các phiên bản tải về.
+
+Đơn vị quan sát là một bản ghi tổng hợp, không phải hồ sơ lâm sàng được project thu thập. Cột mục tiêu là \texttt{Diabetes\_Risk}. Kiểm kê trực tiếp thấy 36.593 nhãn High, 12.937 Moderate và 470 Low, tương ứng 73,186\%, 25,874\% và 0,94\%. Một mô hình chỉ đoán High sẽ có accuracy 73,186\% trên toàn bộ snapshot; vì vậy phải đọc accuracy cùng macro-F1 và recall từng lớp.
+
+Không có nhãn thiếu và không có dòng trùng hoàn toàn trên 41 cột. Kết luận về dòng trùng không chứng minh các hồ sơ là những cá nhân độc lập, nhất là khi bảng có cột định danh. Pipeline hiện giữ nguyên 50.000 dòng, không có bước loại trùng hay loại ngoại lệ. Những đặc điểm này được công bố để người đọc biết chính xác dữ liệu nào đã đi vào phép chia.
+\section{Từ điển đầu vào và giá trị thiếu}
+\input{data_fields.tex}
+Các cột được chọn lần lượt là tuổi, BMI, HbA1c, đường huyết lúc đói, glucose, huyết áp tâm thu, HDL và LDL. Min, trung vị, max ở Bảng~\ref{tab:data-fields} là thống kê mô tả của snapshot, không phải khoảng bình thường hay ngưỡng chẩn đoán. Trên giao diện, nút điền mẫu lấy đúng giá trị của bộ dữ liệu. Người dùng không nên tự thay một chỉ số ở đơn vị khác rồi coi kết quả tương đương.
+
+Những trường \texttt{Patient\_ID}, \texttt{Diabetes\_Risk\_Score}, \texttt{AI\_Health\_Recommendation} và \texttt{Doctor\_Consultation\_Needed} không được chọn làm đặc trưng. Đặc biệt, điểm nguy cơ và khuyến nghị có thể gắn trực tiếp với quy trình tạo nhãn; đưa chúng vào dễ khiến bài toán trở thành khôi phục thông tin đã gần như có sẵn. Việc bỏ các trường này giảm một nguy cơ rò rỉ, nhưng không chứng minh mọi phụ thuộc trong dữ liệu tổng hợp đã được loại bỏ.
+
+Trung vị dùng để điền thiếu được học trên tập train của pipeline, không dùng trung vị của toàn bộ bảng ở Bảng~\ref{tab:data-fields}. Sau đó StandardScaler học trung bình và độ lệch chuẩn trên train. Pipeline chứa cả imputer, scaler và mô hình được lưu bằng joblib, nhờ đó web dùng cùng phép biến đổi với quá trình huấn luyện. Khi nhập từ web, các trường hiện vẫn bắt buộc; imputer chủ yếu phục vụ giá trị thiếu trong dữ liệu huấn luyện và kiểm tra.
+\section{Phép chia và dấu vết tái lập}
+Phân loại chia 80/20, phân tầng theo nhãn, seed 254: 40.000 dòng train và 10.000 dòng test. Chỉ số dòng bắt đầu từ 0 và nhãn train/test được lưu tại \path{results/classification_split.csv}. Tập test có 7.319 High, 2.587 Moderate và 94 Low. Kiểm kê dữ liệu không huấn luyện lại mô hình và không thay kết quả đã báo cáo.
+
+MLP bật early stopping với phần validation nội bộ của thư viện. Validation này nằm bên trong train ngoài, nhưng imputer và scaler đã fit trước khi MLP tách validation. Đây là điểm cần cải thiện nếu thiết kế một thí nghiệm chọn mô hình nghiêm ngặt. Test ngoài không được dùng để fit pipeline. Báo cáo không nhận rằng đã có ba tập train/validation/test tách trước toàn bộ tiền xử lý.
+\section{Nguồn bộ hồi quy và ý nghĩa mục tiêu}
+Nguồn phân phối: \url{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html}. Nguồn gốc được thư viện dẫn tới nghiên cứu Least Angle Regression và trang dữ liệu thống kê: \url{https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html}. Bộ dữ liệu gồm 442 người đã mắc bệnh với mục tiêu là một đại lượng tiến triển sau một năm; mô tả của thư viện không cho phép đổi mục tiêu đó thành đường huyết hoặc xác suất mắc bệnh\cite{diabetes}.
+
+Project gọi \texttt{scaled=False}, sau đó chuẩn hóa bằng scaler của riêng train. Mười cột gồm age, sex, bmi, bp và s1 đến s6. age là tuổi, bmi là chỉ số khối cơ thể, bp là huyết áp trung bình. Theo metadata, s1 là cholesterol toàn phần, s2 LDL, s3 HDL, s4 tỷ lệ cholesterol/HDL, s5 được mô tả thận trọng là có thể là log triglyceride, s6 là chỉ số đường huyết. sex được giữ nguyên mã nghiên cứu; không dùng mã này để tự chọn ngưỡng y khoa.
+
+Bộ hồi quy không có giá trị thiếu trong ma trận đặc trưng. Phép chia ngẫu nhiên seed 254 giữ 353 mẫu train và 89 mẫu test, ghi tại \path{results/regression_split.csv}. Hai mô hình cùng dùng phép chia này. Chỉ số dòng trong \path{results/regression_predictions.csv} cho phép truy lại mục tiêu thật và dự đoán của từng mẫu test.
+\section{Nguồn KB và nguồn đang thực sự được dùng}
+\input{kb_sources.tex}
+Danh mục sources trong JSON có 13 mục, nhưng chỉ 9 mục đang được tài liệu tham chiếu; không được ghi rằng cả 13 nguồn đều đóng góp vào phản hồi hiện tại. Mỗi đoạn có id, title, terms, text, source và triples. Các đoạn này là bản biên soạn ngắn kế thừa và mô tả kỹ thuật của project, không phải toàn văn sách hoặc bản tải tự động từ website.
+
+Luồng Web/sách đến KB trong sơ đồ được hiện thực ở mức biên soạn snapshot có nguồn. Project chưa có nút upload PDF, trình thu thập web, cơ chế cập nhật định kỳ hay bộ chia chương sách tự động. Các PDF tham khảo của sinh viên chỉ phục vụ bố cục và phân tích thiết kế; chúng không được nạp làm nguồn tư vấn y khoa. Khi thay KB cần rà nội dung, cập nhật JSON, chạy lại script nạp Neo4j và khởi động lại backend để xây lại ma trận TF-IDF.
+
+Hai mươi đoạn kế thừa chứa 32 bộ ba. Đoạn \texttt{classification\_scope} bổ sung giải thích nhãn tổng hợp và không có bộ ba, do đó số đoạn tăng lên 21 nhưng số cạnh vẫn là 32. Theo quy tắc MERGE hiện tại, các cạnh tạo 60 nút Concept. Các số đếm JSON là kiểm kê dữ liệu nguồn; số nút/cạnh trên web được lấy trực tiếp từ cơ sở dữ liệu để xác nhận nạp thành công.
+\section{Từ nguồn tới kết quả hiển thị}
+Đường đi phân loại là ZIP/CSV, chọn cột, chia dữ liệu, fit pipeline, lưu checkpoint, API và giao diện. Đường đi hồi quy là hàm tải của thư viện, chia dữ liệu, fit pipeline, checkpoint và API. Đường đi tri thức là đoạn văn có nguồn, chỉ mục TF-IDF và bộ ba Neo4j, lựa chọn bằng chứng rồi tổng hợp trích đoạn.
+
+Các tệp \path{results/model_metrics.json}, \path{results/classification_predictions.csv}, \path{results/regression_predictions.csv} và \path{results/api_scenarios.json} lần lượt lưu số liệu tổng hợp, dự đoán chi tiết và kiểm thử chức năng. Script \path{scripts/audit_data.py} sinh bảng dữ liệu của báo cáo và bản danh mục dùng trên web từ cùng một snapshot. Tách thống kê dữ liệu, metric mô hình và kiểm thử API giúp tránh coi việc ứng dụng chạy thành công là bằng chứng mô hình dự đoán tốt.

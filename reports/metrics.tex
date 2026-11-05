@@ -1,6 +1,6 @@
-\begin{center}\begin{tabular}{p{4cm}rrr}\toprule Mô hình & Accuracy/MAE & F1/R2 & Mẫu test\\\midrule
-LogisticRegression & 0.6965 & 0.5005 & 10000\\
-MLPClassifier & 0.8180 & 0.5441 & 10000\\
-Ridge & 44.0555 & 0.4791 & 89\\
-MLPRegressor & 44.3225 & 0.4758 & 89\\
-\bottomrule\end{tabular}\end{center}
+\begin{table}[htbp]\centering\caption{Phân loại trên 10.000 mẫu kiểm tra.}\begin{tabular}{lrr}\toprule Mô hình & Accuracy & Macro-F1\\\midrule
+Logistic Regression & 0.6965 & 0.5005\\
+MLP & 0.8180 & 0.5441\\\bottomrule\end{tabular}\end{table}
+\begin{table}[htbp]\centering\caption{Hồi quy trên 89 mẫu kiểm tra.}\begin{tabular}{lrr}\toprule Mô hình & MAE & $R^2$\\\midrule
+Ridge & 44.0555 & 0.4791\\
+MLP & 44.3225 & 0.4758\\\bottomrule\end{tabular}\end{table}
