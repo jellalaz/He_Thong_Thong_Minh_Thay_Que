@@ -44,7 +44,9 @@ bib=r'''\begin{thebibliography}{99}
 \bibitem{diabetes} Scikit-learn, tài liệu load\_diabetes. \url{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html}.
 \bibitem{risk} Mobeen Fatimah, Diabetes Risk Prediction Dataset 50K Patients. \url{https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients}.
 \bibitem{niddk} NIDDK, Diabetes Tests and Diagnosis. \url{https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis}.
-\bibitem{kb} Danh mục nguồn tri thức của project được lưu tại data/knowledge.json; mỗi đoạn văn có mã tài liệu, mã nguồn và các bộ ba có căn cứ.
+\bibitem{pdfsource} NIDDK, Guiding Principles for the Care of People with or at Risk for Diabetes, bản PDF lưu trữ; các trang trích dùng 27, 28, 31, 32 và 34. \url{https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf}.
+\bibitem{vinmec} Vinmec, Chế độ dinh dưỡng cho người tiểu đường. \url{https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi}.
+\bibitem{kb} Danh mục nguồn tri thức của project được lưu trong ba tệp KB tại data/; mỗi đoạn văn có mã tài liệu, mã nguồn và các bộ ba có căn cứ.
 \end{thebibliography}
 '''
 bib = r'\begingroup\small\setstretch{1.1}' + '\n' + bib.replace(r' \url{',r'\par\noindent\url{') + '\n' + r'\endgroup'
@@ -60,7 +62,7 @@ for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINA
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}
 '''
  appendix=r'\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}'+'\n'
- for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','app/safety.py','app/retrieval.py','app/graph_knowledge.py','scripts/query_knowledge_export.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
+ for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/build_sourced_kb.py','app/model_support.py','scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','app/safety.py','app/retrieval.py','app/graph_knowledge.py','scripts/query_knowledge_export.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
   appendix+=r'\section{'+f.replace('_',r'\_')+'}\n'+r'\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../'+f+'}\n'
  if 'final' in fn:
   appendix=appendix.replace(r'\input{bibliography.tex}',r'\input{bibliography_thesis.tex}')

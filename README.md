@@ -16,8 +16,8 @@ Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp/Vulkan tại 127.0.0.
 
 - Phân loại: Diabetes Risk Prediction 50K, 40.000 dòng train và 10.000 dòng test; MLP học nhãn tổng hợp High/Moderate/Low.
 - Hồi quy: diabetes/scikit-learn, 353 mẫu train và 89 mẫu test; dự đoán điểm tiến triển nghiên cứu.
-- Tri thức: knowledge.json và knowledge_dialogue.json trong data/, tổng 46 đoạn từ 19 nguồn được tham chiếu.
-- Đồ thị local: 143 khái niệm, 86 quan hệ, phủ đủ 46 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
+- Tri thức: knowledge.json, knowledge_dialogue.json và knowledge_curated.json trong data/, tổng 58 đoạn từ 22 nguồn được tham chiếu.
+- Đồ thị local: 169 khái niệm, 106 quan hệ, phủ đủ 58 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
 - Hội thoại: định tuyến, truy xuất TF-IDF từ/ký tự, Qwen local và kiểm tra phản hồi. Trọng số 4B dùng nguyên bản; các thí nghiệm LoRA 1.7B được giữ riêng.
 - Agent đồ thị: truy vấn Neo4j theo mã tài liệu qua MessageBus, đối chiếu bộ ba/trích đoạn/URL và cấp các quan hệ hợp lệ vào ngữ cảnh Qwen. Không tự sinh Cypher từ câu hỏi và không tự thêm quan hệ vào cơ sở dữ liệu.
 - An toàn: phân loại trước RAG, không chờ đồ thị hoặc mô hình khi cần hành động ưu tiên.
@@ -35,7 +35,7 @@ Từ thư mục project, dùng Python của .venv:
 
 Kiểm thử an toàn chặn DNS/kết nối ngoài; kết nối loopback được giữ cho các thành phần nội bộ. Kết quả nằm trong results/. Script evaluate_chat_local.py cần web cùng mô hình local đang chạy và lưu phản hồi để đọc lại.
 
-Kiểm thử giao diện: `node scripts/test_graph_view.cjs`, cần Playwright và Edge đã có sẵn. Script không tải trình duyệt; chặn trang truy cập máy chủ ngoài và kiểm tra đủ 46 bộ lọc cùng các thao tác trên desktop/điện thoại. Ảnh desktop được lưu trực tiếp tại reports/demo-graph-current.png để báo cáo và kiểm thử dùng chung một bản.
+Kiểm thử giao diện: `node scripts/test_graph_view.cjs`, cần Playwright và Edge đã có sẵn. Script không tải trình duyệt; chặn trang truy cập máy chủ ngoài và kiểm tra đủ 58 bộ lọc cùng các thao tác trên desktop/điện thoại. Ảnh desktop được lưu trực tiếp tại reports/demo-graph-current.png để báo cáo và kiểm thử dùng chung một bản.
 
 ## Bộ nộp KB, KG và RAG
 
@@ -52,7 +52,7 @@ Xuất lại từ Neo4j và web local đang chạy:
 
 Chế độ này trả văn bản và quan hệ từ bản chụp, có nhãn `exported-snapshot`; không chạy Qwen. Hướng dẫn chạy độc lập từ code đóng gói, nạp lại đồ thị và các giới hạn nằm trong [README của bộ nộp](exports/diabetes/README.md). Chỉ mở chỉ mục joblib từ bộ nộp tin cậy.
 
-Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chối: Hit@1 90%, Hit@4 100%, MRR@4 0,95. Đây là tập chức năng tự biên soạn, không phải độ chính xác tư vấn hoặc chẩn đoán. Agent KG hiện lấy cạnh theo tài liệu, chưa có tìm đường nhiều bước hoặc thuật toán cộng đồng Microsoft GraphRAG.
+Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chối: Hit@1 85%, Hit@4 100%, MRR@4 0,917. Đây là tập chức năng tự biên soạn, không phải độ chính xác tư vấn hoặc chẩn đoán. Agent KG hiện lấy cạnh theo tài liệu, chưa có tìm đường nhiều bước hoặc thuật toán cộng đồng Microsoft GraphRAG.
 
 ## Hai báo cáo
 
@@ -72,3 +72,13 @@ app/: backend; web/: giao diện; data/: KB và ví dụ; models/: checkpoint; s
 `scripts/clean_generated.ps1` mặc định chỉ liệt kê tệp có thể dọn; thêm `-Apply` để xóa danh sách đã kiểm tra. Script giữ tài nguyên đang chạy, kiểm tra đường dẫn và ghi lịch sử tại results/cleanup_manifest.json. Không xóa models/, experiments/ hoặc legacy_tieuluan/: các thư mục này chứa checkpoint và bằng chứng thực nghiệm được báo cáo sử dụng.
 
 Bản Vercel/Aura là triển khai trước đây, không chạy Qwen4B. Các số liệu và ảnh của bản hoàn thiện được kiểm tra trên local. Dữ liệu tổng hợp, tập hội thoại tự biên soạn và kiểm thử chức năng chưa thay thế đánh giá chuyên môn y tế.
+
+## Nguồn web/PDF và hỗ trợ sau mô hình
+
+12 đoạn bổ sung được dựng từ web NIDDK, hai bài Vinmec và PDF NIDDK Guiding Principles. PDF nguồn và văn bản web NIDDK lưu tại data/source_documents/; Vinmec chỉ lưu trích dẫn ngắn cùng URL và mã băm. data/source_curation.json ghi nội dung biên soạn và vị trí đối chiếu; chạy `python scripts/build_sourced_kb.py` để kiểm tra và dựng lại hoàn toàn offline. PDF là tài liệu lưu trữ: chỉ dùng các nguyên tắc tự chăm sóc đã chọn, không lấy ngưỡng chẩn đoán hoặc liều điều trị từ đó. Thu thập nguồn ban đầu có truy cập web theo yêu cầu; lúc hỏi đáp không tự tải nguồn hoặc gửi dữ liệu người dùng ra ngoài.
+
+Nguồn Vimec Accessibility là thiết bị nâng, còn vimec.net.vn là công ty thiết bị y tế; các trang đã kiểm tra không được đưa vào KB tư vấn bệnh. Vinmec là nguồn y khoa tiếng Việt đã được người dùng xác nhận.
+
+Sau khi chạy phân loại/hồi quy, bấm **Nhận xét và hỗ trợ**. Agent Nhận xét mô hình giải thích phạm vi; agent Hỗ trợ người dùng trả ba mục có nguồn: ăn uống, theo dõi và chuẩn bị đi khám. Những mục này là gợi ý chung, không được cá nhân hóa bằng nhãn tổng hợp. Mẫu được chuyển sang các lượt chat tiếp theo khi người dùng bấm nút; có thể bấm Bỏ ngữ cảnh mẫu hoặc Cuộc trò chuyện mới để xóa. Backend tự tính lại kết quả từ trường đầu vào, không nhận kết luận chẩn đoán do trình duyệt gửi.
+
+Kiểm thử mới: `python -m scripts.test_sources_support` và `node scripts/test_support_view.cjs`. Tập 8 truy vấn kiểm tra nguồn PDF/Vinmec nằm trong data/rag_source_evaluation.json; kết quả được lưu riêng với tập 22 truy vấn hồi quy. Để xem PDF offline trên web, tìm PDF trong Dữ liệu & tài liệu, bấm Đọc tài liệu gốc; liên kết đi tới /api/source/{id} kèm số trang.

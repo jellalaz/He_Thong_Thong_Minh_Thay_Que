@@ -1,7 +1,8 @@
 """Check the expanded RAG topics and model-to-conversation handoff."""
 from fastapi.testclient import TestClient
 
-from app.main import app
+from app.main import app, kb
+from app.model_support import SUPPORT_DOCUMENTS
 
 client = TestClient(app)
 
@@ -30,7 +31,8 @@ classification = ask(
 )
 assert classification['result']['label'] in ('High', 'Moderate', 'Low')
 assert 'macro-F1' in classification['answer'] and 'không phải xác suất' in classification['answer']
-assert [s['id'] for s in classification['sources']] == ['classification_scope']
+assert [s['id'] for s in classification['sources']] == ['classification_scope'] + SUPPORT_DOCUMENTS
+assert len(classification['support']['cards']) == 3
 
 regression = ask(
     question='Giải thích điểm dự đoán của mẫu vừa nhập',
@@ -40,7 +42,7 @@ regression = ask(
 )
 assert isinstance(regression['result']['value'], float)
 assert 'sai số tuyệt đối' in regression['answer'] and 'không phải đường huyết' in regression['answer']
-assert [s['id'] for s in regression['sources']] == ['model']
+assert [s['id'] for s in regression['sources']] == ['model'] + SUPPORT_DOCUMENTS
 
-assert client.get('/api/knowledge').json()['total'] == 46
+assert client.get('/api/knowledge').json()['total'] == len(kb['documents'])
 print('7 expanded RAG and model explanation checks passed')

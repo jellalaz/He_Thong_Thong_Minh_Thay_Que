@@ -14,6 +14,8 @@
         "context_used": false
       },
       "result": null,
+      "model_review": null,
+      "support": null,
       "trace": [
         {
           "sender": "Người dùng",
@@ -212,6 +214,7 @@
           "id": "a1c",
           "title": "Hiểu chỉ số HbA1c",
           "excerpt": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+          "provenance": {},
           "retrieval_score": 1.0,
           "source": {
             "label": "NIDDK · Xét nghiệm & chẩn đoán",
@@ -267,6 +270,8 @@
         "context_used": false
       },
       "result": null,
+      "model_review": null,
+      "support": null,
       "trace": [
         {
           "sender": "Người dùng",
@@ -396,7 +401,7 @@
     "status": 200,
     "passed": true,
     "response": {
-      "answer": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.",
+      "answer": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.\n\nCác việc có thể trao đổi tiếp:\n- Ăn uống: Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.\n\n- Theo dõi bữa ăn và thuốc: NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.\n\n- Chuẩn bị trao đổi khi đi khám: Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.\n\nBạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
       "safety": {
         "level": "ROUTINE",
         "medication_risk": false,
@@ -413,6 +418,48 @@
           "Moderate": 0.2942972534353858
         },
         "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh."
+      },
+      "model_review": {
+        "task": "classification",
+        "summary": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.",
+        "allow_diagnosis": false,
+        "label": "High",
+        "value": null,
+        "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.",
+        "input_origin": "research-form",
+        "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+      },
+      "support": {
+        "cards": [
+          {
+            "title": "Ăn uống",
+            "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+            "source_ids": [
+              "vinmec_meal_choices"
+            ]
+          },
+          {
+            "title": "Theo dõi bữa ăn và thuốc",
+            "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+            "source_ids": [
+              "web_meal_timing"
+            ]
+          },
+          {
+            "title": "Chuẩn bị trao đổi khi đi khám",
+            "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+            "source_ids": [
+              "pdf_self_management"
+            ]
+          }
+        ],
+        "personalized_prescription": false,
+        "question": "Bạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
+        "suggestions": [
+          "Gợi ý một bữa trưa dễ chuẩn bị",
+          "Tôi nên ghi nhật ký những gì?",
+          "Tôi cần hỏi bác sĩ những gì?"
+        ]
       },
       "trace": [
         {
@@ -462,6 +509,38 @@
           "content": "{\"label\": \"High\", \"scores\": {\"High\": 0.7055380043429438, \"Low\": 0.00016474222167046237, \"Moderate\": 0.2942972534353858}, \"scope\": \"Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.\"}"
         },
         {
+          "sender": "Điều phối",
+          "receiver": "Nhận xét mô hình",
+          "type": "REQUEST",
+          "content": {
+            "task": "classification",
+            "result": {
+              "label": "High",
+              "scores": {
+                "High": 0.7055380043429438,
+                "Low": 0.00016474222167046237,
+                "Moderate": 0.2942972534353858
+              },
+              "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh."
+            }
+          }
+        },
+        {
+          "sender": "Nhận xét mô hình",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "task": "classification",
+            "summary": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.",
+            "allow_diagnosis": false,
+            "label": "High",
+            "value": null,
+            "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.",
+            "input_origin": "research-form",
+            "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+          }
+        },
+        {
           "sender": "Hội thoại",
           "receiver": "Điều phối",
           "type": "INFORM",
@@ -477,7 +556,10 @@
           "content": {
             "topic": "classification",
             "ids": [
-              "classification_scope"
+              "classification_scope",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ],
             "query": "phân loại nhãn tổng hợp classification High Moderate Low",
             "context_used": false,
@@ -485,8 +567,9 @@
             "override": null,
             "tone": "normal",
             "suggestions": [
-              "HbA1c là gì?",
-              "Tôi cần kiểm tra đường huyết thế nào?"
+              "Gợi ý một bữa trưa dễ chuẩn bị",
+              "Tôi nên ghi nhật ký những gì?",
+              "Tôi cần hỏi bác sĩ những gì?"
             ],
             "guarded": true,
             "fixed_sources": true,
@@ -521,6 +604,116 @@
                 ]
               ],
               "retrieval_score": 1.0
+            },
+            {
+              "id": "vinmec_meal_choices",
+              "title": "Vinmec: Chọn món và cách chế biến",
+              "source": "vinmec_nutrition",
+              "terms": [
+                "vinmec",
+                "dinh dưỡng",
+                "chọn món",
+                "cách nấu",
+                "ăn uống"
+              ],
+              "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "có thể chọn",
+                  "cá hoặc đậu"
+                ],
+                [
+                  "Chế biến món ăn",
+                  "có thể chọn",
+                  "hấp hoặc luộc"
+                ]
+              ],
+              "topics": [
+                "meal"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "Vinmec",
+                "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                "heading": "Nhóm thịt cá và nhóm rau",
+                "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "web_meal_timing",
+              "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+              "source": "living",
+              "terms": [
+                "bỏ bữa",
+                "trễ bữa",
+                "insulin",
+                "ghi nhật ký",
+                "theo dõi"
+              ],
+              "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+              "triples": [
+                [
+                  "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                  "có thể làm tăng",
+                  "nguy cơ hạ đường huyết"
+                ]
+              ],
+              "topics": [
+                "meal",
+                "medicine",
+                "monitor"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_healthy_living.txt",
+                "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                "heading": "Plan what to eat or drink",
+                "quote": "drop too low during exercise or if you skip or delay a meal"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "pdf_self_management",
+              "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+              "source": "pdf_guiding",
+              "terms": [
+                "pdf",
+                "tự chăm sóc",
+                "nhật ký",
+                "theo dõi",
+                "chuẩn bị đi khám"
+              ],
+              "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+              "triples": [
+                [
+                  "Tự chăm sóc",
+                  "bao gồm",
+                  "theo dõi sức khỏe"
+                ],
+                [
+                  "Tự chăm sóc",
+                  "cần phối hợp",
+                  "nhóm điều trị"
+                ]
+              ],
+              "topics": [
+                "monitor",
+                "support"
+              ],
+              "provenance": {
+                "kind": "pdf",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                "heading": "Principle 4 — What is self-management?",
+                "quote": "healthy eating",
+                "page": 27
+              },
+              "retrieval_score": 1.0
             }
           ]
         },
@@ -530,7 +723,10 @@
           "type": "REQUEST",
           "content": {
             "document_ids": [
-              "classification_scope"
+              "classification_scope",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ]
           }
         },
@@ -549,18 +745,61 @@
                 "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
               },
               {
+                "source": "Bữa ăn",
+                "relation": "có thể chọn",
+                "target": "cá hoặc đậu",
+                "document": "vinmec_meal_choices",
+                "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+              },
+              {
+                "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                "relation": "có thể làm tăng",
+                "target": "nguy cơ hạ đường huyết",
+                "document": "web_meal_timing",
+                "evidence": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+              },
+              {
+                "source": "Tự chăm sóc",
+                "relation": "bao gồm",
+                "target": "theo dõi sức khỏe",
+                "document": "pdf_self_management",
+                "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
+              },
+              {
                 "source": "Nhãn tổng hợp",
                 "relation": "không phải",
                 "target": "chẩn đoán cá nhân",
                 "document": "classification_scope",
                 "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
                 "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+              },
+              {
+                "source": "Chế biến món ăn",
+                "relation": "có thể chọn",
+                "target": "hấp hoặc luộc",
+                "document": "vinmec_meal_choices",
+                "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+              },
+              {
+                "source": "Tự chăm sóc",
+                "relation": "cần phối hợp",
+                "target": "nhóm điều trị",
+                "document": "pdf_self_management",
+                "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
               }
             ],
             "storage": "Neo4j",
             "rejected": 0,
             "document_ids": [
-              "classification_scope"
+              "classification_scope",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ]
           }
         },
@@ -602,6 +841,116 @@
                 ]
               ],
               "retrieval_score": 1.0
+            },
+            {
+              "id": "vinmec_meal_choices",
+              "title": "Vinmec: Chọn món và cách chế biến",
+              "source": "vinmec_nutrition",
+              "terms": [
+                "vinmec",
+                "dinh dưỡng",
+                "chọn món",
+                "cách nấu",
+                "ăn uống"
+              ],
+              "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "có thể chọn",
+                  "cá hoặc đậu"
+                ],
+                [
+                  "Chế biến món ăn",
+                  "có thể chọn",
+                  "hấp hoặc luộc"
+                ]
+              ],
+              "topics": [
+                "meal"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "Vinmec",
+                "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                "heading": "Nhóm thịt cá và nhóm rau",
+                "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "web_meal_timing",
+              "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+              "source": "living",
+              "terms": [
+                "bỏ bữa",
+                "trễ bữa",
+                "insulin",
+                "ghi nhật ký",
+                "theo dõi"
+              ],
+              "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+              "triples": [
+                [
+                  "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                  "có thể làm tăng",
+                  "nguy cơ hạ đường huyết"
+                ]
+              ],
+              "topics": [
+                "meal",
+                "medicine",
+                "monitor"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_healthy_living.txt",
+                "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                "heading": "Plan what to eat or drink",
+                "quote": "drop too low during exercise or if you skip or delay a meal"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "pdf_self_management",
+              "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+              "source": "pdf_guiding",
+              "terms": [
+                "pdf",
+                "tự chăm sóc",
+                "nhật ký",
+                "theo dõi",
+                "chuẩn bị đi khám"
+              ],
+              "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+              "triples": [
+                [
+                  "Tự chăm sóc",
+                  "bao gồm",
+                  "theo dõi sức khỏe"
+                ],
+                [
+                  "Tự chăm sóc",
+                  "cần phối hợp",
+                  "nhóm điều trị"
+                ]
+              ],
+              "topics": [
+                "monitor",
+                "support"
+              ],
+              "provenance": {
+                "kind": "pdf",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                "heading": "Principle 4 — What is self-management?",
+                "quote": "healthy eating",
+                "page": 27
+              },
+              "retrieval_score": 1.0
             }
           ]
         },
@@ -609,7 +958,7 @@
           "sender": "Phản hồi",
           "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]"
+          "content": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm. [classification_scope]\n\nVinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng. [vinmec_meal_choices]"
         },
         {
           "sender": "Điều phối",
@@ -635,6 +984,196 @@
           }
         },
         {
+          "sender": "Điều phối",
+          "receiver": "Hỗ trợ người dùng",
+          "type": "REQUEST",
+          "content": {
+            "review": {
+              "task": "classification",
+              "summary": "Mô hình xếp mẫu vừa nhập vào nhãn High của bộ dữ liệu tổng hợp. Điểm cho ba nhãn: High 70.6%; Moderate 29.4%; Low 0.0%. Đây là mức tin cậy đối với nhãn của mô hình, không phải xác suất một người mắc tiểu đường.\n\nMô hình được học trên 40.000 dòng và kiểm tra trên 10.000 dòng; accuracy 81.8%, macro-F1 0.544. Lớp Low rất hiếm và mô hình nhận diện lớp này còn yếu, nên không dùng nhãn để kết luận tình trạng sức khỏe.\n\nNếu bạn muốn hiểu chỉ số cá nhân, hãy gửi tên xét nghiệm, giá trị, đơn vị và thời điểm đo. Các xét nghiệm chẩn đoán cần được nhân viên y tế đối chiếu và xác nhận.",
+              "allow_diagnosis": false,
+              "label": "High",
+              "value": null,
+              "scope": "Nhãn dữ liệu tổng hợp; không phải chẩn đoán hay xác suất mắc bệnh.",
+              "input_origin": "research-form",
+              "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+            },
+            "documents": [
+              {
+                "id": "classification_scope",
+                "title": "Phân loại nhãn tổng hợp",
+                "terms": [
+                  "phân loại nhãn tổng hợp",
+                  "classification",
+                  "High Moderate Low"
+                ],
+                "text": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+                "source": "classification_data",
+                "triples": [
+                  [
+                    "Mô hình phân loại",
+                    "học từ",
+                    "nhãn tổng hợp High / Moderate / Low"
+                  ],
+                  [
+                    "Nhãn tổng hợp",
+                    "không phải",
+                    "chẩn đoán cá nhân"
+                  ]
+                ],
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "vinmec_meal_choices",
+                "title": "Vinmec: Chọn món và cách chế biến",
+                "source": "vinmec_nutrition",
+                "terms": [
+                  "vinmec",
+                  "dinh dưỡng",
+                  "chọn món",
+                  "cách nấu",
+                  "ăn uống"
+                ],
+                "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "triples": [
+                  [
+                    "Bữa ăn",
+                    "có thể chọn",
+                    "cá hoặc đậu"
+                  ],
+                  [
+                    "Chế biến món ăn",
+                    "có thể chọn",
+                    "hấp hoặc luộc"
+                  ]
+                ],
+                "topics": [
+                  "meal"
+                ],
+                "provenance": {
+                  "kind": "web",
+                  "publisher": "Vinmec",
+                  "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                  "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                  "heading": "Nhóm thịt cá và nhóm rau",
+                  "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+                },
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "web_meal_timing",
+                "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+                "source": "living",
+                "terms": [
+                  "bỏ bữa",
+                  "trễ bữa",
+                  "insulin",
+                  "ghi nhật ký",
+                  "theo dõi"
+                ],
+                "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "triples": [
+                  [
+                    "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                    "có thể làm tăng",
+                    "nguy cơ hạ đường huyết"
+                  ]
+                ],
+                "topics": [
+                  "meal",
+                  "medicine",
+                  "monitor"
+                ],
+                "provenance": {
+                  "kind": "web",
+                  "publisher": "NIDDK",
+                  "local_file": "data/source_documents/niddk_healthy_living.txt",
+                  "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                  "heading": "Plan what to eat or drink",
+                  "quote": "drop too low during exercise or if you skip or delay a meal"
+                },
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "pdf_self_management",
+                "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+                "source": "pdf_guiding",
+                "terms": [
+                  "pdf",
+                  "tự chăm sóc",
+                  "nhật ký",
+                  "theo dõi",
+                  "chuẩn bị đi khám"
+                ],
+                "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "triples": [
+                  [
+                    "Tự chăm sóc",
+                    "bao gồm",
+                    "theo dõi sức khỏe"
+                  ],
+                  [
+                    "Tự chăm sóc",
+                    "cần phối hợp",
+                    "nhóm điều trị"
+                  ]
+                ],
+                "topics": [
+                  "monitor",
+                  "support"
+                ],
+                "provenance": {
+                  "kind": "pdf",
+                  "publisher": "NIDDK",
+                  "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                  "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                  "heading": "Principle 4 — What is self-management?",
+                  "quote": "healthy eating",
+                  "page": 27
+                },
+                "retrieval_score": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "sender": "Hỗ trợ người dùng",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "cards": [
+              {
+                "title": "Ăn uống",
+                "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_ids": [
+                  "vinmec_meal_choices"
+                ]
+              },
+              {
+                "title": "Theo dõi bữa ăn và thuốc",
+                "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "source_ids": [
+                  "web_meal_timing"
+                ]
+              },
+              {
+                "title": "Chuẩn bị trao đổi khi đi khám",
+                "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_ids": [
+                  "pdf_self_management"
+                ]
+              }
+            ],
+            "personalized_prescription": false,
+            "question": "Bạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
+            "suggestions": [
+              "Gợi ý một bữa trưa dễ chuẩn bị",
+              "Tôi nên ghi nhật ký những gì?",
+              "Tôi cần hỏi bác sĩ những gì?"
+            ]
+          }
+        },
+        {
           "sender": "Đối chiếu",
           "receiver": "Phản hồi",
           "type": "INFORM",
@@ -652,10 +1191,84 @@
           "id": "classification_scope",
           "title": "Phân loại nhãn tổng hợp",
           "excerpt": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+          "provenance": {},
           "retrieval_score": 1.0,
           "source": {
             "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
             "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+          }
+        },
+        {
+          "id": "vinmec_meal_choices",
+          "title": "Vinmec: Chọn món và cách chế biến",
+          "excerpt": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "provenance": {
+            "kind": "web",
+            "publisher": "Vinmec",
+            "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+            "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+            "heading": "Nhóm thịt cá và nhóm rau",
+            "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "Vinmec · Chế độ dinh dưỡng cho người tiểu đường",
+            "publisher": "Vinmec",
+            "kind": "web",
+            "url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+            "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+            "scope": "Short source excerpts and paraphrases; no full article redistribution.",
+            "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+            "retrieved_at": "2026-11-06"
+          }
+        },
+        {
+          "id": "web_meal_timing",
+          "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+          "excerpt": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+          "provenance": {
+            "kind": "web",
+            "publisher": "NIDDK",
+            "local_file": "data/source_documents/niddk_healthy_living.txt",
+            "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+            "heading": "Plan what to eat or drink",
+            "quote": "drop too low during exercise or if you skip or delay a meal"
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "NIDDK · Healthy Living with Diabetes",
+            "publisher": "NIDDK",
+            "kind": "web",
+            "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+            "local_file": "data/source_documents/niddk_healthy_living.txt",
+            "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+            "retrieved_at": "2026-11-06"
+          }
+        },
+        {
+          "id": "pdf_self_management",
+          "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+          "excerpt": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "provenance": {
+            "kind": "pdf",
+            "publisher": "NIDDK",
+            "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+            "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+            "heading": "Principle 4 — What is self-management?",
+            "quote": "healthy eating",
+            "page": 27
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "NIDDK · Guiding Principles (PDF)",
+            "title": "Guiding Principles for the Care of People with or at Risk for Diabetes",
+            "publisher": "NIDDK",
+            "kind": "pdf",
+            "url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+            "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+            "scope": "Archived professional guide; selected self-management principles only, not current diagnosis or dosing thresholds.",
+            "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+            "retrieved_at": "2026-11-06"
           }
         }
       ],
@@ -669,23 +1282,64 @@
           "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
         },
         {
+          "source": "Bữa ăn",
+          "relation": "có thể chọn",
+          "target": "cá hoặc đậu",
+          "document": "vinmec_meal_choices",
+          "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+        },
+        {
+          "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+          "relation": "có thể làm tăng",
+          "target": "nguy cơ hạ đường huyết",
+          "document": "web_meal_timing",
+          "evidence": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+          "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+        },
+        {
+          "source": "Tự chăm sóc",
+          "relation": "bao gồm",
+          "target": "theo dõi sức khỏe",
+          "document": "pdf_self_management",
+          "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
+        },
+        {
           "source": "Nhãn tổng hợp",
           "relation": "không phải",
           "target": "chẩn đoán cá nhân",
           "document": "classification_scope",
           "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
           "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+        },
+        {
+          "source": "Chế biến món ăn",
+          "relation": "có thể chọn",
+          "target": "hấp hoặc luộc",
+          "document": "vinmec_meal_choices",
+          "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+        },
+        {
+          "source": "Tự chăm sóc",
+          "relation": "cần phối hợp",
+          "target": "nhóm điều trị",
+          "document": "pdf_self_management",
+          "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
         }
       ],
       "graph_status": "Neo4j",
       "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
-      "response_mode": "kb-rules",
-      "generator": "KB và luật có nguồn",
+      "response_mode": "model-support",
+      "generator": "Agent nhận xét và hỗ trợ",
       "suggestions": [
-        "HbA1c là gì?",
-        "Tôi cần kiểm tra đường huyết thế nào?"
+        "Gợi ý một bữa trưa dễ chuẩn bị",
+        "Tôi nên ghi nhật ký những gì?",
+        "Tôi cần hỏi bác sĩ những gì?"
       ],
       "context_used": false,
       "topic": "classification",
@@ -697,7 +1351,7 @@
     "status": 200,
     "passed": true,
     "response": {
-      "answer": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.",
+      "answer": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.\n\nCác việc có thể trao đổi tiếp:\n- Ăn uống: Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.\n\n- Theo dõi bữa ăn và thuốc: NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.\n\n- Chuẩn bị trao đổi khi đi khám: Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.\n\nBạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
       "safety": {
         "level": "ROUTINE",
         "medication_risk": false,
@@ -709,6 +1363,48 @@
       "result": {
         "value": 207.53014411590692,
         "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c."
+      },
+      "model_review": {
+        "task": "regression",
+        "summary": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.",
+        "allow_diagnosis": false,
+        "label": null,
+        "value": 207.53014411590692,
+        "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.",
+        "input_origin": "research-form",
+        "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+      },
+      "support": {
+        "cards": [
+          {
+            "title": "Ăn uống",
+            "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+            "source_ids": [
+              "vinmec_meal_choices"
+            ]
+          },
+          {
+            "title": "Theo dõi bữa ăn và thuốc",
+            "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+            "source_ids": [
+              "web_meal_timing"
+            ]
+          },
+          {
+            "title": "Chuẩn bị trao đổi khi đi khám",
+            "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+            "source_ids": [
+              "pdf_self_management"
+            ]
+          }
+        ],
+        "personalized_prescription": false,
+        "question": "Bạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
+        "suggestions": [
+          "Gợi ý một bữa trưa dễ chuẩn bị",
+          "Tôi nên ghi nhật ký những gì?",
+          "Tôi cần hỏi bác sĩ những gì?"
+        ]
       },
       "trace": [
         {
@@ -758,6 +1454,33 @@
           "content": "{\"value\": 207.53014411590692, \"scope\": \"Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.\"}"
         },
         {
+          "sender": "Điều phối",
+          "receiver": "Nhận xét mô hình",
+          "type": "REQUEST",
+          "content": {
+            "task": "regression",
+            "result": {
+              "value": 207.53014411590692,
+              "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c."
+            }
+          }
+        },
+        {
+          "sender": "Nhận xét mô hình",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "task": "regression",
+            "summary": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.",
+            "allow_diagnosis": false,
+            "label": null,
+            "value": 207.53014411590692,
+            "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.",
+            "input_origin": "research-form",
+            "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+          }
+        },
+        {
           "sender": "Hội thoại",
           "receiver": "Điều phối",
           "type": "INFORM",
@@ -773,7 +1496,10 @@
           "content": {
             "topic": "regression",
             "ids": [
-              "model"
+              "model",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ],
             "query": "điểm tiến triển diabetes",
             "context_used": false,
@@ -781,8 +1507,9 @@
             "override": null,
             "tone": "normal",
             "suggestions": [
-              "HbA1c là gì?",
-              "Tôi cần kiểm tra đường huyết thế nào?"
+              "Gợi ý một bữa trưa dễ chuẩn bị",
+              "Tôi nên ghi nhật ký những gì?",
+              "Tôi cần hỏi bác sĩ những gì?"
             ],
             "guarded": true,
             "fixed_sources": true,
@@ -821,6 +1548,116 @@
                 ]
               ],
               "retrieval_score": 1.0
+            },
+            {
+              "id": "vinmec_meal_choices",
+              "title": "Vinmec: Chọn món và cách chế biến",
+              "source": "vinmec_nutrition",
+              "terms": [
+                "vinmec",
+                "dinh dưỡng",
+                "chọn món",
+                "cách nấu",
+                "ăn uống"
+              ],
+              "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "có thể chọn",
+                  "cá hoặc đậu"
+                ],
+                [
+                  "Chế biến món ăn",
+                  "có thể chọn",
+                  "hấp hoặc luộc"
+                ]
+              ],
+              "topics": [
+                "meal"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "Vinmec",
+                "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                "heading": "Nhóm thịt cá và nhóm rau",
+                "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "web_meal_timing",
+              "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+              "source": "living",
+              "terms": [
+                "bỏ bữa",
+                "trễ bữa",
+                "insulin",
+                "ghi nhật ký",
+                "theo dõi"
+              ],
+              "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+              "triples": [
+                [
+                  "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                  "có thể làm tăng",
+                  "nguy cơ hạ đường huyết"
+                ]
+              ],
+              "topics": [
+                "meal",
+                "medicine",
+                "monitor"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_healthy_living.txt",
+                "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                "heading": "Plan what to eat or drink",
+                "quote": "drop too low during exercise or if you skip or delay a meal"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "pdf_self_management",
+              "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+              "source": "pdf_guiding",
+              "terms": [
+                "pdf",
+                "tự chăm sóc",
+                "nhật ký",
+                "theo dõi",
+                "chuẩn bị đi khám"
+              ],
+              "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+              "triples": [
+                [
+                  "Tự chăm sóc",
+                  "bao gồm",
+                  "theo dõi sức khỏe"
+                ],
+                [
+                  "Tự chăm sóc",
+                  "cần phối hợp",
+                  "nhóm điều trị"
+                ]
+              ],
+              "topics": [
+                "monitor",
+                "support"
+              ],
+              "provenance": {
+                "kind": "pdf",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                "heading": "Principle 4 — What is self-management?",
+                "quote": "healthy eating",
+                "page": 27
+              },
+              "retrieval_score": 1.0
             }
           ]
         },
@@ -830,7 +1667,10 @@
           "type": "REQUEST",
           "content": {
             "document_ids": [
-              "model"
+              "model",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ]
           }
         },
@@ -849,18 +1689,61 @@
                 "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
               },
               {
+                "source": "Bữa ăn",
+                "relation": "có thể chọn",
+                "target": "cá hoặc đậu",
+                "document": "vinmec_meal_choices",
+                "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+              },
+              {
+                "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                "relation": "có thể làm tăng",
+                "target": "nguy cơ hạ đường huyết",
+                "document": "web_meal_timing",
+                "evidence": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+              },
+              {
+                "source": "Tự chăm sóc",
+                "relation": "bao gồm",
+                "target": "theo dõi sức khỏe",
+                "document": "pdf_self_management",
+                "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
+              },
+              {
                 "source": "Điểm tiến triển",
                 "relation": "không phải",
                 "target": "xác suất mắc bệnh",
                 "document": "model",
                 "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
                 "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+              },
+              {
+                "source": "Chế biến món ăn",
+                "relation": "có thể chọn",
+                "target": "hấp hoặc luộc",
+                "document": "vinmec_meal_choices",
+                "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+              },
+              {
+                "source": "Tự chăm sóc",
+                "relation": "cần phối hợp",
+                "target": "nhóm điều trị",
+                "document": "pdf_self_management",
+                "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
               }
             ],
             "storage": "Neo4j",
             "rejected": 0,
             "document_ids": [
-              "model"
+              "model",
+              "vinmec_meal_choices",
+              "web_meal_timing",
+              "pdf_self_management"
             ]
           }
         },
@@ -906,6 +1789,116 @@
                 ]
               ],
               "retrieval_score": 1.0
+            },
+            {
+              "id": "vinmec_meal_choices",
+              "title": "Vinmec: Chọn món và cách chế biến",
+              "source": "vinmec_nutrition",
+              "terms": [
+                "vinmec",
+                "dinh dưỡng",
+                "chọn món",
+                "cách nấu",
+                "ăn uống"
+              ],
+              "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "có thể chọn",
+                  "cá hoặc đậu"
+                ],
+                [
+                  "Chế biến món ăn",
+                  "có thể chọn",
+                  "hấp hoặc luộc"
+                ]
+              ],
+              "topics": [
+                "meal"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "Vinmec",
+                "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                "heading": "Nhóm thịt cá và nhóm rau",
+                "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "web_meal_timing",
+              "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+              "source": "living",
+              "terms": [
+                "bỏ bữa",
+                "trễ bữa",
+                "insulin",
+                "ghi nhật ký",
+                "theo dõi"
+              ],
+              "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+              "triples": [
+                [
+                  "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                  "có thể làm tăng",
+                  "nguy cơ hạ đường huyết"
+                ]
+              ],
+              "topics": [
+                "meal",
+                "medicine",
+                "monitor"
+              ],
+              "provenance": {
+                "kind": "web",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_healthy_living.txt",
+                "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                "heading": "Plan what to eat or drink",
+                "quote": "drop too low during exercise or if you skip or delay a meal"
+              },
+              "retrieval_score": 1.0
+            },
+            {
+              "id": "pdf_self_management",
+              "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+              "source": "pdf_guiding",
+              "terms": [
+                "pdf",
+                "tự chăm sóc",
+                "nhật ký",
+                "theo dõi",
+                "chuẩn bị đi khám"
+              ],
+              "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+              "triples": [
+                [
+                  "Tự chăm sóc",
+                  "bao gồm",
+                  "theo dõi sức khỏe"
+                ],
+                [
+                  "Tự chăm sóc",
+                  "cần phối hợp",
+                  "nhóm điều trị"
+                ]
+              ],
+              "topics": [
+                "monitor",
+                "support"
+              ],
+              "provenance": {
+                "kind": "pdf",
+                "publisher": "NIDDK",
+                "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                "heading": "Principle 4 — What is self-management?",
+                "quote": "healthy eating",
+                "page": 27
+              },
+              "retrieval_score": 1.0
             }
           ]
         },
@@ -913,7 +1906,7 @@
           "sender": "Phản hồi",
           "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]"
+          "content": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định. [model]\n\nVinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng. [vinmec_meal_choices]"
         },
         {
           "sender": "Điều phối",
@@ -934,6 +1927,200 @@
           }
         },
         {
+          "sender": "Điều phối",
+          "receiver": "Hỗ trợ người dùng",
+          "type": "REQUEST",
+          "content": {
+            "review": {
+              "task": "regression",
+              "summary": "Mô hình dự đoán điểm tiến triển nghiên cứu là 207.5. Bộ dữ liệu hồi quy gồm những người đã mắc tiểu đường; điểm đích ghi nhận tiến triển sau một năm. Điểm này không có đơn vị mg/dL hay %, và không phải đường huyết, HbA1c hoặc nguy cơ mắc bệnh.\n\nTrên 89 mẫu kiểm tra, sai số tuyệt đối trung bình là 44.3 điểm và R² bằng 0.476. Sai số của một cá nhân có thể lớn hơn mức trung bình; đầu ra chỉ phù hợp để minh họa bài toán dự đoán trên bộ dữ liệu nghiên cứu.\n\nĐể trao đổi về sức khỏe thực tế, bạn cần phiếu xét nghiệm gốc và đánh giá của cơ sở y tế.",
+              "allow_diagnosis": false,
+              "label": null,
+              "value": 207.53014411590692,
+              "scope": "Điểm tiến triển bệnh nghiên cứu; không phải glucose hoặc HbA1c.",
+              "input_origin": "research-form",
+              "next_step": "Đối chiếu phiếu xét nghiệm gốc cùng nhân viên y tế; nhãn nghiên cứu không xác nhận hoặc loại trừ bệnh."
+            },
+            "documents": [
+              {
+                "id": "model",
+                "title": "Điểm mô hình có ý nghĩa gì?",
+                "terms": [
+                  "mô hình",
+                  "điểm tiến triển",
+                  "dự đoán",
+                  "r2",
+                  "sai số",
+                  "độ chính xác",
+                  "phần trăm"
+                ],
+                "text": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+                "source": "dataset",
+                "triples": [
+                  [
+                    "Mô hình diabetes",
+                    "dự báo",
+                    "điểm tiến triển nghiên cứu"
+                  ],
+                  [
+                    "Điểm tiến triển",
+                    "không phải",
+                    "xác suất mắc bệnh"
+                  ]
+                ],
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "vinmec_meal_choices",
+                "title": "Vinmec: Chọn món và cách chế biến",
+                "source": "vinmec_nutrition",
+                "terms": [
+                  "vinmec",
+                  "dinh dưỡng",
+                  "chọn món",
+                  "cách nấu",
+                  "ăn uống"
+                ],
+                "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "triples": [
+                  [
+                    "Bữa ăn",
+                    "có thể chọn",
+                    "cá hoặc đậu"
+                  ],
+                  [
+                    "Chế biến món ăn",
+                    "có thể chọn",
+                    "hấp hoặc luộc"
+                  ]
+                ],
+                "topics": [
+                  "meal"
+                ],
+                "provenance": {
+                  "kind": "web",
+                  "publisher": "Vinmec",
+                  "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+                  "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+                  "heading": "Nhóm thịt cá và nhóm rau",
+                  "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+                },
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "web_meal_timing",
+                "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+                "source": "living",
+                "terms": [
+                  "bỏ bữa",
+                  "trễ bữa",
+                  "insulin",
+                  "ghi nhật ký",
+                  "theo dõi"
+                ],
+                "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "triples": [
+                  [
+                    "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+                    "có thể làm tăng",
+                    "nguy cơ hạ đường huyết"
+                  ]
+                ],
+                "topics": [
+                  "meal",
+                  "medicine",
+                  "monitor"
+                ],
+                "provenance": {
+                  "kind": "web",
+                  "publisher": "NIDDK",
+                  "local_file": "data/source_documents/niddk_healthy_living.txt",
+                  "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+                  "heading": "Plan what to eat or drink",
+                  "quote": "drop too low during exercise or if you skip or delay a meal"
+                },
+                "retrieval_score": 1.0
+              },
+              {
+                "id": "pdf_self_management",
+                "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+                "source": "pdf_guiding",
+                "terms": [
+                  "pdf",
+                  "tự chăm sóc",
+                  "nhật ký",
+                  "theo dõi",
+                  "chuẩn bị đi khám"
+                ],
+                "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "triples": [
+                  [
+                    "Tự chăm sóc",
+                    "bao gồm",
+                    "theo dõi sức khỏe"
+                  ],
+                  [
+                    "Tự chăm sóc",
+                    "cần phối hợp",
+                    "nhóm điều trị"
+                  ]
+                ],
+                "topics": [
+                  "monitor",
+                  "support"
+                ],
+                "provenance": {
+                  "kind": "pdf",
+                  "publisher": "NIDDK",
+                  "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+                  "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+                  "heading": "Principle 4 — What is self-management?",
+                  "quote": "healthy eating",
+                  "page": 27
+                },
+                "retrieval_score": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "sender": "Hỗ trợ người dùng",
+          "receiver": "Điều phối",
+          "type": "INFORM",
+          "content": {
+            "cards": [
+              {
+                "title": "Ăn uống",
+                "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+                "source_ids": [
+                  "vinmec_meal_choices"
+                ]
+              },
+              {
+                "title": "Theo dõi bữa ăn và thuốc",
+                "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+                "source_ids": [
+                  "web_meal_timing"
+                ]
+              },
+              {
+                "title": "Chuẩn bị trao đổi khi đi khám",
+                "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+                "source_ids": [
+                  "pdf_self_management"
+                ]
+              }
+            ],
+            "personalized_prescription": false,
+            "question": "Bạn muốn bắt đầu từ bữa ăn, ghi chép theo dõi hay chuẩn bị đi khám?",
+            "suggestions": [
+              "Gợi ý một bữa trưa dễ chuẩn bị",
+              "Tôi nên ghi nhật ký những gì?",
+              "Tôi cần hỏi bác sĩ những gì?"
+            ]
+          }
+        },
+        {
           "sender": "Đối chiếu",
           "receiver": "Phản hồi",
           "type": "INFORM",
@@ -951,10 +2138,84 @@
           "id": "model",
           "title": "Điểm mô hình có ý nghĩa gì?",
           "excerpt": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+          "provenance": {},
           "retrieval_score": 1.0,
           "source": {
             "label": "scikit-learn · Dữ liệu diabetes",
             "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+          }
+        },
+        {
+          "id": "vinmec_meal_choices",
+          "title": "Vinmec: Chọn món và cách chế biến",
+          "excerpt": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "provenance": {
+            "kind": "web",
+            "publisher": "Vinmec",
+            "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+            "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+            "heading": "Nhóm thịt cá và nhóm rau",
+            "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "Vinmec · Chế độ dinh dưỡng cho người tiểu đường",
+            "publisher": "Vinmec",
+            "kind": "web",
+            "url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+            "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+            "scope": "Short source excerpts and paraphrases; no full article redistribution.",
+            "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+            "retrieved_at": "2026-11-06"
+          }
+        },
+        {
+          "id": "web_meal_timing",
+          "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+          "excerpt": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+          "provenance": {
+            "kind": "web",
+            "publisher": "NIDDK",
+            "local_file": "data/source_documents/niddk_healthy_living.txt",
+            "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+            "heading": "Plan what to eat or drink",
+            "quote": "drop too low during exercise or if you skip or delay a meal"
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "NIDDK · Healthy Living with Diabetes",
+            "publisher": "NIDDK",
+            "kind": "web",
+            "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+            "local_file": "data/source_documents/niddk_healthy_living.txt",
+            "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+            "retrieved_at": "2026-11-06"
+          }
+        },
+        {
+          "id": "pdf_self_management",
+          "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+          "excerpt": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "provenance": {
+            "kind": "pdf",
+            "publisher": "NIDDK",
+            "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+            "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+            "heading": "Principle 4 — What is self-management?",
+            "quote": "healthy eating",
+            "page": 27
+          },
+          "retrieval_score": 1.0,
+          "source": {
+            "label": "NIDDK · Guiding Principles (PDF)",
+            "title": "Guiding Principles for the Care of People with or at Risk for Diabetes",
+            "publisher": "NIDDK",
+            "kind": "pdf",
+            "url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+            "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+            "scope": "Archived professional guide; selected self-management principles only, not current diagnosis or dosing thresholds.",
+            "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+            "retrieved_at": "2026-11-06"
           }
         }
       ],
@@ -968,23 +2229,64 @@
           "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
         },
         {
+          "source": "Bữa ăn",
+          "relation": "có thể chọn",
+          "target": "cá hoặc đậu",
+          "document": "vinmec_meal_choices",
+          "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+        },
+        {
+          "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+          "relation": "có thể làm tăng",
+          "target": "nguy cơ hạ đường huyết",
+          "document": "web_meal_timing",
+          "evidence": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+          "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+        },
+        {
+          "source": "Tự chăm sóc",
+          "relation": "bao gồm",
+          "target": "theo dõi sức khỏe",
+          "document": "pdf_self_management",
+          "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
+        },
+        {
           "source": "Điểm tiến triển",
           "relation": "không phải",
           "target": "xác suất mắc bệnh",
           "document": "model",
           "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
           "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+        },
+        {
+          "source": "Chế biến món ăn",
+          "relation": "có thể chọn",
+          "target": "hấp hoặc luộc",
+          "document": "vinmec_meal_choices",
+          "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+          "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi"
+        },
+        {
+          "source": "Tự chăm sóc",
+          "relation": "cần phối hợp",
+          "target": "nhóm điều trị",
+          "document": "pdf_self_management",
+          "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+          "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf"
         }
       ],
       "graph_status": "Neo4j",
       "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
-      "response_mode": "kb-rules",
-      "generator": "KB và luật có nguồn",
+      "response_mode": "model-support",
+      "generator": "Agent nhận xét và hỗ trợ",
       "suggestions": [
-        "HbA1c là gì?",
-        "Tôi cần kiểm tra đường huyết thế nào?"
+        "Gợi ý một bữa trưa dễ chuẩn bị",
+        "Tôi nên ghi nhật ký những gì?",
+        "Tôi cần hỏi bác sĩ những gì?"
       ],
       "context_used": false,
       "topic": "regression",
@@ -1067,6 +2369,8 @@
         "context_used": false
       },
       "result": null,
+      "model_review": null,
+      "support": null,
       "trace": [
         {
           "sender": "Người dùng",
@@ -1247,6 +2551,7 @@
           "id": "a1c",
           "title": "Hiểu chỉ số HbA1c",
           "excerpt": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+          "provenance": {},
           "retrieval_score": 1.0,
           "source": {
             "label": "NIDDK · Xét nghiệm & chẩn đoán",

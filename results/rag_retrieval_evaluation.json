@@ -26,11 +26,11 @@
       "selected": [
         {
           "id": "meal_example",
-          "score": 0.3366
+          "score": 0.3332
         },
         {
           "id": "plate",
-          "score": 0.255
+          "score": 0.2414
         }
       ],
       "first_relevant_rank": 1,
@@ -45,23 +45,19 @@
       ],
       "selected": [
         {
+          "id": "web_portion_choices",
+          "score": 0.2105
+        },
+        {
           "id": "meal_example",
-          "score": 0.2131
+          "score": 0.1949
         },
         {
           "id": "rice_portion",
-          "score": 0.1747
-        },
-        {
-          "id": "pregnancy_diabetes",
-          "score": 0.1618
-        },
-        {
-          "id": "monitor",
-          "score": 0.1592
+          "score": 0.1596
         }
       ],
-      "first_relevant_rank": 2,
+      "first_relevant_rank": 3,
       "passed": true
     },
     {
@@ -74,11 +70,11 @@
       "selected": [
         {
           "id": "fruit_whole",
-          "score": 0.4258
+          "score": 0.4226
         },
         {
           "id": "fruit",
-          "score": 0.3347
+          "score": 0.3321
         }
       ],
       "first_relevant_rank": 1,
@@ -93,7 +89,7 @@
       "selected": [
         {
           "id": "types_compare",
-          "score": 0.4309
+          "score": 0.4395
         }
       ],
       "first_relevant_rank": 1,
@@ -108,7 +104,7 @@
       "selected": [
         {
           "id": "metformin_info",
-          "score": 0.354
+          "score": 0.3599
         }
       ],
       "first_relevant_rank": 1,
@@ -123,7 +119,7 @@
       "selected": [
         {
           "id": "kidney_checks",
-          "score": 0.3744
+          "score": 0.3807
         }
       ],
       "first_relevant_rank": 1,
@@ -137,11 +133,15 @@
       ],
       "selected": [
         {
+          "id": "vinmec_foot_check",
+          "score": 0.3812
+        },
+        {
           "id": "foot_care",
-          "score": 0.3948
+          "score": 0.3628
         }
       ],
-      "first_relevant_rank": 1,
+      "first_relevant_rank": 2,
       "passed": true
     },
     {
@@ -154,7 +154,7 @@
       "selected": [
         {
           "id": "glucose_log",
-          "score": 0.4564
+          "score": 0.4439
         }
       ],
       "first_relevant_rank": 1,
@@ -169,7 +169,7 @@
       "selected": [
         {
           "id": "care_questions",
-          "score": 0.5932
+          "score": 0.5863
         }
       ],
       "first_relevant_rank": 1,
@@ -184,11 +184,19 @@
       "selected": [
         {
           "id": "sick_day",
-          "score": 0.2457
+          "score": 0.2491
         },
         {
           "id": "monitor",
-          "score": 0.154
+          "score": 0.1567
+        },
+        {
+          "id": "foot_care",
+          "score": 0.1528
+        },
+        {
+          "id": "overview",
+          "score": 0.1523
         }
       ],
       "first_relevant_rank": 1,
@@ -204,19 +212,19 @@
       "selected": [
         {
           "id": "activity_plan",
-          "score": 0.2588
+          "score": 0.2451
         },
         {
           "id": "activity",
-          "score": 0.2438
+          "score": 0.2296
         },
         {
           "id": "new_diagnosis",
-          "score": 0.2055
+          "score": 0.2056
         },
         {
           "id": "diabetes_distress",
-          "score": 0.1568
+          "score": 0.1566
         }
       ],
       "first_relevant_rank": 1,
@@ -231,11 +239,11 @@
       "selected": [
         {
           "id": "prediabetes",
-          "score": 0.4729
+          "score": 0.4826
         },
         {
           "id": "overview",
-          "score": 0.299
+          "score": 0.3062
         }
       ],
       "first_relevant_rank": 1,
@@ -250,7 +258,7 @@
       "selected": [
         {
           "id": "remission_info",
-          "score": 0.6743
+          "score": 0.6723
         }
       ],
       "first_relevant_rank": 1,
@@ -265,19 +273,19 @@
       "selected": [
         {
           "id": "monitor",
-          "score": 0.2378
+          "score": 0.2311
         },
         {
           "id": "drinks",
-          "score": 0.1946
+          "score": 0.1686
         },
         {
           "id": "overview",
-          "score": 0.1713
+          "score": 0.1664
         },
         {
-          "id": "fruit",
-          "score": 0.1602
+          "id": "pdf_self_management",
+          "score": 0.156
         }
       ],
       "first_relevant_rank": 2,
@@ -292,7 +300,7 @@
       "selected": [
         {
           "id": "not_contagious",
-          "score": 0.4789
+          "score": 0.4814
         }
       ],
       "first_relevant_rank": 1,
@@ -307,7 +315,7 @@
       "selected": [
         {
           "id": "stress_glucose",
-          "score": 0.4867
+          "score": 0.4863
         }
       ],
       "first_relevant_rank": 1,
@@ -322,7 +330,7 @@
       "selected": [
         {
           "id": "pregnancy_diabetes",
-          "score": 0.4706
+          "score": 0.472
         }
       ],
       "first_relevant_rank": 1,
@@ -339,15 +347,11 @@
       "selected": [
         {
           "id": "meal_example",
-          "score": 0.2065
+          "score": 0.2008
         },
         {
           "id": "plate",
-          "score": 0.1694
-        },
-        {
-          "id": "meal_timing",
-          "score": 0.1572
+          "score": 0.1561
         }
       ],
       "first_relevant_rank": 1,
@@ -368,7 +372,7 @@
       "selected": [
         {
           "id": "meal_example",
-          "score": 0.3986
+          "score": 0.3926
         }
       ],
       "first_relevant_rank": 1,
@@ -392,9 +396,9 @@
     }
   ],
   "positive_queries": 20,
-  "hit_at_1": 0.9,
+  "hit_at_1": 0.85,
   "hit_at_4": 1.0,
-  "mrr_at_4": 0.95,
+  "mrr_at_4": 0.9166666666666666,
   "abstention_checks": 2,
   "passed_cases": 22,
   "total_cases": 22

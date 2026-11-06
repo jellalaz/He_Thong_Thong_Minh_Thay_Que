@@ -21,6 +21,10 @@ def build_messages(payload):
     graph = prompt_facts(payload)
     if graph:
         context += '\n\nQUAN HỆ ĐỒ THỊ ĐÃ ĐỐI CHIẾU NGUỒN:\n'+graph+'\nCác quan hệ chỉ tóm tắt tài liệu cùng mã. Không suy ra chẩn đoán, nhân quả hay ngưỡng mới từ đường nối.'
+    review = payload.get('model_review')
+    if review:
+        context += '\n\nNGỮ CẢNH MÔ HÌNH NGHIÊN CỨU: '+review['scope']
+        context += '\nNgười dùng đã chọn trao đổi từ phiếu mô hình. Đây là dữ liệu nghiên cứu, không phải phiếu xét nghiệm xác nhận. Chỉ nhắc kết quả khi câu hỏi cần; không suy ra chẩn đoán hoặc thay đổi thuốc, khẩu phần từ nhãn hay điểm. Vẫn trả lời trực tiếp nhu cầu hiện tại theo tài liệu.'
     # Bound prior text independently from the retrieved evidence so long conversations remain usable.
     history = [dict(role=h['role'], content=h['content'][:700]) for h in payload.get('history', [])[-4:]]
     instruction = payload['plan'].get('instruction', 'Trả lời trực tiếp, dễ hiểu.')

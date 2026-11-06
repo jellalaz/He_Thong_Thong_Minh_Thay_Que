@@ -94,11 +94,11 @@
     "scope": "442 người đã mắc bệnh; điểm nghiên cứu không phải glucose, HbA1c hoặc % nguy cơ."
   },
   "knowledge": {
-    "file": "data/knowledge.json + data/knowledge_dialogue.json",
-    "documents": 46,
-    "used_sources": 19,
-    "source_registry_entries": 23,
-    "triples": 86,
+    "file": "data/knowledge.json + data/knowledge_dialogue.json + data/knowledge_curated.json",
+    "documents": 58,
+    "used_sources": 22,
+    "source_registry_entries": 26,
+    "triples": 106,
     "sources": [
       {
         "id": "diagnosis",
@@ -251,13 +251,20 @@
       {
         "id": "living",
         "label": "NIDDK · Healthy Living with Diabetes",
+        "publisher": "NIDDK",
+        "kind": "web",
         "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+        "local_file": "data/source_documents/niddk_healthy_living.txt",
+        "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+        "retrieved_at": "2026-11-06",
         "documents": [
           "drinks",
           "meal_timing",
-          "alcohol"
+          "alcohol",
+          "web_meal_timing",
+          "web_portion_choices"
         ],
-        "count": 3
+        "count": 5
       },
       {
         "id": "treatments",
@@ -297,9 +304,62 @@
           "remission_info"
         ],
         "count": 1
+      },
+      {
+        "id": "pdf_guiding",
+        "label": "NIDDK · Guiding Principles (PDF)",
+        "title": "Guiding Principles for the Care of People with or at Risk for Diabetes",
+        "publisher": "NIDDK",
+        "kind": "pdf",
+        "url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "scope": "Archived professional guide; selected self-management principles only, not current diagnosis or dosing thresholds.",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "retrieved_at": "2026-11-06",
+        "documents": [
+          "pdf_self_management",
+          "pdf_shared_goals",
+          "pdf_nutrition",
+          "pdf_food_choices",
+          "pdf_portions",
+          "pdf_activity_options"
+        ],
+        "count": 6
+      },
+      {
+        "id": "vinmec_nutrition",
+        "label": "Vinmec · Chế độ dinh dưỡng cho người tiểu đường",
+        "publisher": "Vinmec",
+        "kind": "web",
+        "url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+        "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+        "scope": "Short source excerpts and paraphrases; no full article redistribution.",
+        "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+        "retrieved_at": "2026-11-06",
+        "documents": [
+          "vinmec_meal_choices",
+          "vinmec_balanced_eating"
+        ],
+        "count": 2
+      },
+      {
+        "id": "vinmec_feet",
+        "label": "Vinmec · Chăm sóc bàn chân",
+        "publisher": "Vinmec",
+        "kind": "web",
+        "url": "https://www.vinmec.com/vie/bai-viet/cach-cham-soc-ban-chan-nguoi-benh-tieu-duong-vi",
+        "local_file": "data/source_documents/vinmec_feet.excerpts.json",
+        "scope": "Prevention and referral sections only; wound treatment and prescriptions excluded.",
+        "sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d",
+        "retrieved_at": "2026-11-06",
+        "documents": [
+          "vinmec_foot_check",
+          "vinmec_foot_clinic"
+        ],
+        "count": 2
       }
     ],
-    "scope": "46 đoạn có nguồn; mọi chủ đề có quan hệ Neo4j, chưa có bộ nạp PDF/web tự động."
+    "scope": "58 đoạn có nguồn; mọi chủ đề có quan hệ Neo4j, bổ sung nguồn web/PDF bằng quy trình biên soạn có kiểm tra trích đoạn."
   },
   "seed": 254
 }

@@ -1,0 +1,20 @@
+{
+  "passed": 13,
+  "reviewed_chunks": 12,
+  "checks": [
+    "All reviewed excerpts, physical PDF pages and source hashes match local source files",
+    "KB contains real PDF and Vinmec sources with inspectable provenance",
+    "classification: real model, bounded review and three evidence-backed support cards",
+    "classification: follow-up carries recalculated research context and preserves current meal intent",
+    "classification: a result follow-up uses the recomputed label or value",
+    "regression: real model, bounded review and three evidence-backed support cards",
+    "regression: follow-up carries recalculated research context and preserves current meal intent",
+    "regression: a result follow-up uses the recomputed label or value",
+    "A fresh chat has no implicit model context",
+    "Missing or non-finite context values are validated before model use",
+    "Emergency takes precedence over model context, graph and generation",
+    "Only known local source documents are served; PDF bytes remain intact",
+    "The local Qwen prompt receives explicit research scope for model follow-up"
+  ],
+  "external_network_calls": 0
+}

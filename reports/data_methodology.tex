@@ -5,7 +5,7 @@ Project sử dụng hai bộ dữ liệu học có giám sát và một kho tài
 \begin{longtable}{p{3cm}p{4cm}p{7cm}}\caption{Danh mục dữ liệu thực sự dùng trong GlucoGuide.}\label{tab:datasets}\\\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endfirsthead\toprule Thành phần & Quy mô & Nơi lấy và nơi sử dụng\\\midrule\endhead
 Phân loại & 50.000 dòng, 41 cột gốc; dùng 8 biến & Kaggle, Diabetes Risk Prediction Dataset (50K patients), tài khoản mobeenfatimah. ZIP lưu tại \path{data/raw/diabetes.zip}; dùng trong \path{scripts/train_models.py}.\\
 Hồi quy & 442 dòng, 10 biến và target số & Bộ diabetes đi kèm scikit-learn, đọc bằng \texttt{load\_diabetes(scaled=False)}. Không dùng ZIP của bài toán phân loại.\\
-Tri thức & 46 đoạn; 19 nguồn được tham chiếu & Hai tệp KB được đọc chung; 86 bộ ba liên kết toàn bộ chủ đề trên Neo4j local.\\\bottomrule\end{longtable}
+Tri thức & 58 đoạn; 22 nguồn được tham chiếu & Ba tệp KB được đọc chung; 106 bộ ba liên kết toàn bộ chủ đề trên Neo4j local.\\\bottomrule\end{longtable}
 \section{Nguồn và phiên bản bộ phân loại}
 Trang công bố bộ dữ liệu: \par\noindent\url{https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients}.\par  Tệp nằm trong ZIP có tên \path{diabetes_risk_prediction_dataset.csv}. Báo cáo sử dụng đúng bản chụp dữ liệu đã lưu trên máy, không tự thay bằng bộ 100.000 bản ghi của bài tham khảo. Tệp kiểm kê \path{results/data_audit.json} lưu SHA-256 của ZIP để phân biệt các phiên bản tải về.
 
@@ -31,11 +31,11 @@ Project gọi \texttt{scaled=False}, sau đó chuẩn hóa bằng scaler của r
 Bộ hồi quy không có giá trị thiếu trong ma trận đặc trưng. Phép chia ngẫu nhiên seed 254 giữ 353 mẫu train và 89 mẫu test, ghi tại \path{results/regression_split.csv}. Hai mô hình cùng dùng phép chia này. Chỉ số dòng trong \path{results/regression_predictions.csv} cho phép truy lại mục tiêu thật và dự đoán của từng mẫu test.
 \section{Nguồn KB và nguồn đang thực sự được dùng}
 \input{kb_sources.tex}
-Kho tri thức được đọc từ hai tệp JSON, gồm 46 đoạn và 19 nguồn thực sự được tham chiếu. Mỗi đoạn có mã, tiêu đề, từ khóa, văn bản, nguồn và bộ ba quan hệ. Các liên kết gốc được lưu để người đọc đối chiếu.
+Kho tri thức được đọc từ ba tệp JSON, gồm 58 đoạn và 22 nguồn thực sự được tham chiếu. Mỗi đoạn có mã, tiêu đề, từ khóa, văn bản, nguồn và bộ ba quan hệ. Các liên kết gốc được lưu để người đọc đối chiếu.
 
-Luồng Web/sách đến KB trong sơ đồ được hiện thực ở mức biên soạn bản chụp dữ liệu có nguồn. Project chưa có nút upload PDF, trình thu thập web, cơ chế cập nhật định kỳ hay bộ chia chương sách tự động. Các PDF tham khảo của sinh viên chỉ phục vụ bố cục và phân tích thiết kế; chúng không được nạp làm nguồn tư vấn y khoa. Khi thay KB cần rà nội dung, cập nhật JSON, chạy lại script nạp Neo4j và khởi động lại backend để xây lại ma trận TF-IDF.
+Luồng web/PDF đến KB được hiện thực bằng bản nguồn lưu trên máy và các đoạn biên soạn có căn cứ. Bản cập nhật có PDF NIDDK được trích theo số trang, văn bản web NIDDK và trích dẫn ngắn Vinmec. Script build\_sourced\_kb kiểm tra trích đoạn cùng mã băm trước khi dựng KB bổ sung. Project chưa có giao diện upload PDF hoặc bộ thu thập web cập nhật định kỳ. Các PDF báo cáo của sinh viên chỉ phục vụ bố cục và phân tích thiết kế, không phải nguồn tư vấn y khoa.
 
-Mỗi chủ đề có ít nhất một bộ ba được đối chiếu với văn bản nguồn. Sau khi nạp lại, Neo4j local có 143 khái niệm và 86 quan hệ, phủ đủ 46 chủ đề. Kiểm thử so sánh toàn bộ bộ ba, trích đoạn và URL với dữ liệu nguồn; nạp lần thứ hai không tăng số cạnh. Kết quả lưu tại \path{results/graph_coverage.json}.
+Mỗi chủ đề có ít nhất một bộ ba được đối chiếu với văn bản nguồn. Sau khi nạp lại, Neo4j local có 169 khái niệm và 106 quan hệ, phủ đủ 58 chủ đề. Kiểm thử so sánh toàn bộ bộ ba, trích đoạn và URL với dữ liệu nguồn; nạp lần thứ hai không tăng số cạnh. Kết quả lưu tại \path{results/graph_coverage.json}.
 \section{Từ nguồn tới kết quả hiển thị}
 Đường đi phân loại là ZIP/CSV, chọn cột, chia dữ liệu, fit pipeline, lưu checkpoint, API và giao diện. Đường đi hồi quy là hàm tải của thư viện, chia dữ liệu, fit pipeline, checkpoint và API. Đường đi tri thức là đoạn văn có nguồn, chỉ mục TF-IDF và bộ ba Neo4j, lựa chọn bằng chứng rồi tổng hợp trích đoạn.
 

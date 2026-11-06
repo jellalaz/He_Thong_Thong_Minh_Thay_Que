@@ -53,666 +53,796 @@
     },
     {
       "id": "n0011",
-      "name": "Cách xử lý quên thuốc",
+      "name": "Chế biến món ăn",
       "label": "Concept"
     },
     {
       "id": "n0012",
-      "name": "Căng thẳng",
+      "name": "Cách xử lý quên thuốc",
       "label": "Concept"
     },
     {
       "id": "n0013",
-      "name": "Giờ ăn",
+      "name": "Căng thẳng",
       "label": "Concept"
     },
     {
       "id": "n0014",
-      "name": "Glucose",
+      "name": "Giờ ăn",
       "label": "Concept"
     },
     {
       "id": "n0015",
-      "name": "Glucose dưới 70",
+      "name": "Glucose",
       "label": "Concept"
     },
     {
       "id": "n0016",
-      "name": "Gạo lứt",
+      "name": "Glucose dưới 70",
       "label": "Concept"
     },
     {
       "id": "n0017",
-      "name": "HDL",
+      "name": "Gạo lứt",
       "label": "Concept"
     },
     {
       "id": "n0018",
-      "name": "HbA1c",
+      "name": "HDL",
       "label": "Concept"
     },
     {
       "id": "n0019",
-      "name": "Huyết áp",
+      "name": "HbA1c",
       "label": "Concept"
     },
     {
       "id": "n0020",
-      "name": "Insulin",
+      "name": "Huyết áp",
       "label": "Concept"
     },
     {
       "id": "n0021",
-      "name": "Không nuốt được",
+      "name": "Insulin",
       "label": "Concept"
     },
     {
       "id": "n0022",
-      "name": "Không thêm đường",
+      "name": "Không nuốt được",
       "label": "Concept"
     },
     {
       "id": "n0023",
-      "name": "Khẩu phần",
+      "name": "Không thêm đường",
       "label": "Concept"
     },
     {
       "id": "n0024",
-      "name": "Kế hoạch tập",
+      "name": "Khẩu phần",
       "label": "Concept"
     },
     {
       "id": "n0025",
-      "name": "LDL",
+      "name": "Kiêng quá mức",
       "label": "Concept"
     },
     {
       "id": "n0026",
-      "name": "Liều thuốc",
+      "name": "Kế hoạch tập",
       "label": "Concept"
     },
     {
       "id": "n0027",
-      "name": "Lo âu kéo dài",
+      "name": "Kế hoạch ăn",
       "label": "Concept"
     },
     {
       "id": "n0028",
-      "name": "Lo âu và hạ đường huyết",
+      "name": "LDL",
       "label": "Concept"
     },
     {
       "id": "n0029",
-      "name": "Lựa chọn đồ uống",
+      "name": "Liều thuốc",
       "label": "Concept"
     },
     {
       "id": "n0030",
-      "name": "Metformin",
+      "name": "Lo âu kéo dài",
       "label": "Concept"
     },
     {
       "id": "n0031",
-      "name": "Mã giới tính nghiên cứu",
+      "name": "Lo âu và hạ đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0032",
-      "name": "Mô hình diabetes",
+      "name": "Lựa chọn đồ uống",
       "label": "Concept"
     },
     {
       "id": "n0033",
-      "name": "Mô hình phân loại",
+      "name": "Metformin",
       "label": "Concept"
     },
     {
       "id": "n0034",
-      "name": "Mục tiêu LDL",
+      "name": "Mã giới tính nghiên cứu",
       "label": "Concept"
     },
     {
       "id": "n0035",
-      "name": "Mục tiêu điều trị",
+      "name": "Món yêu thích",
       "label": "Concept"
     },
     {
       "id": "n0036",
-      "name": "Ngày ốm",
+      "name": "Mô hình diabetes",
       "label": "Concept"
     },
     {
       "id": "n0037",
-      "name": "Nhãn tổng hợp",
+      "name": "Mô hình phân loại",
       "label": "Concept"
     },
     {
       "id": "n0038",
-      "name": "Nhật ký",
+      "name": "Mục tiêu LDL",
       "label": "Concept"
     },
     {
       "id": "n0039",
-      "name": "Nhật ký đường huyết",
+      "name": "Mục tiêu tự chăm sóc",
       "label": "Concept"
     },
     {
       "id": "n0040",
-      "name": "Nước ép",
+      "name": "Mục tiêu điều trị",
       "label": "Concept"
     },
     {
       "id": "n0041",
-      "name": "Phân loại",
+      "name": "Nguồn đạm",
       "label": "Concept"
     },
     {
       "id": "n0042",
-      "name": "Phần tinh bột",
+      "name": "Ngày ốm",
       "label": "Concept"
     },
     {
       "id": "n0043",
-      "name": "Quên liều thuốc",
+      "name": "Người thân",
       "label": "Concept"
     },
     {
       "id": "n0044",
-      "name": "Rượu bia khi dùng insulin",
+      "name": "Nhãn tổng hợp",
       "label": "Concept"
     },
     {
       "id": "n0045",
-      "name": "Rối loạn ý thức",
+      "name": "Nhật ký",
       "label": "Concept"
     },
     {
       "id": "n0046",
-      "name": "Sau chẩn đoán",
+      "name": "Nhật ký đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0047",
-      "name": "Thai kỳ / bệnh máu",
+      "name": "Nước ép",
       "label": "Concept"
     },
     {
       "id": "n0048",
-      "name": "Theo dõi bệnh",
+      "name": "Phân loại",
       "label": "Concept"
     },
     {
       "id": "n0049",
-      "name": "Theo dõi thận",
+      "name": "Phần tinh bột",
       "label": "Concept"
     },
     {
       "id": "n0050",
-      "name": "Theo dõi và sinh hoạt phù hợp",
+      "name": "Quên liều thuốc",
       "label": "Concept"
     },
     {
       "id": "n0051",
-      "name": "Thuyên giảm type 2",
+      "name": "Rượu bia khi dùng insulin",
       "label": "Concept"
     },
     {
       "id": "n0052",
-      "name": "Thói quen uống rượu bia",
+      "name": "Rối loạn ý thức",
       "label": "Concept"
     },
     {
       "id": "n0053",
-      "name": "Tiền đái tháo đường",
+      "name": "Sau chẩn đoán",
       "label": "Concept"
     },
     {
       "id": "n0054",
-      "name": "Tiểu đường",
+      "name": "Thai kỳ / bệnh máu",
       "label": "Concept"
     },
     {
       "id": "n0055",
-      "name": "Tiểu đường thai kỳ",
+      "name": "Theo dõi bệnh",
       "label": "Concept"
     },
     {
       "id": "n0056",
-      "name": "Tiểu đường type 1",
+      "name": "Theo dõi bữa ăn",
       "label": "Concept"
     },
     {
       "id": "n0057",
-      "name": "Tiểu đường type 2",
+      "name": "Theo dõi thận",
       "label": "Concept"
     },
     {
       "id": "n0058",
-      "name": "Triglyceride",
+      "name": "Theo dõi và sinh hoạt phù hợp",
       "label": "Concept"
     },
     {
       "id": "n0059",
-      "name": "Triệu chứng",
+      "name": "Thuyên giảm type 2",
       "label": "Concept"
     },
     {
       "id": "n0060",
-      "name": "Trái cây",
+      "name": "Thói quen uống rượu bia",
       "label": "Concept"
     },
     {
       "id": "n0061",
-      "name": "Tỷ lệ cholesterol / HDL",
+      "name": "Tiền đái tháo đường",
       "label": "Concept"
     },
     {
       "id": "n0062",
-      "name": "UACR",
+      "name": "Tiểu đường",
       "label": "Concept"
     },
     {
       "id": "n0063",
-      "name": "Vận động",
+      "name": "Tiểu đường thai kỳ",
       "label": "Concept"
     },
     {
       "id": "n0064",
-      "name": "biểu hiện giống nhau",
+      "name": "Tiểu đường type 1",
       "label": "Concept"
     },
     {
       "id": "n0065",
-      "name": "bp",
+      "name": "Tiểu đường type 2",
       "label": "Concept"
     },
     {
       "id": "n0066",
-      "name": "bác sĩ hoặc dược sĩ",
+      "name": "Triglyceride",
       "label": "Concept"
     },
     {
       "id": "n0067",
-      "name": "bệnh truyền nhiễm",
+      "name": "Triệu chứng",
       "label": "Concept"
     },
     {
       "id": "n0068",
-      "name": "carbohydrate",
+      "name": "Trái cây",
       "label": "Concept"
     },
     {
       "id": "n0069",
-      "name": "cho ăn uống",
+      "name": "Tổn thương bàn chân",
       "label": "Concept"
     },
     {
       "id": "n0070",
-      "name": "chăm sóc bàn chân",
+      "name": "Tự chăm sóc",
       "label": "Concept"
     },
     {
       "id": "n0071",
-      "name": "chẩn đoán cá nhân",
+      "name": "Tỷ lệ cholesterol / HDL",
       "label": "Concept"
     },
     {
       "id": "n0072",
-      "name": "chọn ngưỡng HDL",
+      "name": "UACR",
       "label": "Concept"
     },
     {
       "id": "n0073",
-      "name": "chữa khỏi vĩnh viễn",
+      "name": "Vận động",
       "label": "Concept"
     },
     {
       "id": "n0074",
-      "name": "eGFR",
+      "name": "biểu hiện giống nhau",
       "label": "Concept"
     },
     {
       "id": "n0075",
-      "name": "giai đoạn cuối",
+      "name": "bp",
       "label": "Concept"
     },
     {
       "id": "n0076",
-      "name": "giới và bảng mỡ máu",
+      "name": "bác sĩ hoặc dược sĩ",
       "label": "Concept"
     },
     {
       "id": "n0077",
-      "name": "glucose do gan tạo ra",
+      "name": "bệnh truyền nhiễm",
       "label": "Concept"
     },
     {
       "id": "n0078",
-      "name": "huyết áp trung bình",
+      "name": "bệnh đi kèm",
       "label": "Concept"
     },
     {
       "id": "n0079",
-      "name": "huyết áp tâm thu",
+      "name": "carbohydrate",
       "label": "Concept"
     },
     {
       "id": "n0080",
-      "name": "hạ đường huyết",
+      "name": "cho ăn uống",
       "label": "Concept"
     },
     {
       "id": "n0081",
-      "name": "hồ sơ nguy cơ đầy đủ",
+      "name": "chăm sóc bàn chân",
       "label": "Concept"
     },
     {
       "id": "n0082",
-      "name": "insulin",
+      "name": "chẩn đoán cá nhân",
       "label": "Concept"
     },
     {
       "id": "n0083",
-      "name": "khám và xét nghiệm",
+      "name": "chọn ngưỡng HDL",
       "label": "Concept"
     },
     {
       "id": "n0084",
-      "name": "không có carbohydrate",
+      "name": "chữa khỏi vĩnh viễn",
       "label": "Concept"
     },
     {
       "id": "n0085",
-      "name": "loại bệnh / mục tiêu / thuốc",
+      "name": "cá hoặc đậu",
       "label": "Concept"
     },
     {
       "id": "n0086",
-      "name": "mất nước",
+      "name": "cá hoặc đậu nành",
       "label": "Concept"
     },
     {
       "id": "n0087",
-      "name": "mục tiêu / lịch đo / lịch tái khám",
+      "name": "cơ sở y tế",
       "label": "Concept"
     },
     {
       "id": "n0088",
-      "name": "nguy cơ cá nhân",
+      "name": "eGFR",
       "label": "Concept"
     },
     {
       "id": "n0089",
-      "name": "nguy cơ xơ vữa",
+      "name": "giai đoạn cuối",
       "label": "Concept"
     },
     {
       "id": "n0090",
-      "name": "ngày giờ / số đo / đơn vị / bữa ăn",
+      "name": "giới và bảng mỡ máu",
       "label": "Concept"
     },
     {
       "id": "n0091",
-      "name": "nhu cầu cá nhân",
+      "name": "glucose do gan tạo ra",
       "label": "Concept"
     },
     {
       "id": "n0092",
-      "name": "nhân viên y tế",
+      "name": "huyết áp trung bình",
       "label": "Concept"
     },
     {
       "id": "n0093",
-      "name": "nhãn tổng hợp High / Moderate / Low",
+      "name": "huyết áp tâm thu",
       "label": "Concept"
     },
     {
       "id": "n0094",
-      "name": "nhóm chăm sóc",
+      "name": "hạ đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0095",
-      "name": "nước lọc / ít hoặc không thêm đường",
+      "name": "hấp hoặc luộc",
       "label": "Concept"
     },
     {
       "id": "n0096",
-      "name": "phiếu xét nghiệm / nhật ký / danh sách thuốc",
+      "name": "hồ sơ nguy cơ đầy đủ",
       "label": "Concept"
     },
     {
       "id": "n0097",
-      "name": "phá hủy tế bào sản xuất insulin",
+      "name": "insulin",
       "label": "Concept"
     },
     {
       "id": "n0098",
-      "name": "phương pháp chiếc đĩa",
+      "name": "khám và xét nghiệm",
       "label": "Concept"
     },
     {
       "id": "n0099",
-      "name": "quan sát hằng ngày",
+      "name": "không có carbohydrate",
       "label": "Concept"
     },
     {
       "id": "n0100",
-      "name": "quản lý đường huyết",
+      "name": "khả năng cá nhân",
       "label": "Concept"
     },
     {
       "id": "n0101",
-      "name": "rau không nhiều tinh bột",
+      "name": "khẩu phần",
       "label": "Concept"
     },
     {
       "id": "n0102",
-      "name": "rau không tinh bột",
+      "name": "loại bệnh / mục tiêu / thuốc",
       "label": "Concept"
     },
     {
       "id": "n0103",
-      "name": "s5 / ltg",
+      "name": "mất cân bằng dinh dưỡng",
       "label": "Concept"
     },
     {
       "id": "n0104",
-      "name": "số đo và bối cảnh",
+      "name": "mất nước",
       "label": "Concept"
     },
     {
       "id": "n0105",
-      "name": "sử dụng insulin",
+      "name": "mục tiêu / lịch đo / lịch tái khám",
       "label": "Concept"
     },
     {
       "id": "n0106",
-      "name": "sử dụng insulin kém hiệu quả",
+      "name": "nguy cơ cá nhân",
       "label": "Concept"
     },
     {
       "id": "n0107",
-      "name": "thai kỳ",
+      "name": "nguy cơ hạ đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0108",
-      "name": "theo dõi theo bối cảnh sản khoa",
+      "name": "nguy cơ xơ vữa",
       "label": "Concept"
     },
     {
       "id": "n0109",
-      "name": "theo dõi đường huyết",
+      "name": "ngày giờ / số đo / đơn vị / bữa ăn",
       "label": "Concept"
     },
     {
       "id": "n0110",
-      "name": "thiếu hoặc sử dụng insulin kém hiệu quả",
+      "name": "nhu cầu cá nhân",
       "label": "Concept"
     },
     {
       "id": "n0111",
-      "name": "thuốc / hoạt động / lịch làm việc",
+      "name": "nhân viên y tế",
       "label": "Concept"
     },
     {
       "id": "n0112",
-      "name": "thuốc / hoạt động / mục tiêu cá nhân",
+      "name": "nhãn tổng hợp High / Moderate / Low",
       "label": "Concept"
     },
     {
       "id": "n0113",
-      "name": "thể trạng",
+      "name": "nhóm chăm sóc",
       "label": "Concept"
     },
     {
       "id": "n0114",
-      "name": "thực phẩm chứa tinh bột",
+      "name": "nhóm điều trị",
       "label": "Concept"
     },
     {
       "id": "n0115",
-      "name": "tim / thận / mắt / thần kinh",
+      "name": "nước lọc / ít hoặc không thêm đường",
       "label": "Concept"
     },
     {
       "id": "n0116",
-      "name": "tiểu đường",
+      "name": "phiếu xét nghiệm / nhật ký / danh sách thuốc",
       "label": "Concept"
     },
     {
       "id": "n0117",
-      "name": "tiểu đường type 2",
+      "name": "phá hủy tế bào sản xuất insulin",
       "label": "Concept"
     },
     {
       "id": "n0118",
-      "name": "toàn phần / LDL / HDL / triglyceride",
+      "name": "phương pháp chiếc đĩa",
       "label": "Concept"
     },
     {
       "id": "n0119",
-      "name": "trao đổi khi tái khám",
+      "name": "phương pháp đĩa ăn",
       "label": "Concept"
     },
     {
       "id": "n0120",
-      "name": "trái cây nguyên quả",
+      "name": "quan sát da và kẽ ngón",
       "label": "Concept"
     },
     {
       "id": "n0121",
-      "name": "trợ giúp y tế khẩn cấp",
+      "name": "quan sát hằng ngày",
       "label": "Concept"
     },
     {
       "id": "n0122",
-      "name": "tái khám",
+      "name": "quản lý đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0123",
-      "name": "tâm thu / tâm trương",
+      "name": "rau không nhiều tinh bột",
       "label": "Concept"
     },
     {
       "id": "n0124",
-      "name": "tên thuốc / liều kê / thời điểm",
+      "name": "rau không tinh bột",
       "label": "Concept"
     },
     {
       "id": "n0125",
-      "name": "tình trạng cá nhân",
+      "name": "rau và đậu",
       "label": "Concept"
     },
     {
       "id": "n0126",
-      "name": "từng người",
+      "name": "s5 / ltg",
       "label": "Concept"
     },
     {
       "id": "n0127",
-      "name": "xác suất mắc bệnh",
+      "name": "số đo và bối cảnh",
       "label": "Concept"
     },
     {
       "id": "n0128",
-      "name": "xét nghiệm triglyceride gốc",
+      "name": "sử dụng insulin",
       "label": "Concept"
     },
     {
       "id": "n0129",
-      "name": "áp lực và lo lắng",
+      "name": "sử dụng insulin kém hiệu quả",
       "label": "Concept"
     },
     {
       "id": "n0130",
-      "name": "Ăn chung hoặc tiếp xúc",
+      "name": "thai kỳ",
       "label": "Concept"
     },
     {
       "id": "n0131",
-      "name": "Điểm tiến triển",
+      "name": "theo dõi sức khỏe",
       "label": "Concept"
     },
     {
       "id": "n0132",
-      "name": "Đĩa ăn cân bằng",
+      "name": "theo dõi theo bối cảnh sản khoa",
       "label": "Concept"
     },
     {
       "id": "n0133",
-      "name": "Đường huyết cao kéo dài",
+      "name": "theo dõi đường huyết",
       "label": "Concept"
     },
     {
       "id": "n0134",
-      "name": "đi bộ ngắn",
+      "name": "thiếu hoặc sử dụng insulin kém hiệu quả",
       "label": "Concept"
     },
     {
       "id": "n0135",
-      "name": "điểm tiến triển nghiên cứu",
+      "name": "thuốc / hoạt động / lịch làm việc",
       "label": "Concept"
     },
     {
       "id": "n0136",
-      "name": "đo / ghi chép / ăn uống / tái khám",
+      "name": "thuốc / hoạt động / mục tiêu cá nhân",
       "label": "Concept"
     },
     {
       "id": "n0137",
-      "name": "đánh giá cá nhân",
+      "name": "thói quen tự chăm sóc",
       "label": "Concept"
     },
     {
       "id": "n0138",
-      "name": "đơn vị và thời điểm đo",
+      "name": "thể trạng",
       "label": "Concept"
     },
     {
       "id": "n0139",
-      "name": "đơn vị xét nghiệm",
+      "name": "thực phẩm chứa tinh bột",
       "label": "Concept"
     },
     {
       "id": "n0140",
-      "name": "đường huyết",
+      "name": "tim / thận / mắt / thần kinh",
       "label": "Concept"
     },
     {
       "id": "n0141",
-      "name": "đường huyết / huyết áp / cholesterol",
+      "name": "tiểu đường",
       "label": "Concept"
     },
     {
       "id": "n0142",
-      "name": "đường huyết trung bình",
+      "name": "tiểu đường type 2",
       "label": "Concept"
     },
     {
       "id": "n0143",
+      "name": "toàn phần / LDL / HDL / triglyceride",
+      "label": "Concept"
+    },
+    {
+      "id": "n0144",
+      "name": "trao đổi khi tái khám",
+      "label": "Concept"
+    },
+    {
+      "id": "n0145",
+      "name": "trái cây nguyên quả",
+      "label": "Concept"
+    },
+    {
+      "id": "n0146",
+      "name": "trợ giúp y tế khẩn cấp",
+      "label": "Concept"
+    },
+    {
+      "id": "n0147",
+      "name": "tái khám",
+      "label": "Concept"
+    },
+    {
+      "id": "n0148",
+      "name": "tâm thu / tâm trương",
+      "label": "Concept"
+    },
+    {
+      "id": "n0149",
+      "name": "tên thuốc / liều kê / thời điểm",
+      "label": "Concept"
+    },
+    {
+      "id": "n0150",
+      "name": "tình trạng cá nhân",
+      "label": "Concept"
+    },
+    {
+      "id": "n0151",
+      "name": "từng người",
+      "label": "Concept"
+    },
+    {
+      "id": "n0152",
+      "name": "xác suất mắc bệnh",
+      "label": "Concept"
+    },
+    {
+      "id": "n0153",
+      "name": "xét nghiệm triglyceride gốc",
+      "label": "Concept"
+    },
+    {
+      "id": "n0154",
+      "name": "áp lực và lo lắng",
+      "label": "Concept"
+    },
+    {
+      "id": "n0155",
+      "name": "Ăn chung hoặc tiếp xúc",
+      "label": "Concept"
+    },
+    {
+      "id": "n0156",
+      "name": "Điểm tiến triển",
+      "label": "Concept"
+    },
+    {
+      "id": "n0157",
+      "name": "Đĩa ăn cân bằng",
+      "label": "Concept"
+    },
+    {
+      "id": "n0158",
+      "name": "Đường huyết cao kéo dài",
+      "label": "Concept"
+    },
+    {
+      "id": "n0159",
+      "name": "đi bộ",
+      "label": "Concept"
+    },
+    {
+      "id": "n0160",
+      "name": "đi bộ ngắn",
+      "label": "Concept"
+    },
+    {
+      "id": "n0161",
+      "name": "điểm tiến triển nghiên cứu",
+      "label": "Concept"
+    },
+    {
+      "id": "n0162",
+      "name": "đo / ghi chép / ăn uống / tái khám",
+      "label": "Concept"
+    },
+    {
+      "id": "n0163",
+      "name": "đánh giá cá nhân",
+      "label": "Concept"
+    },
+    {
+      "id": "n0164",
+      "name": "đơn vị và thời điểm đo",
+      "label": "Concept"
+    },
+    {
+      "id": "n0165",
+      "name": "đơn vị xét nghiệm",
+      "label": "Concept"
+    },
+    {
+      "id": "n0166",
+      "name": "đường huyết",
+      "label": "Concept"
+    },
+    {
+      "id": "n0167",
+      "name": "đường huyết / huyết áp / cholesterol",
+      "label": "Concept"
+    },
+    {
+      "id": "n0168",
+      "name": "đường huyết trung bình",
+      "label": "Concept"
+    },
+    {
+      "id": "n0169",
       "name": "đạm",
       "label": "Concept"
     }
@@ -724,7 +854,10 @@
       "target": "đường huyết trung bình",
       "document": "a1c",
       "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Thai kỳ / bệnh máu",
@@ -732,7 +865,10 @@
       "target": "HbA1c",
       "document": "a1c",
       "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Kế hoạch tập",
@@ -740,7 +876,10 @@
       "target": "thể trạng",
       "document": "activity",
       "evidence": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế.",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Vận động",
@@ -748,7 +887,10 @@
       "target": "quản lý đường huyết",
       "document": "activity",
       "evidence": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế.",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Vận động",
@@ -756,7 +898,10 @@
       "target": "đi bộ ngắn",
       "document": "activity_plan",
       "evidence": "CDC gợi ý bắt đầu bằng mục tiêu nhỏ, chẳng hạn đi bộ khoảng 10 phút sau bữa tối, rồi tăng dần theo sức. Mục tiêu chung được nêu là ít nhất 150 phút vận động mức vừa mỗi tuần. Người có bệnh nền hoặc đang dùng thuốc làm hạ đường huyết nên hỏi nhóm chăm sóc về hoạt động phù hợp và cách theo dõi khi vận động.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Vận động",
@@ -764,7 +909,10 @@
       "target": "tình trạng cá nhân",
       "document": "activity_plan",
       "evidence": "CDC gợi ý bắt đầu bằng mục tiêu nhỏ, chẳng hạn đi bộ khoảng 10 phút sau bữa tối, rồi tăng dần theo sức. Mục tiêu chung được nêu là ít nhất 150 phút vận động mức vừa mỗi tuần. Người có bệnh nền hoặc đang dùng thuốc làm hạ đường huyết nên hỏi nhóm chăm sóc về hoạt động phù hợp và cách theo dõi khi vận động.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Rượu bia khi dùng insulin",
@@ -772,7 +920,10 @@
       "target": "hạ đường huyết",
       "document": "alcohol",
       "evidence": "Rượu bia có thể làm hạ đường huyết ở người dùng insulin hoặc một số thuốc tiểu đường. NIDDK khuyên trao đổi thói quen uống với nhóm chăm sóc, hạn chế lượng cồn và chú ý theo dõi đường huyết. Không có lượng uống an toàn chung để chatbot tự chỉ định cho mọi người.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Thói quen uống rượu bia",
@@ -780,7 +931,10 @@
       "target": "nhóm chăm sóc",
       "document": "alcohol",
       "evidence": "Rượu bia có thể làm hạ đường huyết ở người dùng insulin hoặc một số thuốc tiểu đường. NIDDK khuyên trao đổi thói quen uống với nhóm chăm sóc, hạn chế lượng cồn và chú ý theo dõi đường huyết. Không có lượng uống an toàn chung để chatbot tự chỉ định cho mọi người.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Huyết áp",
@@ -788,7 +942,10 @@
       "target": "tâm thu / tâm trương",
       "document": "bloodpressure",
       "evidence": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
-      "source_url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      "source_url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Phân loại",
@@ -796,7 +953,10 @@
       "target": "số đo và bối cảnh",
       "document": "bloodpressure",
       "evidence": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
-      "source_url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      "source_url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Carbohydrate",
@@ -804,7 +964,10 @@
       "target": "đường huyết",
       "document": "carb",
       "evidence": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Khẩu phần",
@@ -812,7 +975,10 @@
       "target": "nhu cầu cá nhân",
       "document": "carb",
       "evidence": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Buổi khám",
@@ -820,7 +986,10 @@
       "target": "mục tiêu / lịch đo / lịch tái khám",
       "document": "care_questions",
       "evidence": "Có thể chuẩn bị: phiếu xét nghiệm trước đây; nhật ký đường huyết kèm thời điểm và triệu chứng; danh sách thuốc đang dùng. Những câu nên hỏi là mục tiêu riêng của mình, lịch đo, cách xử lý khi chỉ số quá thấp hoặc quá cao, thuốc dùng ra sao và khi nào tái khám. Ghi các câu hỏi trước buổi hẹn giúp đỡ quên thông tin.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Chuẩn bị đi khám",
@@ -828,7 +997,10 @@
       "target": "phiếu xét nghiệm / nhật ký / danh sách thuốc",
       "document": "care_questions",
       "evidence": "Có thể chuẩn bị: phiếu xét nghiệm trước đây; nhật ký đường huyết kèm thời điểm và triệu chứng; danh sách thuốc đang dùng. Những câu nên hỏi là mục tiêu riêng của mình, lịch đo, cách xử lý khi chỉ số quá thấp hoặc quá cao, thuốc dùng ra sao và khi nào tái khám. Ghi các câu hỏi trước buổi hẹn giúp đỡ quên thông tin.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mô hình phân loại",
@@ -836,7 +1008,10 @@
       "target": "nhãn tổng hợp High / Moderate / Low",
       "document": "classification_scope",
       "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
-      "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+      "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nhãn tổng hợp",
@@ -844,7 +1019,10 @@
       "target": "chẩn đoán cá nhân",
       "document": "classification_scope",
       "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
-      "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+      "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Theo dõi bệnh",
@@ -852,7 +1030,10 @@
       "target": "đường huyết / huyết áp / cholesterol",
       "document": "complications",
       "evidence": "Đường huyết cao kéo dài có thể ảnh hưởng tim, thận, bàn chân, mắt và thần kinh. Theo dõi đường huyết cùng huyết áp và cholesterol giúp giảm nguy cơ biến chứng. Không có triệu chứng rõ không có nghĩa là không cần theo dõi; lịch kiểm tra cần thống nhất với nhóm chăm sóc.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Đường huyết cao kéo dài",
@@ -860,7 +1041,10 @@
       "target": "tim / thận / mắt / thần kinh",
       "document": "complications",
       "evidence": "Đường huyết cao kéo dài có thể ảnh hưởng tim, thận, bàn chân, mắt và thần kinh. Theo dõi đường huyết cùng huyết áp và cholesterol giúp giảm nguy cơ biến chứng. Không có triệu chứng rõ không có nghĩa là không cần theo dõi; lịch kiểm tra cần thống nhất với nhóm chăm sóc.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mã giới tính nghiên cứu",
@@ -868,7 +1052,10 @@
       "target": "chọn ngưỡng HDL",
       "document": "demographics",
       "evidence": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Chăm sóc tiểu đường hằng ngày",
@@ -876,7 +1063,10 @@
       "target": "áp lực và lo lắng",
       "document": "diabetes_distress",
       "evidence": "Theo dõi bệnh hằng ngày có thể tạo áp lực và lo lắng. Có thể bắt đầu từ một mục tiêu nhỏ, nhờ người thân hỗ trợ, vận động nhẹ hoặc dành thời gian thư giãn. Nếu buồn bã, lo âu kéo dài hoặc ảnh hưởng sinh hoạt, hãy trao đổi với nhóm chăm sóc để được giúp đỡ. Không quy mọi triệu chứng cơ thể cho căng thẳng.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Lo âu kéo dài",
@@ -884,7 +1074,10 @@
       "target": "nhóm chăm sóc",
       "document": "diabetes_distress",
       "evidence": "Theo dõi bệnh hằng ngày có thể tạo áp lực và lo lắng. Có thể bắt đầu từ một mục tiêu nhỏ, nhờ người thân hỗ trợ, vận động nhẹ hoặc dành thời gian thư giãn. Nếu buồn bã, lo âu kéo dài hoặc ảnh hưởng sinh hoạt, hãy trao đổi với nhóm chăm sóc để được giúp đỡ. Không quy mọi triệu chứng cơ thể cho căng thẳng.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Không thêm đường",
@@ -892,7 +1085,10 @@
       "target": "không có carbohydrate",
       "document": "drinks",
       "evidence": "NIDDK gợi ý chọn nước lọc và đồ uống ít hoặc không thêm đường như trà hay cà phê không đường. Sữa và đồ uống có hương vị vẫn cần xem thành phần và lượng carbohydrate; nhãn không thêm đường không có nghĩa là không có carbohydrate. Hạn chế đồ uống có đường; lựa chọn và phần uống cần phù hợp kế hoạch ăn của người bệnh.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Lựa chọn đồ uống",
@@ -900,7 +1096,10 @@
       "target": "nước lọc / ít hoặc không thêm đường",
       "document": "drinks",
       "evidence": "NIDDK gợi ý chọn nước lọc và đồ uống ít hoặc không thêm đường như trà hay cà phê không đường. Sữa và đồ uống có hương vị vẫn cần xem thành phần và lượng carbohydrate; nhãn không thêm đường không có nghĩa là không có carbohydrate. Hạn chế đồ uống có đường; lựa chọn và phần uống cần phù hợp kế hoạch ăn của người bệnh.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Chăm sóc bàn chân",
@@ -908,7 +1107,10 @@
       "target": "quan sát hằng ngày",
       "document": "foot_care",
       "evidence": "Người có tiểu đường nên quan sát bàn chân mỗi ngày, kể cả giữa các ngón chân, để sớm nhận ra vết cắt, chỗ đỏ, sưng hoặc phồng rộp. Có thể dùng gương hoặc nhờ người hỗ trợ nếu khó nhìn. Hãy trao đổi với cơ sở y tế khi phát hiện tổn thương; kiểm tra bàn chân trong các lần khám.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường",
@@ -916,7 +1118,10 @@
       "target": "chăm sóc bàn chân",
       "document": "foot_care",
       "evidence": "Người có tiểu đường nên quan sát bàn chân mỗi ngày, kể cả giữa các ngón chân, để sớm nhận ra vết cắt, chỗ đỏ, sưng hoặc phồng rộp. Có thể dùng gương hoặc nhờ người hỗ trợ nếu khó nhìn. Hãy trao đổi với cơ sở y tế khi phát hiện tổn thương; kiểm tra bàn chân trong các lần khám.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nước ép",
@@ -924,7 +1129,10 @@
       "target": "đường huyết",
       "document": "fruit",
       "evidence": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nước ép",
@@ -932,7 +1140,10 @@
       "target": "trái cây nguyên quả",
       "document": "fruit_whole",
       "evidence": "Trái cây có carbohydrate; không cần tự cấm toàn bộ trái cây, nhưng cần chú ý lượng và tính vào kế hoạch ăn. CDC nêu nước ép làm đường huyết tăng nhanh hơn trái cây nguyên quả. Ưu tiên quả nguyên thay cho nước ép và đồ uống thêm đường. Không kết luận một loại quả an toàn để ăn không giới hạn chỉ vì ít ngọt.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Trái cây",
@@ -940,7 +1151,10 @@
       "target": "carbohydrate",
       "document": "fruit_whole",
       "evidence": "Trái cây có carbohydrate; không cần tự cấm toàn bộ trái cây, nhưng cần chú ý lượng và tính vào kế hoạch ăn. CDC nêu nước ép làm đường huyết tăng nhanh hơn trái cây nguyên quả. Ưu tiên quả nguyên thay cho nước ép và đồ uống thêm đường. Không kết luận một loại quả an toàn để ăn không giới hạn chỉ vì ít ngọt.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nhật ký đường huyết",
@@ -948,7 +1162,10 @@
       "target": "ngày giờ / số đo / đơn vị / bữa ăn",
       "document": "glucose_log",
       "evidence": "Một bảng ghi đơn giản có các cột: ngày giờ; tên phép đo; kết quả và đơn vị; trước hay sau bữa ăn; thuốc đã dùng; hoạt động; triệu chứng. Giữ nguyên số đo gốc, không đổi điểm nghiên cứu thành đường huyết. Tần suất đo và mục tiêu cần thống nhất với nhóm chăm sóc; ghi chép giúp nhìn xu hướng và trao đổi khi tái khám.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nhật ký đường huyết",
@@ -956,7 +1173,10 @@
       "target": "trao đổi khi tái khám",
       "document": "glucose_log",
       "evidence": "Một bảng ghi đơn giản có các cột: ngày giờ; tên phép đo; kết quả và đơn vị; trước hay sau bữa ăn; thuốc đã dùng; hoạt động; triệu chứng. Giữ nguyên số đo gốc, không đổi điểm nghiên cứu thành đường huyết. Tần suất đo và mục tiêu cần thống nhất với nhóm chăm sóc; ghi chép giúp nhìn xu hướng và trao đổi khi tái khám.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "HDL",
@@ -964,7 +1184,10 @@
       "target": "giới và bảng mỡ máu",
       "document": "hdl",
       "evidence": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Bắt đầu insulin",
@@ -972,7 +1195,10 @@
       "target": "giai đoạn cuối",
       "document": "insulin_info",
       "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường type 1",
@@ -980,7 +1206,10 @@
       "target": "insulin",
       "document": "insulin_info",
       "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường type 2",
@@ -988,7 +1217,10 @@
       "target": "insulin",
       "document": "insulin_info",
       "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Theo dõi thận",
@@ -996,7 +1228,10 @@
       "target": "UACR",
       "document": "kidney_checks",
       "evidence": "UACR (tỷ số albumin/creatinine trong nước tiểu) và eGFR (mức lọc cầu thận ước tính) là hai chỉ số thường dùng để đánh giá tổn thương thận. Người có tiểu đường nên trao đổi với bác sĩ về thời điểm kiểm tra và ý nghĩa kết quả; một chỉ số đơn lẻ không đủ kết luận tình trạng thận.",
-      "source_url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr"
+      "source_url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Theo dõi thận",
@@ -1004,7 +1239,10 @@
       "target": "eGFR",
       "document": "kidney_checks",
       "evidence": "UACR (tỷ số albumin/creatinine trong nước tiểu) và eGFR (mức lọc cầu thận ước tính) là hai chỉ số thường dùng để đánh giá tổn thương thận. Người có tiểu đường nên trao đổi với bác sĩ về thời điểm kiểm tra và ý nghĩa kết quả; một chỉ số đơn lẻ không đủ kết luận tình trạng thận.",
-      "source_url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr"
+      "source_url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "LDL",
@@ -1012,7 +1250,10 @@
       "target": "nguy cơ xơ vữa",
       "document": "ldl",
       "evidence": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mục tiêu LDL",
@@ -1020,7 +1261,10 @@
       "target": "đánh giá cá nhân",
       "document": "ldl",
       "evidence": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Bảng mỡ máu",
@@ -1028,7 +1272,10 @@
       "target": "toàn phần / LDL / HDL / triglyceride",
       "document": "lipids",
       "evidence": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mục tiêu LDL",
@@ -1036,7 +1283,10 @@
       "target": "nguy cơ cá nhân",
       "document": "lipids",
       "evidence": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Glucose dưới 70",
@@ -1044,7 +1294,10 @@
       "target": "hạ đường huyết",
       "document": "low",
       "evidence": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp.",
-      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Không nuốt được",
@@ -1052,7 +1305,10 @@
       "target": "cho ăn uống",
       "document": "low",
       "evidence": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp.",
-      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Đĩa ăn cân bằng",
@@ -1060,7 +1316,10 @@
       "target": "đạm",
       "document": "meal_example",
       "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Đĩa ăn cân bằng",
@@ -1068,7 +1327,10 @@
       "target": "rau không nhiều tinh bột",
       "document": "meal_example",
       "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Đĩa ăn cân bằng",
@@ -1076,7 +1338,10 @@
       "target": "thực phẩm chứa tinh bột",
       "document": "meal_example",
       "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
@@ -1084,7 +1349,10 @@
       "target": "hạ đường huyết",
       "document": "meal_timing",
       "evidence": "Giờ ăn và bữa phụ phụ thuộc thuốc, hoạt động và lịch làm việc. Một số thuốc, gồm insulin, có thể gây hạ đường huyết khi bỏ hoặc trì hoãn bữa ăn. Không tự nhịn ăn để xử lý một chỉ số cao. Có thể mang lịch làm việc và giờ dùng thuốc trao đổi với nhóm chăm sóc để sắp xếp bữa phù hợp.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Giờ ăn",
@@ -1092,7 +1360,10 @@
       "target": "thuốc / hoạt động / lịch làm việc",
       "document": "meal_timing",
       "evidence": "Giờ ăn và bữa phụ phụ thuộc thuốc, hoạt động và lịch làm việc. Một số thuốc, gồm insulin, có thể gây hạ đường huyết khi bỏ hoặc trì hoãn bữa ăn. Không tự nhịn ăn để xử lý một chỉ số cao. Có thể mang lịch làm việc và giờ dùng thuốc trao đổi với nhóm chăm sóc để sắp xếp bữa phù hợp.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "bp",
@@ -1100,7 +1371,10 @@
       "target": "huyết áp trung bình",
       "document": "meanpressure",
       "evidence": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "bp",
@@ -1108,7 +1382,10 @@
       "target": "huyết áp tâm thu",
       "document": "meanpressure",
       "evidence": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Liều thuốc",
@@ -1116,7 +1393,10 @@
       "target": "nhân viên y tế",
       "document": "medicine",
       "evidence": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Metformin",
@@ -1124,7 +1404,10 @@
       "target": "sử dụng insulin",
       "document": "metformin_info",
       "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Metformin",
@@ -1132,7 +1415,10 @@
       "target": "glucose do gan tạo ra",
       "document": "metformin_info",
       "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Cách xử lý quên thuốc",
@@ -1140,7 +1426,10 @@
       "target": "bác sĩ hoặc dược sĩ",
       "document": "missed_medicine",
       "evidence": "Khi được kê thuốc, nên hỏi rõ giờ dùng, cách xử lý khi quên liều và tác dụng phụ cần báo. Nếu đã quên liều hoặc có khó chịu, cần tên thuốc, dạng thuốc, liều kê và thời điểm để hỏi bác sĩ hoặc dược sĩ. Chatbot không tự tính liều bù, đổi thuốc hoặc khuyên uống gấp đôi.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Quên liều thuốc",
@@ -1148,7 +1437,10 @@
       "target": "tên thuốc / liều kê / thời điểm",
       "document": "missed_medicine",
       "evidence": "Khi được kê thuốc, nên hỏi rõ giờ dùng, cách xử lý khi quên liều và tác dụng phụ cần báo. Nếu đã quên liều hoặc có khó chịu, cần tên thuốc, dạng thuốc, liều kê và thời điểm để hỏi bác sĩ hoặc dược sĩ. Chatbot không tự tính liều bù, đổi thuốc hoặc khuyên uống gấp đôi.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mô hình diabetes",
@@ -1156,7 +1448,10 @@
       "target": "điểm tiến triển nghiên cứu",
       "document": "model",
       "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Điểm tiến triển",
@@ -1164,7 +1459,10 @@
       "target": "xác suất mắc bệnh",
       "document": "model",
       "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Mục tiêu điều trị",
@@ -1172,7 +1470,10 @@
       "target": "từng người",
       "document": "monitor",
       "evidence": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Nhật ký",
@@ -1180,7 +1481,10 @@
       "target": "tái khám",
       "document": "monitor",
       "evidence": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Sau chẩn đoán",
@@ -1188,7 +1492,10 @@
       "target": "loại bệnh / mục tiêu / thuốc",
       "document": "new_diagnosis",
       "evidence": "Sau khi được chẩn đoán, có thể làm từng bước: hiểu loại bệnh và mục tiêu theo dõi; làm rõ cách dùng thuốc nếu có đơn; học cách đo và ghi kết quả; bàn kế hoạch ăn uống, hoạt động và lịch tái khám. Không cần thay đổi mọi thói quen cùng lúc. Ưu tiên một việc có thể thực hiện hôm nay, rồi xem lại cùng nhóm chăm sóc.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Sau chẩn đoán",
@@ -1196,7 +1503,10 @@
       "target": "đo / ghi chép / ăn uống / tái khám",
       "document": "new_diagnosis",
       "evidence": "Sau khi được chẩn đoán, có thể làm từng bước: hiểu loại bệnh và mục tiêu theo dõi; làm rõ cách dùng thuốc nếu có đơn; học cách đo và ghi kết quả; bàn kế hoạch ăn uống, hoạt động và lịch tái khám. Không cần thay đổi mọi thói quen cùng lúc. Ưu tiên một việc có thể thực hiện hôm nay, rồi xem lại cùng nhóm chăm sóc.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường",
@@ -1204,7 +1514,10 @@
       "target": "bệnh truyền nhiễm",
       "document": "not_contagious",
       "evidence": "Tiểu đường không phải bệnh truyền nhiễm và không lây từ người này sang người khác như cảm cúm. Ăn chung hoặc tiếp xúc sinh hoạt không làm lây bệnh tiểu đường. Nguy cơ type 2 có liên quan đến nhiều yếu tố, trong đó có tiền sử gia đình và sinh hoạt; điều này khác với lây nhiễm.",
-      "source_url": "https://diabetes.org/about-diabetes/diabetes-myths"
+      "source_url": "https://diabetes.org/about-diabetes/diabetes-myths",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Ăn chung hoặc tiếp xúc",
@@ -1212,7 +1525,10 @@
       "target": "tiểu đường",
       "document": "not_contagious",
       "evidence": "Tiểu đường không phải bệnh truyền nhiễm và không lây từ người này sang người khác như cảm cúm. Ăn chung hoặc tiếp xúc sinh hoạt không làm lây bệnh tiểu đường. Nguy cơ type 2 có liên quan đến nhiều yếu tố, trong đó có tiền sử gia đình và sinh hoạt; điều này khác với lây nhiễm.",
-      "source_url": "https://diabetes.org/about-diabetes/diabetes-myths"
+      "source_url": "https://diabetes.org/about-diabetes/diabetes-myths",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Insulin",
@@ -1220,7 +1536,10 @@
       "target": "đường huyết",
       "document": "overview",
       "evidence": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường",
@@ -1228,7 +1547,142 @@
       "target": "thiếu hoặc sử dụng insulin kém hiệu quả",
       "document": "overview",
       "evidence": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
+    },
+    {
+      "source": "Vận động",
+      "relation": "có ví dụ",
+      "target": "đi bộ",
+      "document": "pdf_activity_options",
+      "evidence": "Tài liệu NIDDK liệt kê đi bộ, đạp xe và làm vườn trong các ví dụ vận động. Chọn loại hoạt động theo khả năng và trao đổi kế hoạch với nhóm điều trị khi có bệnh đi kèm hoặc lo ngại an toàn. Danh sách này không tự xác định cường độ hay thời lượng phù hợp cho bạn.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 34,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Vận động",
+      "relation": "cần phù hợp",
+      "target": "khả năng cá nhân",
+      "document": "pdf_activity_options",
+      "evidence": "Tài liệu NIDDK liệt kê đi bộ, đạp xe và làm vườn trong các ví dụ vận động. Chọn loại hoạt động theo khả năng và trao đổi kế hoạch với nhóm điều trị khi có bệnh đi kèm hoặc lo ngại an toàn. Danh sách này không tự xác định cường độ hay thời lượng phù hợp cho bạn.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 34,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Bữa ăn",
+      "relation": "có thể chọn",
+      "target": "rau và đậu",
+      "document": "pdf_food_choices",
+      "evidence": "Các lựa chọn được NIDDK nêu gồm rau, trái cây, đậu và ngũ cốc nguyên hạt; đạm từ cá, thịt nạc, gia cầm bỏ da, trứng và sản phẩm đậu nành. Hạn chế đường thêm và đồ uống có đường, chọn nước lọc. Tỷ lệ và khẩu phần cần điều chỉnh cùng nhóm điều trị theo hoàn cảnh cá nhân.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 32,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Nguồn đạm",
+      "relation": "có thể chọn",
+      "target": "cá hoặc đậu nành",
+      "document": "pdf_food_choices",
+      "evidence": "Các lựa chọn được NIDDK nêu gồm rau, trái cây, đậu và ngũ cốc nguyên hạt; đạm từ cá, thịt nạc, gia cầm bỏ da, trứng và sản phẩm đậu nành. Hạn chế đường thêm và đồ uống có đường, chọn nước lọc. Tỷ lệ và khẩu phần cần điều chỉnh cùng nhóm điều trị theo hoàn cảnh cá nhân.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 32,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Kế hoạch ăn",
+      "relation": "cần xem xét",
+      "target": "bệnh đi kèm",
+      "document": "pdf_nutrition",
+      "evidence": "Kế hoạch ăn cần xét tình trạng sức khỏe, bệnh đi kèm, sở thích và nhu cầu dinh dưỡng. NIDDK khuyến khích đánh giá, theo dõi và điều chỉnh kế hoạch cùng chuyên gia dinh dưỡng. Một nhãn phân loại hoặc điểm hồi quy không đủ để tính khẩu phần riêng cho một người.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 31,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Kế hoạch ăn",
+      "relation": "phụ thuộc",
+      "target": "nhu cầu cá nhân",
+      "document": "pdf_nutrition",
+      "evidence": "Kế hoạch ăn cần xét tình trạng sức khỏe, bệnh đi kèm, sở thích và nhu cầu dinh dưỡng. NIDDK khuyến khích đánh giá, theo dõi và điều chỉnh kế hoạch cùng chuyên gia dinh dưỡng. Một nhãn phân loại hoặc điểm hồi quy không đủ để tính khẩu phần riêng cho một người.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 31,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Insulin",
+      "relation": "cần trao đổi về",
+      "target": "carbohydrate",
+      "document": "pdf_portions",
+      "evidence": "Trong tài liệu NIDDK, người dùng insulin cần trao đổi về theo dõi lượng carbohydrate; kiểm soát khẩu phần cũng là một công cụ quan trọng. Ghi món, lượng đã ăn và thời điểm đo giúp bạn trao đổi cụ thể hơn khi tái khám. Đây không phải chỉ dẫn tự tính hoặc đổi liều insulin.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 32,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Theo dõi bữa ăn",
+      "relation": "ghi lại",
+      "target": "khẩu phần",
+      "document": "pdf_portions",
+      "evidence": "Trong tài liệu NIDDK, người dùng insulin cần trao đổi về theo dõi lượng carbohydrate; kiểm soát khẩu phần cũng là một công cụ quan trọng. Ghi món, lượng đã ăn và thời điểm đo giúp bạn trao đổi cụ thể hơn khi tái khám. Đây không phải chỉ dẫn tự tính hoặc đổi liều insulin.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 32,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Tự chăm sóc",
+      "relation": "bao gồm",
+      "target": "theo dõi sức khỏe",
+      "document": "pdf_self_management",
+      "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 27,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Tự chăm sóc",
+      "relation": "cần phối hợp",
+      "target": "nhóm điều trị",
+      "document": "pdf_self_management",
+      "evidence": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 27,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Mục tiêu tự chăm sóc",
+      "relation": "cần phù hợp",
+      "target": "nhu cầu cá nhân",
+      "document": "pdf_shared_goals",
+      "evidence": "NIDDK đề cập việc đặt mục tiêu hành vi và giải quyết trở ngại theo nhu cầu từng người. Có thể bắt đầu bằng một thay đổi bạn thấy làm được, rồi trao đổi điều chưa thuận lợi với nhóm chăm sóc. Người thân có thể tham gia để hỗ trợ duy trì thói quen.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 28,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    {
+      "source": "Người thân",
+      "relation": "hỗ trợ",
+      "target": "thói quen tự chăm sóc",
+      "document": "pdf_shared_goals",
+      "evidence": "NIDDK đề cập việc đặt mục tiêu hành vi và giải quyết trở ngại theo nhu cầu từng người. Có thể bắt đầu bằng một thay đổi bạn thấy làm được, rồi trao đổi điều chưa thuận lợi với nhóm chăm sóc. Người thân có thể tham gia để hỗ trợ duy trì thói quen.",
+      "source_url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "source_page": 28,
+      "source_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "source_sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
     },
     {
       "source": "Bữa ăn",
@@ -1236,7 +1690,10 @@
       "target": "phương pháp chiếc đĩa",
       "document": "plate",
       "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Chiếc đĩa",
@@ -1244,7 +1701,10 @@
       "target": "rau không tinh bột",
       "document": "plate",
       "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Theo dõi và sinh hoạt phù hợp",
@@ -1252,7 +1712,10 @@
       "target": "tiểu đường type 2",
       "document": "prediabetes",
       "evidence": "Tiền đái tháo đường nghĩa là đường huyết cao hơn bình thường nhưng chưa đến mức chẩn đoán type 2. Nguy cơ phát triển type 2 cao hơn; thay đổi sinh hoạt và theo dõi với nhân viên y tế có thể giúp phòng hoặc trì hoãn bệnh. Không phải ai ở giai đoạn này cũng chắc chắn tiến triển thành tiểu đường.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiền đái tháo đường",
@@ -1260,7 +1723,10 @@
       "target": "tiểu đường type 2",
       "document": "prediabetes",
       "evidence": "Tiền đái tháo đường nghĩa là đường huyết cao hơn bình thường nhưng chưa đến mức chẩn đoán type 2. Nguy cơ phát triển type 2 cao hơn; thay đổi sinh hoạt và theo dõi với nhân viên y tế có thể giúp phòng hoặc trì hoãn bệnh. Không phải ai ở giai đoạn này cũng chắc chắn tiến triển thành tiểu đường.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường thai kỳ",
@@ -1268,7 +1734,10 @@
       "target": "theo dõi theo bối cảnh sản khoa",
       "document": "pregnancy_diabetes",
       "evidence": "Tiểu đường thai kỳ xuất hiện trong thời gian mang thai và thường hết sau sinh, nhưng làm tăng nguy cơ type 2 về sau. Chỉ số và kế hoạch theo dõi trong thai kỳ cần trao đổi với nhóm chăm sóc sản khoa. Không áp ngưỡng và kế hoạch của người lớn không mang thai cho thai phụ.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường thai kỳ",
@@ -1276,7 +1745,10 @@
       "target": "thai kỳ",
       "document": "pregnancy_diabetes",
       "evidence": "Tiểu đường thai kỳ xuất hiện trong thời gian mang thai và thường hết sau sinh, nhưng làm tăng nguy cơ type 2 về sau. Chỉ số và kế hoạch theo dõi trong thai kỳ cần trao đổi với nhóm chăm sóc sản khoa. Không áp ngưỡng và kế hoạch của người lớn không mang thai cho thai phụ.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tỷ lệ cholesterol / HDL",
@@ -1284,7 +1756,10 @@
       "target": "hồ sơ nguy cơ đầy đủ",
       "document": "ratio",
       "evidence": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc.",
-      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+      "source_url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Thuyên giảm type 2",
@@ -1292,7 +1767,10 @@
       "target": "chữa khỏi vĩnh viễn",
       "document": "remission_info",
       "evidence": "Một số người type 2 có thể đạt trạng thái thuyên giảm, tức duy trì đường huyết dưới ngưỡng chẩn đoán trong điều kiện được chuyên môn xác nhận. Thuyên giảm không đồng nghĩa chữa khỏi vĩnh viễn; vẫn cần theo dõi vì đường huyết có thể tăng trở lại. Không tự ngừng thuốc để thử hoặc tự tuyên bố đã hết bệnh chỉ từ một lần đo tốt.",
-      "source_url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria"
+      "source_url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Thuyên giảm type 2",
@@ -1300,7 +1778,10 @@
       "target": "theo dõi đường huyết",
       "document": "remission_info",
       "evidence": "Một số người type 2 có thể đạt trạng thái thuyên giảm, tức duy trì đường huyết dưới ngưỡng chẩn đoán trong điều kiện được chuyên môn xác nhận. Thuyên giảm không đồng nghĩa chữa khỏi vĩnh viễn; vẫn cần theo dõi vì đường huyết có thể tăng trở lại. Không tự ngừng thuốc để thử hoặc tự tuyên bố đã hết bệnh chỉ từ một lần đo tốt.",
-      "source_url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria"
+      "source_url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Gạo lứt",
@@ -1308,7 +1789,10 @@
       "target": "carbohydrate",
       "document": "rice_portion",
       "evidence": "Cơm, ngũ cốc và nhiều thực phẩm khác cung cấp carbohydrate. Có thể dùng phương pháp đĩa ăn để dành phần tinh bột hợp lý, phối hợp rau và đạm; ưu tiên ngũ cốc nguyên hạt khi phù hợp. Gạo lứt vẫn có carbohydrate, nên đổi loại gạo không có nghĩa là ăn không giới hạn. Phần ăn cụ thể cần điều chỉnh theo thuốc, hoạt động và mục tiêu đường huyết.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Phần tinh bột",
@@ -1316,7 +1800,10 @@
       "target": "thuốc / hoạt động / mục tiêu cá nhân",
       "document": "rice_portion",
       "evidence": "Cơm, ngũ cốc và nhiều thực phẩm khác cung cấp carbohydrate. Có thể dùng phương pháp đĩa ăn để dành phần tinh bột hợp lý, phối hợp rau và đạm; ưu tiên ngũ cốc nguyên hạt khi phù hợp. Gạo lứt vẫn có carbohydrate, nên đổi loại gạo không có nghĩa là ăn không giới hạn. Phần ăn cụ thể cần điều chỉnh theo thuốc, hoạt động và mục tiêu đường huyết.",
-      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Ngày ốm",
@@ -1324,7 +1811,10 @@
       "target": "theo dõi đường huyết",
       "document": "sick_day",
       "evidence": "Khi bị ốm, đường huyết có thể thay đổi dù ăn ít hơn. CDC khuyên trao đổi trước với nhóm chăm sóc về kế hoạch ngày ốm, theo dõi đường huyết thường xuyên hơn theo hướng dẫn và uống nước để tránh mất nước. Nếu khó thở, không giữ được nước uống hoặc có dấu hiệu nặng, cần liên hệ cơ sở y tế khẩn cấp. Không tự chỉnh thuốc theo chatbot.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Ngày ốm",
@@ -1332,7 +1822,10 @@
       "target": "mất nước",
       "document": "sick_day",
       "evidence": "Khi bị ốm, đường huyết có thể thay đổi dù ăn ít hơn. CDC khuyên trao đổi trước với nhóm chăm sóc về kế hoạch ngày ốm, theo dõi đường huyết thường xuyên hơn theo hướng dẫn và uống nước để tránh mất nước. Nếu khó thở, không giữ được nước uống hoặc có dấu hiệu nặng, cần liên hệ cơ sở y tế khẩn cấp. Không tự chỉnh thuốc theo chatbot.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Căng thẳng",
@@ -1340,7 +1833,10 @@
       "target": "đường huyết",
       "document": "stress_glucose",
       "evidence": "Căng thẳng có thể làm đường huyết biến động và gây khó duy trì kế hoạch chăm sóc. Lo âu và hạ đường huyết có thể có biểu hiện giống nhau; nếu có máy, kiểm tra đường huyết giúp đối chiếu thay vì đoán. Ghi lại tình huống và trao đổi với nhóm chăm sóc nếu lặp lại.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Lo âu và hạ đường huyết",
@@ -1348,7 +1844,10 @@
       "target": "biểu hiện giống nhau",
       "document": "stress_glucose",
       "evidence": "Căng thẳng có thể làm đường huyết biến động và gây khó duy trì kế hoạch chăm sóc. Lo âu và hạ đường huyết có thể có biểu hiện giống nhau; nếu có máy, kiểm tra đường huyết giúp đối chiếu thay vì đoán. Ghi lại tình huống và trao đổi với nhóm chăm sóc nếu lặp lại.",
-      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html"
+      "source_url": "https://www.cdc.gov/diabetes/living-with/mental-health.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Triệu chứng",
@@ -1356,7 +1855,10 @@
       "target": "khám và xét nghiệm",
       "document": "symptoms",
       "evidence": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng.",
-      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+      "source_url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Glucose",
@@ -1364,7 +1866,10 @@
       "target": "đơn vị và thời điểm đo",
       "document": "testing",
       "evidence": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Triglyceride",
@@ -1372,7 +1877,10 @@
       "target": "đơn vị xét nghiệm",
       "document": "triglyceride",
       "evidence": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "s5 / ltg",
@@ -1380,7 +1888,10 @@
       "target": "xét nghiệm triglyceride gốc",
       "document": "triglyceride",
       "evidence": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu.",
-      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+      "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường type 1",
@@ -1388,7 +1899,10 @@
       "target": "phá hủy tế bào sản xuất insulin",
       "document": "types_compare",
       "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Tiểu đường type 2",
@@ -1396,7 +1910,10 @@
       "target": "sử dụng insulin kém hiệu quả",
       "document": "types_compare",
       "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
-      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
     },
     {
       "source": "Rối loạn ý thức",
@@ -1404,7 +1921,98 @@
       "target": "trợ giúp y tế khẩn cấp",
       "document": "urgent",
       "evidence": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
-      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+      "source_url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html",
+      "source_page": null,
+      "source_file": null,
+      "source_sha256": null
+    },
+    {
+      "source": "Kiêng quá mức",
+      "relation": "có thể gây",
+      "target": "mất cân bằng dinh dưỡng",
+      "document": "vinmec_balanced_eating",
+      "evidence": "Vinmec lưu ý kiêng quá mức có thể làm mất cân đối dinh dưỡng. Kế hoạch chăm sóc cần phối hợp ăn uống, vận động, thuốc được kê và tái khám; không chỉ cắt thức ăn.",
+      "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+      "source_page": null,
+      "source_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+      "source_sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492"
+    },
+    {
+      "source": "Chăm sóc bàn chân",
+      "relation": "bao gồm",
+      "target": "quan sát da và kẽ ngón",
+      "document": "vinmec_foot_check",
+      "evidence": "Vinmec hướng dẫn quan sát bàn chân thường xuyên, gồm kẽ ngón, vết xước, phồng rộp và thay đổi màu da. Nếu khó nhìn, dùng gương hoặc nhờ người thân hỗ trợ.",
+      "source_url": "https://www.vinmec.com/vie/bai-viet/cach-cham-soc-ban-chan-nguoi-benh-tieu-duong-vi",
+      "source_page": null,
+      "source_file": "data/source_documents/vinmec_feet.excerpts.json",
+      "source_sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d"
+    },
+    {
+      "source": "Tổn thương bàn chân",
+      "relation": "cần được đánh giá tại",
+      "target": "cơ sở y tế",
+      "document": "vinmec_foot_clinic",
+      "evidence": "Khi phát hiện tổn thương da hoặc chai chân, Vinmec khuyến nghị đến cơ sở y tế để được đánh giá. Đoạn này không cung cấp cách tự xử lý vết thương hay chọn thuốc.",
+      "source_url": "https://www.vinmec.com/vie/bai-viet/cach-cham-soc-ban-chan-nguoi-benh-tieu-duong-vi",
+      "source_page": null,
+      "source_file": "data/source_documents/vinmec_feet.excerpts.json",
+      "source_sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d"
+    },
+    {
+      "source": "Bữa ăn",
+      "relation": "có thể chọn",
+      "target": "cá hoặc đậu",
+      "document": "vinmec_meal_choices",
+      "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+      "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+      "source_page": null,
+      "source_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+      "source_sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492"
+    },
+    {
+      "source": "Chế biến món ăn",
+      "relation": "có thể chọn",
+      "target": "hấp hoặc luộc",
+      "document": "vinmec_meal_choices",
+      "evidence": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+      "source_url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+      "source_page": null,
+      "source_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+      "source_sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492"
+    },
+    {
+      "source": "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+      "relation": "có thể làm tăng",
+      "target": "nguy cơ hạ đường huyết",
+      "document": "web_meal_timing",
+      "evidence": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": "data/source_documents/niddk_healthy_living.txt",
+      "source_sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f"
+    },
+    {
+      "source": "Kế hoạch ăn",
+      "relation": "có công cụ",
+      "target": "phương pháp đĩa ăn",
+      "document": "web_portion_choices",
+      "evidence": "Theo NIDDK, bạn không nhất thiết bỏ mọi món mình thích; có thể cần khẩu phần nhỏ hơn hoặc ăn ít thường xuyên hơn. Phương pháp đĩa ăn và theo dõi carbohydrate là hai cách lập kế hoạch cần trao đổi với nhóm chăm sóc. Việc lựa chọn phụ thuộc kế hoạch cá nhân.",
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": "data/source_documents/niddk_healthy_living.txt",
+      "source_sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f"
+    },
+    {
+      "source": "Món yêu thích",
+      "relation": "cần cân nhắc",
+      "target": "khẩu phần",
+      "document": "web_portion_choices",
+      "evidence": "Theo NIDDK, bạn không nhất thiết bỏ mọi món mình thích; có thể cần khẩu phần nhỏ hơn hoặc ăn ít thường xuyên hơn. Phương pháp đĩa ăn và theo dõi carbohydrate là hai cách lập kế hoạch cần trao đổi với nhóm chăm sóc. Việc lựa chọn phụ thuộc kế hoạch cá nhân.",
+      "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "source_page": null,
+      "source_file": "data/source_documents/niddk_healthy_living.txt",
+      "source_sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f"
     }
   ]
 }

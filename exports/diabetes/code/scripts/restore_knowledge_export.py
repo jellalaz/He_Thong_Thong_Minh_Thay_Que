@@ -26,7 +26,8 @@ def main():
     query='''UNWIND $rows AS row
 MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target})
 MERGE (a)-[r:RELATED_TO {label:row.relation,document:row.document}]->(b)
-SET r.evidence=row.evidence,r.source_url=row.source_url'''
+SET r.evidence=row.evidence,r.source_url=row.source_url,
+r.source_page=row.source_page,r.source_file=row.source_file,r.source_sha256=row.source_sha256'''
     with GraphDatabase.driver(args.uri,auth=(args.user,password)) as driver:
         driver.execute_query('CREATE CONSTRAINT concept_name IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE',database_=args.database)
         driver.execute_query(query,rows=graph['relationships'],database_=args.database)

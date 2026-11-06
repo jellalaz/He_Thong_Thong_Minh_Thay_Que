@@ -1,0 +1,132 @@
+{
+  "scope": "Functional author-created retrieval set; not a clinical or independent benchmark.",
+  "cases": [
+    {
+      "id": "vinmec_meal",
+      "question": "Theo Vinmec chọn món và cách chế biến khi bị tiểu đường",
+      "expected": [
+        "vinmec_meal_choices"
+      ],
+      "selected": [
+        {
+          "id": "vinmec_meal_choices",
+          "score": 0.6484
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "vinmec_restrict",
+      "question": "Vinmec nói gì về kiêng quá mức gây thiếu chất",
+      "expected": [
+        "vinmec_balanced_eating"
+      ],
+      "selected": [
+        {
+          "id": "vinmec_balanced_eating",
+          "score": 0.6079
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "vinmec_feet",
+      "question": "Vinmec hướng dẫn quan sát bàn chân mỗi ngày ra sao",
+      "expected": [
+        "vinmec_foot_check"
+      ],
+      "selected": [
+        {
+          "id": "vinmec_foot_check",
+          "score": 0.5748
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "pdf_nutrition",
+      "question": "Theo PDF NIDDK tại sao kế hoạch ăn cần cá nhân hóa",
+      "expected": [
+        "pdf_nutrition"
+      ],
+      "selected": [
+        {
+          "id": "pdf_nutrition",
+          "score": 0.4917
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "pdf_self",
+      "question": "PDF NIDDK tự chăm sóc cùng nhóm điều trị gồm những gì",
+      "expected": [
+        "pdf_self_management"
+      ],
+      "selected": [
+        {
+          "id": "pdf_self_management",
+          "score": 0.463
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "pdf_goal",
+      "question": "Theo tài liệu PDF đặt mục tiêu hành vi và nhờ người thân hỗ trợ",
+      "expected": [
+        "pdf_shared_goals"
+      ],
+      "selected": [
+        {
+          "id": "pdf_shared_goals",
+          "score": 0.5725
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "pdf_foods",
+      "question": "PDF NIDDK chọn đạm từ thịt nạc cá đậu nành",
+      "expected": [
+        "pdf_food_choices"
+      ],
+      "selected": [
+        {
+          "id": "pdf_food_choices",
+          "score": 0.4033
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    },
+    {
+      "id": "pdf_activity",
+      "question": "Tài liệu PDF có ví dụ vận động đi bộ đạp xe làm vườn nào",
+      "expected": [
+        "pdf_activity_options"
+      ],
+      "selected": [
+        {
+          "id": "pdf_activity_options",
+          "score": 0.6386
+        }
+      ],
+      "first_relevant_rank": 1,
+      "passed": true
+    }
+  ],
+  "positive_queries": 8,
+  "hit_at_1": 1.0,
+  "hit_at_4": 1.0,
+  "mrr_at_4": 1.0,
+  "abstention_checks": 0,
+  "passed_cases": 8,
+  "total_cases": 8
+}

@@ -11,6 +11,6 @@
     "Neo4j accepts exported Cypher syntax; validation makes no database writes"
   ],
   "retrieval_roundtrip_cases": 22,
-  "nodes": 143,
-  "relationships": 86
+  "nodes": 169,
+  "relationships": 106
 }

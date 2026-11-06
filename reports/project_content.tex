@@ -31,13 +31,13 @@ DB có sẵn cung cấp dữ liệu cho quá trình huấn luyện. Pipeline ph�
 \section{Nhánh tri thức}
 Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu luận 02. Mỗi tài liệu có mã, tiêu đề, từ khóa, văn bản, định danh nguồn và các bộ ba. Project bảo toàn những trường này khi chuyển sang kho tri thức mới. Việc cập nhật hướng dẫn y tế từ web chưa tự động hóa; phiên bản kho tài liệu phải được xem như một bản chụp dữ liệu cần rà soát trước khi mở rộng phạm vi sử dụng.
 
-Kho tri thức gồm 46 đoạn từ 19 nguồn được tham chiếu. Mọi đoạn đều có quan hệ gắn với nguồn và trích đoạn làm căn cứ; tổng cộng 86 bộ ba được nạp vào Neo4j local. Nội dung gồm xét nghiệm, ăn uống, vận động, theo dõi, thuốc, các loại tiểu đường và trợ giúp sinh hoạt.
+Kho tri thức gồm 58 đoạn từ 22 nguồn được tham chiếu. Mọi đoạn đều có quan hệ gắn với nguồn và trích đoạn làm căn cứ; tổng cộng 106 bộ ba được nạp vào Neo4j local. Nội dung gồm xét nghiệm, ăn uống, vận động, theo dõi, thuốc, các loại tiểu đường và trợ giúp sinh hoạt.
 
 Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
 \section{Luồng người dùng}
 Yêu cầu được phân loại an toàn trước khi chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 64 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
 
-Sau khi chạy một trong hai mô hình, nút ``Giải thích kết quả'' gửi lại loại bài toán và các giá trị đã nhập đến agent mô hình. Chatbot trả lời bằng nhãn hoặc điểm thực tế của mẫu, kèm chỉ số đánh giá ngoài mẫu và giới hạn sử dụng. Nhánh này dùng giải thích xác định, không để Qwen suy đoán ý nghĩa lâm sàng của nhãn tổng hợp hoặc điểm tiến triển.
+Sau khi chạy một trong hai mô hình, nút ``Nhận xét và hỗ trợ'' gửi lại loại bài toán và các giá trị đã nhập đến agent mô hình. Chatbot trả lời bằng nhãn hoặc điểm thực tế của mẫu, kèm chỉ số đánh giá ngoài mẫu và giới hạn sử dụng. Nhánh này dùng giải thích xác định, không để Qwen suy đoán ý nghĩa lâm sàng của nhãn tổng hợp hoặc điểm tiến triển.
 \input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}
 \section{Phân loại}
 Dữ liệu tổng hợp gồm 50.000 dòng. Tám biến đầu vào là tuổi, BMI, HbA1c, đường huyết lúc đói, glucose, huyết áp tâm thu, HDL và LDL. Các biến chứa điểm nguy cơ, khuyến nghị sức khỏe và yêu cầu gặp bác sĩ không được đưa vào mô hình. Phép chia phân tầng với seed 254 giữ 40.000 dòng huấn luyện và 10.000 dòng kiểm tra.

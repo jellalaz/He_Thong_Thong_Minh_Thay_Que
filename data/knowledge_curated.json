@@ -1,0 +1,470 @@
+{
+  "version": "sources-2026-11",
+  "sources": {
+    "pdf_guiding": {
+      "label": "NIDDK · Guiding Principles (PDF)",
+      "title": "Guiding Principles for the Care of People with or at Risk for Diabetes",
+      "publisher": "NIDDK",
+      "kind": "pdf",
+      "url": "https://www.niddk.nih.gov/-/media/Files/Health-Information/Health-Professionals/Diabetes/health-care-professionals/Guiding-Principles.pdf",
+      "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+      "scope": "Archived professional guide; selected self-management principles only, not current diagnosis or dosing thresholds.",
+      "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+      "retrieved_at": "2026-11-06"
+    },
+    "living": {
+      "label": "NIDDK · Healthy Living with Diabetes",
+      "publisher": "NIDDK",
+      "kind": "web",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "local_file": "data/source_documents/niddk_healthy_living.txt",
+      "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+      "retrieved_at": "2026-11-06"
+    },
+    "vinmec_nutrition": {
+      "label": "Vinmec · Chế độ dinh dưỡng cho người tiểu đường",
+      "publisher": "Vinmec",
+      "kind": "web",
+      "url": "https://www.vinmec.com/vie/bai-viet/che-do-dinh-duong-cho-nguoi-tieu-duong-vi",
+      "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+      "scope": "Short source excerpts and paraphrases; no full article redistribution.",
+      "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+      "retrieved_at": "2026-11-06"
+    },
+    "vinmec_feet": {
+      "label": "Vinmec · Chăm sóc bàn chân",
+      "publisher": "Vinmec",
+      "kind": "web",
+      "url": "https://www.vinmec.com/vie/bai-viet/cach-cham-soc-ban-chan-nguoi-benh-tieu-duong-vi",
+      "local_file": "data/source_documents/vinmec_feet.excerpts.json",
+      "scope": "Prevention and referral sections only; wound treatment and prescriptions excluded.",
+      "sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d",
+      "retrieved_at": "2026-11-06"
+    }
+  },
+  "documents": [
+    {
+      "id": "pdf_self_management",
+      "title": "PDF: Tự chăm sóc cùng nhóm điều trị",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "tự chăm sóc",
+        "nhật ký",
+        "theo dõi",
+        "chuẩn bị đi khám"
+      ],
+      "text": "Tài liệu NIDDK xem tự chăm sóc là quá trình liên tục: ăn uống, vận động, dùng thuốc theo hướng dẫn, theo dõi dữ liệu sức khỏe và trao đổi với nhóm điều trị. Bạn có thể ghi số đo, bữa ăn, thuốc đang dùng và điều còn vướng để mang đi khám; không tự đổi thuốc theo kết quả mô hình nghiên cứu.",
+      "triples": [
+        [
+          "Tự chăm sóc",
+          "bao gồm",
+          "theo dõi sức khỏe"
+        ],
+        [
+          "Tự chăm sóc",
+          "cần phối hợp",
+          "nhóm điều trị"
+        ]
+      ],
+      "topics": [
+        "monitor",
+        "support"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 4 — What is self-management?",
+        "quote": "healthy eating",
+        "page": 27
+      }
+    },
+    {
+      "id": "pdf_shared_goals",
+      "title": "PDF: Chọn mục tiêu nhỏ và nhờ người thân hỗ trợ",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "mục tiêu",
+        "người thân",
+        "khó duy trì",
+        "động viên"
+      ],
+      "text": "NIDDK đề cập việc đặt mục tiêu hành vi và giải quyết trở ngại theo nhu cầu từng người. Có thể bắt đầu bằng một thay đổi bạn thấy làm được, rồi trao đổi điều chưa thuận lợi với nhóm chăm sóc. Người thân có thể tham gia để hỗ trợ duy trì thói quen.",
+      "triples": [
+        [
+          "Mục tiêu tự chăm sóc",
+          "cần phù hợp",
+          "nhu cầu cá nhân"
+        ],
+        [
+          "Người thân",
+          "hỗ trợ",
+          "thói quen tự chăm sóc"
+        ]
+      ],
+      "topics": [
+        "support"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 4 — How to provide self-management education and support",
+        "quote": "self-directed behavioral goal setting and problem solving improve outcomes",
+        "page": 28
+      }
+    },
+    {
+      "id": "pdf_nutrition",
+      "title": "PDF: Vì sao cần cá nhân hóa kế hoạch ăn",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "dinh dưỡng",
+        "cá nhân hóa",
+        "thực đơn",
+        "bệnh thận"
+      ],
+      "text": "Kế hoạch ăn cần xét tình trạng sức khỏe, bệnh đi kèm, sở thích và nhu cầu dinh dưỡng. NIDDK khuyến khích đánh giá, theo dõi và điều chỉnh kế hoạch cùng chuyên gia dinh dưỡng. Một nhãn phân loại hoặc điểm hồi quy không đủ để tính khẩu phần riêng cho một người.",
+      "triples": [
+        [
+          "Kế hoạch ăn",
+          "phụ thuộc",
+          "nhu cầu cá nhân"
+        ],
+        [
+          "Kế hoạch ăn",
+          "cần xem xét",
+          "bệnh đi kèm"
+        ]
+      ],
+      "topics": [
+        "meal",
+        "support"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 5 — Provide nutrition therapy and monitoring",
+        "quote": "The mix of carbohydrate, protein, and fat should be individualized",
+        "page": 31
+      }
+    },
+    {
+      "id": "pdf_food_choices",
+      "title": "PDF: Chọn thực phẩm thay vì bỏ cả nhóm chất",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "chọn thực phẩm",
+        "thịt nạc",
+        "đậu",
+        "rau",
+        "ngũ cốc"
+      ],
+      "text": "Các lựa chọn được NIDDK nêu gồm rau, trái cây, đậu và ngũ cốc nguyên hạt; đạm từ cá, thịt nạc, gia cầm bỏ da, trứng và sản phẩm đậu nành. Hạn chế đường thêm và đồ uống có đường, chọn nước lọc. Tỷ lệ và khẩu phần cần điều chỉnh cùng nhóm điều trị theo hoàn cảnh cá nhân.",
+      "triples": [
+        [
+          "Bữa ăn",
+          "có thể chọn",
+          "rau và đậu"
+        ],
+        [
+          "Nguồn đạm",
+          "có thể chọn",
+          "cá hoặc đậu nành"
+        ]
+      ],
+      "topics": [
+        "meal",
+        "fruit"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 5 — Carbohydrate and Protein",
+        "quote": "Choose low-fat animal- and plant-based protein sources",
+        "page": 32
+      }
+    },
+    {
+      "id": "pdf_portions",
+      "title": "PDF: Theo dõi khẩu phần và carbohydrate",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "carbohydrate",
+        "khẩu phần",
+        "insulin",
+        "ghi bữa ăn"
+      ],
+      "text": "Trong tài liệu NIDDK, người dùng insulin cần trao đổi về theo dõi lượng carbohydrate; kiểm soát khẩu phần cũng là một công cụ quan trọng. Ghi món, lượng đã ăn và thời điểm đo giúp bạn trao đổi cụ thể hơn khi tái khám. Đây không phải chỉ dẫn tự tính hoặc đổi liều insulin.",
+      "triples": [
+        [
+          "Theo dõi bữa ăn",
+          "ghi lại",
+          "khẩu phần"
+        ],
+        [
+          "Insulin",
+          "cần trao đổi về",
+          "carbohydrate"
+        ]
+      ],
+      "topics": [
+        "meal",
+        "monitor"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 5 — Helpful eating behaviors",
+        "quote": "monitoring carbohydrate intake is a key strategy",
+        "page": 32
+      }
+    },
+    {
+      "id": "pdf_activity_options",
+      "title": "PDF: Chọn vận động phù hợp khả năng",
+      "source": "pdf_guiding",
+      "terms": [
+        "pdf",
+        "vận động",
+        "đi bộ",
+        "đạp xe",
+        "làm vườn"
+      ],
+      "text": "Tài liệu NIDDK liệt kê đi bộ, đạp xe và làm vườn trong các ví dụ vận động. Chọn loại hoạt động theo khả năng và trao đổi kế hoạch với nhóm điều trị khi có bệnh đi kèm hoặc lo ngại an toàn. Danh sách này không tự xác định cường độ hay thời lượng phù hợp cho bạn.",
+      "triples": [
+        [
+          "Vận động",
+          "có ví dụ",
+          "đi bộ"
+        ],
+        [
+          "Vận động",
+          "cần phù hợp",
+          "khả năng cá nhân"
+        ]
+      ],
+      "topics": [
+        "activity"
+      ],
+      "provenance": {
+        "kind": "pdf",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_guiding_principles.pdf",
+        "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9",
+        "heading": "Principle 5 — Aerobic physical activity",
+        "quote": "Walking briskly",
+        "page": 34
+      }
+    },
+    {
+      "id": "web_meal_timing",
+      "title": "Bữa ăn và thuốc: tránh tự bỏ bữa",
+      "source": "living",
+      "terms": [
+        "bỏ bữa",
+        "trễ bữa",
+        "insulin",
+        "ghi nhật ký",
+        "theo dõi"
+      ],
+      "text": "NIDDK lưu ý một số thuốc, gồm insulin và sulfonylurea, có thể làm đường huyết xuống quá thấp khi vận động hoặc bỏ, trễ bữa. Nếu sinh hoạt thay đổi, ghi thời điểm ăn, thuốc, số đo và triệu chứng để trao đổi với nhóm điều trị; không tự chỉnh liều.",
+      "triples": [
+        [
+          "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+          "có thể làm tăng",
+          "nguy cơ hạ đường huyết"
+        ]
+      ],
+      "topics": [
+        "meal",
+        "medicine",
+        "monitor"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_healthy_living.txt",
+        "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+        "heading": "Plan what to eat or drink",
+        "quote": "drop too low during exercise or if you skip or delay a meal"
+      }
+    },
+    {
+      "id": "web_portion_choices",
+      "title": "Vẫn có thể ăn món yêu thích với kế hoạch phù hợp",
+      "source": "living",
+      "terms": [
+        "món yêu thích",
+        "kiêng hết",
+        "khẩu phần",
+        "ăn uống"
+      ],
+      "text": "Theo NIDDK, bạn không nhất thiết bỏ mọi món mình thích; có thể cần khẩu phần nhỏ hơn hoặc ăn ít thường xuyên hơn. Phương pháp đĩa ăn và theo dõi carbohydrate là hai cách lập kế hoạch cần trao đổi với nhóm chăm sóc. Việc lựa chọn phụ thuộc kế hoạch cá nhân.",
+      "triples": [
+        [
+          "Món yêu thích",
+          "cần cân nhắc",
+          "khẩu phần"
+        ],
+        [
+          "Kế hoạch ăn",
+          "có công cụ",
+          "phương pháp đĩa ăn"
+        ]
+      ],
+      "topics": [
+        "meal"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "NIDDK",
+        "local_file": "data/source_documents/niddk_healthy_living.txt",
+        "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f",
+        "heading": "Plan how much to eat or drink",
+        "quote": "You may worry that having diabetes means giving up foods and drinks you enjoy."
+      }
+    },
+    {
+      "id": "vinmec_meal_choices",
+      "title": "Vinmec: Chọn món và cách chế biến",
+      "source": "vinmec_nutrition",
+      "terms": [
+        "vinmec",
+        "dinh dưỡng",
+        "chọn món",
+        "cách nấu",
+        "ăn uống"
+      ],
+      "text": "Vinmec gợi ý chọn đậu, cá hoặc thịt nạc; rau được chế biến đơn giản. Có thể ưu tiên món hấp hay luộc và giảm đồ chiên nhiều dầu. Đây là lựa chọn chung, khẩu phần cần trao đổi theo nhu cầu riêng.",
+      "triples": [
+        [
+          "Bữa ăn",
+          "có thể chọn",
+          "cá hoặc đậu"
+        ],
+        [
+          "Chế biến món ăn",
+          "có thể chọn",
+          "hấp hoặc luộc"
+        ]
+      ],
+      "topics": [
+        "meal"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "Vinmec",
+        "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+        "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+        "heading": "Nhóm thịt cá và nhóm rau",
+        "quote": "chế biến đơn giản như hấp, luộc, áp chảo"
+      }
+    },
+    {
+      "id": "vinmec_balanced_eating",
+      "title": "Vinmec: Tránh kiêng quá mức",
+      "source": "vinmec_nutrition",
+      "terms": [
+        "vinmec",
+        "kiêng quá mức",
+        "thiếu chất",
+        "ăn ít"
+      ],
+      "text": "Vinmec lưu ý kiêng quá mức có thể làm mất cân đối dinh dưỡng. Kế hoạch chăm sóc cần phối hợp ăn uống, vận động, thuốc được kê và tái khám; không chỉ cắt thức ăn.",
+      "triples": [
+        [
+          "Kiêng quá mức",
+          "có thể gây",
+          "mất cân bằng dinh dưỡng"
+        ]
+      ],
+      "topics": [
+        "meal",
+        "support"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "Vinmec",
+        "local_file": "data/source_documents/vinmec_nutrition.excerpts.json",
+        "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492",
+        "heading": "Tránh mất cân bằng dinh dưỡng",
+        "quote": "tránh ăn quá kiêng quá mức"
+      }
+    },
+    {
+      "id": "vinmec_foot_check",
+      "title": "Vinmec: Quan sát bàn chân hằng ngày",
+      "source": "vinmec_feet",
+      "terms": [
+        "vinmec",
+        "bàn chân",
+        "kiểm tra chân",
+        "vết xước"
+      ],
+      "text": "Vinmec hướng dẫn quan sát bàn chân thường xuyên, gồm kẽ ngón, vết xước, phồng rộp và thay đổi màu da. Nếu khó nhìn, dùng gương hoặc nhờ người thân hỗ trợ.",
+      "triples": [
+        [
+          "Chăm sóc bàn chân",
+          "bao gồm",
+          "quan sát da và kẽ ngón"
+        ]
+      ],
+      "topics": [
+        "monitor"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "Vinmec",
+        "local_file": "data/source_documents/vinmec_feet.excerpts.json",
+        "sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d",
+        "heading": "2.2. Kiểm tra bàn chân hàng ngày",
+        "quote": "Kiểm tra bàn chân hàng ngày"
+      }
+    },
+    {
+      "id": "vinmec_foot_clinic",
+      "title": "Vinmec: Khi phát hiện tổn thương ở bàn chân",
+      "source": "vinmec_feet",
+      "terms": [
+        "vinmec",
+        "tổn thương chân",
+        "chai chân",
+        "vết loét"
+      ],
+      "text": "Khi phát hiện tổn thương da hoặc chai chân, Vinmec khuyến nghị đến cơ sở y tế để được đánh giá. Đoạn này không cung cấp cách tự xử lý vết thương hay chọn thuốc.",
+      "triples": [
+        [
+          "Tổn thương bàn chân",
+          "cần được đánh giá tại",
+          "cơ sở y tế"
+        ]
+      ],
+      "topics": [
+        "monitor"
+      ],
+      "provenance": {
+        "kind": "web",
+        "publisher": "Vinmec",
+        "local_file": "data/source_documents/vinmec_feet.excerpts.json",
+        "sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d",
+        "heading": "2.7. Đến cơ sở y tế khi gặp biến chứng",
+        "quote": "không nên tự xử lý tại nhà"
+      }
+    }
+  ],
+  "provenance": "Reviewed Vietnamese summaries; source excerpts and physical PDF pages verified locally. Not clinical model training data."
+}

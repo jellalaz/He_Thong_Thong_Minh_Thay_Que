@@ -1,0 +1,61 @@
+{
+  "scope": "Source-specific functional checks; authored expected IDs before evaluation.",
+  "cases": [
+    {
+      "id": "vinmec_meal",
+      "question": "Theo Vinmec chọn món và cách chế biến khi bị tiểu đường",
+      "expected": [
+        "vinmec_meal_choices"
+      ]
+    },
+    {
+      "id": "vinmec_restrict",
+      "question": "Vinmec nói gì về kiêng quá mức gây thiếu chất",
+      "expected": [
+        "vinmec_balanced_eating"
+      ]
+    },
+    {
+      "id": "vinmec_feet",
+      "question": "Vinmec hướng dẫn quan sát bàn chân mỗi ngày ra sao",
+      "expected": [
+        "vinmec_foot_check"
+      ]
+    },
+    {
+      "id": "pdf_nutrition",
+      "question": "Theo PDF NIDDK tại sao kế hoạch ăn cần cá nhân hóa",
+      "expected": [
+        "pdf_nutrition"
+      ]
+    },
+    {
+      "id": "pdf_self",
+      "question": "PDF NIDDK tự chăm sóc cùng nhóm điều trị gồm những gì",
+      "expected": [
+        "pdf_self_management"
+      ]
+    },
+    {
+      "id": "pdf_goal",
+      "question": "Theo tài liệu PDF đặt mục tiêu hành vi và nhờ người thân hỗ trợ",
+      "expected": [
+        "pdf_shared_goals"
+      ]
+    },
+    {
+      "id": "pdf_foods",
+      "question": "PDF NIDDK chọn đạm từ thịt nạc cá đậu nành",
+      "expected": [
+        "pdf_food_choices"
+      ]
+    },
+    {
+      "id": "pdf_activity",
+      "question": "Tài liệu PDF có ví dụ vận động đi bộ đạp xe làm vườn nào",
+      "expected": [
+        "pdf_activity_options"
+      ]
+    }
+  ]
+}

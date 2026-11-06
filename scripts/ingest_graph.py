@@ -8,9 +8,9 @@ from app.retrieval import load_knowledge
 env=os.environ
 kb=load_knowledge()
 assert all(d.get('triples') for d in kb['documents']), 'Every published topic must have grounded relationships'
-rows=[dict(source=t[0],label=t[1],target=t[2],document=d['id'],evidence=d['text'],source_url=kb['sources'][d['source']]['url']) for d in kb['documents'] for t in d['triples']]
+rows=[dict(source=t[0],label=t[1],target=t[2],document=d['id'],evidence=d['text'],source_url=kb['sources'][d['source']]['url'],source_page=d.get('provenance',{}).get('page'),source_file=d.get('provenance',{}).get('local_file'),source_sha256=d.get('provenance',{}).get('sha256')) for d in kb['documents'] for t in d['triples']]
 constraint='CREATE CONSTRAINT concept_name IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE'
-ingest='UNWIND $rows AS row MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target}) MERGE (a)-[r:RELATED_TO {label:row.label,document:row.document}]->(b) SET r.evidence=row.evidence, r.source_url=row.source_url'
+ingest='UNWIND $rows AS row MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target}) MERGE (a)-[r:RELATED_TO {label:row.label,document:row.document}]->(b) SET r.evidence=row.evidence, r.source_url=row.source_url, r.source_page=row.source_page, r.source_file=row.source_file, r.source_sha256=row.source_sha256'
 if '--https' in sys.argv:
  import httpx
  from urllib.parse import urlparse,quote

@@ -23,7 +23,8 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'exports/diabetes'
 SNAPSHOT_QUERY='''MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
 RETURN a.name AS source,r.label AS relation,b.name AS target,
-r.document AS document,r.evidence AS evidence,r.source_url AS source_url
+r.document AS document,r.evidence AS evidence,r.source_url AS source_url,
+r.source_page AS source_page,r.source_file AS source_file,r.source_sha256 AS source_sha256
 ORDER BY document,source,relation,target'''
 
 
@@ -46,6 +47,9 @@ def snapshot(kb):
     for r in rows:
         d=by_id[r['document']]
         assert r['evidence']==d['text'] and r['source_url']==kb['sources'][d['source']]['url']
+        if d.get('provenance'):
+            assert r['source_page']==d['provenance'].get('page')
+            assert r['source_file']==d['provenance']['local_file'] and r['source_sha256']==d['provenance']['sha256']
     assert set(names)=={n for r in rows for n in (r['source'],r['target'])}
     nodes=[{'id':f'n{i:04d}','name':name,'label':'Concept'} for i,name in enumerate(sorted(names),1)]
     return {'storage':'Neo4j local snapshot','nodes':nodes,'relationships':rows}
@@ -82,7 +86,7 @@ def build(live=False):
     with (OUT/'kg/nodes.csv').open('w',encoding='utf-8-sig',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=['id','name','label']);writer.writeheader();writer.writerows(graph['nodes'])
     with (OUT/'kg/relationships.csv').open('w',encoding='utf-8-sig',newline='') as f:
-        fields=['source_id','target_id','relation','document','evidence','source_url']
+        fields=['source_id','target_id','relation','document','evidence','source_url','source_page','source_file','source_sha256']
         writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader()
         for r in graph['relationships']:
             writer.writerow(dict(source_id=ids[r['source']],target_id=ids[r['target']],**{k:r[k] for k in fields[2:]}))
@@ -90,17 +94,30 @@ def build(live=False):
     cypher='UNWIND '+literal+''' AS row
 MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target})
 MERGE (a)-[r:RELATED_TO {label:row.relation,document:row.document}]->(b)
-SET r.evidence=row.evidence,r.source_url=row.source_url;
+SET r.evidence=row.evidence,r.source_url=row.source_url,
+r.source_page=row.source_page,r.source_file=row.source_file,r.source_sha256=row.source_sha256;
 '''
     (OUT/'kg/import.cypher').write_text(cypher,encoding='utf-8')
     retriever=Retriever(kb['documents'])
     joblib.dump(retriever,OUT/'rag/index.joblib',compress=3)
     write_json(OUT/'rag/settings.json',RETRIEVAL_CONFIG)
+    for source in kb['sources'].values():
+        if source.get('local_file'):
+            path=(ROOT/source['local_file']).resolve()
+            assert path.is_relative_to((ROOT/'data/source_documents').resolve())
+            target=OUT/'sources'/path.name;target.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(path,target)
+            source['bundle_file']='sources/'+path.name
+    write_json(OUT/'kb/knowledge.json',kb)
     questions=json.loads((ROOT/'data/rag_evaluation.json').read_text(encoding='utf-8'))
     write_json(OUT/'rag/queries.json',questions)
     evaluation=evaluate(retriever,questions['cases'])
     write_json(OUT/'rag/evaluation.json',evaluation)
     write_json(ROOT/'results/rag_retrieval_evaluation.json',evaluation)
+    source_cases=json.loads((ROOT/'data/rag_source_evaluation.json').read_text(encoding='utf-8'))
+    source_evaluation=evaluate(retriever,source_cases['cases'])
+    write_json(OUT/'rag/source_evaluation.json',source_evaluation)
+    write_json(ROOT/'results/rag_source_evaluation.json',source_evaluation)
     modules=['agents','answer_display','conversation','dialogue','graph_knowledge','intent','local_prompt','retrieval','safety']
     (OUT/'code/app/__init__.py').write_text('',encoding='utf-8')
     for module in modules:shutil.copyfile(ROOT/f'app/{module}.py',OUT/f'code/app/{module}.py')
@@ -124,7 +141,7 @@ SET r.evidence=row.evidence,r.source_url=row.source_url;
         write_json(OUT/'examples/agent_runs.json',{'scope':'No live generation requested; run export_knowledge with --live-examples to capture local model responses.'})
     readme='''# Bộ nộp KB, KG và RAG tiểu đường
 
-Thư mục này chứa dữ liệu và code có thể kiểm tra, không chỉ ảnh demo. KB gồm 46 đoạn từ 19 nguồn; KG được đọc và đối chiếu trực tiếp từ Neo4j local, có 143 khái niệm và 86 quan hệ.
+Thư mục này chứa dữ liệu và code có thể kiểm tra, không chỉ ảnh demo. Số đoạn, nguồn, nút và cạnh hiện tại được ghi trong manifest.json. KG được đọc và đối chiếu trực tiếp từ Neo4j local. Thư mục sources/ lưu PDF NIDDK, văn bản web NIDDK và trích dẫn ngắn Vinmec. Mỗi đoạn PDF có số trang vật lý, trích dẫn và SHA-256 của bản nguồn. Vinmec chỉ lưu trích dẫn ngắn, không phân phối lại toàn bài.
 
 ## Các tệp
 
@@ -157,7 +174,7 @@ Mã nguồn gốc: https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que
 
 Trên máy đã có Qwen3 4B và Neo4j, chạy START_CHATBOT_LOCAL.cmd trong project gốc rồi mở http://localhost:8765. Agent đồ thị lấy quan hệ theo tài liệu đã truy xuất; quan hệ phải khớp bộ ba, văn bản và nguồn trước khi cấp cho Qwen. Nhánh cấp cứu trả bằng luật trước RAG/KG.
 
-Đồ thị còn 57 cụm rời nhau; chưa phải ontology y khoa đầy đủ hay Microsoft GraphRAG. Tập câu hỏi do project biên soạn, chưa thay thế đánh giá độc lập hoặc thẩm định lâm sàng. Kết quả truy xuất không phải độ chính xác chẩn đoán.
+Đồ thị còn các cụm rời nhau; chưa phải ontology y khoa đầy đủ hay Microsoft GraphRAG. Tập câu hỏi do project biên soạn, chưa thay thế đánh giá độc lập hoặc thẩm định lâm sàng. Kết quả truy xuất không phải độ chính xác chẩn đoán. Lệnh truy vấn bộ xuất chỉ tổng hợp căn cứ, không chạy Qwen hoặc các mô hình MLP; luồng đầy đủ chạy từ project gốc.
 '''
     (OUT/'README.md').write_text(readme,encoding='utf-8')
     files={p.relative_to(OUT).as_posix():{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.rglob('*')) if p.is_file() and p.name!='manifest.json'}

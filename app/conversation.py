@@ -24,8 +24,9 @@ FOLLOW={
 FOLLOW.update({'sick_day':['Tôi nên ghi gì khi bị ốm?'],'foot_care':['Tôi cần kiểm tra bàn chân ra sao?'],'kidney_checks':['UACR và eGFR dùng để làm gì?']})
 
 def topic(q):
+ lookup=re.sub(r'\btai lieu\b','',norm(q))  # "tài liệu" is not a medication dose.
  for key,terms,ids in TOPICS:
-  if any(re.search(r'(?<!\w)'+re.escape(t)+r'(?!\w)',norm(q)) for t in terms):return key,ids
+  if any(re.search(r'(?<!\w)'+re.escape(t)+r'(?!\w)',lookup) for t in terms):return key,ids
  if re.search(r"\d|so duoi|so tren|thi sao|chi tiet|giai thich them",norm(q)):return None,[]
  learned=predict_intent(norm(q))
  if learned:

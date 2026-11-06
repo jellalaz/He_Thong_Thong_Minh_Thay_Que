@@ -1,7 +1,7 @@
 ﻿{
     "schema_version":  2,
-    "bytes_removed":  15692423188,
-    "known_files_removed":  419,
+    "bytes_removed":  15700787536,
+    "known_files_removed":  449,
     "file_count_complete":  false,
     "runs":  [
                  {
@@ -298,6 +298,33 @@
                                    {
                                        "path":  "reports/project01_06_02_giangkt.254.log",
                                        "bytes":  40002,
+                                       "files":  1
+                                   },
+                                   {
+                                       "path":  "reports/tieuluan_final_06_02_giangkt.254.log",
+                                       "bytes":  48630,
+                                       "files":  1
+                                   }
+                               ]
+                 },
+                 {
+                     "completed_at":  "2026-11-06T11:10:25.7138984+07:00",
+                     "bytes_removed":  8364348,
+                     "files_removed":  30,
+                     "items":  [
+                                   {
+                                       "path":  ".runtime/pdf-qa",
+                                       "bytes":  8237508,
+                                       "files":  25
+                                   },
+                                   {
+                                       "path":  "app/__pycache__",
+                                       "bytes":  37402,
+                                       "files":  3
+                                   },
+                                   {
+                                       "path":  "reports/project01_06_02_giangkt.254.log",
+                                       "bytes":  40808,
                                        "files":  1
                                    },
                                    {

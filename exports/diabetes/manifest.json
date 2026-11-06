@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "documents": 46,
-  "sources": 19,
-  "nodes": 143,
-  "relationships": 86,
+  "documents": 58,
+  "sources": 22,
+  "nodes": 169,
+  "relationships": 106,
   "graph_origin": "exact local Neo4j snapshot, checked against KB",
   "dependencies": {
     "numpy": "2.5.4",
@@ -25,8 +25,8 @@
       "sha256": "0de325cb9f58348acd3de35e30c9eef3242adc7133bc4ebf7e27d4898381b90e"
     },
     "code/app/conversation.py": {
-      "bytes": 21031,
-      "sha256": "236c18fc3d621e9ca6735e43f2cd32e156d1c265348a6acc4a01d555dcb00b57"
+      "bytes": 21117,
+      "sha256": "58043e0177bc5294ce5f6aa7c8acc4fae9c53f4115893607d40ed63ab677b74b"
     },
     "code/app/dialogue.py": {
       "bytes": 9026,
@@ -41,12 +41,12 @@
       "sha256": "95341417d726e7355ae09116abc3460c4d3193b91479ddd4c480d1fda8034236"
     },
     "code/app/local_prompt.py": {
-      "bytes": 4710,
-      "sha256": "5533186d85763891c76eef0e6806c1564c5df8b71fc49589a4db62983f092472"
+      "bytes": 5236,
+      "sha256": "cedfd0ce0fa05b10b434d0bee9ba8b9c8931adce3d97864359c528ce77835fd3"
     },
     "code/app/retrieval.py": {
-      "bytes": 3577,
-      "sha256": "6b15333d6d68935ac629f6981d04d88c0e0349c4e6fc6ac800b7465bdc011c85"
+      "bytes": 4058,
+      "sha256": "dd8f1c632cefdab8c90797da44d64004c43ff26b2046c52ed99a673592f306d7"
     },
     "code/app/safety.py": {
       "bytes": 8833,
@@ -61,40 +61,40 @@
       "sha256": "30f4b9e85f183383e8b78057b4706d9662438b3fcc0c44a3e47a3133946bfc95"
     },
     "code/scripts/restore_knowledge_export.py": {
-      "bytes": 1709,
-      "sha256": "38f4ed3e3734d6c41ef2376df08e3de5b03b7134b60313108d320d4ff8ff61c5"
+      "bytes": 1804,
+      "sha256": "2d75bd44cde3692953286716cf0544906801625ee0ad217717e446a2bd5a6ad8"
     },
     "examples/agent_runs.json": {
-      "bytes": 84727,
-      "sha256": "9eb9feaf36974adada5c6cbede775574d398bb6e4df44b8bb766b8ae95abdfca"
+      "bytes": 99427,
+      "sha256": "d3370def630584f79d8cd55fb106220c25d9c9792076dc511b192be2df01809b"
     },
     "kb/knowledge.json": {
-      "bytes": 50049,
-      "sha256": "5bca55feeaa5734b8bd70de6d1bb4372c40002a79fff4d91a03b39c593e93b14"
+      "bytes": 67884,
+      "sha256": "c8fb73838857c02c8fca02ac456c95a69794856364a08594f4ecbbcf68c074a3"
     },
     "kg/graph.json": {
-      "bytes": 71769,
-      "sha256": "08412c55f0dd976c2ab5938cf9155634995f528e60d473b12746fcf3d59cbe85"
+      "bytes": 98805,
+      "sha256": "ac27c14a3609987405544c9b11a1318420e59a44306e05dca5ae83ff4bf234a8"
     },
     "kg/import.cypher": {
-      "bytes": 50437,
-      "sha256": "336c0d5296845aa9accec2e165cefbcd227c13cc4fa1401eb2aad8e029bfaee9"
+      "bytes": 69910,
+      "sha256": "1bb98dacc831120abdc6084a11b7d1369076264d2f3c388d37f5a030a094ef69"
     },
     "kg/nodes.csv": {
-      "bytes": 5511,
-      "sha256": "d657d565df5aaaaea86600cb04cc8dba7e18c207286b6571b8add36ff4925830"
+      "bytes": 6436,
+      "sha256": "d658782fcf4d1f23917bfccb5e7680b485aadb14933bc9c7fcbeb622c72ec744"
     },
     "kg/relationships.csv": {
-      "bytes": 41811,
-      "sha256": "bfdd2dcbc6ce4b6f644026dbb9231a690ad8c7e80ce822551da37169e815f721"
+      "bytes": 54217,
+      "sha256": "8280ac1886be7e118e7c3f6bb9a5312572ec6423cceb686dafa6f4b96c5e43b6"
     },
     "rag/evaluation.json": {
-      "bytes": 9248,
-      "sha256": "7611cb0c526b49ab24d8f12d8a7f715b4cf2d74df3fc3c40a3f468669e16f486"
+      "bytes": 9367,
+      "sha256": "9b803788ee7573cb0bdbeca4e765bdc03655738014e4659aa9d23339543dddde"
     },
     "rag/index.joblib": {
-      "bytes": 154901,
-      "sha256": "616d2618fd6273b88805c7ecbd65d31da4f1aba99264650a38119fc47993e903"
+      "bytes": 192716,
+      "sha256": "e05b7a2880b18456ae33b1361a1f60d6cb7cf4b9dcb648ff207e4c18534c6b86"
     },
     "rag/queries.json": {
       "bytes": 4391,
@@ -104,13 +104,33 @@
       "bytes": 303,
       "sha256": "a0308ea35a88c6fb61e1c7d2efba3964edd739c37eebffd26388d170036cc82d"
     },
+    "rag/source_evaluation.json": {
+      "bytes": 3222,
+      "sha256": "c05d59768b8ba6e396b1c39f1614a62181137ce921089b9940c8c6514adbe00e"
+    },
     "README.md": {
-      "bytes": 2884,
-      "sha256": "9f53ad252625d8fb413759b72cb7fe8759fa1014ec89d27a97b04ebed79e3db3"
+      "bytes": 3306,
+      "sha256": "0738a13ba41ed9abc3cde0174c448ca447664b53df4ab10a9a10cae9ec2a8044"
     },
     "requirements.txt": {
       "bytes": 64,
       "sha256": "d597a3e022d02f967d849ca37daa0aaf26e71d2b22bac7ea66c9bd1eca7bbee8"
+    },
+    "sources/niddk_guiding_principles.pdf": {
+      "bytes": 1631836,
+      "sha256": "40a7da28c6889a262f4fb20e6ed648de3e7d55c0aab337491721bd232e7c2aa9"
+    },
+    "sources/niddk_healthy_living.txt": {
+      "bytes": 22329,
+      "sha256": "64a0c86380996083858f7957f1c66fa88bd97e806c6549c45b3b13e91e83b09f"
+    },
+    "sources/vinmec_feet.excerpts.json": {
+      "bytes": 442,
+      "sha256": "c947c3c71bed13a9ee8b01c2310f9f2a3fa8e70b0dcdfdc644e8949e02e8660d"
+    },
+    "sources/vinmec_nutrition.excerpts.json": {
+      "bytes": 456,
+      "sha256": "20b6e27ca9ecdf04e6e8e51c71ef6cefcb9f45e00e053878a77850810e15b492"
     }
   }
 }

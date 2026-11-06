@@ -24,6 +24,11 @@ def load_knowledge():
     extra = json.loads((ROOT / 'data/knowledge_dialogue.json').read_text(encoding='utf-8'))
     kb['documents'] += extra['documents']
     kb['sources'].update(extra['sources'])
+    sourced = ROOT / 'data/knowledge_curated.json'
+    if sourced.exists():
+        extra = json.loads(sourced.read_text(encoding='utf-8'))
+        kb['documents'] += extra['documents']
+        kb['sources'].update(extra['sources'])
     assert len({d['id'] for d in kb['documents']}) == len(kb['documents'])
     return kb
 
@@ -58,6 +63,10 @@ class Retriever:
                 scores[i] += self.config['routing_boost']
             if doc['source'] in {'dataset', 'classification_data'} and plan['topic'] not in {'model', 'classification', 'meanpressure', 'demographics'}:
                 scores[i] = 0  # Never mix research features into ordinary patient questions.
+            if re.search(r'\bvinmec\b', query) and not doc['source'].startswith('vinmec_'):
+                scores[i] = 0
+            if re.search(r'\bpdf\b', query) and doc.get('provenance', {}).get('kind') != 'pdf':
+                scores[i] = 0
         maximum = float(scores.max())
         if maximum < self.config['minimum_score']:
             return []

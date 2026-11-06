@@ -9,136 +9,162 @@ n0007,Chiếc đĩa,Concept
 n0008,Chuẩn bị đi khám,Concept
 n0009,Chăm sóc bàn chân,Concept
 n0010,Chăm sóc tiểu đường hằng ngày,Concept
-n0011,Cách xử lý quên thuốc,Concept
-n0012,Căng thẳng,Concept
-n0013,Giờ ăn,Concept
-n0014,Glucose,Concept
-n0015,Glucose dưới 70,Concept
-n0016,Gạo lứt,Concept
-n0017,HDL,Concept
-n0018,HbA1c,Concept
-n0019,Huyết áp,Concept
-n0020,Insulin,Concept
-n0021,Không nuốt được,Concept
-n0022,Không thêm đường,Concept
-n0023,Khẩu phần,Concept
-n0024,Kế hoạch tập,Concept
-n0025,LDL,Concept
-n0026,Liều thuốc,Concept
-n0027,Lo âu kéo dài,Concept
-n0028,Lo âu và hạ đường huyết,Concept
-n0029,Lựa chọn đồ uống,Concept
-n0030,Metformin,Concept
-n0031,Mã giới tính nghiên cứu,Concept
-n0032,Mô hình diabetes,Concept
-n0033,Mô hình phân loại,Concept
-n0034,Mục tiêu LDL,Concept
-n0035,Mục tiêu điều trị,Concept
-n0036,Ngày ốm,Concept
-n0037,Nhãn tổng hợp,Concept
-n0038,Nhật ký,Concept
-n0039,Nhật ký đường huyết,Concept
-n0040,Nước ép,Concept
-n0041,Phân loại,Concept
-n0042,Phần tinh bột,Concept
-n0043,Quên liều thuốc,Concept
-n0044,Rượu bia khi dùng insulin,Concept
-n0045,Rối loạn ý thức,Concept
-n0046,Sau chẩn đoán,Concept
-n0047,Thai kỳ / bệnh máu,Concept
-n0048,Theo dõi bệnh,Concept
-n0049,Theo dõi thận,Concept
-n0050,Theo dõi và sinh hoạt phù hợp,Concept
-n0051,Thuyên giảm type 2,Concept
-n0052,Thói quen uống rượu bia,Concept
-n0053,Tiền đái tháo đường,Concept
-n0054,Tiểu đường,Concept
-n0055,Tiểu đường thai kỳ,Concept
-n0056,Tiểu đường type 1,Concept
-n0057,Tiểu đường type 2,Concept
-n0058,Triglyceride,Concept
-n0059,Triệu chứng,Concept
-n0060,Trái cây,Concept
-n0061,Tỷ lệ cholesterol / HDL,Concept
-n0062,UACR,Concept
-n0063,Vận động,Concept
-n0064,biểu hiện giống nhau,Concept
-n0065,bp,Concept
-n0066,bác sĩ hoặc dược sĩ,Concept
-n0067,bệnh truyền nhiễm,Concept
-n0068,carbohydrate,Concept
-n0069,cho ăn uống,Concept
-n0070,chăm sóc bàn chân,Concept
-n0071,chẩn đoán cá nhân,Concept
-n0072,chọn ngưỡng HDL,Concept
-n0073,chữa khỏi vĩnh viễn,Concept
-n0074,eGFR,Concept
-n0075,giai đoạn cuối,Concept
-n0076,giới và bảng mỡ máu,Concept
-n0077,glucose do gan tạo ra,Concept
-n0078,huyết áp trung bình,Concept
-n0079,huyết áp tâm thu,Concept
-n0080,hạ đường huyết,Concept
-n0081,hồ sơ nguy cơ đầy đủ,Concept
-n0082,insulin,Concept
-n0083,khám và xét nghiệm,Concept
-n0084,không có carbohydrate,Concept
-n0085,loại bệnh / mục tiêu / thuốc,Concept
-n0086,mất nước,Concept
-n0087,mục tiêu / lịch đo / lịch tái khám,Concept
-n0088,nguy cơ cá nhân,Concept
-n0089,nguy cơ xơ vữa,Concept
-n0090,ngày giờ / số đo / đơn vị / bữa ăn,Concept
-n0091,nhu cầu cá nhân,Concept
-n0092,nhân viên y tế,Concept
-n0093,nhãn tổng hợp High / Moderate / Low,Concept
-n0094,nhóm chăm sóc,Concept
-n0095,nước lọc / ít hoặc không thêm đường,Concept
-n0096,phiếu xét nghiệm / nhật ký / danh sách thuốc,Concept
-n0097,phá hủy tế bào sản xuất insulin,Concept
-n0098,phương pháp chiếc đĩa,Concept
-n0099,quan sát hằng ngày,Concept
-n0100,quản lý đường huyết,Concept
-n0101,rau không nhiều tinh bột,Concept
-n0102,rau không tinh bột,Concept
-n0103,s5 / ltg,Concept
-n0104,số đo và bối cảnh,Concept
-n0105,sử dụng insulin,Concept
-n0106,sử dụng insulin kém hiệu quả,Concept
-n0107,thai kỳ,Concept
-n0108,theo dõi theo bối cảnh sản khoa,Concept
-n0109,theo dõi đường huyết,Concept
-n0110,thiếu hoặc sử dụng insulin kém hiệu quả,Concept
-n0111,thuốc / hoạt động / lịch làm việc,Concept
-n0112,thuốc / hoạt động / mục tiêu cá nhân,Concept
-n0113,thể trạng,Concept
-n0114,thực phẩm chứa tinh bột,Concept
-n0115,tim / thận / mắt / thần kinh,Concept
-n0116,tiểu đường,Concept
-n0117,tiểu đường type 2,Concept
-n0118,toàn phần / LDL / HDL / triglyceride,Concept
-n0119,trao đổi khi tái khám,Concept
-n0120,trái cây nguyên quả,Concept
-n0121,trợ giúp y tế khẩn cấp,Concept
-n0122,tái khám,Concept
-n0123,tâm thu / tâm trương,Concept
-n0124,tên thuốc / liều kê / thời điểm,Concept
-n0125,tình trạng cá nhân,Concept
-n0126,từng người,Concept
-n0127,xác suất mắc bệnh,Concept
-n0128,xét nghiệm triglyceride gốc,Concept
-n0129,áp lực và lo lắng,Concept
-n0130,Ăn chung hoặc tiếp xúc,Concept
-n0131,Điểm tiến triển,Concept
-n0132,Đĩa ăn cân bằng,Concept
-n0133,Đường huyết cao kéo dài,Concept
-n0134,đi bộ ngắn,Concept
-n0135,điểm tiến triển nghiên cứu,Concept
-n0136,đo / ghi chép / ăn uống / tái khám,Concept
-n0137,đánh giá cá nhân,Concept
-n0138,đơn vị và thời điểm đo,Concept
-n0139,đơn vị xét nghiệm,Concept
-n0140,đường huyết,Concept
-n0141,đường huyết / huyết áp / cholesterol,Concept
-n0142,đường huyết trung bình,Concept
-n0143,đạm,Concept
+n0011,Chế biến món ăn,Concept
+n0012,Cách xử lý quên thuốc,Concept
+n0013,Căng thẳng,Concept
+n0014,Giờ ăn,Concept
+n0015,Glucose,Concept
+n0016,Glucose dưới 70,Concept
+n0017,Gạo lứt,Concept
+n0018,HDL,Concept
+n0019,HbA1c,Concept
+n0020,Huyết áp,Concept
+n0021,Insulin,Concept
+n0022,Không nuốt được,Concept
+n0023,Không thêm đường,Concept
+n0024,Khẩu phần,Concept
+n0025,Kiêng quá mức,Concept
+n0026,Kế hoạch tập,Concept
+n0027,Kế hoạch ăn,Concept
+n0028,LDL,Concept
+n0029,Liều thuốc,Concept
+n0030,Lo âu kéo dài,Concept
+n0031,Lo âu và hạ đường huyết,Concept
+n0032,Lựa chọn đồ uống,Concept
+n0033,Metformin,Concept
+n0034,Mã giới tính nghiên cứu,Concept
+n0035,Món yêu thích,Concept
+n0036,Mô hình diabetes,Concept
+n0037,Mô hình phân loại,Concept
+n0038,Mục tiêu LDL,Concept
+n0039,Mục tiêu tự chăm sóc,Concept
+n0040,Mục tiêu điều trị,Concept
+n0041,Nguồn đạm,Concept
+n0042,Ngày ốm,Concept
+n0043,Người thân,Concept
+n0044,Nhãn tổng hợp,Concept
+n0045,Nhật ký,Concept
+n0046,Nhật ký đường huyết,Concept
+n0047,Nước ép,Concept
+n0048,Phân loại,Concept
+n0049,Phần tinh bột,Concept
+n0050,Quên liều thuốc,Concept
+n0051,Rượu bia khi dùng insulin,Concept
+n0052,Rối loạn ý thức,Concept
+n0053,Sau chẩn đoán,Concept
+n0054,Thai kỳ / bệnh máu,Concept
+n0055,Theo dõi bệnh,Concept
+n0056,Theo dõi bữa ăn,Concept
+n0057,Theo dõi thận,Concept
+n0058,Theo dõi và sinh hoạt phù hợp,Concept
+n0059,Thuyên giảm type 2,Concept
+n0060,Thói quen uống rượu bia,Concept
+n0061,Tiền đái tháo đường,Concept
+n0062,Tiểu đường,Concept
+n0063,Tiểu đường thai kỳ,Concept
+n0064,Tiểu đường type 1,Concept
+n0065,Tiểu đường type 2,Concept
+n0066,Triglyceride,Concept
+n0067,Triệu chứng,Concept
+n0068,Trái cây,Concept
+n0069,Tổn thương bàn chân,Concept
+n0070,Tự chăm sóc,Concept
+n0071,Tỷ lệ cholesterol / HDL,Concept
+n0072,UACR,Concept
+n0073,Vận động,Concept
+n0074,biểu hiện giống nhau,Concept
+n0075,bp,Concept
+n0076,bác sĩ hoặc dược sĩ,Concept
+n0077,bệnh truyền nhiễm,Concept
+n0078,bệnh đi kèm,Concept
+n0079,carbohydrate,Concept
+n0080,cho ăn uống,Concept
+n0081,chăm sóc bàn chân,Concept
+n0082,chẩn đoán cá nhân,Concept
+n0083,chọn ngưỡng HDL,Concept
+n0084,chữa khỏi vĩnh viễn,Concept
+n0085,cá hoặc đậu,Concept
+n0086,cá hoặc đậu nành,Concept
+n0087,cơ sở y tế,Concept
+n0088,eGFR,Concept
+n0089,giai đoạn cuối,Concept
+n0090,giới và bảng mỡ máu,Concept
+n0091,glucose do gan tạo ra,Concept
+n0092,huyết áp trung bình,Concept
+n0093,huyết áp tâm thu,Concept
+n0094,hạ đường huyết,Concept
+n0095,hấp hoặc luộc,Concept
+n0096,hồ sơ nguy cơ đầy đủ,Concept
+n0097,insulin,Concept
+n0098,khám và xét nghiệm,Concept
+n0099,không có carbohydrate,Concept
+n0100,khả năng cá nhân,Concept
+n0101,khẩu phần,Concept
+n0102,loại bệnh / mục tiêu / thuốc,Concept
+n0103,mất cân bằng dinh dưỡng,Concept
+n0104,mất nước,Concept
+n0105,mục tiêu / lịch đo / lịch tái khám,Concept
+n0106,nguy cơ cá nhân,Concept
+n0107,nguy cơ hạ đường huyết,Concept
+n0108,nguy cơ xơ vữa,Concept
+n0109,ngày giờ / số đo / đơn vị / bữa ăn,Concept
+n0110,nhu cầu cá nhân,Concept
+n0111,nhân viên y tế,Concept
+n0112,nhãn tổng hợp High / Moderate / Low,Concept
+n0113,nhóm chăm sóc,Concept
+n0114,nhóm điều trị,Concept
+n0115,nước lọc / ít hoặc không thêm đường,Concept
+n0116,phiếu xét nghiệm / nhật ký / danh sách thuốc,Concept
+n0117,phá hủy tế bào sản xuất insulin,Concept
+n0118,phương pháp chiếc đĩa,Concept
+n0119,phương pháp đĩa ăn,Concept
+n0120,quan sát da và kẽ ngón,Concept
+n0121,quan sát hằng ngày,Concept
+n0122,quản lý đường huyết,Concept
+n0123,rau không nhiều tinh bột,Concept
+n0124,rau không tinh bột,Concept
+n0125,rau và đậu,Concept
+n0126,s5 / ltg,Concept
+n0127,số đo và bối cảnh,Concept
+n0128,sử dụng insulin,Concept
+n0129,sử dụng insulin kém hiệu quả,Concept
+n0130,thai kỳ,Concept
+n0131,theo dõi sức khỏe,Concept
+n0132,theo dõi theo bối cảnh sản khoa,Concept
+n0133,theo dõi đường huyết,Concept
+n0134,thiếu hoặc sử dụng insulin kém hiệu quả,Concept
+n0135,thuốc / hoạt động / lịch làm việc,Concept
+n0136,thuốc / hoạt động / mục tiêu cá nhân,Concept
+n0137,thói quen tự chăm sóc,Concept
+n0138,thể trạng,Concept
+n0139,thực phẩm chứa tinh bột,Concept
+n0140,tim / thận / mắt / thần kinh,Concept
+n0141,tiểu đường,Concept
+n0142,tiểu đường type 2,Concept
+n0143,toàn phần / LDL / HDL / triglyceride,Concept
+n0144,trao đổi khi tái khám,Concept
+n0145,trái cây nguyên quả,Concept
+n0146,trợ giúp y tế khẩn cấp,Concept
+n0147,tái khám,Concept
+n0148,tâm thu / tâm trương,Concept
+n0149,tên thuốc / liều kê / thời điểm,Concept
+n0150,tình trạng cá nhân,Concept
+n0151,từng người,Concept
+n0152,xác suất mắc bệnh,Concept
+n0153,xét nghiệm triglyceride gốc,Concept
+n0154,áp lực và lo lắng,Concept
+n0155,Ăn chung hoặc tiếp xúc,Concept
+n0156,Điểm tiến triển,Concept
+n0157,Đĩa ăn cân bằng,Concept
+n0158,Đường huyết cao kéo dài,Concept
+n0159,đi bộ,Concept
+n0160,đi bộ ngắn,Concept
+n0161,điểm tiến triển nghiên cứu,Concept
+n0162,đo / ghi chép / ăn uống / tái khám,Concept
+n0163,đánh giá cá nhân,Concept
+n0164,đơn vị và thời điểm đo,Concept
+n0165,đơn vị xét nghiệm,Concept
+n0166,đường huyết,Concept
+n0167,đường huyết / huyết áp / cholesterol,Concept
+n0168,đường huyết trung bình,Concept
+n0169,đạm,Concept

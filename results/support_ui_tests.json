@@ -1,0 +1,15 @@
+{
+  "passed": 8,
+  "checks": [
+    "Real model form generates result",
+    "Model handoff has three sourced support items",
+    "Research context is visible",
+    "PDF page link is local",
+    "Follow-up carries context",
+    "New conversation clears context",
+    "Six PDF chunks have local source links",
+    "No browser errors or external page requests"
+  ],
+  "external_requests": [],
+  "browser_errors": []
+}

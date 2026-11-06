@@ -1,7 +1,7 @@
 [
   {
     "question": "Type 1 khác type 2 thế nào?",
-    "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin.",
+    "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là do hệ miễn dịch phá hủy tế bào sản xuất insulin, nên người bệnh cần insulin để sống. Type 2 là do cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin.",
     "safety": {
       "level": "ROUTINE",
       "medication_risk": false,
@@ -11,6 +11,8 @@
       "context_used": false
     },
     "result": null,
+    "model_review": null,
+    "support": null,
     "trace": [
       {
         "sender": "Người dùng",
@@ -110,7 +112,46 @@
                 "sử dụng insulin kém hiệu quả"
               ]
             ],
-            "retrieval_score": 0.4076
+            "retrieval_score": 0.4147
+          },
+          {
+            "id": "insulin_info",
+            "title": "Insulin và tình trạng bệnh",
+            "terms": [
+              "insulin",
+              "tiêm",
+              "type 1",
+              "type 2",
+              "bệnh nặng",
+              "phụ thuộc"
+            ],
+            "topics": [
+              "medicine"
+            ],
+            "questions": [
+              "Tiêm insulin có phải giai đoạn cuối không?",
+              "Type 2 có cần insulin không?"
+            ],
+            "source": "treatments",
+            "text": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+            "triples": [
+              [
+                "Tiểu đường type 1",
+                "cần",
+                "insulin"
+              ],
+              [
+                "Tiểu đường type 2",
+                "có thể cần",
+                "insulin"
+              ],
+              [
+                "Bắt đầu insulin",
+                "không tự đồng nghĩa với",
+                "giai đoạn cuối"
+              ]
+            ],
+            "retrieval_score": 0.2443
           }
         ]
       },
@@ -120,7 +161,8 @@
         "type": "REQUEST",
         "content": {
           "document_ids": [
-            "types_compare"
+            "types_compare",
+            "insulin_info"
           ]
         }
       },
@@ -139,18 +181,43 @@
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
             },
             {
+              "source": "Bắt đầu insulin",
+              "relation": "không tự đồng nghĩa với",
+              "target": "giai đoạn cuối",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
               "source": "Tiểu đường type 2",
               "relation": "liên quan đến",
               "target": "sử dụng insulin kém hiệu quả",
               "document": "types_compare",
               "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "có thể cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
             }
           ],
           "storage": "Neo4j",
           "rejected": 0,
           "document_ids": [
-            "types_compare"
+            "types_compare",
+            "insulin_info"
           ]
         }
       },
@@ -202,7 +269,46 @@
                 "sử dụng insulin kém hiệu quả"
               ]
             ],
-            "retrieval_score": 0.4076
+            "retrieval_score": 0.4147
+          },
+          {
+            "id": "insulin_info",
+            "title": "Insulin và tình trạng bệnh",
+            "terms": [
+              "insulin",
+              "tiêm",
+              "type 1",
+              "type 2",
+              "bệnh nặng",
+              "phụ thuộc"
+            ],
+            "topics": [
+              "medicine"
+            ],
+            "questions": [
+              "Tiêm insulin có phải giai đoạn cuối không?",
+              "Type 2 có cần insulin không?"
+            ],
+            "source": "treatments",
+            "text": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+            "triples": [
+              [
+                "Tiểu đường type 1",
+                "cần",
+                "insulin"
+              ],
+              [
+                "Tiểu đường type 2",
+                "có thể cần",
+                "insulin"
+              ],
+              [
+                "Bắt đầu insulin",
+                "không tự đồng nghĩa với",
+                "giai đoạn cuối"
+              ]
+            ],
+            "retrieval_score": 0.2443
           }
         ]
       },
@@ -210,7 +316,7 @@
         "sender": "Phản hồi",
         "receiver": "Điều phối",
         "type": "INFORM",
-        "content": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]"
+        "content": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]\n\nInsulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin. [insulin_info]"
       },
       {
         "sender": "Đối chiếu",
@@ -285,7 +391,46 @@
                   "sử dụng insulin kém hiệu quả"
                 ]
               ],
-              "retrieval_score": 0.4076
+              "retrieval_score": 0.4147
+            },
+            {
+              "id": "insulin_info",
+              "title": "Insulin và tình trạng bệnh",
+              "terms": [
+                "insulin",
+                "tiêm",
+                "type 1",
+                "type 2",
+                "bệnh nặng",
+                "phụ thuộc"
+              ],
+              "topics": [
+                "medicine"
+              ],
+              "questions": [
+                "Tiêm insulin có phải giai đoạn cuối không?",
+                "Type 2 có cần insulin không?"
+              ],
+              "source": "treatments",
+              "text": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "triples": [
+                [
+                  "Tiểu đường type 1",
+                  "cần",
+                  "insulin"
+                ],
+                [
+                  "Tiểu đường type 2",
+                  "có thể cần",
+                  "insulin"
+                ],
+                [
+                  "Bắt đầu insulin",
+                  "không tự đồng nghĩa với",
+                  "giai đoạn cuối"
+                ]
+              ],
+              "retrieval_score": 0.2443
             }
           ],
           "graph_evidence": [
@@ -298,15 +443,40 @@
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
             },
             {
+              "source": "Bắt đầu insulin",
+              "relation": "không tự đồng nghĩa với",
+              "target": "giai đoạn cuối",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
               "source": "Tiểu đường type 2",
               "relation": "liên quan đến",
               "target": "sử dụng insulin kém hiệu quả",
               "document": "types_compare",
               "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "có thể cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
             }
           ],
-          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]",
+          "model_review": null,
+          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]\n\nInsulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin. [insulin_info]",
           "history": []
         }
       },
@@ -315,7 +485,7 @@
         "receiver": "Kiểm chứng phản hồi",
         "type": "REQUEST",
         "content": {
-          "draft": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "draft": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là do hệ miễn dịch phá hủy tế bào sản xuất insulin, nên người bệnh cần insulin để sống. Type 2 là do cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
           "documents": [
             {
               "id": "types_compare",
@@ -350,7 +520,46 @@
                   "sử dụng insulin kém hiệu quả"
                 ]
               ],
-              "retrieval_score": 0.4076
+              "retrieval_score": 0.4147
+            },
+            {
+              "id": "insulin_info",
+              "title": "Insulin và tình trạng bệnh",
+              "terms": [
+                "insulin",
+                "tiêm",
+                "type 1",
+                "type 2",
+                "bệnh nặng",
+                "phụ thuộc"
+              ],
+              "topics": [
+                "medicine"
+              ],
+              "questions": [
+                "Tiêm insulin có phải giai đoạn cuối không?",
+                "Type 2 có cần insulin không?"
+              ],
+              "source": "treatments",
+              "text": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "triples": [
+                [
+                  "Tiểu đường type 1",
+                  "cần",
+                  "insulin"
+                ],
+                [
+                  "Tiểu đường type 2",
+                  "có thể cần",
+                  "insulin"
+                ],
+                [
+                  "Bắt đầu insulin",
+                  "không tự đồng nghĩa với",
+                  "giai đoạn cuối"
+                ]
+              ],
+              "retrieval_score": 0.2443
             }
           ],
           "graph_evidence": [
@@ -363,15 +572,39 @@
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
             },
             {
+              "source": "Bắt đầu insulin",
+              "relation": "không tự đồng nghĩa với",
+              "target": "giai đoạn cuối",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
               "source": "Tiểu đường type 2",
               "relation": "liên quan đến",
               "target": "sử dụng insulin kém hiệu quả",
               "document": "types_compare",
               "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "có thể cần",
+              "target": "insulin",
+              "document": "insulin_info",
+              "evidence": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
             }
           ],
-          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]"
+          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]\n\nInsulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin. [insulin_info]"
         }
       },
       {
@@ -379,7 +612,7 @@
         "receiver": "Ngôn ngữ cục bộ",
         "type": "INFORM",
         "content": {
-          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là do hệ miễn dịch phá hủy tế bào sản xuất insulin, nên người bệnh cần insulin để sống. Type 2 là do cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
           "mode": "qwen4-rag",
           "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
         }
@@ -389,10 +622,10 @@
         "receiver": "Điều phối",
         "type": "INFORM",
         "content": {
-          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là do hệ miễn dịch phá hủy tế bào sản xuất insulin, nên người bệnh cần insulin để sống. Type 2 là do cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
           "mode": "qwen4-rag",
           "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
-          "seconds": 2.12
+          "seconds": 7.957
         }
       },
       {
@@ -416,7 +649,8 @@
         "id": "types_compare",
         "title": "Phân biệt tiểu đường type 1 và type 2",
         "excerpt": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
-        "retrieval_score": 0.4076,
+        "provenance": {},
+        "retrieval_score": 0.4147,
         "source": {
           "label": "NIDDK · What Is Diabetes?",
           "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
@@ -444,7 +678,7 @@
     "graph_status": "Neo4j",
     "graph_context_supplied": true,
     "feedback_supported": true,
-    "response_id": "I_Cqq6wfFBdj1PzpbVfR1A",
+    "response_id": "q5qTQ2eptRK0s4AXP0Iaow",
     "response_mode": "qwen4-rag",
     "generator": "Qwen3 cục bộ + RAG và KG",
     "suggestions": [
@@ -467,6 +701,8 @@
       "context_used": false
     },
     "result": null,
+    "model_review": null,
+    "support": null,
     "trace": [
       {
         "sender": "Người dùng",
@@ -575,7 +811,7 @@
                 "thực phẩm chứa tinh bột"
               ]
             ],
-            "retrieval_score": 0.3211
+            "retrieval_score": 0.3196
           },
           {
             "id": "plate",
@@ -605,7 +841,7 @@
                 "rau không tinh bột"
               ]
             ],
-            "retrieval_score": 0.1991
+            "retrieval_score": 0.202
           }
         ]
       },
@@ -731,7 +967,7 @@
                 "thực phẩm chứa tinh bột"
               ]
             ],
-            "retrieval_score": 0.3211
+            "retrieval_score": 0.3196
           },
           {
             "id": "plate",
@@ -761,7 +997,7 @@
                 "rau không tinh bột"
               ]
             ],
-            "retrieval_score": 0.1991
+            "retrieval_score": 0.202
           }
         ]
       },
@@ -853,7 +1089,7 @@
                   "thực phẩm chứa tinh bột"
                 ]
               ],
-              "retrieval_score": 0.3211
+              "retrieval_score": 0.3196
             },
             {
               "id": "plate",
@@ -883,7 +1119,7 @@
                   "rau không tinh bột"
                 ]
               ],
-              "retrieval_score": 0.1991
+              "retrieval_score": 0.202
             }
           ],
           "graph_evidence": [
@@ -928,6 +1164,7 @@
               "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
             }
           ],
+          "model_review": null,
           "fallback": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu. [meal_example]",
           "history": []
         }
@@ -980,7 +1217,7 @@
                   "thực phẩm chứa tinh bột"
                 ]
               ],
-              "retrieval_score": 0.3211
+              "retrieval_score": 0.3196
             },
             {
               "id": "plate",
@@ -1010,7 +1247,7 @@
                   "rau không tinh bột"
                 ]
               ],
-              "retrieval_score": 0.1991
+              "retrieval_score": 0.202
             }
           ],
           "graph_evidence": [
@@ -1076,7 +1313,7 @@
           "answer": "Một gợi ý bữa trưa dễ nấu cho người tiểu đường là chia đĩa ăn theo phương pháp chiếc đĩa. Ví dụ: dành nửa đĩa cho rau luộc hoặc salad không ngọt, một phần tư cho cá, thịt nạc, trứng hoặc đậu phụ, và phần tư còn lại cho cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc làm đồ uống. [plate]",
           "mode": "qwen4-rag",
           "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
-          "seconds": 2.202
+          "seconds": 2.541
         }
       },
       {
@@ -1100,7 +1337,8 @@
         "id": "plate",
         "title": "Một bữa ăn cân bằng",
         "excerpt": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
-        "retrieval_score": 0.1991,
+        "provenance": {},
+        "retrieval_score": 0.202,
         "source": {
           "label": "CDC · Lập kế hoạch bữa ăn",
           "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
@@ -1128,7 +1366,7 @@
     "graph_status": "Neo4j",
     "graph_context_supplied": true,
     "feedback_supported": true,
-    "response_id": "8tfMySVpLV-iS5QgyoThNw",
+    "response_id": "v-JtijC2OSrwJDrHjpkBbg",
     "response_mode": "qwen4-rag",
     "generator": "Qwen3 cục bộ + RAG và KG",
     "suggestions": [
@@ -1151,6 +1389,8 @@
       "context_used": false
     },
     "result": null,
+    "model_review": null,
+    "support": null,
     "trace": [
       {
         "sender": "Người dùng",
@@ -1248,7 +1488,7 @@
                 "sử dụng insulin"
               ]
             ],
-            "retrieval_score": 0.5632
+            "retrieval_score": 0.5715
           }
         ]
       },
@@ -1338,7 +1578,7 @@
                 "sử dụng insulin"
               ]
             ],
-            "retrieval_score": 0.5632
+            "retrieval_score": 0.5715
           }
         ]
       },
@@ -1419,7 +1659,7 @@
                   "sử dụng insulin"
                 ]
               ],
-              "retrieval_score": 0.5632
+              "retrieval_score": 0.5715
             }
           ],
           "graph_evidence": [
@@ -1440,6 +1680,7 @@
               "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
             }
           ],
+          "model_review": null,
           "fallback": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không. [metformin_info]",
           "history": []
         }
@@ -1482,7 +1723,7 @@
                   "sử dụng insulin"
                 ]
               ],
-              "retrieval_score": 0.5632
+              "retrieval_score": 0.5715
             }
           ],
           "graph_evidence": [
@@ -1524,7 +1765,7 @@
           "answer": "Metformin được dùng để điều trị bệnh tiểu đường type 2. Thuốc giúp gan tạo ít glucose hơn và hỗ trợ cơ thể sử dụng insulin hiệu quả hơn. [metformin_info]",
           "mode": "qwen4-rag",
           "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
-          "seconds": 0.976
+          "seconds": 1.216
         }
       },
       {
@@ -1548,7 +1789,8 @@
         "id": "metformin_info",
         "title": "Metformin dùng để làm gì?",
         "excerpt": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
-        "retrieval_score": 0.5632,
+        "provenance": {},
+        "retrieval_score": 0.5715,
         "source": {
           "label": "NIDDK · Insulin, Medicines & Treatments",
           "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
@@ -1576,7 +1818,7 @@
     "graph_status": "Neo4j",
     "graph_context_supplied": true,
     "feedback_supported": true,
-    "response_id": "Cc0o59bEDTn_PTdU796IpA",
+    "response_id": "GHpoF3htB0U32A2lUfSwHg",
     "response_mode": "qwen4-rag",
     "generator": "Qwen3 cục bộ + RAG và KG",
     "suggestions": [

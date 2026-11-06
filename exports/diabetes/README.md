@@ -1,6 +1,6 @@
 # Bộ nộp KB, KG và RAG tiểu đường
 
-Thư mục này chứa dữ liệu và code có thể kiểm tra, không chỉ ảnh demo. KB gồm 46 đoạn từ 19 nguồn; KG được đọc và đối chiếu trực tiếp từ Neo4j local, có 143 khái niệm và 86 quan hệ.
+Thư mục này chứa dữ liệu và code có thể kiểm tra, không chỉ ảnh demo. Số đoạn, nguồn, nút và cạnh hiện tại được ghi trong manifest.json. KG được đọc và đối chiếu trực tiếp từ Neo4j local. Thư mục sources/ lưu PDF NIDDK, văn bản web NIDDK và trích dẫn ngắn Vinmec. Mỗi đoạn PDF có số trang vật lý, trích dẫn và SHA-256 của bản nguồn. Vinmec chỉ lưu trích dẫn ngắn, không phân phối lại toàn bài.
 
 ## Các tệp
 
@@ -33,4 +33,4 @@ Mã nguồn gốc: https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que
 
 Trên máy đã có Qwen3 4B và Neo4j, chạy START_CHATBOT_LOCAL.cmd trong project gốc rồi mở http://localhost:8765. Agent đồ thị lấy quan hệ theo tài liệu đã truy xuất; quan hệ phải khớp bộ ba, văn bản và nguồn trước khi cấp cho Qwen. Nhánh cấp cứu trả bằng luật trước RAG/KG.
 
-Đồ thị còn 57 cụm rời nhau; chưa phải ontology y khoa đầy đủ hay Microsoft GraphRAG. Tập câu hỏi do project biên soạn, chưa thay thế đánh giá độc lập hoặc thẩm định lâm sàng. Kết quả truy xuất không phải độ chính xác chẩn đoán.
+Đồ thị còn các cụm rời nhau; chưa phải ontology y khoa đầy đủ hay Microsoft GraphRAG. Tập câu hỏi do project biên soạn, chưa thay thế đánh giá độc lập hoặc thẩm định lâm sàng. Kết quả truy xuất không phải độ chính xác chẩn đoán. Lệnh truy vấn bộ xuất chỉ tổng hợp căn cứ, không chạy Qwen hoặc các mô hình MLP; luồng đầy đủ chạy từ project gốc.

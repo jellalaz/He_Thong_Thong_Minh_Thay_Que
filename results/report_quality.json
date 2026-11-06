@@ -1,12 +1,12 @@
 [
   {
     "name": "project01_06_02_giangkt.254",
-    "pages": 70,
+    "pages": 78,
     "boundary_issues": [],
     "replacement_chars": 0,
     "unembedded_fonts": [],
-    "external_link_annotations": 65,
-    "sha256": "d04ae4c542f412fb958afa318ffe4da4a9beb02f1ae49cfac15f31e502788111"
+    "external_link_annotations": 76,
+    "sha256": "0e362ec6ff766682db39cbe805f1c043f89a3e36b4e82d7403c1031e3de72288"
   },
   {
     "name": "tieuluan_final_06_02_giangkt.254",
@@ -14,7 +14,7 @@
     "boundary_issues": [],
     "replacement_chars": 0,
     "unembedded_fonts": [],
-    "external_link_annotations": 29,
-    "sha256": "021280fb8817f9f29a6166a08cc5a9ce2d7e497c439dcc85bee118d5ec75c817"
+    "external_link_annotations": 33,
+    "sha256": "079544b3b86ee754ae0f15a3aebd2c0a6ba554c0c9d82b4c5aca72ac15754edd"
   }
 ]

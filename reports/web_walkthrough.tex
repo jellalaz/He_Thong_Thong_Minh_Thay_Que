@@ -17,13 +17,13 @@ Chuyển sang ``Dự đoán điểm tiến triển'' để tạo biểu mẫu m�
 \clearpage
 \subsection{Đồ thị tri thức và đối chiếu Neo4j}
 \productlink{Mở giao diện thực nghiệm}{http://localhost:8765/\#graph}
-Khu vực đồ thị đọc quan hệ trực tiếp từ Neo4j qua GET /api/graph. Nút ``Xem toàn bộ đồ thị'' nằm cạnh bộ lọc Chủ đề; các nút phóng to, thu nhỏ và vừa khung hỗ trợ duyệt 143 khái niệm và 86 quan hệ. Người xem có thể kéo khung, bấm khái niệm để đọc liên kết hoặc chọn tài liệu để xem rõ tên và căn cứ. Giao diện web và Neo4j Browser dùng cùng dữ liệu nhưng có cách bố trí nút khác nhau.
+Khu vực đồ thị đọc quan hệ trực tiếp từ Neo4j qua GET /api/graph. Nút ``Xem toàn bộ đồ thị'' nằm cạnh bộ lọc Chủ đề; các nút phóng to, thu nhỏ và vừa khung hỗ trợ duyệt 169 khái niệm và 106 quan hệ. Người xem có thể kéo khung, bấm khái niệm để đọc liên kết hoặc chọn tài liệu để xem rõ tên và căn cứ. Giao diện web và Neo4j Browser dùng cùng dữ liệu nhưng có cách bố trí nút khác nhau.
 \begin{figure}[H]\centering\includegraphics[width=\linewidth,height=.36\textheight,keepaspectratio]{demo-graph-current.png}\caption{Toàn bộ đồ thị trên web với nút xem nhanh và điều khiển phóng to.}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,height=.22\textheight,keepaspectratio]{demo-neo4j.png}\caption{Neo4j Browser trả về cùng 143 khái niệm và 86 quan hệ.}\end{figure}
+Neo4j Browser có thể kiểm tra cùng bộ dữ liệu bằng truy vấn nêu trong phần Code và demo. Hình đồ thị trên web được chụp lại sau khi bổ sung nguồn.
 \clearpage
 \subsection{Dữ liệu và nguồn}
 \productlink{Mở giao diện thực nghiệm}{http://localhost:8765/\#data}
-Màn hình thứ tư công bố liên kết bộ dữ liệu, số dòng, số biến, số mẫu train/test và ý nghĩa nhãn. Bảng kiểm kê tám trường phân loại cho biết số giá trị thiếu cùng min, trung vị, max của bản chụp dữ liệu. Danh mục KB thống kê 19 nguồn được sử dụng trong 46 tài liệu. Mỗi tài liệu có mã để đối chiếu văn bản với quan hệ trên đồ thị.
+Màn hình thứ tư công bố liên kết bộ dữ liệu, số dòng, số biến, số mẫu train/test và ý nghĩa nhãn. Bảng kiểm kê tám trường phân loại cho biết số giá trị thiếu cùng min, trung vị, max của bản chụp dữ liệu. Danh mục KB thống kê 22 nguồn được sử dụng trong 58 tài liệu. Mỗi tài liệu có mã để đối chiếu văn bản với quan hệ trên đồ thị.
 
 Nội dung được xuất bởi scripts/audit\_data.py thành web/data\_catalog.json đồng thời với results/data\_audit.json. Khi thay dữ liệu, cần chạy lại bước kiểm kê để đồng bộ báo cáo và web. Kho tri thức hiện là các đoạn văn đã biên soạn; hệ thống chưa có chức năng tải sách hoặc tự thu thập website trong phiên chat.
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=.64\textheight,keepaspectratio]{demo-data.png}\caption{Màn hình công bố nguồn gốc và phạm vi hai bộ dữ liệu.}\end{figure}
@@ -48,17 +48,17 @@ HbA1c phải có đơn vị phần trăm; nếu thiếu đơn vị, chatbot hỏ
 
 Các ngưỡng và lưu ý được rà soát theo NIDDK; hướng dẫn hạ đường huyết tham chiếu CDC. Luật về dấu hiệu khẩn cấp ưu tiên lời nhắc tìm trợ giúp y tế. Câu hỏi liều thuốc được chuyển về giải thích phạm vi và thông tin chuẩn bị cho bác sĩ. Luật nhận diện bằng từ khóa vẫn có thể bỏ sót cách diễn đạt chưa kiểm thử; kết quả đạt kiểm thử không phải chứng nhận an toàn lâm sàng.
 \subsection{Nối mô hình với hội thoại và so sánh đầu vào}
-Sau khi suy luận, người dùng có thể bấm ``Giải thích kết quả'' để xem giải thích phạm vi và căn cứ. Thao tác giữ kết quả thực từ API, không dựng một dự đoán mới trong JavaScript. Người dùng cũng có thể đổi một trường và chạy lại để xem khác biệt so với lần chạy trước. Với mẫu hồi quy đã lưu, đổi BMI từ 32,1 thành 28 cho đầu ra từ 207,53 thành 179,64, chênh lệch khoảng -27,89 điểm trong lượt demo được kiểm tra. Đây là độ nhạy của mô hình trên đầu vào giả định; không suy ra hiệu quả điều trị hay mục tiêu giảm cân.
+Sau khi suy luận, người dùng có thể bấm ``Nhận xét và hỗ trợ'' để xem giải thích phạm vi và căn cứ. Thao tác giữ kết quả thực từ API, không dựng một dự đoán mới trong JavaScript. Người dùng cũng có thể đổi một trường và chạy lại để xem khác biệt so với lần chạy trước. Với mẫu hồi quy đã lưu, đổi BMI từ 32,1 thành 28 cho đầu ra từ 207,53 thành 179,64, chênh lệch khoảng -27,89 điểm trong lượt demo được kiểm tra. Đây là độ nhạy của mô hình trên đầu vào giả định; không suy ra hiệu quả điều trị hay mục tiêu giảm cân.
 \subsection{Tra cứu KB và sử dụng Neo4j}
-Mục Nguồn \& tài liệu có tra cứu không dấu trên 46 đoạn kiến thức. Mỗi kết quả có nội dung, nguồn gốc và nút hỏi trợ lý. GET /api/knowledge trả các đoạn văn và thông tin nguồn; GET /api/status kiểm tra kết nối Neo4j và số lượng nút, cạnh.
+Mục Nguồn \& tài liệu có tra cứu không dấu trên 58 đoạn kiến thức. Mỗi kết quả có nội dung, nguồn gốc và nút hỏi trợ lý. GET /api/knowledge trả các đoạn văn và thông tin nguồn; GET /api/status kiểm tra kết nối Neo4j và số lượng nút, cạnh.
 
-Neo4j cục bộ lưu đồ thị của bản đang kiểm tra; AuraDB Free thuộc triển khai công khai trước đây. Người dùng có thể xem toàn bộ hoặc lọc một tài liệu ngay trên web, không cần nhớ câu lệnh Cypher. Đồ thị local có 143 khái niệm và 86 quan hệ, chia thành 57 thành phần liên thông. Toàn bộ 46 tài liệu đều có quan hệ, nhưng nhiều khái niệm vẫn thuộc các cụm nhỏ riêng biệt. Bố cục chỉ sắp xếp lại vị trí hiển thị, không tự thêm liên kết giữa các cụm.
+Neo4j cục bộ lưu đồ thị của bản đang kiểm tra; AuraDB Free thuộc triển khai công khai trước đây. Người dùng có thể xem toàn bộ hoặc lọc một tài liệu ngay trên web, không cần nhớ câu lệnh Cypher. Đồ thị local có 169 khái niệm và 106 quan hệ, chia thành các thành phần liên thông. Toàn bộ 58 tài liệu đều có quan hệ, nhưng nhiều khái niệm vẫn thuộc các cụm nhỏ riêng biệt. Bố cục chỉ sắp xếp lại vị trí hiển thị, không tự thêm liên kết giữa các cụm.
 
 Khi dịch vụ tắt, chạy start-neo4j.ps1 từ thư mục project. Để kiểm tra bằng Neo4j Browser, mở localhost:7474/browser và dùng tài khoản trong cấu hình cục bộ. Mật khẩu không được đưa vào báo cáo hoặc GitHub.
 \subsection{Kiểm thử bổ sung và thiết bị}
 Kiểm thử hội thoại gồm 37 điều kiện. Bộ kiểm tra an toàn gồm 29 điều kiện, chạy cùng 81 điều kiện hồi quy trong môi trường chặn kết nối ra ngoài. Kết quả lưu tại \path{results/safety_offline.json}.
 
-Bộ kiểm tra giao diện đồ thị đối chiếu số nút và cạnh của đủ 46 bộ lọc tài liệu với dữ liệu Neo4j; kiểm tra nút xem toàn bộ, làm mới, phóng to, kéo, đọc khái niệm và mở nguồn. Nút điều khiển được kiểm tra ở chiều rộng 1.024 và 390\,px, không bị đẩy khỏi màn hình hoặc gây tràn ngang. Kết quả nằm tại \path{results/graph_ui_checks.json}; phiên kiểm tra trình duyệt chỉ truy cập máy cục bộ.
+Bộ kiểm tra giao diện đồ thị đối chiếu số nút và cạnh của đủ 58 bộ lọc tài liệu với dữ liệu Neo4j; kiểm tra nút xem toàn bộ, làm mới, phóng to, kéo, đọc khái niệm và mở nguồn. Nút điều khiển được kiểm tra ở chiều rộng 1.024 và 390\,px, không bị đẩy khỏi màn hình hoặc gây tràn ngang. Kết quả nằm tại \path{results/graph_ui_checks.json}; phiên kiểm tra trình duyệt chỉ truy cập máy cục bộ.
 
 Kiểm tra thủ công trên web bao gồm bấm nguồn sang đồ thị, chọn nút, độ phủ quan hệ của từng tài liệu, phân loại, hồi quy, thay đổi đầu vào, chuyển kết quả sang chat, tìm kiếm không dấu và xóa phiên. Bố cục được kiểm tra tại viewport desktop 1366\,px và điện thoại 390\,px; trang chat không bị tràn ngang ở kích thước điện thoại kiểm tra. Chưa kiểm thử toàn bộ trình duyệt hay đánh giá trải nghiệm với người dùng thật.
 \begin{figure}[H]\centering\includegraphics[height=.30\textheight,keepaspectratio]{demo-mobile.png}\caption{Bố cục điện thoại: điều hướng hai hàng và hội thoại một cột.}\end{figure}
