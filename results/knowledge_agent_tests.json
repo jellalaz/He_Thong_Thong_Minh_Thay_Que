@@ -1,0 +1,16 @@
+{
+  "passed": 11,
+  "checks": [
+    "Real graph agent receives a request and returns source-checked facts",
+    "Unknown or injected IDs never become Cypher code or trigger a query",
+    "Reject graph tampering: source_url",
+    "Reject graph tampering: evidence",
+    "Reject graph tampering: relation",
+    "Reject graph tampering: document",
+    "Duplicate graph rows do not duplicate prompt facts",
+    "Only grounded graph facts enter the actual Qwen message builder",
+    "Production chat passes validated KG through MessageBus into Qwen context",
+    "Neo4j outage is traced and text RAG remains available without fake graph facts",
+    "Emergency handling still bypasses graph and language generation"
+  ]
+}

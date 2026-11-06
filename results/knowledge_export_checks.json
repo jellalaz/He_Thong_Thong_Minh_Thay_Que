@@ -1,0 +1,16 @@
+{
+  "passed": 8,
+  "checks": [
+    "All exported file sizes and SHA-256 checksums are valid",
+    "Exported KB and graph match the canonical documents and exact source triples",
+    "UTF-8 CSV preserves Vietnamese, document IDs, endpoints and evidence",
+    "ZIP contains the same verified files as the expanded bundle",
+    "All 22 exported retrieval results replay exactly with sockets disabled",
+    "The copied entry point runs from the bundle with its own modules and intent model",
+    "A changed file fails the integrity check before index loading",
+    "Neo4j accepts exported Cypher syntax; validation makes no database writes"
+  ],
+  "retrieval_roundtrip_cases": 22,
+  "nodes": 143,
+  "relationships": 86
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Functional retrieval questions authored for this project; not a clinical benchmark or an independent medical review.",
+  "cases": [
+    {"id":"a1c","question":"Chỉ số HbA1c cho biết điều gì về đường máu thời gian qua?","expected":["a1c"]},
+    {"id":"plate","question":"Bữa trưa nên sắp rau, đạm và cơm trên đĩa thế nào?","expected":["meal_example","plate"]},
+    {"id":"rice","question":"Tôi mắc tiểu đường thì có nhất thiết bỏ hết cơm không?","expected":["rice_portion","carb"]},
+    {"id":"fruit","question":"Ăn hoa quả nguyên miếng với uống nước ép khác nhau thế nào?","expected":["fruit_whole","fruit"]},
+    {"id":"types","question":"Điểm khác nhau giữa tiểu đường type 1 và type 2 là gì?","expected":["types_compare"]},
+    {"id":"metformin","question":"Metformin hỗ trợ điều trị bằng cách nào?","expected":["metformin_info"]},
+    {"id":"kidney","question":"Vì sao khi khám tiểu đường lại kiểm tra UACR và eGFR?","expected":["kidney_checks"]},
+    {"id":"foot","question":"Tôi cần quan sát bàn chân mỗi ngày để lưu ý điều gì?","expected":["foot_care"]},
+    {"id":"diary","question":"Cho tôi một bảng trống để ghi nhật ký đường huyết","expected":["glucose_log","monitor"]},
+    {"id":"visit","question":"Có những câu hỏi nào nên chuẩn bị trước buổi tái khám?","expected":["care_questions"]},
+    {"id":"sick_day","question":"Khi bị sốt thì người đang có tiểu đường cần chú ý gì?","expected":["sick_day"]},
+    {"id":"exercise","question":"Tôi ít vận động, muốn bắt đầu tập nhẹ thì nên làm sao?","expected":["activity_plan","activity"]},
+    {"id":"prediabetes","question":"Tiền đái tháo đường có nghĩa đã mắc tiểu đường chưa?","expected":["prediabetes"]},
+    {"id":"remission","question":"Thuyên giảm bệnh có đồng nghĩa chữa khỏi vĩnh viễn không?","expected":["remission_info"]},
+    {"id":"drinks","question":"Nếu đang theo dõi tiểu đường thì nên chọn loại đồ uống nào?","expected":["drinks"]},
+    {"id":"contact","question":"Ăn chung mâm với người mắc tiểu đường có bị lây bệnh không?","expected":["not_contagious"]},
+    {"id":"stress","question":"Căng thẳng có làm thay đổi đường huyết của tôi không?","expected":["stress_glucose"]},
+    {"id":"pregnancy","question":"Tiểu đường xuất hiện trong thai kỳ cần được theo dõi thế nào?","expected":["pregnancy_diabetes"]},
+    {"id":"no_accents","question":"chia bua an cho nguoi tieu duong ra sao","expected":["plate","meal_example","carb"]},
+    {"id":"followup","question":"Tôi không ăn cá thì thay món nào?","history":[{"role":"user","content":"Gợi ý một bữa trưa dễ nấu cho người tiểu đường"}],"expected":["meal_example"]},
+    {"id":"outside","question":"Cách sửa lỗi màn hình máy tính bị nhấp nháy","expected":[]},
+    {"id":"greeting","question":"Xin chào bạn","expected":[]}
+  ]
+}

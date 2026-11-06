@@ -1,4 +1,4 @@
-"""Local-only LoRA response agent. Activated explicitly; never falls back to a cloud API."""
+"""Local Qwen response agent with bounded text and graph evidence; no cloud fallback."""
 import os,re,threading,time
 from contextlib import nullcontext
 from pathlib import Path
@@ -49,10 +49,10 @@ def respond(payload,bus):
  with _lock:
   if os.environ.get('GLUCOGUIDE_LLAMA_URL'):
    start=time.perf_counter();draft=llama_generate(payload)
-   verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':draft,'documents':payload['documents'],'fallback':payload['fallback']})
+   verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':draft,'documents':payload['documents'],'graph_evidence':payload.get('graph_evidence',[]),'fallback':payload['fallback']})
    if verdict['mode']=='rules':
     revised=llama_generate(dict(payload,repair=draft,repair_reason=verdict['reason']))
-    verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':revised,'documents':payload['documents'],'fallback':payload['fallback']})
+    verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':revised,'documents':payload['documents'],'graph_evidence':payload.get('graph_evidence',[]),'fallback':payload['fallback']})
    if verdict['mode']=='qwen-lora':verdict['mode']='qwen4-rag'
    return dict(verdict,seconds=round(time.perf_counter()-start,3))
   load();import torch
@@ -66,11 +66,14 @@ def respond(payload,bus):
    out=_model.generate(inputs,attention_mask=torch.ones_like(inputs),max_new_tokens=480,do_sample=False,repetition_penalty=1.08,pad_token_id=_tokenizer.eos_token_id,use_cache=True)
   draft=_tokenizer.decode(out[0,inputs.shape[1]:],skip_special_tokens=True).strip()
   # This is a conservative consistency filter, not a clinical fact checker.
-  verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':draft,'documents':payload['documents'],'fallback':payload['fallback']})
+  verdict=bus.request('Ngôn ngữ cục bộ','Kiểm chứng phản hồi',{'draft':draft,'documents':payload['documents'],'graph_evidence':payload.get('graph_evidence',[]),'fallback':payload['fallback']})
   if verdict['mode']=='qwen-lora' and not use_adapter:verdict['mode']='qwen-rag'
   return dict(verdict,seconds=round(time.perf_counter()-start,3))
 def verify(payload,bus):
  from app.retrieval import normalize
+ from app.graph_knowledge import ground_facts
+ _,bad_graph=ground_facts(payload.get('graph_evidence',[]),payload['documents'])
+ if bad_graph:return {'answer':payload['fallback'],'mode':'rules','reason':'Quan hệ đồ thị không khớp tài liệu; dùng nội dung KB đã kiểm tra.'}
  draft=re.sub(r'^\s*\d+[.)]\s+', '- ', payload['draft'], flags=re.M).strip()
  draft=re.sub(r'^Dưới đây là (?:bản nháp|câu trả lời) (?:được |đã )?(?:chỉnh sửa|sửa lại)[^:\n]*:\s*','',draft,flags=re.I)
  context=' '.join(d['text'] for d in payload['documents']);ids={d['id'] for d in payload['documents']}

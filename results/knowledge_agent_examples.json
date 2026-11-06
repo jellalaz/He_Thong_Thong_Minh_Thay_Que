@@ -1,0 +1,1683 @@
+[
+  {
+    "question": "Type 1 khác type 2 thế nào?",
+    "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin.",
+    "safety": {
+      "level": "ROUTINE",
+      "medication_risk": false,
+      "reason": "no_priority_rule",
+      "symptoms": [],
+      "glucose_mg_dl": [],
+      "context_used": false
+    },
+    "result": null,
+    "trace": [
+      {
+        "sender": "Người dùng",
+        "receiver": "Điều phối",
+        "type": "REQUEST",
+        "content": "Type 1 khác type 2 thế nào?"
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "An toàn",
+        "type": "REQUEST",
+        "content": {
+          "question": "Type 1 khác type 2 thế nào?",
+          "history": []
+        }
+      },
+      {
+        "sender": "An toàn",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "level": "ROUTINE",
+          "medication_risk": false,
+          "reason": "no_priority_rule",
+          "symptoms": [],
+          "glucose_mg_dl": [],
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Hội thoại",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "topic": "diabetes",
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Truy xuất",
+        "type": "REQUEST",
+        "content": {
+          "topic": "diabetes",
+          "ids": [
+            "overview"
+          ],
+          "query": "Type 1 khác type 2 thế nào?",
+          "context_used": false,
+          "intro": "",
+          "override": null,
+          "tone": "normal",
+          "suggestions": [
+            "Tiểu đường type 1 khác type 2 thế nào?",
+            "Tôi nên bắt đầu theo dõi bệnh ra sao?"
+          ],
+          "guarded": false,
+          "instruction": "Trả lời trực tiếp câu đang hỏi, giải thích ngắn gọn rồi đưa bước thực hiện. Chỉ hỏi thêm một điều khi thông tin đó thực sự cần.",
+          "format": "brief"
+        }
+      },
+      {
+        "sender": "Truy xuất",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": [
+          {
+            "id": "types_compare",
+            "title": "Phân biệt tiểu đường type 1 và type 2",
+            "terms": [
+              "type 1",
+              "type 2",
+              "tuýp 1",
+              "tuýp 2",
+              "khác nhau",
+              "phân biệt",
+              "insulin"
+            ],
+            "topics": [
+              "diabetes"
+            ],
+            "questions": [
+              "Tiểu đường type 1 khác type 2 thế nào?",
+              "Vì sao có người phải tiêm insulin?"
+            ],
+            "source": "types",
+            "text": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+            "triples": [
+              [
+                "Tiểu đường type 1",
+                "liên quan đến",
+                "phá hủy tế bào sản xuất insulin"
+              ],
+              [
+                "Tiểu đường type 2",
+                "liên quan đến",
+                "sử dụng insulin kém hiệu quả"
+              ]
+            ],
+            "retrieval_score": 0.4076
+          }
+        ]
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Đồ thị tri thức",
+        "type": "REQUEST",
+        "content": {
+          "document_ids": [
+            "types_compare"
+          ]
+        }
+      },
+      {
+        "sender": "Đồ thị tri thức",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "facts": [
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "liên quan đến",
+              "target": "phá hủy tế bào sản xuất insulin",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "liên quan đến",
+              "target": "sử dụng insulin kém hiệu quả",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            }
+          ],
+          "storage": "Neo4j",
+          "rejected": 0,
+          "document_ids": [
+            "types_compare"
+          ]
+        }
+      },
+      {
+        "sender": "Chính sách RL",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": {
+          "state": 1,
+          "action": "Trả lời có nguồn",
+          "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Phản hồi",
+        "type": "REQUEST",
+        "content": [
+          {
+            "id": "types_compare",
+            "title": "Phân biệt tiểu đường type 1 và type 2",
+            "terms": [
+              "type 1",
+              "type 2",
+              "tuýp 1",
+              "tuýp 2",
+              "khác nhau",
+              "phân biệt",
+              "insulin"
+            ],
+            "topics": [
+              "diabetes"
+            ],
+            "questions": [
+              "Tiểu đường type 1 khác type 2 thế nào?",
+              "Vì sao có người phải tiêm insulin?"
+            ],
+            "source": "types",
+            "text": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+            "triples": [
+              [
+                "Tiểu đường type 1",
+                "liên quan đến",
+                "phá hủy tế bào sản xuất insulin"
+              ],
+              [
+                "Tiểu đường type 2",
+                "liên quan đến",
+                "sử dụng insulin kém hiệu quả"
+              ]
+            ],
+            "retrieval_score": 0.4076
+          }
+        ]
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]"
+      },
+      {
+        "sender": "Đối chiếu",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+      },
+      {
+        "sender": "Chính sách phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "strategy": "brief",
+          "selected_by": "local-Q"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "REQUEST",
+        "content": {
+          "question": "Type 1 khác type 2 thế nào?",
+          "plan": {
+            "topic": "diabetes",
+            "ids": [
+              "overview"
+            ],
+            "query": "Type 1 khác type 2 thế nào?",
+            "context_used": false,
+            "intro": "",
+            "override": null,
+            "tone": "normal",
+            "suggestions": [
+              "Tiểu đường type 1 khác type 2 thế nào?",
+              "Tôi nên bắt đầu theo dõi bệnh ra sao?"
+            ],
+            "guarded": false,
+            "instruction": "Trả lời trực tiếp câu đang hỏi, giải thích ngắn gọn rồi đưa bước thực hiện. Chỉ hỏi thêm một điều khi thông tin đó thực sự cần.",
+            "format": "brief"
+          },
+          "documents": [
+            {
+              "id": "types_compare",
+              "title": "Phân biệt tiểu đường type 1 và type 2",
+              "terms": [
+                "type 1",
+                "type 2",
+                "tuýp 1",
+                "tuýp 2",
+                "khác nhau",
+                "phân biệt",
+                "insulin"
+              ],
+              "topics": [
+                "diabetes"
+              ],
+              "questions": [
+                "Tiểu đường type 1 khác type 2 thế nào?",
+                "Vì sao có người phải tiêm insulin?"
+              ],
+              "source": "types",
+              "text": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "triples": [
+                [
+                  "Tiểu đường type 1",
+                  "liên quan đến",
+                  "phá hủy tế bào sản xuất insulin"
+                ],
+                [
+                  "Tiểu đường type 2",
+                  "liên quan đến",
+                  "sử dụng insulin kém hiệu quả"
+                ]
+              ],
+              "retrieval_score": 0.4076
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "liên quan đến",
+              "target": "phá hủy tế bào sản xuất insulin",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "liên quan đến",
+              "target": "sử dụng insulin kém hiệu quả",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            }
+          ],
+          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]",
+          "history": []
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Kiểm chứng phản hồi",
+        "type": "REQUEST",
+        "content": {
+          "draft": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "documents": [
+            {
+              "id": "types_compare",
+              "title": "Phân biệt tiểu đường type 1 và type 2",
+              "terms": [
+                "type 1",
+                "type 2",
+                "tuýp 1",
+                "tuýp 2",
+                "khác nhau",
+                "phân biệt",
+                "insulin"
+              ],
+              "topics": [
+                "diabetes"
+              ],
+              "questions": [
+                "Tiểu đường type 1 khác type 2 thế nào?",
+                "Vì sao có người phải tiêm insulin?"
+              ],
+              "source": "types",
+              "text": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "triples": [
+                [
+                  "Tiểu đường type 1",
+                  "liên quan đến",
+                  "phá hủy tế bào sản xuất insulin"
+                ],
+                [
+                  "Tiểu đường type 2",
+                  "liên quan đến",
+                  "sử dụng insulin kém hiệu quả"
+                ]
+              ],
+              "retrieval_score": 0.4076
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Tiểu đường type 1",
+              "relation": "liên quan đến",
+              "target": "phá hủy tế bào sản xuất insulin",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            },
+            {
+              "source": "Tiểu đường type 2",
+              "relation": "liên quan đến",
+              "target": "sử dụng insulin kém hiệu quả",
+              "document": "types_compare",
+              "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+            }
+          ],
+          "fallback": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt. [types_compare]"
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "INFORM",
+        "content": {
+          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "answer": "Tiểu đường type 1 và type 2 khác nhau về cơ chế bệnh lý. Type 1 là hệ miễn dịch phá hủy tế bào sản xuất insulin, khiến cơ thể không tạo đủ insulin. Type 2 là cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. [types_compare]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
+          "seconds": 2.12
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Người dùng",
+        "type": "INFORM",
+        "content": "Hoàn thành"
+      }
+    ],
+    "sources": [
+      {
+        "id": "types_compare",
+        "title": "Phân biệt tiểu đường type 1 và type 2",
+        "excerpt": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+        "retrieval_score": 0.4076,
+        "source": {
+          "label": "NIDDK · What Is Diabetes?",
+          "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+        }
+      }
+    ],
+    "graph_evidence": [
+      {
+        "source": "Tiểu đường type 1",
+        "relation": "liên quan đến",
+        "target": "phá hủy tế bào sản xuất insulin",
+        "document": "types_compare",
+        "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+        "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      },
+      {
+        "source": "Tiểu đường type 2",
+        "relation": "liên quan đến",
+        "target": "sử dụng insulin kém hiệu quả",
+        "document": "types_compare",
+        "evidence": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+        "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+      }
+    ],
+    "graph_status": "Neo4j",
+    "graph_context_supplied": true,
+    "feedback_supported": true,
+    "response_id": "I_Cqq6wfFBdj1PzpbVfR1A",
+    "response_mode": "qwen4-rag",
+    "generator": "Qwen3 cục bộ + RAG và KG",
+    "suggestions": [
+      "Tiểu đường type 1 khác type 2 thế nào?",
+      "Tôi nên bắt đầu theo dõi bệnh ra sao?"
+    ],
+    "context_used": false,
+    "topic": "diabetes",
+    "tone": "normal"
+  },
+  {
+    "question": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường",
+    "answer": "Một gợi ý bữa trưa dễ nấu cho người tiểu đường là chia đĩa ăn theo phương pháp chiếc đĩa. Ví dụ: dành nửa đĩa cho rau luộc hoặc salad không ngọt, một phần tư cho cá, thịt nạc, trứng hoặc đậu phụ, và phần tư còn lại cho cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc làm đồ uống.",
+    "safety": {
+      "level": "ROUTINE",
+      "medication_risk": false,
+      "reason": "no_priority_rule",
+      "symptoms": [],
+      "glucose_mg_dl": [],
+      "context_used": false
+    },
+    "result": null,
+    "trace": [
+      {
+        "sender": "Người dùng",
+        "receiver": "Điều phối",
+        "type": "REQUEST",
+        "content": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường"
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "An toàn",
+        "type": "REQUEST",
+        "content": {
+          "question": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường",
+          "history": []
+        }
+      },
+      {
+        "sender": "An toàn",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "level": "ROUTINE",
+          "medication_risk": false,
+          "reason": "no_priority_rule",
+          "symptoms": [],
+          "glucose_mg_dl": [],
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Hội thoại",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "topic": "meal",
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Truy xuất",
+        "type": "REQUEST",
+        "content": {
+          "topic": "meal",
+          "ids": [
+            "meal_example",
+            "carb"
+          ],
+          "query": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường",
+          "context_used": false,
+          "intro": "",
+          "override": null,
+          "tone": "normal",
+          "suggestions": [
+            "Cho tôi ví dụ một bữa trưa",
+            "Có cần bỏ hẳn cơm trắng không?"
+          ],
+          "guarded": false,
+          "instruction": "Đưa ví dụ món cụ thể theo tài liệu. Nếu người dùng nói không ăn một món, hãy thay món đó bằng lựa chọn phù hợp trong nguồn; không nhắc lại món họ đã từ chối. Không tự tính gram, calo hay liều thuốc.",
+          "format": "brief"
+        }
+      },
+      {
+        "sender": "Truy xuất",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": [
+          {
+            "id": "meal_example",
+            "title": "Ví dụ một bữa cơm quen thuộc",
+            "terms": [
+              "bữa trưa",
+              "bữa tối",
+              "thực đơn",
+              "món ăn",
+              "cơm",
+              "cá",
+              "đậu phụ",
+              "ví dụ",
+              "ăn chay"
+            ],
+            "topics": [
+              "meal"
+            ],
+            "questions": [
+              "Cho tôi ví dụ bữa trưa dễ nấu",
+              "Tôi ăn chay thì chia đĩa thế nào?",
+              "Không thích cá thì thay gì?"
+            ],
+            "source": "meal",
+            "text": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+            "triples": [
+              [
+                "Đĩa ăn cân bằng",
+                "dành nửa đĩa cho",
+                "rau không nhiều tinh bột"
+              ],
+              [
+                "Đĩa ăn cân bằng",
+                "dành một phần tư cho",
+                "đạm"
+              ],
+              [
+                "Đĩa ăn cân bằng",
+                "dành phần tư còn lại cho",
+                "thực phẩm chứa tinh bột"
+              ]
+            ],
+            "retrieval_score": 0.3211
+          },
+          {
+            "id": "plate",
+            "title": "Một bữa ăn cân bằng",
+            "terms": [
+              "bữa ăn",
+              "ăn gì",
+              "thực đơn",
+              "ăn sáng",
+              "ăn trưa",
+              "ăn tối",
+              "rau",
+              "đạm",
+              "đĩa ăn"
+            ],
+            "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+            "source": "meal",
+            "triples": [
+              [
+                "Bữa ăn",
+                "chia theo",
+                "phương pháp chiếc đĩa"
+              ],
+              [
+                "Chiếc đĩa",
+                "ưu tiên",
+                "rau không tinh bột"
+              ]
+            ],
+            "retrieval_score": 0.1991
+          }
+        ]
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Đồ thị tri thức",
+        "type": "REQUEST",
+        "content": {
+          "document_ids": [
+            "meal_example",
+            "plate"
+          ]
+        }
+      },
+      {
+        "sender": "Đồ thị tri thức",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "facts": [
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành một phần tư cho",
+              "target": "đạm",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Bữa ăn",
+              "relation": "chia theo",
+              "target": "phương pháp chiếc đĩa",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành nửa đĩa cho",
+              "target": "rau không nhiều tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Chiếc đĩa",
+              "relation": "ưu tiên",
+              "target": "rau không tinh bột",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành phần tư còn lại cho",
+              "target": "thực phẩm chứa tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            }
+          ],
+          "storage": "Neo4j",
+          "rejected": 0,
+          "document_ids": [
+            "meal_example",
+            "plate"
+          ]
+        }
+      },
+      {
+        "sender": "Chính sách RL",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": {
+          "state": 1,
+          "action": "Trả lời có nguồn",
+          "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Phản hồi",
+        "type": "REQUEST",
+        "content": [
+          {
+            "id": "meal_example",
+            "title": "Ví dụ một bữa cơm quen thuộc",
+            "terms": [
+              "bữa trưa",
+              "bữa tối",
+              "thực đơn",
+              "món ăn",
+              "cơm",
+              "cá",
+              "đậu phụ",
+              "ví dụ",
+              "ăn chay"
+            ],
+            "topics": [
+              "meal"
+            ],
+            "questions": [
+              "Cho tôi ví dụ bữa trưa dễ nấu",
+              "Tôi ăn chay thì chia đĩa thế nào?",
+              "Không thích cá thì thay gì?"
+            ],
+            "source": "meal",
+            "text": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+            "triples": [
+              [
+                "Đĩa ăn cân bằng",
+                "dành nửa đĩa cho",
+                "rau không nhiều tinh bột"
+              ],
+              [
+                "Đĩa ăn cân bằng",
+                "dành một phần tư cho",
+                "đạm"
+              ],
+              [
+                "Đĩa ăn cân bằng",
+                "dành phần tư còn lại cho",
+                "thực phẩm chứa tinh bột"
+              ]
+            ],
+            "retrieval_score": 0.3211
+          },
+          {
+            "id": "plate",
+            "title": "Một bữa ăn cân bằng",
+            "terms": [
+              "bữa ăn",
+              "ăn gì",
+              "thực đơn",
+              "ăn sáng",
+              "ăn trưa",
+              "ăn tối",
+              "rau",
+              "đạm",
+              "đĩa ăn"
+            ],
+            "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+            "source": "meal",
+            "triples": [
+              [
+                "Bữa ăn",
+                "chia theo",
+                "phương pháp chiếc đĩa"
+              ],
+              [
+                "Chiếc đĩa",
+                "ưu tiên",
+                "rau không tinh bột"
+              ]
+            ],
+            "retrieval_score": 0.1991
+          }
+        ]
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu. [meal_example]"
+      },
+      {
+        "sender": "Đối chiếu",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+      },
+      {
+        "sender": "Chính sách phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "strategy": "brief",
+          "selected_by": "local-Q"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "REQUEST",
+        "content": {
+          "question": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường",
+          "plan": {
+            "topic": "meal",
+            "ids": [
+              "meal_example",
+              "carb"
+            ],
+            "query": "Gợi ý một bữa trưa dễ nấu cho người tiểu đường",
+            "context_used": false,
+            "intro": "",
+            "override": null,
+            "tone": "normal",
+            "suggestions": [
+              "Cho tôi ví dụ một bữa trưa",
+              "Có cần bỏ hẳn cơm trắng không?"
+            ],
+            "guarded": false,
+            "instruction": "Đưa ví dụ món cụ thể theo tài liệu. Nếu người dùng nói không ăn một món, hãy thay món đó bằng lựa chọn phù hợp trong nguồn; không nhắc lại món họ đã từ chối. Không tự tính gram, calo hay liều thuốc.",
+            "format": "brief"
+          },
+          "documents": [
+            {
+              "id": "meal_example",
+              "title": "Ví dụ một bữa cơm quen thuộc",
+              "terms": [
+                "bữa trưa",
+                "bữa tối",
+                "thực đơn",
+                "món ăn",
+                "cơm",
+                "cá",
+                "đậu phụ",
+                "ví dụ",
+                "ăn chay"
+              ],
+              "topics": [
+                "meal"
+              ],
+              "questions": [
+                "Cho tôi ví dụ bữa trưa dễ nấu",
+                "Tôi ăn chay thì chia đĩa thế nào?",
+                "Không thích cá thì thay gì?"
+              ],
+              "source": "meal",
+              "text": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "triples": [
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành nửa đĩa cho",
+                  "rau không nhiều tinh bột"
+                ],
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành một phần tư cho",
+                  "đạm"
+                ],
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành phần tư còn lại cho",
+                  "thực phẩm chứa tinh bột"
+                ]
+              ],
+              "retrieval_score": 0.3211
+            },
+            {
+              "id": "plate",
+              "title": "Một bữa ăn cân bằng",
+              "terms": [
+                "bữa ăn",
+                "ăn gì",
+                "thực đơn",
+                "ăn sáng",
+                "ăn trưa",
+                "ăn tối",
+                "rau",
+                "đạm",
+                "đĩa ăn"
+              ],
+              "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source": "meal",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "chia theo",
+                  "phương pháp chiếc đĩa"
+                ],
+                [
+                  "Chiếc đĩa",
+                  "ưu tiên",
+                  "rau không tinh bột"
+                ]
+              ],
+              "retrieval_score": 0.1991
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành một phần tư cho",
+              "target": "đạm",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Bữa ăn",
+              "relation": "chia theo",
+              "target": "phương pháp chiếc đĩa",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành nửa đĩa cho",
+              "target": "rau không nhiều tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Chiếc đĩa",
+              "relation": "ưu tiên",
+              "target": "rau không tinh bột",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành phần tư còn lại cho",
+              "target": "thực phẩm chứa tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            }
+          ],
+          "fallback": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu. [meal_example]",
+          "history": []
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Kiểm chứng phản hồi",
+        "type": "REQUEST",
+        "content": {
+          "draft": "Một gợi ý bữa trưa dễ nấu cho người tiểu đường là chia đĩa ăn theo phương pháp chiếc đĩa. Ví dụ: dành nửa đĩa cho rau luộc hoặc salad không ngọt, một phần tư cho cá, thịt nạc, trứng hoặc đậu phụ, và phần tư còn lại cho cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc làm đồ uống. [plate]",
+          "documents": [
+            {
+              "id": "meal_example",
+              "title": "Ví dụ một bữa cơm quen thuộc",
+              "terms": [
+                "bữa trưa",
+                "bữa tối",
+                "thực đơn",
+                "món ăn",
+                "cơm",
+                "cá",
+                "đậu phụ",
+                "ví dụ",
+                "ăn chay"
+              ],
+              "topics": [
+                "meal"
+              ],
+              "questions": [
+                "Cho tôi ví dụ bữa trưa dễ nấu",
+                "Tôi ăn chay thì chia đĩa thế nào?",
+                "Không thích cá thì thay gì?"
+              ],
+              "source": "meal",
+              "text": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "triples": [
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành nửa đĩa cho",
+                  "rau không nhiều tinh bột"
+                ],
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành một phần tư cho",
+                  "đạm"
+                ],
+                [
+                  "Đĩa ăn cân bằng",
+                  "dành phần tư còn lại cho",
+                  "thực phẩm chứa tinh bột"
+                ]
+              ],
+              "retrieval_score": 0.3211
+            },
+            {
+              "id": "plate",
+              "title": "Một bữa ăn cân bằng",
+              "terms": [
+                "bữa ăn",
+                "ăn gì",
+                "thực đơn",
+                "ăn sáng",
+                "ăn trưa",
+                "ăn tối",
+                "rau",
+                "đạm",
+                "đĩa ăn"
+              ],
+              "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source": "meal",
+              "triples": [
+                [
+                  "Bữa ăn",
+                  "chia theo",
+                  "phương pháp chiếc đĩa"
+                ],
+                [
+                  "Chiếc đĩa",
+                  "ưu tiên",
+                  "rau không tinh bột"
+                ]
+              ],
+              "retrieval_score": 0.1991
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành một phần tư cho",
+              "target": "đạm",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Bữa ăn",
+              "relation": "chia theo",
+              "target": "phương pháp chiếc đĩa",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành nửa đĩa cho",
+              "target": "rau không nhiều tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Chiếc đĩa",
+              "relation": "ưu tiên",
+              "target": "rau không tinh bột",
+              "document": "plate",
+              "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            },
+            {
+              "source": "Đĩa ăn cân bằng",
+              "relation": "dành phần tư còn lại cho",
+              "target": "thực phẩm chứa tinh bột",
+              "document": "meal_example",
+              "evidence": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+              "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+            }
+          ],
+          "fallback": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu. [meal_example]"
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "INFORM",
+        "content": {
+          "answer": "Một gợi ý bữa trưa dễ nấu cho người tiểu đường là chia đĩa ăn theo phương pháp chiếc đĩa. Ví dụ: dành nửa đĩa cho rau luộc hoặc salad không ngọt, một phần tư cho cá, thịt nạc, trứng hoặc đậu phụ, và phần tư còn lại cho cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc làm đồ uống. [plate]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "answer": "Một gợi ý bữa trưa dễ nấu cho người tiểu đường là chia đĩa ăn theo phương pháp chiếc đĩa. Ví dụ: dành nửa đĩa cho rau luộc hoặc salad không ngọt, một phần tư cho cá, thịt nạc, trứng hoặc đậu phụ, và phần tư còn lại cho cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc làm đồ uống. [plate]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
+          "seconds": 2.202
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Người dùng",
+        "type": "INFORM",
+        "content": "Hoàn thành"
+      }
+    ],
+    "sources": [
+      {
+        "id": "plate",
+        "title": "Một bữa ăn cân bằng",
+        "excerpt": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+        "retrieval_score": 0.1991,
+        "source": {
+          "label": "CDC · Lập kế hoạch bữa ăn",
+          "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+        }
+      }
+    ],
+    "graph_evidence": [
+      {
+        "source": "Bữa ăn",
+        "relation": "chia theo",
+        "target": "phương pháp chiếc đĩa",
+        "document": "plate",
+        "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+        "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      },
+      {
+        "source": "Chiếc đĩa",
+        "relation": "ưu tiên",
+        "target": "rau không tinh bột",
+        "document": "plate",
+        "evidence": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+        "source_url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+      }
+    ],
+    "graph_status": "Neo4j",
+    "graph_context_supplied": true,
+    "feedback_supported": true,
+    "response_id": "8tfMySVpLV-iS5QgyoThNw",
+    "response_mode": "qwen4-rag",
+    "generator": "Qwen3 cục bộ + RAG và KG",
+    "suggestions": [
+      "Cho tôi ví dụ một bữa trưa",
+      "Có cần bỏ hẳn cơm trắng không?"
+    ],
+    "context_used": false,
+    "topic": "meal",
+    "tone": "normal"
+  },
+  {
+    "question": "Metformin dùng để làm gì?",
+    "answer": "Metformin được dùng để điều trị bệnh tiểu đường type 2. Thuốc giúp gan tạo ít glucose hơn và hỗ trợ cơ thể sử dụng insulin hiệu quả hơn.",
+    "safety": {
+      "level": "ROUTINE",
+      "medication_risk": false,
+      "reason": "no_priority_rule",
+      "symptoms": [],
+      "glucose_mg_dl": [],
+      "context_used": false
+    },
+    "result": null,
+    "trace": [
+      {
+        "sender": "Người dùng",
+        "receiver": "Điều phối",
+        "type": "REQUEST",
+        "content": "Metformin dùng để làm gì?"
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "An toàn",
+        "type": "REQUEST",
+        "content": {
+          "question": "Metformin dùng để làm gì?",
+          "history": []
+        }
+      },
+      {
+        "sender": "An toàn",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "level": "ROUTINE",
+          "medication_risk": false,
+          "reason": "no_priority_rule",
+          "symptoms": [],
+          "glucose_mg_dl": [],
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Hội thoại",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "topic": "medicine",
+          "context_used": false
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Truy xuất",
+        "type": "REQUEST",
+        "content": {
+          "topic": "medicine",
+          "ids": [
+            "medicine"
+          ],
+          "query": "Metformin dùng để làm gì?",
+          "context_used": false,
+          "intro": "",
+          "override": null,
+          "tone": "normal",
+          "suggestions": [
+            "Tôi nên hỏi bác sĩ gì về thuốc đang dùng?",
+            "Dấu hiệu hạ đường huyết là gì?"
+          ],
+          "guarded": false,
+          "instruction": "Giải thích đúng thuốc hoặc câu hỏi cơ chế đang được hỏi. Không tính liều hoặc thay đơn. Nếu không biết thuốc nào, hỏi tên thuốc.",
+          "format": "brief"
+        }
+      },
+      {
+        "sender": "Truy xuất",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": [
+          {
+            "id": "metformin_info",
+            "title": "Metformin dùng để làm gì?",
+            "terms": [
+              "metformin",
+              "cơ chế",
+              "tác dụng",
+              "gan",
+              "insulin"
+            ],
+            "topics": [
+              "medicine"
+            ],
+            "questions": [
+              "Thuốc metformin có tác dụng gì?",
+              "Uống metformin có nghĩa là bệnh nặng không?"
+            ],
+            "source": "treatments",
+            "text": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+            "triples": [
+              [
+                "Metformin",
+                "giúp giảm",
+                "glucose do gan tạo ra"
+              ],
+              [
+                "Metformin",
+                "giúp cải thiện",
+                "sử dụng insulin"
+              ]
+            ],
+            "retrieval_score": 0.5632
+          }
+        ]
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Đồ thị tri thức",
+        "type": "REQUEST",
+        "content": {
+          "document_ids": [
+            "metformin_info"
+          ]
+        }
+      },
+      {
+        "sender": "Đồ thị tri thức",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "facts": [
+            {
+              "source": "Metformin",
+              "relation": "giúp cải thiện",
+              "target": "sử dụng insulin",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Metformin",
+              "relation": "giúp giảm",
+              "target": "glucose do gan tạo ra",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            }
+          ],
+          "storage": "Neo4j",
+          "rejected": 0,
+          "document_ids": [
+            "metformin_info"
+          ]
+        }
+      },
+      {
+        "sender": "Chính sách RL",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": {
+          "state": 1,
+          "action": "Trả lời có nguồn",
+          "rule": "Thiếu bằng chứng thì yêu cầu làm rõ"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Phản hồi",
+        "type": "REQUEST",
+        "content": [
+          {
+            "id": "metformin_info",
+            "title": "Metformin dùng để làm gì?",
+            "terms": [
+              "metformin",
+              "cơ chế",
+              "tác dụng",
+              "gan",
+              "insulin"
+            ],
+            "topics": [
+              "medicine"
+            ],
+            "questions": [
+              "Thuốc metformin có tác dụng gì?",
+              "Uống metformin có nghĩa là bệnh nặng không?"
+            ],
+            "source": "treatments",
+            "text": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+            "triples": [
+              [
+                "Metformin",
+                "giúp giảm",
+                "glucose do gan tạo ra"
+              ],
+              [
+                "Metformin",
+                "giúp cải thiện",
+                "sử dụng insulin"
+              ]
+            ],
+            "retrieval_score": 0.5632
+          }
+        ]
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không. [metformin_info]"
+      },
+      {
+        "sender": "Đối chiếu",
+        "receiver": "Phản hồi",
+        "type": "INFORM",
+        "content": "Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp."
+      },
+      {
+        "sender": "Chính sách phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "strategy": "brief",
+          "selected_by": "local-Q"
+        }
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "REQUEST",
+        "content": {
+          "question": "Metformin dùng để làm gì?",
+          "plan": {
+            "topic": "medicine",
+            "ids": [
+              "medicine"
+            ],
+            "query": "Metformin dùng để làm gì?",
+            "context_used": false,
+            "intro": "",
+            "override": null,
+            "tone": "normal",
+            "suggestions": [
+              "Tôi nên hỏi bác sĩ gì về thuốc đang dùng?",
+              "Dấu hiệu hạ đường huyết là gì?"
+            ],
+            "guarded": false,
+            "instruction": "Giải thích đúng thuốc hoặc câu hỏi cơ chế đang được hỏi. Không tính liều hoặc thay đơn. Nếu không biết thuốc nào, hỏi tên thuốc.",
+            "format": "brief"
+          },
+          "documents": [
+            {
+              "id": "metformin_info",
+              "title": "Metformin dùng để làm gì?",
+              "terms": [
+                "metformin",
+                "cơ chế",
+                "tác dụng",
+                "gan",
+                "insulin"
+              ],
+              "topics": [
+                "medicine"
+              ],
+              "questions": [
+                "Thuốc metformin có tác dụng gì?",
+                "Uống metformin có nghĩa là bệnh nặng không?"
+              ],
+              "source": "treatments",
+              "text": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "triples": [
+                [
+                  "Metformin",
+                  "giúp giảm",
+                  "glucose do gan tạo ra"
+                ],
+                [
+                  "Metformin",
+                  "giúp cải thiện",
+                  "sử dụng insulin"
+                ]
+              ],
+              "retrieval_score": 0.5632
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Metformin",
+              "relation": "giúp cải thiện",
+              "target": "sử dụng insulin",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Metformin",
+              "relation": "giúp giảm",
+              "target": "glucose do gan tạo ra",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            }
+          ],
+          "fallback": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không. [metformin_info]",
+          "history": []
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Kiểm chứng phản hồi",
+        "type": "REQUEST",
+        "content": {
+          "draft": "Metformin được dùng để điều trị bệnh tiểu đường type 2. Thuốc giúp gan tạo ít glucose hơn và hỗ trợ cơ thể sử dụng insulin hiệu quả hơn. [metformin_info]",
+          "documents": [
+            {
+              "id": "metformin_info",
+              "title": "Metformin dùng để làm gì?",
+              "terms": [
+                "metformin",
+                "cơ chế",
+                "tác dụng",
+                "gan",
+                "insulin"
+              ],
+              "topics": [
+                "medicine"
+              ],
+              "questions": [
+                "Thuốc metformin có tác dụng gì?",
+                "Uống metformin có nghĩa là bệnh nặng không?"
+              ],
+              "source": "treatments",
+              "text": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "triples": [
+                [
+                  "Metformin",
+                  "giúp giảm",
+                  "glucose do gan tạo ra"
+                ],
+                [
+                  "Metformin",
+                  "giúp cải thiện",
+                  "sử dụng insulin"
+                ]
+              ],
+              "retrieval_score": 0.5632
+            }
+          ],
+          "graph_evidence": [
+            {
+              "source": "Metformin",
+              "relation": "giúp cải thiện",
+              "target": "sử dụng insulin",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            },
+            {
+              "source": "Metformin",
+              "relation": "giúp giảm",
+              "target": "glucose do gan tạo ra",
+              "document": "metformin_info",
+              "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+              "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+            }
+          ],
+          "fallback": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không. [metformin_info]"
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Ngôn ngữ cục bộ",
+        "type": "INFORM",
+        "content": {
+          "answer": "Metformin được dùng để điều trị bệnh tiểu đường type 2. Thuốc giúp gan tạo ít glucose hơn và hỗ trợ cơ thể sử dụng insulin hiệu quả hơn. [metformin_info]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Ngôn ngữ cục bộ",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "answer": "Metformin được dùng để điều trị bệnh tiểu đường type 2. Thuốc giúp gan tạo ít glucose hơn và hỗ trợ cơ thể sử dụng insulin hiệu quả hơn. [metformin_info]",
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia.",
+          "seconds": 0.976
+        }
+      },
+      {
+        "sender": "Kiểm chứng phản hồi",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "mode": "qwen4-rag",
+          "reason": "Đã kiểm tra mã nguồn và số liệu; chưa thay thế đánh giá chuyên gia."
+        }
+      },
+      {
+        "sender": "Phản hồi",
+        "receiver": "Người dùng",
+        "type": "INFORM",
+        "content": "Hoàn thành"
+      }
+    ],
+    "sources": [
+      {
+        "id": "metformin_info",
+        "title": "Metformin dùng để làm gì?",
+        "excerpt": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+        "retrieval_score": 0.5632,
+        "source": {
+          "label": "NIDDK · Insulin, Medicines & Treatments",
+          "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+        }
+      }
+    ],
+    "graph_evidence": [
+      {
+        "source": "Metformin",
+        "relation": "giúp cải thiện",
+        "target": "sử dụng insulin",
+        "document": "metformin_info",
+        "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+        "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      },
+      {
+        "source": "Metformin",
+        "relation": "giúp giảm",
+        "target": "glucose do gan tạo ra",
+        "document": "metformin_info",
+        "evidence": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+        "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+      }
+    ],
+    "graph_status": "Neo4j",
+    "graph_context_supplied": true,
+    "feedback_supported": true,
+    "response_id": "Cc0o59bEDTn_PTdU796IpA",
+    "response_mode": "qwen4-rag",
+    "generator": "Qwen3 cục bộ + RAG và KG",
+    "suggestions": [
+      "Tôi nên hỏi bác sĩ gì về thuốc đang dùng?",
+      "Dấu hiệu hạ đường huyết là gì?"
+    ],
+    "context_used": false,
+    "topic": "medicine",
+    "tone": "normal"
+  },
+  {
+    "question": "Đường huyết 350 mg/dL, nôn và đau bụng, có cần đi viện không?",
+    "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat.",
+    "safety": {
+      "level": "EMERGENCY",
+      "medication_risk": false,
+      "reason": "possible_dka",
+      "symptoms": [
+        "vomiting",
+        "abdomen"
+      ],
+      "glucose_mg_dl": [
+        350.0
+      ],
+      "context_used": false
+    },
+    "result": null,
+    "trace": [
+      {
+        "sender": "Người dùng",
+        "receiver": "Điều phối",
+        "type": "REQUEST",
+        "content": "Đường huyết 350 mg/dL, nôn và đau bụng, có cần đi viện không?"
+      },
+      {
+        "sender": "Điều phối",
+        "receiver": "An toàn",
+        "type": "REQUEST",
+        "content": {
+          "question": "Đường huyết 350 mg/dL, nôn và đau bụng, có cần đi viện không?",
+          "history": []
+        }
+      },
+      {
+        "sender": "An toàn",
+        "receiver": "Điều phối",
+        "type": "INFORM",
+        "content": {
+          "level": "EMERGENCY",
+          "medication_risk": false,
+          "reason": "possible_dka",
+          "symptoms": [
+            "vomiting",
+            "abdomen"
+          ],
+          "glucose_mg_dl": [
+            350.0
+          ],
+          "context_used": false
+        }
+      },
+      {
+        "sender": "An toàn",
+        "receiver": "Người dùng",
+        "type": "INFORM",
+        "content": {
+          "level": "EMERGENCY",
+          "reason": "possible_dka",
+          "generation_bypassed": true,
+          "validation": "protected-response"
+        }
+      }
+    ],
+    "sources": [
+      {
+        "id": "sick_day",
+        "title": "Khi người tiểu đường bị ốm",
+        "excerpt": "Khi bị ốm, đường huyết có thể thay đổi dù ăn ít hơn. CDC khuyên trao đổi trước với nhóm chăm sóc về kế hoạch ngày ốm, theo dõi đường huyết thường xuyên hơn theo hướng dẫn và uống nước để tránh mất nước. Nếu khó thở, không giữ được nước uống hoặc có dấu hiệu nặng, cần liên hệ cơ sở y tế khẩn cấp. Không tự chỉnh thuốc theo chatbot.",
+        "source": {
+          "label": "CDC · Managing Sick Days",
+          "url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html"
+        }
+      },
+      {
+        "id": "urgent",
+        "title": "Dấu hiệu cần trợ giúp ngay",
+        "excerpt": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+        "source": {
+          "label": "CDC · Xử trí hạ đường huyết",
+          "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+        }
+      }
+    ],
+    "graph_evidence": [],
+    "feedback_supported": false,
+    "response_id": null,
+    "response_mode": "rules",
+    "generator": "Luật an toàn cục bộ",
+    "suggestions": [],
+    "context_used": false,
+    "topic": "urgent",
+    "tone": "urgent"
+  }
+]

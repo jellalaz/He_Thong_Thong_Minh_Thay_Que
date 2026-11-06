@@ -61,3 +61,19 @@ Chính sách được tối ưu theo phần thưởng và môi trường đã đ
 Theo phương pháp LoRA~\cite{lora}, với một mô hình ngôn ngữ đã tiền huấn luyện, hệ thống giữ trọng số nền cố định và chỉ tối ưu các ma trận hạng thấp. Phương pháp giảm số tham số cần lưu gradient và trạng thái bộ tối ưu, phù hợp thử nghiệm trên GPU cá nhân. Tinh chỉnh không thay thế kho bằng chứng: dữ liệu nhỏ có thể làm mô hình học văn phong, nhưng không bảo đảm bổ sung kiến thức chính xác hoặc loại bỏ ảo giác.
 \subsection{Phân biệt các tầng đánh giá}
 Loss validation đo mức khớp với câu trả lời đích trên các mẫu không dùng cập nhật gradient. Đánh giá phản hồi cần kiểm tra thêm mức đúng câu hỏi, nguồn trích dẫn, thông tin thiếu và khả năng tiếp nối ngữ cảnh. Cuối cùng, kiểm thử hệ thống đo cả điều phối, luật và cơ chế dự phòng. Ba tầng này trả lời các câu hỏi khác nhau; không dùng một chỉ số loss để đại diện cho toàn bộ chất lượng chatbot. Thực nghiệm và điều kiện vận hành cụ thể được trình bày trong báo cáo Project 01 riêng.
+
+\clearpage
+\section{Kết hợp truy xuất văn bản với căn cứ đồ thị}
+\subsection{Điều kiện sử dụng một quan hệ}
+Văn bản cho biết nội dung được trình bày trong tài liệu, còn đồ thị tổ chức những khái niệm và quan hệ rút ra từ nội dung đó. Để kết hợp hai dạng biểu diễn, cần giữ một định danh chung thay vì xem mỗi đường nối như một sự thật độc lập. Với tập tài liệu $D_q$ đã chọn cho câu hỏi $q$, tập cạnh được xét là:
+\[
+E_q=\{(u,r,v,d,e,s):d\in D_q,\ (u,r,v)\in T_d,\ e=\mathrm{text}(d),\ s=\mathrm{url}(d)\}.
+\]
+Trong đó $T_d$ là tập bộ ba đã biên soạn cho tài liệu $d$; $e$ là trích đoạn và $s$ là nguồn gốc. Điều kiện này kiểm soát liên kết giữa cạnh và tài liệu, không chứng minh bản thân tài liệu hoặc cách biên soạn đã chính xác về chuyên môn.
+
+Một agent truy xuất có thể chọn tài liệu, agent đồ thị đọc và đối chiếu cạnh, rồi bộ sinh nhận cả văn bản lẫn các quan hệ hợp lệ. Nếu đồ thị mất kết nối, cần phân biệt rõ phản hồi chỉ dùng văn bản với phản hồi đã được cấp căn cứ đồ thị. Tình huống cần hành động ưu tiên vẫn được xử lý trước bước truy xuất. Cách điều phối tập trung này có thể kiểm thử được theo từng handler nhưng chưa tương đương với các agent tự chủ phân tán.
+
+\subsection{Tái lập dữ liệu và phép đo}
+Ảnh chụp cho thấy một trạng thái giao diện; để kiểm tra lại quá trình xử lý cần thêm dữ liệu, code và cấu hình. Một bộ nộp truy xuất có thể lưu KB dưới dạng JSON, KG dưới dạng nút/cạnh CSV cùng câu lệnh nạp lại, chỉ mục văn bản đã fit, các câu hỏi kiểm tra và trace của những lần chạy. Checksum giúp phát hiện tệp bị thay đổi; số nút, số cạnh và tập bộ ba giúp đối chiếu bản xuất với dữ liệu gốc.
+
+Hit@k và MRR đánh giá vị trí của tài liệu kỳ vọng trong kết quả truy xuất. Chúng phải được báo cáo cùng cách xây dựng câu hỏi và định nghĩa tài liệu đúng. Kết quả trên tập do người triển khai biên soạn chỉ phản ánh phạm vi kiểm tra đó; không thể chuyển thành độ chính xác chẩn đoán hoặc chứng nhận cho hệ tư vấn. Báo cáo Project 01 trình bày bộ xuất và các phép kiểm tra tương ứng của GlucoGuide.

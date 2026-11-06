@@ -16,7 +16,11 @@ Nhiệm vụ: trả lời đúng điều người dùng đang hỏi dựa vào T
 
 
 def build_messages(payload):
+    from app.graph_knowledge import prompt_facts
     context = '\n\n'.join('['+d['id']+'] '+d['title']+'\n'+d['text'] for d in payload['documents'])
+    graph = prompt_facts(payload)
+    if graph:
+        context += '\n\nQUAN HỆ ĐỒ THỊ ĐÃ ĐỐI CHIẾU NGUỒN:\n'+graph+'\nCác quan hệ chỉ tóm tắt tài liệu cùng mã. Không suy ra chẩn đoán, nhân quả hay ngưỡng mới từ đường nối.'
     # Bound prior text independently from the retrieved evidence so long conversations remain usable.
     history = [dict(role=h['role'], content=h['content'][:700]) for h in payload.get('history', [])[-4:]]
     instruction = payload['plan'].get('instruction', 'Trả lời trực tiếp, dễ hiểu.')

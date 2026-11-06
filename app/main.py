@@ -13,6 +13,7 @@ from app.conversation import route
 from app.dialogue import plan_turn
 from app.answer_display import clean_answer
 from app.retrieval import load_knowledge, Retriever
+from app.graph_knowledge import GraphKnowledgeAgent
 from app import local_llm, feedback
 from app import safety
 from app.model_explanation import explain
@@ -108,14 +109,16 @@ def chat(req:Request):
   plan.update(topic=req.task,ids=['classification_scope'] if req.task=='classification' else ['model'],override=None,intro='',fixed_sources=True,skip_retrieval=False,suggestions=['HbA1c là gì?','Tôi cần kiểm tra đường huyết thế nào?'])
  msg('Hội thoại','Điều phối','INFORM',{'topic':plan['topic'],'context_used':plan['context_used']})
  selected=bus.request('Điều phối','Truy xuất',plan)
- msg('Điều phối','Tri thức','REQUEST',q)
- msg('Tri thức','Đối chiếu','INFORM','Đã truy xuất: '+', '.join(d['id'] for d in selected))
  graph_evidence=[]
+ graph_state='not-requested'
+ graph_agent=GraphKnowledgeAgent(kb,lambda:graph_driver(),database)
+ bus.register(Agent('Đồ thị tri thức',graph_agent.receive))
  try:
-  with graph_driver() as driver:
-   graph_evidence=[dict(r) for r in driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) WHERE r.document IN $ids RETURN a.name AS source,r.label AS relation,b.name AS target LIMIT 12',ids=[d['id'] for d in selected],database_=database()).records]
-  msg('Neo4j','Tri thức','INFORM',str(len(graph_evidence))+' quan hệ có nguồn')
- except Exception:msg('Neo4j','Tri thức','FAILURE','Không kết nối; câu trả lời chỉ dùng truy xuất văn bản.')
+  graph_result=bus.request('Điều phối','Đồ thị tri thức',{'document_ids':[d['id'] for d in selected]})
+  graph_evidence=graph_result['facts'];graph_state=graph_result['storage']
+ except Exception:
+  graph_state='unavailable'
+  msg('Điều phối','Truy xuất','INFORM','Đồ thị chưa sẵn sàng; tiếp tục bằng văn bản KB đã có nguồn.')
  # Learned workflow policy; rules constrain output when no evidence exists.
  policy=json.loads((ROOT/'models/workflow_policy.json').read_text(encoding='utf-8'))
  state=int(result is not None)*2+int(bool(selected)); action=int(np.argmax(policy['q'][state]))
@@ -138,7 +141,7 @@ def chat(req:Request):
   bus.register(Agent('Kiểm chứng phản hồi',local_llm.verify))
   bus.register(Agent('Ngôn ngữ cục bộ',local_llm.respond))
   try:
-   generated=bus.request('Điều phối','Ngôn ngữ cục bộ',{'question':q,'plan':plan,'documents':selected,'fallback':answer,'history':[h.model_dump() for h in req.history]})
+   generated=bus.request('Điều phối','Ngôn ngữ cục bộ',{'question':q,'plan':plan,'documents':selected,'graph_evidence':graph_evidence,'fallback':answer,'history':[h.model_dump() for h in req.history]})
    answer=generated['answer'];response_mode=generated['mode']
    msg('Kiểm chứng phản hồi','Điều phối','INFORM',{'mode':generated['mode'],'reason':generated['reason']})
   except Exception as exc:
@@ -147,9 +150,10 @@ def chat(req:Request):
  if response_mode.startswith('qwen'):
   cited=set(re.findall(r'\[([a-z0-9_]+)\]',answer))
   selected=[d for d in selected if d['id'] in cited]
+  graph_evidence=[r for r in graph_evidence if r['document'] in cited]
  answer=clean_answer(answer)
  answer=safety.validate(assessment,answer)
- return {'answer':answer,'safety':assessment.public(),'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'retrieval_score':d.get('retrieval_score'),'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'feedback_supported':bool(feedback_id),'response_id':feedback_id,'response_mode':response_mode,'generator':('Qwen3 cục bộ + RAG' if response_mode.startswith('qwen') else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
+ return {'answer':answer,'safety':assessment.public(),'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'retrieval_score':d.get('retrieval_score'),'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'graph_status':graph_state,'graph_context_supplied':bool(graph_evidence) and response_mode.startswith('qwen'),'feedback_supported':bool(feedback_id),'response_id':feedback_id,'response_mode':response_mode,'generator':('Qwen3 cục bộ + RAG và KG' if graph_evidence and response_mode.startswith('qwen') else 'Qwen3 cục bộ + RAG' if response_mode.startswith('qwen') else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
 
 @app.get('/api/knowledge')

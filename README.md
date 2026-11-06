@@ -19,6 +19,7 @@ Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp/Vulkan tại 127.0.0.
 - Tri thức: knowledge.json và knowledge_dialogue.json trong data/, tổng 46 đoạn từ 19 nguồn được tham chiếu.
 - Đồ thị local: 143 khái niệm, 86 quan hệ, phủ đủ 46 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
 - Hội thoại: định tuyến, truy xuất TF-IDF từ/ký tự, Qwen local và kiểm tra phản hồi. Trọng số 4B dùng nguyên bản; các thí nghiệm LoRA 1.7B được giữ riêng.
+- Agent đồ thị: truy vấn Neo4j theo mã tài liệu qua MessageBus, đối chiếu bộ ba/trích đoạn/URL và cấp các quan hệ hợp lệ vào ngữ cảnh Qwen. Không tự sinh Cypher từ câu hỏi và không tự thêm quan hệ vào cơ sở dữ liệu.
 - An toàn: phân loại trước RAG, không chờ đồ thị hoặc mô hình khi cần hành động ưu tiên.
 - Phản hồi: bảng Q học ba cách trình bày theo chủ đề; không học liều thuốc hoặc điều trị.
 
@@ -30,10 +31,28 @@ Từ thư mục project, dùng Python của .venv:
     python -m scripts.test_graph_coverage
     python -m scripts.test_safety_offline
     python -m scripts.test_local_feedback
+    python -m scripts.test_knowledge_agents
 
 Kiểm thử an toàn chặn DNS/kết nối ngoài; kết nối loopback được giữ cho các thành phần nội bộ. Kết quả nằm trong results/. Script evaluate_chat_local.py cần web cùng mô hình local đang chạy và lưu phản hồi để đọc lại.
 
 Kiểm thử giao diện: `node scripts/test_graph_view.cjs`, cần Playwright và Edge đã có sẵn. Script không tải trình duyệt; chặn trang truy cập máy chủ ngoài và kiểm tra đủ 46 bộ lọc cùng các thao tác trên desktop/điện thoại. Ảnh desktop được lưu trực tiếp tại reports/demo-graph-current.png để báo cáo và kiểm thử dùng chung một bản.
+
+## Bộ nộp KB, KG và RAG
+
+[Bộ tệp đã xuất](exports/diabetes/) và [ZIP để nộp](exports/glucoguide_kb_kg_rag.zip) có KB JSON; KG dạng CSV, JSON và Cypher; chỉ mục RAG đã fit; cấu hình; 22 câu hỏi và kết quả; ví dụ chạy local cùng trace; code chạy lại và manifest SHA-256. Bộ nộp không chứa mật khẩu hoặc trọng số Qwen.
+
+Xuất lại từ Neo4j và web local đang chạy:
+
+    python -m scripts.export_knowledge --live-examples
+    python -m scripts.test_knowledge_export
+
+Để truy vấn bằng tệp, không cần web, Neo4j đang chạy hoặc Internet:
+
+    python scripts/query_knowledge_export.py exports/diabetes --question "HbA1c là gì?"
+
+Chế độ này trả văn bản và quan hệ từ bản chụp, có nhãn `exported-snapshot`; không chạy Qwen. Hướng dẫn chạy độc lập từ code đóng gói, nạp lại đồ thị và các giới hạn nằm trong [README của bộ nộp](exports/diabetes/README.md). Chỉ mở chỉ mục joblib từ bộ nộp tin cậy.
+
+Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chối: Hit@1 90%, Hit@4 100%, MRR@4 0,95. Đây là tập chức năng tự biên soạn, không phải độ chính xác tư vấn hoặc chẩn đoán. Agent KG hiện lấy cạnh theo tài liệu, chưa có tìm đường nhiều bước hoặc thuật toán cộng đồng Microsoft GraphRAG.
 
 ## Hai báo cáo
 

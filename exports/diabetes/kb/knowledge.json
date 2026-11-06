@@ -1,0 +1,1386 @@
+{
+  "version": "3.0",
+  "reviewed_at": "2026-11-06",
+  "documents": [
+    {
+      "id": "bloodpressure",
+      "title": "Hiểu số đo huyết áp",
+      "terms": [
+        "huyết áp",
+        "tâm thu",
+        "tâm trương",
+        "mmhg",
+        "đo huyết áp"
+      ],
+      "text": "Số trên là tâm thu, số dưới là tâm trương. Hãy gửi cả hai số và đơn vị, ví dụ 120/80 mmHg. Một lần đo chưa xác lập chẩn đoán; ghi lại số đo và trao đổi với cơ sở y tế.",
+      "source": "pressure",
+      "triples": [
+        [
+          "Huyết áp",
+          "gồm",
+          "tâm thu / tâm trương"
+        ],
+        [
+          "Phân loại",
+          "cần",
+          "số đo và bối cảnh"
+        ]
+      ]
+    },
+    {
+      "id": "meanpressure",
+      "title": "Huyết áp trung bình trong dữ liệu",
+      "terms": [
+        "huyết áp trung bình",
+        "huyết áp động mạch trung bình",
+        "map",
+        "bp"
+      ],
+      "text": "Trường bp của bộ diabetes là huyết áp trung bình, không phải số trên hoặc số dưới của máy đo. Không áp bảng phân loại tâm thu/tâm trương lên một giá trị bp. Nếu muốn đánh giá huyết áp, gửi cặp số đo gốc.",
+      "source": "dataset",
+      "triples": [
+        [
+          "bp",
+          "biểu diễn",
+          "huyết áp trung bình"
+        ],
+        [
+          "bp",
+          "không đồng nhất với",
+          "huyết áp tâm thu"
+        ]
+      ]
+    },
+    {
+      "id": "lipids",
+      "title": "Đọc bảng mỡ máu",
+      "terms": [
+        "cholesterol",
+        "mỡ máu",
+        "lipid",
+        "toàn phần"
+      ],
+      "text": "Bảng mỡ máu gồm cholesterol toàn phần, LDL, HDL và triglyceride. Cần xác định đúng loại xét nghiệm và đơn vị; không kết luận nguy cơ tim mạch chỉ từ một con số. Mục tiêu LDL còn phụ thuộc bệnh nền và nguy cơ cá nhân.",
+      "source": "lipids",
+      "triples": [
+        [
+          "Bảng mỡ máu",
+          "gồm",
+          "toàn phần / LDL / HDL / triglyceride"
+        ],
+        [
+          "Mục tiêu LDL",
+          "phụ thuộc",
+          "nguy cơ cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "hdl",
+      "title": "HDL cholesterol",
+      "terms": [
+        "hdl",
+        "cholesterol tốt"
+      ],
+      "text": "HDL tham gia đưa cholesterol về gan. Ngưỡng tham chiếu thấp khác nhau theo giới; HDL không đủ để kết luận toàn bộ nguy cơ tim mạch. Gửi số đo kèm mg/dL hoặc mmol/L để được giải thích.",
+      "source": "lipids",
+      "triples": [
+        [
+          "HDL",
+          "cần đối chiếu",
+          "giới và bảng mỡ máu"
+        ]
+      ]
+    },
+    {
+      "id": "ldl",
+      "title": "LDL cholesterol",
+      "terms": [
+        "ldl",
+        "cholesterol xấu"
+      ],
+      "text": "LDL liên quan đến tích tụ cholesterol trong thành mạch. Người có bệnh tim mạch hoặc nguy cơ cao có thể cần mục tiêu LDL thấp hơn mức tham chiếu chung; không tự dùng hoặc đổi liều thuốc theo chatbot.",
+      "source": "lipids",
+      "triples": [
+        [
+          "LDL",
+          "liên quan",
+          "nguy cơ xơ vữa"
+        ],
+        [
+          "Mục tiêu LDL",
+          "cần",
+          "đánh giá cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "triglyceride",
+      "title": "Triglyceride và log triglyceride",
+      "terms": [
+        "triglyceride",
+        "triglycerid",
+        "triglycerides",
+        "log triglyceride",
+        "s5",
+        "ltg"
+      ],
+      "text": "Triglyceride là một loại mỡ máu. s5/ltg trong bộ diabetes là đặc trưng nghiên cứu có mô tả chưa hoàn toàn rõ; không tự biến s5 thành xét nghiệm triglyceride để phân loại. Hãy gửi giá trị triglyceride gốc và đơn vị trên phiếu.",
+      "source": "dataset",
+      "triples": [
+        [
+          "s5 / ltg",
+          "không tự coi là",
+          "xét nghiệm triglyceride gốc"
+        ],
+        [
+          "Triglyceride",
+          "cần có",
+          "đơn vị xét nghiệm"
+        ]
+      ]
+    },
+    {
+      "id": "ratio",
+      "title": "Tỷ lệ cholesterol trên HDL",
+      "terms": [
+        "tỷ lệ cholesterol",
+        "cholesterol/hdl",
+        "cholesterol / hdl",
+        "tỉ lệ cholesterol",
+        "s4"
+      ],
+      "text": "Tỷ lệ là đại lượng không có đơn vị nồng độ. Không dùng một tỷ lệ riêng lẻ để kết luận nguy cơ hay thay cho LDL và toàn bộ hồ sơ. Đối chiếu với các thành phần mỡ máu gốc.",
+      "source": "lipids",
+      "triples": [
+        [
+          "Tỷ lệ cholesterol / HDL",
+          "không thay thế",
+          "hồ sơ nguy cơ đầy đủ"
+        ]
+      ]
+    },
+    {
+      "id": "demographics",
+      "title": "Tuổi và mã giới tính của mô hình",
+      "terms": [
+        "tuổi",
+        "mã giới tính",
+        "giới tính",
+        "sex"
+      ],
+      "text": "Tuổi và mã giới tính là biến đầu vào nghiên cứu, không phải kết quả chẩn đoán. Mã 1/2 không được chatbot tự diễn giải thành giới để áp ngưỡng HDL; cần thông tin do người dùng xác nhận. Trẻ em và thai kỳ có cách đánh giá riêng.",
+      "source": "dataset",
+      "triples": [
+        [
+          "Mã giới tính nghiên cứu",
+          "không tự dùng để",
+          "chọn ngưỡng HDL"
+        ]
+      ]
+    },
+    {
+      "id": "plate",
+      "title": "Một bữa ăn cân bằng",
+      "terms": [
+        "bữa ăn",
+        "ăn gì",
+        "thực đơn",
+        "ăn sáng",
+        "ăn trưa",
+        "ăn tối",
+        "rau",
+        "đạm",
+        "đĩa ăn"
+      ],
+      "text": "Gợi ý minh họa: nửa đĩa rau luộc hoặc salad không ngọt; một phần tư cá, thịt nạc hoặc đậu phụ; phần tư còn lại là cơm hoặc thực phẩm chứa tinh bột. Chọn nước lọc. Điều chỉnh khẩu phần theo nhu cầu, thuốc và mục tiêu cá nhân.",
+      "source": "meal",
+      "triples": [
+        [
+          "Bữa ăn",
+          "chia theo",
+          "phương pháp chiếc đĩa"
+        ],
+        [
+          "Chiếc đĩa",
+          "ưu tiên",
+          "rau không tinh bột"
+        ]
+      ]
+    },
+    {
+      "id": "carb",
+      "title": "Có cần bỏ hoàn toàn tinh bột?",
+      "terms": [
+        "tinh bột",
+        "carb",
+        "carbohydrate",
+        "cơm",
+        "gạo",
+        "bún",
+        "phở",
+        "bánh mì",
+        "kiêng"
+      ],
+      "text": "Không cần tự bỏ toàn bộ tinh bột. Chú ý khẩu phần, phân bố bữa ăn đều và kết hợp đạm, rau. Ưu tiên thực phẩm ít chế biến. Lượng carbohydrate phù hợp cần xem cùng thuốc, mức hoạt động và chỉ số sau bữa ăn.",
+      "source": "meal",
+      "triples": [
+        [
+          "Carbohydrate",
+          "ảnh hưởng",
+          "đường huyết"
+        ],
+        [
+          "Khẩu phần",
+          "cần điều chỉnh theo",
+          "nhu cầu cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "fruit",
+      "title": "Trái cây và đồ uống",
+      "terms": [
+        "trái cây",
+        "hoa quả",
+        "nước ép",
+        "sữa",
+        "trà sữa",
+        "nước ngọt",
+        "uống gì",
+        "chuối"
+      ],
+      "text": "Ưu tiên trái cây nguyên quả theo khẩu phần, nước lọc hoặc đồ uống không thêm đường. Nước ép và đồ uống có đường có thể làm đường huyết tăng nhanh. Không có một loại trái cây phù hợp vô hạn cho mọi người.",
+      "source": "meal",
+      "triples": [
+        [
+          "Nước ép",
+          "có thể làm tăng nhanh",
+          "đường huyết"
+        ]
+      ]
+    },
+    {
+      "id": "activity",
+      "title": "Vận động theo khả năng",
+      "terms": [
+        "vận động",
+        "tập",
+        "thể dục",
+        "đi bộ",
+        "thể thao",
+        "bao nhiêu phút"
+      ],
+      "text": "Mục tiêu tham khảo cho người lớn là ít nhất 150 phút vận động mức vừa mỗi tuần. Có thể bắt đầu bằng các buổi ngắn rồi tăng dần theo khả năng. Nếu có biến chứng hoặc dùng thuốc dễ gây hạ đường huyết, hãy trao đổi kế hoạch tập với nhân viên y tế.",
+      "source": "who",
+      "triples": [
+        [
+          "Vận động",
+          "hỗ trợ",
+          "quản lý đường huyết"
+        ],
+        [
+          "Kế hoạch tập",
+          "phụ thuộc",
+          "thể trạng"
+        ]
+      ]
+    },
+    {
+      "id": "a1c",
+      "title": "Hiểu chỉ số HbA1c",
+      "terms": [
+        "hba1c",
+        "a1c",
+        "đường trung bình",
+        "ba tháng"
+      ],
+      "text": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+      "source": "diagnosis",
+      "triples": [
+        [
+          "HbA1c",
+          "phản ánh",
+          "đường huyết trung bình"
+        ],
+        [
+          "Thai kỳ / bệnh máu",
+          "có thể ảnh hưởng",
+          "HbA1c"
+        ]
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Đọc kết quả xét nghiệm",
+      "terms": [
+        "đường huyết",
+        "glucose",
+        "lúc đói",
+        "sau ăn",
+        "xét nghiệm",
+        "nguy cơ",
+        "chẩn đoán",
+        "có bệnh"
+      ],
+      "text": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận.",
+      "source": "diagnosis",
+      "triples": [
+        [
+          "Glucose",
+          "cần có",
+          "đơn vị và thời điểm đo"
+        ]
+      ]
+    },
+    {
+      "id": "low",
+      "title": "Khi đường huyết thấp",
+      "terms": [
+        "hạ đường huyết",
+        "run tay",
+        "vã mồ hôi",
+        "đói cồn cào",
+        "tụt đường"
+      ],
+      "text": "Dưới 70 mg/dL được coi là thấp. Người lớn còn tỉnh và nuốt được có thể áp dụng quy tắc 15-15: 15 g carbohydrate nhanh, đo lại sau 15 phút và lặp lại nếu còn thấp. Không cho ăn uống khi bất tỉnh hoặc không nuốt được; cần trợ giúp y tế khẩn cấp.",
+      "source": "low",
+      "triples": [
+        [
+          "Glucose dưới 70",
+          "gợi ý",
+          "hạ đường huyết"
+        ],
+        [
+          "Không nuốt được",
+          "không được",
+          "cho ăn uống"
+        ]
+      ]
+    },
+    {
+      "id": "urgent",
+      "title": "Dấu hiệu cần trợ giúp ngay",
+      "terms": [
+        "cấp cứu",
+        "khẩn cấp",
+        "khó thở",
+        "bất tỉnh",
+        "co giật",
+        "lú lẫn",
+        "nguy hiểm"
+      ],
+      "text": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.",
+      "source": "low",
+      "triples": [
+        [
+          "Rối loạn ý thức",
+          "cần",
+          "trợ giúp y tế khẩn cấp"
+        ]
+      ]
+    },
+    {
+      "id": "medicine",
+      "title": "Về thuốc và liều dùng",
+      "terms": [
+        "thuốc",
+        "metformin",
+        "insulin",
+        "liều",
+        "uống mấy viên",
+        "ngừng thuốc",
+        "tăng liều",
+        "giảm liều"
+      ],
+      "text": "Loại thuốc và liều phụ thuộc chẩn đoán, chức năng thận, thuốc khác và nguy cơ hạ đường huyết. Mình không thể quyết định liều phù hợp cho bạn. Hãy ghi tên thuốc, liều hiện tại, thời điểm uống và số đo để trao đổi với bác sĩ; không tự tăng, giảm hoặc ngừng thuốc.",
+      "source": "care",
+      "triples": [
+        [
+          "Liều thuốc",
+          "cần được chỉ định bởi",
+          "nhân viên y tế"
+        ]
+      ]
+    },
+    {
+      "id": "monitor",
+      "title": "Theo dõi để trao đổi khi tái khám",
+      "terms": [
+        "theo dõi",
+        "tái khám",
+        "đo mấy lần",
+        "nhật ký",
+        "mục tiêu",
+        "đã mắc",
+        "đã bị"
+      ],
+      "text": "Ghi thời điểm đo, kết quả, bữa ăn, vận động, thuốc và triệu chứng. Tần suất đo và mục tiêu cần cá nhân hóa, đặc biệt nếu đang dùng insulin. Mục tiêu điều trị của người đã mắc tiểu đường khác bảng ngưỡng dùng để chẩn đoán ban đầu.",
+      "source": "care",
+      "triples": [
+        [
+          "Nhật ký",
+          "hỗ trợ",
+          "tái khám"
+        ],
+        [
+          "Mục tiêu điều trị",
+          "phụ thuộc",
+          "từng người"
+        ]
+      ]
+    },
+    {
+      "id": "symptoms",
+      "title": "Triệu chứng và thăm khám",
+      "terms": [
+        "triệu chứng",
+        "khát",
+        "tiểu nhiều",
+        "sụt cân",
+        "mờ mắt",
+        "mệt mỏi",
+        "dấu hiệu sớm"
+      ],
+      "text": "Khát nhiều, tiểu nhiều, mệt, mờ mắt hoặc sụt cân không rõ nguyên nhân có thể xuất hiện khi đường huyết cao, nhưng cũng có thể do nguyên nhân khác. Nên khám và làm xét nghiệm; không thể xác nhận tiểu đường chỉ qua triệu chứng.",
+      "source": "who",
+      "triples": [
+        [
+          "Triệu chứng",
+          "cần được xác nhận bằng",
+          "khám và xét nghiệm"
+        ]
+      ]
+    },
+    {
+      "id": "model",
+      "title": "Điểm mô hình có ý nghĩa gì?",
+      "terms": [
+        "mô hình",
+        "điểm tiến triển",
+        "dự đoán",
+        "r2",
+        "sai số",
+        "độ chính xác",
+        "phần trăm"
+      ],
+      "text": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+      "source": "dataset",
+      "triples": [
+        [
+          "Mô hình diabetes",
+          "dự báo",
+          "điểm tiến triển nghiên cứu"
+        ],
+        [
+          "Điểm tiến triển",
+          "không phải",
+          "xác suất mắc bệnh"
+        ]
+      ]
+    },
+    {
+      "id": "classification_scope",
+      "title": "Phân loại nhãn tổng hợp",
+      "terms": [
+        "phân loại nhãn tổng hợp",
+        "classification",
+        "High Moderate Low"
+      ],
+      "text": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+      "source": "classification_data",
+      "triples": [
+        [
+          "Mô hình phân loại",
+          "học từ",
+          "nhãn tổng hợp High / Moderate / Low"
+        ],
+        [
+          "Nhãn tổng hợp",
+          "không phải",
+          "chẩn đoán cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "overview",
+      "title": "Tiểu đường là gì?",
+      "terms": [
+        "tiểu đường",
+        "đái tháo đường",
+        "insulin",
+        "bệnh mạn tính"
+      ],
+      "text": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng.",
+      "source": "who",
+      "triples": [
+        [
+          "Tiểu đường",
+          "liên quan đến",
+          "thiếu hoặc sử dụng insulin kém hiệu quả"
+        ],
+        [
+          "Insulin",
+          "giúp điều hòa",
+          "đường huyết"
+        ]
+      ]
+    },
+    {
+      "id": "foot_care",
+      "title": "Chăm sóc bàn chân khi có tiểu đường",
+      "terms": [
+        "bàn chân",
+        "chân",
+        "vết loét",
+        "tê chân",
+        "kiểm tra chân"
+      ],
+      "text": "Người có tiểu đường nên quan sát bàn chân mỗi ngày, kể cả giữa các ngón chân, để sớm nhận ra vết cắt, chỗ đỏ, sưng hoặc phồng rộp. Có thể dùng gương hoặc nhờ người hỗ trợ nếu khó nhìn. Hãy trao đổi với cơ sở y tế khi phát hiện tổn thương; kiểm tra bàn chân trong các lần khám.",
+      "source": "feet",
+      "triples": [
+        [
+          "Tiểu đường",
+          "cần chú ý",
+          "chăm sóc bàn chân"
+        ],
+        [
+          "Chăm sóc bàn chân",
+          "gồm",
+          "quan sát hằng ngày"
+        ]
+      ]
+    },
+    {
+      "id": "sick_day",
+      "title": "Khi người tiểu đường bị ốm",
+      "terms": [
+        "bị ốm",
+        "sốt",
+        "ngày ốm",
+        "nôn",
+        "mất nước"
+      ],
+      "text": "Khi bị ốm, đường huyết có thể thay đổi dù ăn ít hơn. CDC khuyên trao đổi trước với nhóm chăm sóc về kế hoạch ngày ốm, theo dõi đường huyết thường xuyên hơn theo hướng dẫn và uống nước để tránh mất nước. Nếu khó thở, không giữ được nước uống hoặc có dấu hiệu nặng, cần liên hệ cơ sở y tế khẩn cấp. Không tự chỉnh thuốc theo chatbot.",
+      "source": "sickday",
+      "triples": [
+        [
+          "Ngày ốm",
+          "cần",
+          "theo dõi đường huyết"
+        ],
+        [
+          "Ngày ốm",
+          "cần chú ý",
+          "mất nước"
+        ]
+      ]
+    },
+    {
+      "id": "kidney_checks",
+      "title": "Theo dõi thận ở người tiểu đường",
+      "terms": [
+        "thận",
+        "uacr",
+        "egfr",
+        "albumin niệu",
+        "lọc cầu thận"
+      ],
+      "text": "UACR (tỷ số albumin/creatinine trong nước tiểu) và eGFR (mức lọc cầu thận ước tính) là hai chỉ số thường dùng để đánh giá tổn thương thận. Người có tiểu đường nên trao đổi với bác sĩ về thời điểm kiểm tra và ý nghĩa kết quả; một chỉ số đơn lẻ không đủ kết luận tình trạng thận.",
+      "source": "kidney",
+      "triples": [
+        [
+          "Theo dõi thận",
+          "dùng",
+          "UACR"
+        ],
+        [
+          "Theo dõi thận",
+          "dùng",
+          "eGFR"
+        ]
+      ]
+    },
+    {
+      "id": "activity_plan",
+      "title": "Bắt đầu vận động từng bước",
+      "terms": [
+        "bắt đầu vận động",
+        "đi bộ",
+        "hoạt động thể lực",
+        "thể dục"
+      ],
+      "text": "CDC gợi ý bắt đầu bằng mục tiêu nhỏ, chẳng hạn đi bộ khoảng 10 phút sau bữa tối, rồi tăng dần theo sức. Mục tiêu chung được nêu là ít nhất 150 phút vận động mức vừa mỗi tuần. Người có bệnh nền hoặc đang dùng thuốc làm hạ đường huyết nên hỏi nhóm chăm sóc về hoạt động phù hợp và cách theo dõi khi vận động.",
+      "source": "exercise",
+      "triples": [
+        [
+          "Vận động",
+          "có thể bắt đầu bằng",
+          "đi bộ ngắn"
+        ],
+        [
+          "Vận động",
+          "cần phù hợp",
+          "tình trạng cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "types_compare",
+      "title": "Phân biệt tiểu đường type 1 và type 2",
+      "terms": [
+        "type 1",
+        "type 2",
+        "tuýp 1",
+        "tuýp 2",
+        "khác nhau",
+        "phân biệt",
+        "insulin"
+      ],
+      "topics": [
+        "diabetes"
+      ],
+      "questions": [
+        "Tiểu đường type 1 khác type 2 thế nào?",
+        "Vì sao có người phải tiêm insulin?"
+      ],
+      "source": "types",
+      "text": "Type 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt.",
+      "triples": [
+        [
+          "Tiểu đường type 1",
+          "liên quan đến",
+          "phá hủy tế bào sản xuất insulin"
+        ],
+        [
+          "Tiểu đường type 2",
+          "liên quan đến",
+          "sử dụng insulin kém hiệu quả"
+        ]
+      ]
+    },
+    {
+      "id": "prediabetes",
+      "title": "Tiền đái tháo đường có nghĩa gì?",
+      "terms": [
+        "tiền tiểu đường",
+        "tiền đái tháo đường",
+        "prediabetes",
+        "phòng bệnh"
+      ],
+      "topics": [
+        "diabetes",
+        "testing"
+      ],
+      "questions": [
+        "Tiền tiểu đường có thành bệnh không?",
+        "Mới có nguy cơ thì nên bắt đầu từ đâu?"
+      ],
+      "source": "types",
+      "text": "Tiền đái tháo đường nghĩa là đường huyết cao hơn bình thường nhưng chưa đến mức chẩn đoán type 2. Nguy cơ phát triển type 2 cao hơn; thay đổi sinh hoạt và theo dõi với nhân viên y tế có thể giúp phòng hoặc trì hoãn bệnh. Không phải ai ở giai đoạn này cũng chắc chắn tiến triển thành tiểu đường.",
+      "triples": [
+        [
+          "Tiền đái tháo đường",
+          "làm tăng nguy cơ",
+          "tiểu đường type 2"
+        ],
+        [
+          "Theo dõi và sinh hoạt phù hợp",
+          "có thể trì hoãn",
+          "tiểu đường type 2"
+        ]
+      ]
+    },
+    {
+      "id": "pregnancy_diabetes",
+      "title": "Tiểu đường trong thai kỳ",
+      "terms": [
+        "mang thai",
+        "thai kỳ",
+        "thai sản",
+        "sau sinh"
+      ],
+      "topics": [
+        "diabetes"
+      ],
+      "questions": [
+        "Tiểu đường thai kỳ có hết sau sinh không?"
+      ],
+      "source": "types",
+      "text": "Tiểu đường thai kỳ xuất hiện trong thời gian mang thai và thường hết sau sinh, nhưng làm tăng nguy cơ type 2 về sau. Chỉ số và kế hoạch theo dõi trong thai kỳ cần trao đổi với nhóm chăm sóc sản khoa. Không áp ngưỡng và kế hoạch của người lớn không mang thai cho thai phụ.",
+      "triples": [
+        [
+          "Tiểu đường thai kỳ",
+          "xuất hiện trong",
+          "thai kỳ"
+        ],
+        [
+          "Tiểu đường thai kỳ",
+          "cần",
+          "theo dõi theo bối cảnh sản khoa"
+        ]
+      ]
+    },
+    {
+      "id": "complications",
+      "title": "Vì sao cần kiểm soát tiểu đường lâu dài?",
+      "terms": [
+        "biến chứng",
+        "mắt",
+        "tim",
+        "thận",
+        "thần kinh",
+        "nguy hiểm"
+      ],
+      "topics": [
+        "diabetes"
+      ],
+      "questions": [
+        "Tiểu đường gây biến chứng gì?",
+        "Không thấy triệu chứng có cần theo dõi không?"
+      ],
+      "source": "types",
+      "text": "Đường huyết cao kéo dài có thể ảnh hưởng tim, thận, bàn chân, mắt và thần kinh. Theo dõi đường huyết cùng huyết áp và cholesterol giúp giảm nguy cơ biến chứng. Không có triệu chứng rõ không có nghĩa là không cần theo dõi; lịch kiểm tra cần thống nhất với nhóm chăm sóc.",
+      "triples": [
+        [
+          "Đường huyết cao kéo dài",
+          "có thể ảnh hưởng",
+          "tim / thận / mắt / thần kinh"
+        ],
+        [
+          "Theo dõi bệnh",
+          "bao gồm",
+          "đường huyết / huyết áp / cholesterol"
+        ]
+      ]
+    },
+    {
+      "id": "meal_example",
+      "title": "Ví dụ một bữa cơm quen thuộc",
+      "terms": [
+        "bữa trưa",
+        "bữa tối",
+        "thực đơn",
+        "món ăn",
+        "cơm",
+        "cá",
+        "đậu phụ",
+        "ví dụ",
+        "ăn chay"
+      ],
+      "topics": [
+        "meal"
+      ],
+      "questions": [
+        "Cho tôi ví dụ bữa trưa dễ nấu",
+        "Tôi ăn chay thì chia đĩa thế nào?",
+        "Không thích cá thì thay gì?"
+      ],
+      "source": "meal",
+      "text": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu.",
+      "triples": [
+        [
+          "Đĩa ăn cân bằng",
+          "dành nửa đĩa cho",
+          "rau không nhiều tinh bột"
+        ],
+        [
+          "Đĩa ăn cân bằng",
+          "dành một phần tư cho",
+          "đạm"
+        ],
+        [
+          "Đĩa ăn cân bằng",
+          "dành phần tư còn lại cho",
+          "thực phẩm chứa tinh bột"
+        ]
+      ]
+    },
+    {
+      "id": "rice_portion",
+      "title": "Ăn cơm và kiểm soát phần tinh bột",
+      "terms": [
+        "cơm trắng",
+        "gạo lứt",
+        "bỏ cơm",
+        "cắt tinh bột",
+        "nhịn ăn",
+        "bát cơm",
+        "ăn kiêng"
+      ],
+      "topics": [
+        "meal"
+      ],
+      "questions": [
+        "Có cần bỏ hẳn cơm trắng?",
+        "Gạo lứt có được ăn thoải mái không?"
+      ],
+      "source": "meal",
+      "text": "Cơm, ngũ cốc và nhiều thực phẩm khác cung cấp carbohydrate. Có thể dùng phương pháp đĩa ăn để dành phần tinh bột hợp lý, phối hợp rau và đạm; ưu tiên ngũ cốc nguyên hạt khi phù hợp. Gạo lứt vẫn có carbohydrate, nên đổi loại gạo không có nghĩa là ăn không giới hạn. Phần ăn cụ thể cần điều chỉnh theo thuốc, hoạt động và mục tiêu đường huyết.",
+      "triples": [
+        [
+          "Gạo lứt",
+          "vẫn cung cấp",
+          "carbohydrate"
+        ],
+        [
+          "Phần tinh bột",
+          "cần phù hợp với",
+          "thuốc / hoạt động / mục tiêu cá nhân"
+        ]
+      ]
+    },
+    {
+      "id": "fruit_whole",
+      "title": "Trái cây nguyên quả và nước ép",
+      "terms": [
+        "chuối",
+        "xoài",
+        "ổi",
+        "táo",
+        "dưa hấu",
+        "trái cây",
+        "nước cam",
+        "nước ép",
+        "hoa quả",
+        "sinh tố"
+      ],
+      "topics": [
+        "fruit"
+      ],
+      "questions": [
+        "Tiểu đường có ăn xoài được không?",
+        "Có phải kiêng hết trái cây ngọt?",
+        "Tại sao ăn cam khác uống nước cam?"
+      ],
+      "source": "meal",
+      "text": "Trái cây có carbohydrate; không cần tự cấm toàn bộ trái cây, nhưng cần chú ý lượng và tính vào kế hoạch ăn. CDC nêu nước ép làm đường huyết tăng nhanh hơn trái cây nguyên quả. Ưu tiên quả nguyên thay cho nước ép và đồ uống thêm đường. Không kết luận một loại quả an toàn để ăn không giới hạn chỉ vì ít ngọt.",
+      "triples": [
+        [
+          "Trái cây",
+          "cung cấp",
+          "carbohydrate"
+        ],
+        [
+          "Nước ép",
+          "có thể làm đường huyết tăng nhanh hơn",
+          "trái cây nguyên quả"
+        ]
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "Chọn đồ uống hằng ngày",
+      "terms": [
+        "trà sữa",
+        "nước ngọt",
+        "cà phê",
+        "sữa",
+        "đồ uống",
+        "trà",
+        "nước lọc",
+        "không đường"
+      ],
+      "topics": [
+        "meal"
+      ],
+      "questions": [
+        "Tôi uống cà phê được không?",
+        "Trà sữa ít đường có ổn không?",
+        "Sữa không đường có carbohydrate không?"
+      ],
+      "source": "living",
+      "text": "NIDDK gợi ý chọn nước lọc và đồ uống ít hoặc không thêm đường như trà hay cà phê không đường. Sữa và đồ uống có hương vị vẫn cần xem thành phần và lượng carbohydrate; nhãn không thêm đường không có nghĩa là không có carbohydrate. Hạn chế đồ uống có đường; lựa chọn và phần uống cần phù hợp kế hoạch ăn của người bệnh.",
+      "triples": [
+        [
+          "Lựa chọn đồ uống",
+          "ưu tiên",
+          "nước lọc / ít hoặc không thêm đường"
+        ],
+        [
+          "Không thêm đường",
+          "không đồng nghĩa với",
+          "không có carbohydrate"
+        ]
+      ]
+    },
+    {
+      "id": "meal_timing",
+      "title": "Bỏ bữa và thời điểm ăn",
+      "terms": [
+        "bỏ bữa",
+        "bữa sáng",
+        "ăn muộn",
+        "nhịn ăn",
+        "ca đêm",
+        "giờ ăn",
+        "bận làm"
+      ],
+      "topics": [
+        "meal",
+        "medicine"
+      ],
+      "questions": [
+        "Bỏ bữa sáng có giúp giảm đường không?",
+        "Tôi làm ca đêm thì ăn lúc nào?"
+      ],
+      "source": "living",
+      "text": "Giờ ăn và bữa phụ phụ thuộc thuốc, hoạt động và lịch làm việc. Một số thuốc, gồm insulin, có thể gây hạ đường huyết khi bỏ hoặc trì hoãn bữa ăn. Không tự nhịn ăn để xử lý một chỉ số cao. Có thể mang lịch làm việc và giờ dùng thuốc trao đổi với nhóm chăm sóc để sắp xếp bữa phù hợp.",
+      "triples": [
+        [
+          "Giờ ăn",
+          "phụ thuộc",
+          "thuốc / hoạt động / lịch làm việc"
+        ],
+        [
+          "Bỏ hoặc trì hoãn bữa khi dùng insulin",
+          "có thể gây",
+          "hạ đường huyết"
+        ]
+      ]
+    },
+    {
+      "id": "alcohol",
+      "title": "Rượu bia và thuốc tiểu đường",
+      "terms": [
+        "rượu",
+        "bia",
+        "uống cồn",
+        "nhậu"
+      ],
+      "topics": [
+        "meal",
+        "medicine"
+      ],
+      "questions": [
+        "Tôi có được uống bia không?"
+      ],
+      "source": "living",
+      "text": "Rượu bia có thể làm hạ đường huyết ở người dùng insulin hoặc một số thuốc tiểu đường. NIDDK khuyên trao đổi thói quen uống với nhóm chăm sóc, hạn chế lượng cồn và chú ý theo dõi đường huyết. Không có lượng uống an toàn chung để chatbot tự chỉ định cho mọi người.",
+      "triples": [
+        [
+          "Rượu bia khi dùng insulin",
+          "có thể gây",
+          "hạ đường huyết"
+        ],
+        [
+          "Thói quen uống rượu bia",
+          "cần trao đổi với",
+          "nhóm chăm sóc"
+        ]
+      ]
+    },
+    {
+      "id": "metformin_info",
+      "title": "Metformin dùng để làm gì?",
+      "terms": [
+        "metformin",
+        "cơ chế",
+        "tác dụng",
+        "gan",
+        "insulin"
+      ],
+      "topics": [
+        "medicine"
+      ],
+      "questions": [
+        "Thuốc metformin có tác dụng gì?",
+        "Uống metformin có nghĩa là bệnh nặng không?"
+      ],
+      "source": "treatments",
+      "text": "Metformin là thuốc uống thường dùng trong điều trị type 2. Thuốc giúp gan tạo ít glucose hơn và giúp cơ thể sử dụng insulin tốt hơn. Việc lựa chọn thuốc còn phụ thuộc tình trạng bệnh và các yếu tố cá nhân; tên thuốc riêng lẻ không cho biết mức độ bệnh. Bác sĩ quyết định có phù hợp hay không.",
+      "triples": [
+        [
+          "Metformin",
+          "giúp giảm",
+          "glucose do gan tạo ra"
+        ],
+        [
+          "Metformin",
+          "giúp cải thiện",
+          "sử dụng insulin"
+        ]
+      ]
+    },
+    {
+      "id": "insulin_info",
+      "title": "Insulin và tình trạng bệnh",
+      "terms": [
+        "insulin",
+        "tiêm",
+        "type 1",
+        "type 2",
+        "bệnh nặng",
+        "phụ thuộc"
+      ],
+      "topics": [
+        "medicine"
+      ],
+      "questions": [
+        "Tiêm insulin có phải giai đoạn cuối không?",
+        "Type 2 có cần insulin không?"
+      ],
+      "source": "treatments",
+      "text": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.",
+      "triples": [
+        [
+          "Tiểu đường type 1",
+          "cần",
+          "insulin"
+        ],
+        [
+          "Tiểu đường type 2",
+          "có thể cần",
+          "insulin"
+        ],
+        [
+          "Bắt đầu insulin",
+          "không tự đồng nghĩa với",
+          "giai đoạn cuối"
+        ]
+      ]
+    },
+    {
+      "id": "missed_medicine",
+      "title": "Khi quên thuốc hoặc gặp tác dụng phụ",
+      "terms": [
+        "quên thuốc",
+        "quên uống",
+        "bỏ liều",
+        "tác dụng phụ",
+        "đau bụng",
+        "đổi thuốc"
+      ],
+      "topics": [
+        "medicine"
+      ],
+      "questions": [
+        "Tôi quên một liều thì sao?",
+        "Uống thuốc bị khó chịu thì làm gì?"
+      ],
+      "source": "treatments",
+      "text": "Khi được kê thuốc, nên hỏi rõ giờ dùng, cách xử lý khi quên liều và tác dụng phụ cần báo. Nếu đã quên liều hoặc có khó chịu, cần tên thuốc, dạng thuốc, liều kê và thời điểm để hỏi bác sĩ hoặc dược sĩ. Chatbot không tự tính liều bù, đổi thuốc hoặc khuyên uống gấp đôi.",
+      "triples": [
+        [
+          "Quên liều thuốc",
+          "cần đối chiếu",
+          "tên thuốc / liều kê / thời điểm"
+        ],
+        [
+          "Cách xử lý quên thuốc",
+          "cần hỏi",
+          "bác sĩ hoặc dược sĩ"
+        ]
+      ]
+    },
+    {
+      "id": "diabetes_distress",
+      "title": "Lo lắng và mệt mỏi khi sống cùng tiểu đường",
+      "terms": [
+        "lo lắng",
+        "sợ",
+        "buồn",
+        "áp lực",
+        "stress",
+        "căng thẳng",
+        "mới phát hiện",
+        "chán nản"
+      ],
+      "topics": [
+        "support"
+      ],
+      "questions": [
+        "Mới biết mắc bệnh tôi lo quá",
+        "Tôi mệt vì phải kiểm soát bệnh mỗi ngày",
+        "Tôi nên bắt đầu từ việc nào?"
+      ],
+      "source": "mental",
+      "text": "Theo dõi bệnh hằng ngày có thể tạo áp lực và lo lắng. Có thể bắt đầu từ một mục tiêu nhỏ, nhờ người thân hỗ trợ, vận động nhẹ hoặc dành thời gian thư giãn. Nếu buồn bã, lo âu kéo dài hoặc ảnh hưởng sinh hoạt, hãy trao đổi với nhóm chăm sóc để được giúp đỡ. Không quy mọi triệu chứng cơ thể cho căng thẳng.",
+      "triples": [
+        [
+          "Chăm sóc tiểu đường hằng ngày",
+          "có thể tạo",
+          "áp lực và lo lắng"
+        ],
+        [
+          "Lo âu kéo dài",
+          "cần trao đổi với",
+          "nhóm chăm sóc"
+        ]
+      ]
+    },
+    {
+      "id": "stress_glucose",
+      "title": "Căng thẳng có ảnh hưởng đường huyết?",
+      "terms": [
+        "stress",
+        "căng thẳng",
+        "đường huyết",
+        "lo âu",
+        "run"
+      ],
+      "topics": [
+        "support",
+        "monitor"
+      ],
+      "questions": [
+        "Vì sao lúc lo lắng đường lại thay đổi?"
+      ],
+      "source": "mental",
+      "text": "Căng thẳng có thể làm đường huyết biến động và gây khó duy trì kế hoạch chăm sóc. Lo âu và hạ đường huyết có thể có biểu hiện giống nhau; nếu có máy, kiểm tra đường huyết giúp đối chiếu thay vì đoán. Ghi lại tình huống và trao đổi với nhóm chăm sóc nếu lặp lại.",
+      "triples": [
+        [
+          "Căng thẳng",
+          "có thể ảnh hưởng",
+          "đường huyết"
+        ],
+        [
+          "Lo âu và hạ đường huyết",
+          "có thể có",
+          "biểu hiện giống nhau"
+        ]
+      ]
+    },
+    {
+      "id": "care_questions",
+      "title": "Danh sách câu hỏi cho buổi khám",
+      "terms": [
+        "tái khám",
+        "đi khám",
+        "hỏi bác sĩ",
+        "chuẩn bị",
+        "phiếu xét nghiệm",
+        "lần đầu"
+      ],
+      "topics": [
+        "monitor"
+      ],
+      "questions": [
+        "Đi khám lần đầu cần mang gì?",
+        "Tôi nên hỏi bác sĩ những câu nào?"
+      ],
+      "source": "care",
+      "text": "Có thể chuẩn bị: phiếu xét nghiệm trước đây; nhật ký đường huyết kèm thời điểm và triệu chứng; danh sách thuốc đang dùng. Những câu nên hỏi là mục tiêu riêng của mình, lịch đo, cách xử lý khi chỉ số quá thấp hoặc quá cao, thuốc dùng ra sao và khi nào tái khám. Ghi các câu hỏi trước buổi hẹn giúp đỡ quên thông tin.",
+      "triples": [
+        [
+          "Chuẩn bị đi khám",
+          "gồm",
+          "phiếu xét nghiệm / nhật ký / danh sách thuốc"
+        ],
+        [
+          "Buổi khám",
+          "cần làm rõ",
+          "mục tiêu / lịch đo / lịch tái khám"
+        ]
+      ]
+    },
+    {
+      "id": "glucose_log",
+      "title": "Mẫu ghi nhật ký đường huyết",
+      "terms": [
+        "nhật ký",
+        "ghi chép",
+        "bảng theo dõi",
+        "ghi lại",
+        "sổ",
+        "hằng ngày"
+      ],
+      "topics": [
+        "monitor"
+      ],
+      "questions": [
+        "Lập bảng ghi đường huyết giúp tôi",
+        "Nhật ký cần những cột nào?"
+      ],
+      "source": "care",
+      "text": "Một bảng ghi đơn giản có các cột: ngày giờ; tên phép đo; kết quả và đơn vị; trước hay sau bữa ăn; thuốc đã dùng; hoạt động; triệu chứng. Giữ nguyên số đo gốc, không đổi điểm nghiên cứu thành đường huyết. Tần suất đo và mục tiêu cần thống nhất với nhóm chăm sóc; ghi chép giúp nhìn xu hướng và trao đổi khi tái khám.",
+      "triples": [
+        [
+          "Nhật ký đường huyết",
+          "ghi",
+          "ngày giờ / số đo / đơn vị / bữa ăn"
+        ],
+        [
+          "Nhật ký đường huyết",
+          "hỗ trợ",
+          "trao đổi khi tái khám"
+        ]
+      ]
+    },
+    {
+      "id": "new_diagnosis",
+      "title": "Bắt đầu chăm sóc sau khi được chẩn đoán",
+      "terms": [
+        "mới chẩn đoán",
+        "mới phát hiện",
+        "bắt đầu",
+        "quản lý bệnh",
+        "kế hoạch"
+      ],
+      "topics": [
+        "support",
+        "diabetes"
+      ],
+      "questions": [
+        "Mới được chẩn đoán thì tôi nên làm gì?",
+        "Giúp tôi sắp xếp các việc cần làm"
+      ],
+      "source": "care",
+      "text": "Sau khi được chẩn đoán, có thể làm từng bước: hiểu loại bệnh và mục tiêu theo dõi; làm rõ cách dùng thuốc nếu có đơn; học cách đo và ghi kết quả; bàn kế hoạch ăn uống, hoạt động và lịch tái khám. Không cần thay đổi mọi thói quen cùng lúc. Ưu tiên một việc có thể thực hiện hôm nay, rồi xem lại cùng nhóm chăm sóc.",
+      "triples": [
+        [
+          "Sau chẩn đoán",
+          "cần làm rõ",
+          "loại bệnh / mục tiêu / thuốc"
+        ],
+        [
+          "Sau chẩn đoán",
+          "cần lên kế hoạch",
+          "đo / ghi chép / ăn uống / tái khám"
+        ]
+      ]
+    },
+    {
+      "id": "not_contagious",
+      "title": "Tiểu đường có lây khi tiếp xúc không?",
+      "terms": [
+        "lây",
+        "truyền nhiễm",
+        "ăn chung",
+        "ở chung",
+        "tiếp xúc"
+      ],
+      "topics": [
+        "diabetes"
+      ],
+      "questions": [
+        "Sống cùng người tiểu đường có bị lây không?",
+        "Ăn chung có lây không?"
+      ],
+      "source": "myths",
+      "text": "Tiểu đường không phải bệnh truyền nhiễm và không lây từ người này sang người khác như cảm cúm. Ăn chung hoặc tiếp xúc sinh hoạt không làm lây bệnh tiểu đường. Nguy cơ type 2 có liên quan đến nhiều yếu tố, trong đó có tiền sử gia đình và sinh hoạt; điều này khác với lây nhiễm.",
+      "triples": [
+        [
+          "Tiểu đường",
+          "không phải",
+          "bệnh truyền nhiễm"
+        ],
+        [
+          "Ăn chung hoặc tiếp xúc",
+          "không làm lây",
+          "tiểu đường"
+        ]
+      ]
+    },
+    {
+      "id": "remission_info",
+      "title": "Thuyên giảm khác với chữa khỏi vĩnh viễn",
+      "terms": [
+        "chữa khỏi",
+        "hết bệnh",
+        "thuyên giảm",
+        "remission",
+        "ngừng thuốc"
+      ],
+      "topics": [
+        "diabetes"
+      ],
+      "questions": [
+        "Tiểu đường có chữa khỏi hoàn toàn không?",
+        "Chỉ số tốt rồi có hết bệnh không?"
+      ],
+      "source": "remission",
+      "text": "Một số người type 2 có thể đạt trạng thái thuyên giảm, tức duy trì đường huyết dưới ngưỡng chẩn đoán trong điều kiện được chuyên môn xác nhận. Thuyên giảm không đồng nghĩa chữa khỏi vĩnh viễn; vẫn cần theo dõi vì đường huyết có thể tăng trở lại. Không tự ngừng thuốc để thử hoặc tự tuyên bố đã hết bệnh chỉ từ một lần đo tốt.",
+      "triples": [
+        [
+          "Thuyên giảm type 2",
+          "không đồng nghĩa với",
+          "chữa khỏi vĩnh viễn"
+        ],
+        [
+          "Thuyên giảm type 2",
+          "vẫn cần",
+          "theo dõi đường huyết"
+        ]
+      ]
+    }
+  ],
+  "sources": {
+    "diagnosis": {
+      "label": "NIDDK · Xét nghiệm & chẩn đoán",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+    },
+    "low": {
+      "label": "CDC · Xử trí hạ đường huyết",
+      "url": "https://www.cdc.gov/diabetes/treatment/treatment-low-blood-sugar-hypoglycemia.html"
+    },
+    "meal": {
+      "label": "CDC · Lập kế hoạch bữa ăn",
+      "url": "https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html"
+    },
+    "who": {
+      "label": "WHO · Diabetes",
+      "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes"
+    },
+    "care": {
+      "label": "NIDDK · Quản lý bệnh tiểu đường",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes"
+    },
+    "dataset": {
+      "label": "scikit-learn · Dữ liệu diabetes",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+    },
+    "pressure": {
+      "label": "AHA · Hiểu số đo huyết áp",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+    },
+    "lipids": {
+      "label": "MedlinePlus · Các chỉ số cholesterol",
+      "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
+    },
+    "classification_data": {
+      "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",
+      "url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+    },
+    "feet": {
+      "label": "NIDDK · Diabetes & Foot Problems",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/foot-problems"
+    },
+    "sickday": {
+      "label": "CDC · Managing Sick Days",
+      "url": "https://www.cdc.gov/diabetes/living-with/managing-sick-days.html"
+    },
+    "kidney": {
+      "label": "NIDDK · Quick Reference on UACR & GFR",
+      "url": "https://www.niddk.nih.gov/health-information/professionals/advanced-search/quick-reference-uacr-gfr"
+    },
+    "exercise": {
+      "label": "CDC · Get Active",
+      "url": "https://www.cdc.gov/diabetes/living-with/physical-activity.html"
+    },
+    "types": {
+      "label": "NIDDK · What Is Diabetes?",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
+    },
+    "living": {
+      "label": "NIDDK · Healthy Living with Diabetes",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
+    },
+    "treatments": {
+      "label": "NIDDK · Insulin, Medicines & Treatments",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments"
+    },
+    "mental": {
+      "label": "CDC · Diabetes and Mental Health",
+      "url": "https://www.cdc.gov/diabetes/living-with/mental-health.html"
+    },
+    "myths": {
+      "label": "ADA · Facts About Diabetes",
+      "url": "https://diabetes.org/about-diabetes/diabetes-myths"
+    },
+    "remission": {
+      "label": "ADA · Diabetes Remission Criteria",
+      "url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria"
+    }
+  }
+}

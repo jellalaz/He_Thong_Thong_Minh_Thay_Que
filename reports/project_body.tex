@@ -11,7 +11,7 @@ Bản công khai sử dụng tổng hợp trích đoạn xác định. Câu tr�
 Phân loại được đo bằng accuracy và macro-F1. Hồi quy được đo bằng MAE và hệ số xác định. Truy xuất cần kiểm tra cả tài liệu được chọn và quan hệ có nguồn trên Neo4j. Kiểm tra ứng dụng tập trung vào các tình huống có bằng chứng, thiếu bằng chứng, thiếu đầu vào, giá trị không hợp lệ và cơ sở dữ liệu đồ thị không hoạt động.
 \chapter{Agent và cơ chế phối hợp}
 \section{Vai trò xử lý}
-Hệ thống phân chia trách nhiệm thành tiếp nhận, kiểm tra dữ liệu, mô hình, tri thức, chính sách lựa chọn bước phản hồi, đối chiếu phạm vi và phản hồi. Bản triển khai hiện điều phối các vai trò này trong một tiến trình FastAPI. Nhật ký lưu người gửi, người nhận, loại thông điệp và nội dung. Đây là mô hình điều phối tập trung; các vai trò chưa chạy như những dịch vụ tự chủ độc lập.
+Hệ thống phân chia trách nhiệm thành an toàn, mô hình, truy xuất văn bản, đồ thị tri thức, chính sách trình bày, ngôn ngữ và kiểm chứng phản hồi. Các agent có handler được gọi qua MessageBus; nhật ký lưu người gửi, người nhận, loại thông điệp và nội dung. Các thành phần hoạt động trong một tiến trình FastAPI dưới điều phối tập trung, chưa phải các dịch vụ tự chủ độc lập.
 
 Một thông điệp REQUEST thể hiện yêu cầu xử lý. INFORM ghi nhận kết quả và FAILURE thể hiện thành phần không thực hiện được. Khi Neo4j không hoạt động, hệ thống ghi FAILURE và chỉ dùng các đoạn văn cục bộ, không giả lập kết quả đồ thị. Khi thiếu đầu vào mô hình, hệ thống trả lại danh sách trường cần bổ sung trước khi suy luận.
 \section{Reinforcement Learning kết hợp luật}
@@ -23,7 +23,7 @@ Q(s,a)\leftarrow Q(s,a)+\alpha[r-Q(s,a)].
 \]
 Mỗi episode kết thúc sau một hành động, nên không có thành phần bootstrap tương lai. Cấu hình gồm 3.000 episode, seed 254, tốc độ học 0,15 và xác suất khám phá 0,2. Vì bài toán chỉ có một bước, thí nghiệm minh họa cơ chế học giá trị hành động nhưng chưa chứng minh khả năng lập kế hoạch dài hạn. Luật thiếu bằng chứng luôn ép hành động hỏi làm rõ, kể cả khi chính sách học đề xuất hành động khác.
 \section{Giới hạn của kiến trúc}
-Việc hiển thị nhiều vai trò trong nhật ký không tự chứng minh tính tự chủ của một hệ đa agent. Bản hiện tại cần được mở rộng bằng trạng thái riêng, giao thức yêu cầu và phản hồi thực giữa các agent, cơ chế chất vấn khi có bất đồng và kiểm tra lỗi riêng từng thành phần. Báo cáo phân biệt rõ những vai trò đã điều phối được với các năng lực còn cần phát triển.
+Mỗi agent có handler, bộ nhớ trong lượt và thông điệp yêu cầu/phản hồi có thể kiểm tra. Hệ thống chưa có bộ nhớ hội thoại bền vững, cơ chế tranh biện hoặc triển khai agent thành dịch vụ độc lập. Nhật ký nhiều vai trò giúp quan sát xử lý, nhưng không tự chứng minh mức tự chủ hoặc lợi ích so với một pipeline đơn giản hơn.
 \chapter{Kiến trúc tổng quan}
 \section{Nhánh dữ liệu}
 DB có sẵn cung cấp dữ liệu cho quá trình huấn luyện. Pipeline phân loại gồm điền trung vị, chuẩn hóa và MLP. Pipeline hồi quy chuẩn hóa dữ liệu rồi suy luận bằng MLP. Hai đầu ra đều đi tới vùng phản hồi của ứng dụng. Trong lúc phục vụ, mô hình được nạp từ checkpoint; ứng dụng không huấn luyện lại theo câu hỏi của người dùng.
@@ -54,7 +54,7 @@ MLP cải thiện accuracy và macro-F1 so với Logistic Regression trong lần
 \section{Truy xuất và đồ thị}
 Văn bản được chuẩn hóa không dấu rồi biểu diễn bằng TF--IDF từ và ký tự. Điểm kết hợp dùng trọng số 0,55 và 0,45, có cộng ưu tiên nhỏ cho từ khóa và chủ đề. Câu hỏi được biến đổi bằng cùng từ vựng. Điểm truy xuất là tích vô hướng của các vector đã chuẩn hóa. Hệ thống giữ tối đa bốn đoạn có điểm đạt ngưỡng 0,15 và ít nhất 58\% điểm của đoạn đứng đầu. Các ngưỡng là cấu hình triển khai, chưa được tối ưu trên một bộ validation độc lập.
 
-Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất. Do đó đồ thị cung cấp cấu trúc và căn cứ bổ sung cho truy xuất văn bản; đây chưa phải một bộ máy suy luận đa bước tổng quát. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu người dùng làm rõ.
+Agent đồ thị lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất, kiểm tra bộ ba, trích đoạn và URL rồi cấp quan hệ có nguồn vào ngữ cảnh Qwen. Đây là truy xuất văn bản kết hợp căn cứ đồ thị theo tài liệu, chưa phải bộ máy suy luận nhiều bước. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu làm rõ; khi Neo4j mất kết nối, nó dùng văn bản KB và ghi rõ nhánh lỗi.
 \chapter{Code và demo}
 \section{Địa chỉ và cách chạy}
 \noindent\textbf{Bản hoàn thiện chạy trên máy cá nhân}\par
@@ -84,6 +84,6 @@ RETURN a,r,b LIMIT 100;
 \section{Hạn chế và hướng hoàn thiện}
 Hệ thống duy trì ngữ cảnh chủ đề trong phiên nhưng chưa có bộ nhớ hội thoại bền vững, chưa đọc phiếu xét nghiệm, nhánh Qwen local mới được đánh giá trên tập nội bộ nhỏ và chưa có hội đồng tranh biện độc lập. Kiểm chứng mô hình mới chỉ dùng một seed; chưa có đánh giá chuyên gia, chưa có dữ liệu ngoài miền và chưa kiểm thử tải lớn. RL học quy trình mô phỏng, không quyết định điều trị.
 
-Hướng ưu tiên là triển khai giao thức agent thực, mở rộng tập câu hỏi đánh giá truy xuất độc lập, bổ sung kiểm tra đơn vị có nguồn và cập nhật KB từ tài liệu được kiểm chứng. Sau khi có các thành phần đó mới đánh giá lợi ích phối hợp so với từng thành phần đơn lẻ bằng các phép loại bỏ thành phần trên cùng tập kiểm tra.
+Hướng ưu tiên là mở rộng tập câu hỏi độc lập, kiểm tra đơn vị có nguồn và đánh giá vai trò của KG bằng phép loại bỏ thành phần trên cùng tập câu hỏi. Chất lượng nguồn và khả năng phát hiện thiếu căn cứ cần được đo cùng độ đúng chủ đề và thời gian trả lời.
 
 \input{cloud_deployment.tex}

@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import json
 r=Path(__file__).resolve().parents[1];p=r/'reports'
 old=(p/'tieuluan_final_06_02_giangkt.254.tex').read_text(encoding='utf-8')
 if not (p/'thesis_core.tex').exists():
@@ -8,15 +9,18 @@ if not (p/'thesis_core.tex').exists():
  (p/'thesis_core.tex').write_text(core,encoding='utf-8')
 pre=(p/'preamble.tex').read_text(encoding='utf-8')
 body=(p/'project_body.tex').read_text(encoding='utf-8')
-body=body.replace('các vai trò chưa chạy như những dịch vụ tự chủ độc lập.','các agent được gọi qua MessageBus với handler và bộ nhớ trong lượt, chưa chạy như những dịch vụ tự chủ độc lập.')
-body=body.replace('Bản hiện tại cần được mở rộng bằng trạng thái riêng, giao thức yêu cầu và phản hồi thực giữa các agent, cơ chế chất vấn khi có bất đồng và kiểm tra lỗi riêng từng thành phần.','Bản hiện tại đã có handler và bộ nhớ theo lượt; hướng mở rộng là bộ nhớ hội thoại bền vững, cơ chế chất vấn khi có bất đồng và triển khai dịch vụ độc lập.')
-body=body.replace('Hướng ưu tiên là triển khai giao thức agent thực,','Hướng ưu tiên là mở rộng giao thức agent và bộ nhớ hội thoại,')
-body=body.replace('điểm lớn hơn 0,04','điểm lớn hơn giá trị lớn nhất giữa 0,04 và 65\\% điểm của đoạn đứng đầu')
 body=body.replace(r'\section{Nhánh dữ liệu}',r'\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/architecture.png}\caption{Hai nhánh hội tụ về điều phối và trợ giúp, dựng lại từ sơ đồ trên bảng.}\end{figure}'+'\n'+r'\section{Nhánh dữ liệu}')
 body=body.replace(r'\chapter{Code và demo}',r'\input{project_details.tex}'+'\n'+r'\chapter{Code và demo}')
+body=body.replace(r'\chapter{Code và demo}',r'\input{knowledge_exports.tex}'+'\n'+r'\chapter{Code và demo}')
 body+=r'\input{local_qwen.tex}\input{safety_validation.tex}\chapter{Giao diện và kịch bản sử dụng}\input{web_walkthrough.tex}'+'\n'
 body=body.replace(r'\chapter{Các thành phần và thực nghiệm}',r'\input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}')
 (p/'project_content.tex').write_text(body,encoding='utf-8')
+evaluation=json.loads((r/'results/rag_retrieval_evaluation.json').read_text(encoding='utf-8'))
+exported=json.loads((r/'results/knowledge_export.json').read_text(encoding='utf-8'))
+agent_checks=json.loads((r/'results/knowledge_agent_tests.json').read_text(encoding='utf-8'))
+export_checks=json.loads((r/'results/knowledge_export_checks.json').read_text(encoding='utf-8'))
+metric_rows=[('Số tệp trong bộ nộp',str(exported['files'])),('Câu hỏi truy xuất',str(evaluation['total_cases'])),('Hit@1',f"{evaluation['hit_at_1']*100:.1f}\\%"),('Hit@4',f"{evaluation['hit_at_4']*100:.1f}\\%"),('MRR@4',f"{evaluation['mrr_at_4']:.3f}"),('Kiểm tra agent đạt',str(agent_checks['passed'])),('Kiểm tra bộ nộp đạt',str(export_checks['passed']))]
+(p/'knowledge_results.tex').write_text(r'\begin{longtable}{p{8.5cm}p{5.3cm}}\caption{Kết quả truy xuất và kiểm tra bộ nộp.}\\\toprule Hạng mục & Kết quả\\\midrule'+'\n'+'\n'.join(k+' & '+v+r'\\' for k,v in metric_rows)+r'\bottomrule\end{longtable}',encoding='utf-8')
 intro=r'''\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
 Báo cáo nghiên cứu cách kết hợp học máy, học sâu và biểu diễn tri thức trong một hệ thống hỗ trợ người dùng. Các chương đầu trình bày nền tảng, dữ liệu và thực nghiệm trên dữ liệu bảng, ảnh, chuỗi thời gian và đồ thị. Chương 6 và chương 7 mở rộng sang học sâu trên đồ thị, cơ chế phối hợp đa agent và học tăng cường.
 
@@ -56,7 +60,7 @@ for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINA
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}
 '''
  appendix=r'\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}'+'\n'
- for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','app/safety.py','app/retrieval.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
+ for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','app/safety.py','app/retrieval.py','app/graph_knowledge.py','scripts/query_knowledge_export.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
   appendix+=r'\section{'+f.replace('_',r'\_')+'}\n'+r'\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../'+f+'}\n'
  if 'final' in fn:
   appendix=appendix.replace(r'\input{bibliography.tex}',r'\input{bibliography_thesis.tex}')

@@ -12,7 +12,7 @@ Bốn thông điệp gần nhất được giới hạn độ dài trước khi 
 \subsection{Truy xuất và tạo phản hồi}
 Kho tri thức được tìm bằng TF--IDF từ/cụm hai từ và TF--IDF chuỗi ký tự dài ba đến năm ký tự. Điểm kết hợp dùng trọng số 0,55 và 0,45, sau đó cộng ưu tiên nhỏ cho từ khóa và chủ đề. Hệ thống giữ tối đa bốn đoạn đạt ngưỡng. Cách kết hợp này hỗ trợ câu không dấu và một số lỗi gõ; chưa sử dụng embedding.
 
-Mô hình nhận chỉ dẫn, tài liệu, ngữ cảnh gần đây và cách trình bày mong muốn. Cấu hình giới hạn 650 token trả lời, temperature 0,2 và seed 254; chế độ suy nghĩ nội bộ được tắt khi phục vụ. llama.cpp được khởi động với cửa sổ ngữ cảnh 8.192 token và một slot. Đây là cấu hình vận hành trên máy thực nghiệm, chưa được tối ưu trên một tập người dùng độc lập.
+Mô hình nhận chỉ dẫn, tài liệu, quan hệ Neo4j đã đối chiếu, ngữ cảnh gần đây và cách trình bày mong muốn. Mỗi quan hệ giữ mã tài liệu để kiểm tra lại với văn bản; KG không được dùng để suy ra một chẩn đoán hoặc ngưỡng mới. Cấu hình giới hạn 650 token trả lời, temperature 0,2 và seed 254; chế độ suy nghĩ nội bộ được tắt khi phục vụ. llama.cpp được khởi động với cửa sổ ngữ cảnh 8.192 token và một slot. Đây là cấu hình vận hành trên máy thực nghiệm, chưa được tối ưu trên một tập người dùng độc lập.
 \subsection{Đối chiếu và sửa phản hồi}
 Bộ kiểm tra rà mã tài liệu, số liệu ngoài nguồn, một số cách diễn đạt về liều thuốc, lỗi ngôn ngữ và lỗi phân nhóm thực phẩm đã gặp. Nếu phản hồi chưa đạt, mô hình được yêu cầu viết lại một lần với cùng tài liệu. Khi lần viết lại vẫn không đạt, hệ thống dùng đoạn KB phù hợp.
 
@@ -41,5 +41,4 @@ Log, cấu hình và đầu ra nguyên văn nằm tại \path{results/local_qwen
 \productlink{GlucoGuide trên máy cá nhân}{http://localhost:8765}
 Chạy \path{START_CHATBOT_LOCAL.cmd} hoặc \path{run-chatbot-local.ps1}. Web ở cổng 8765, mô hình ở cổng 11435 và Neo4j ở cổng 7687, đều dùng địa chỉ loopback. Bộ gọi mô hình từ chối địa chỉ ngoài; chế độ local cũng từ chối kết nối đồ thị tới máy chủ ngoài. Sau khi có sẵn tài nguyên, luồng hỏi đáp không tự tải mô hình hoặc tài liệu.
 
-Kịch bản hỏi tiếp bắt đầu bằng gợi ý bữa trưa, sau đó bổ sung yêu cầu thay cá bằng món khác. Hệ thống cần giữ chủ đề bữa ăn, chọn thực phẩm trong nguồn và tránh lặp món đã bị từ chối. Kịch bản đổi chủ đề chuyển sang giải thích metformin, phân biệt type 1/type 2 hoặc lập nhật ký. Đây là kiểm thử ứng dụng theo tình huống, chưa phải phép đo độ chính xác y khoa.
 Kết quả hiển thị trên web được minh họa tại Hình~\ref{fig:chat-local} trong chương giao diện.

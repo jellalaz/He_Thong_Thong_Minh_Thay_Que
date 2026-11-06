@@ -1,0 +1,80 @@
+\chapter{KB, KG và RAG trong bộ sản phẩm nộp}
+\section{Các thành phần có thể kiểm tra độc lập}
+GlucoGuide lưu phần tri thức ở dạng dữ liệu và code, bên cạnh giao diện minh họa. Kho KB cung cấp nội dung và nguồn tham khảo; KG biểu diễn các quan hệ có hướng; RAG chọn căn cứ phù hợp cho từng câu hỏi. Ba phần dùng chung mã tài liệu để có thể truy từ một câu trả lời về đoạn văn và quan hệ đã sử dụng.
+
+\begin{longtable}{p{2.2cm}p{6.6cm}p{5cm}}\caption{Các tệp chính trong bộ nộp tri thức.}\\\toprule Phần & Tệp & Nội dung\\\midrule\endfirsthead\toprule Phần & Tệp & Nội dung\\\midrule\endhead
+KB & \path{kb/knowledge.json} & 46 đoạn, 19 nguồn, từ khóa, văn bản và bộ ba.\\
+KG & \path{kg/nodes.csv}, \path{kg/relationships.csv} & 143 nút, 86 cạnh, mã tài liệu, trích đoạn và URL nguồn.\\
+KG & \path{kg/graph.json}, \path{kg/import.cypher} & Bản chụp Neo4j đã đối chiếu và câu lệnh MERGE để nạp lại.\\
+RAG & \path{rag/index.joblib}, \path{rag/settings.json} & Chỉ mục từ/ký tự đã fit và các ngưỡng đang sử dụng.\\
+Đánh giá & \path{rag/queries.json}, \path{rag/evaluation.json} & Câu hỏi, tài liệu kỳ vọng, tài liệu được chọn và chỉ số tổng hợp.\\
+Agent & \path{examples/agent_runs.json}, \path{code/} & Ví dụ chạy local, thông điệp giữa các agent và code truy vấn offline.\\
+Toàn vẹn & \path{manifest.json} & Số lượng, kích thước và SHA-256 của từng tệp.\\\bottomrule\end{longtable}
+
+Các tệp nằm trong \path{exports/diabetes/}; bản ZIP tương ứng là \path{exports/glucoguide_kb_kg_rag.zip}. Trọng số Qwen, mật khẩu Neo4j và trạng thái hội thoại cá nhân không được đưa vào gói. Phần code kèm theo đủ để truy vấn KB và bản chụp KG mà không cần mở web.
+\productlink{Bộ tệp tri thức trên repository}{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/tree/main/exports/diabetes}
+
+\section{Agent đồ thị tham gia luồng trả lời}
+\subsection{Trách nhiệm và hợp đồng thông điệp}
+Agent Truy xuất nhận kế hoạch của lượt hỏi và trả tối đa bốn đoạn văn. Điều phối gửi danh sách mã tài liệu đó đến agent Đồ thị tri thức qua MessageBus. Handler của agent thực hiện truy vấn Neo4j và trả các trường: khái niệm đầu, quan hệ, khái niệm cuối, mã tài liệu, trích đoạn và URL nguồn. Nhật ký ghi REQUEST, INFORM hoặc FAILURE từ chính lần gọi handler.
+
+Truy vấn sử dụng tham số \texttt{ids}; câu hỏi người dùng không được ghép vào mã Cypher. Bộ đọc lấy tối đa 48 quan hệ ứng viên và chọn tối đa 12 quan hệ cho ngữ cảnh. Khi nhiều tài liệu cùng có căn cứ, các quan hệ được lấy luân phiên theo tài liệu để một đoạn không chiếm toàn bộ phần đồ thị.
+
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
+WHERE r.document IN $ids
+RETURN a.name AS source, r.label AS relation,
+       b.name AS target, r.document AS document,
+       r.evidence AS evidence, r.source_url AS source_url
+ORDER BY document, source, relation, target LIMIT 48
+\end{Verbatim}
+
+\subsection{Đối chiếu căn cứ trước khi đưa vào mô hình}
+Một cạnh chỉ được chấp nhận khi mã tài liệu thuộc nhóm đã truy xuất, bộ ba khớp dữ liệu KB, trích đoạn khớp văn bản và URL khớp nguồn của đoạn đó. Quan hệ trùng bị bỏ. Cạnh không khớp không được đưa vào prompt, kể cả khi nó tồn tại trong cơ sở dữ liệu.
+
+Những cạnh đã đạt kiểm tra được trình bày cùng văn bản dưới dạng ``khái niệm đầu $\rightarrow$ quan hệ $\rightarrow$ khái niệm cuối'', kèm mã tài liệu. Qwen nhận cả hai dạng căn cứ trong cùng yêu cầu local. Bước kiểm chứng phản hồi tiếp tục đối chiếu mã nguồn, số liệu và phạm vi; nó không phải một cơ chế chứng minh mọi suy luận của mô hình đều đúng.
+
+Trường \texttt{graph\_context\_supplied} cho biết phản hồi Qwen được chấp nhận có ngữ cảnh đồ thị hay không. Trường này ghi nhận dữ liệu đã cấp vào đường sinh, không đo mức độ mô hình thực sự dựa vào từng cạnh. Các cạnh hiển thị cùng phản hồi được giới hạn theo những tài liệu mà bản sinh đã dẫn mã.
+
+\subsection{Mất kết nối và thứ tự ưu tiên}
+Khi Neo4j không hoạt động, MessageBus ghi FAILURE của agent đồ thị. Hệ thống tiếp tục bằng văn bản KB, để trạng thái đồ thị là unavailable và không tạo các quan hệ thay thế. Bản truy vấn offline dùng dữ liệu đã xuất chỉ khi người chạy chủ động chọn công cụ đi kèm; đầu ra ghi rõ exported-snapshot.
+
+Nhánh cấp cứu được phân loại trước toàn bộ bước truy xuất. Nó không chờ KG, chỉ mục RAG hoặc Qwen. Do đó việc bổ sung đồ thị không thay đổi thứ tự xử lý các tình huống cần hành động ưu tiên.
+
+\section{Xuất và chạy lại bộ nộp}
+\subsection{Kiểm tra nguồn trước khi xuất}
+Script \path{scripts/export_knowledge.py} chỉ kết nối Neo4j trên loopback. Nó đọc toàn bộ nút và cạnh Concept, đối chiếu chính xác tập bộ ba với KB, rồi kiểm tra trích đoạn và URL. Nếu hai nguồn không khớp, thao tác xuất dừng thay vì ghi một bản chụp thiếu hoặc tự dựng dữ liệu từ hình ảnh.
+
+CSV dùng UTF-8 có BOM để giữ chữ tiếng Việt khi mở bằng các công cụ bảng tính trên Windows. Định danh n0001, n0002 và các giá trị tiếp theo là mã của bộ xuất, không phải ID nội bộ Neo4j. JSON bảo toàn tên khái niệm, quan hệ, tài liệu và bằng chứng; Cypher dùng MERGE nên có thể nạp các dữ liệu tương ứng mà không cần xóa cơ sở dữ liệu đang có.
+
+\subsection{Chỉ mục và cấu hình RAG}
+Chỉ mục đã fit chứa hai bộ vector hóa, ma trận tài liệu và danh mục đoạn văn. Cấu hình đi kèm ghi n-gram từ 1--2, n-gram ký tự 3--5, trọng số 0,55/0,45, ngưỡng điểm 0,15, tỷ lệ so với đoạn đầu 0,58 và tối đa bốn kết quả. Code của bộ truy xuất được lưu cùng gói để đọc lại đối tượng joblib.
+
+Checksum được kiểm tra trước khi nạp chỉ mục. Joblib vẫn là định dạng chỉ nên mở từ nguồn tin cậy; SHA-256 giúp phát hiện tệp bị thay đổi, không xác thực danh tính người phát hành. Phiên bản thư viện được ghi trong requirements của bộ nộp để làm rõ điều kiện tái lập.
+
+\subsection{Lệnh sử dụng}
+Từ project gốc, xuất dữ liệu và lấy các ví dụ hội thoại trên máy:
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python -m scripts.export_knowledge --live-examples
+python -m scripts.test_knowledge_export
+\end{Verbatim}
+Từ thư mục \path{exports/diabetes/}, truy vấn bộ nộp không cần web hoặc kết nối mạng:
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/scripts/query_knowledge_export.py . --question "HbA1c là gì?"
+\end{Verbatim}
+Lệnh này chạy các agent truy xuất, đồ thị bản chụp và tổng hợp căn cứ. Nó không chạy Qwen hoặc giả lập một phản hồi ngôn ngữ sinh. Muốn trình diễn hội thoại đầy đủ, dùng ứng dụng local trong project gốc. Để nạp lại vào Neo4j local, dùng \path{code/scripts/restore_knowledge_export.py}; thông tin đăng nhập được nhập riêng, không lưu trong gói.
+
+\section{Kết quả kiểm tra}
+\input{knowledge_results.tex}
+Tập truy xuất gồm 20 câu có tài liệu kỳ vọng và hai câu cần không trả tài liệu. Câu hỏi bao phủ kiến thức bệnh, bữa ăn, thuốc ở mức thông tin, vận động, theo dõi, câu không dấu và một lượt hỏi tiếp. Danh sách tài liệu kỳ vọng được ghi trước khi chạy phép đo. Đây là tập kiểm tra chức năng do project biên soạn, chưa phải một benchmark y khoa độc lập.
+
+Hit@1 đo tỷ lệ câu có tài liệu kỳ vọng ở vị trí đầu. Hit@4 đo tỷ lệ tìm thấy ít nhất một tài liệu kỳ vọng trong danh sách trả về; danh sách có thể ngắn hơn bốn đoạn. MRR@4 là trung bình nghịch đảo thứ hạng đúng đầu tiên. Các chỉ số này đánh giá bước truy xuất, không phải độ chính xác chẩn đoán hay mức an toàn của toàn bộ câu trả lời.
+
+Bộ kiểm tra gói nộp phát lại 22 truy vấn từ chỉ mục đã lưu khi socket bị vô hiệu hóa; đối chiếu CSV, JSON và ZIP; chạy entry point bằng các module đã đóng gói; phát hiện tệp bị sửa; và dùng EXPLAIN để kiểm tra Cypher mà không thực hiện ghi dữ liệu. Các kiểm tra agent riêng xét nguồn sai, bộ ba sai, mã tài liệu lạ, bản ghi trùng, việc cấp KG vào prompt, mất Neo4j và nhánh cấp cứu.
+
+Ba ví dụ thông thường chạy trên Qwen local đều trả phản hồi được chấp nhận với hai quan hệ có nguồn. Ví dụ đường huyết cao kèm nôn, đau bụng đi theo luật cấp cứu và không gọi bước sinh. Các phản hồi và trace nguyên văn nằm trong \path{examples/agent_runs.json}; số ví dụ nhỏ này chỉ dùng để đối chiếu luồng thực thi.
+
+\section{Phạm vi và giới hạn}
+KG hiện còn 57 cụm rời nhau và nhiều cụm chỉ có hai hoặc ba khái niệm. Hệ thống truy vấn quan hệ theo tài liệu đã chọn, chưa tìm đường nhiều bước, chưa hợp nhất một ontology y khoa và chưa triển khai thuật toán cộng đồng của Microsoft GraphRAG. Mở rộng các bước đó cần thêm bài toán đánh giá cụ thể, không thể chỉ dựa vào việc đồ thị có nhiều nút hơn.
+
+Các agent cùng chạy trong một tiến trình dưới điều phối tập trung. Cách tổ chức cho phép quan sát giao thức và kiểm thử từng vai trò, nhưng chưa chứng minh lợi ích của các agent tự chủ độc lập. Chất lượng nội dung vẫn phụ thuộc nguồn, độ phủ KB, cách biên soạn bộ ba và kiểm tra đầu ra. Trước khi áp dụng ngoài thực nghiệm học phần cần có đánh giá chuyên môn và dữ liệu phù hợp.

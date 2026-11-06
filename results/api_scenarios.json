@@ -108,21 +108,43 @@
         },
         {
           "sender": "Điều phối",
-          "receiver": "Tri thức",
+          "receiver": "Đồ thị tri thức",
           "type": "REQUEST",
-          "content": "HbA1c là gì?"
+          "content": {
+            "document_ids": [
+              "a1c"
+            ]
+          }
         },
         {
-          "sender": "Tri thức",
-          "receiver": "Đối chiếu",
+          "sender": "Đồ thị tri thức",
+          "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "Đã truy xuất: a1c"
-        },
-        {
-          "sender": "Neo4j",
-          "receiver": "Tri thức",
-          "type": "INFORM",
-          "content": "2 quan hệ có nguồn"
+          "content": {
+            "facts": [
+              {
+                "source": "HbA1c",
+                "relation": "phản ánh",
+                "target": "đường huyết trung bình",
+                "document": "a1c",
+                "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+                "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+              },
+              {
+                "source": "Thai kỳ / bệnh máu",
+                "relation": "có thể ảnh hưởng",
+                "target": "HbA1c",
+                "document": "a1c",
+                "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+                "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+              }
+            ],
+            "storage": "Neo4j",
+            "rejected": 0,
+            "document_ids": [
+              "a1c"
+            ]
+          }
         },
         {
           "sender": "Chính sách RL",
@@ -199,16 +221,24 @@
       ],
       "graph_evidence": [
         {
-          "source": "Thai kỳ / bệnh máu",
-          "relation": "có thể ảnh hưởng",
-          "target": "HbA1c"
-        },
-        {
           "source": "HbA1c",
           "relation": "phản ánh",
-          "target": "đường huyết trung bình"
+          "target": "đường huyết trung bình",
+          "document": "a1c",
+          "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+          "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
+        },
+        {
+          "source": "Thai kỳ / bệnh máu",
+          "relation": "có thể ảnh hưởng",
+          "target": "HbA1c",
+          "document": "a1c",
+          "evidence": "HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",
+          "source_url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis"
         }
       ],
+      "graph_status": "Neo4j",
+      "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
       "response_mode": "kb-rules",
@@ -304,21 +334,21 @@
         },
         {
           "sender": "Điều phối",
-          "receiver": "Tri thức",
+          "receiver": "Đồ thị tri thức",
           "type": "REQUEST",
-          "content": "zzzxxyy"
+          "content": {
+            "document_ids": []
+          }
         },
         {
-          "sender": "Tri thức",
-          "receiver": "Đối chiếu",
+          "sender": "Đồ thị tri thức",
+          "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "Đã truy xuất: "
-        },
-        {
-          "sender": "Neo4j",
-          "receiver": "Tri thức",
-          "type": "INFORM",
-          "content": "0 quan hệ có nguồn"
+          "content": {
+            "facts": [],
+            "storage": "not-requested",
+            "rejected": 0
+          }
         },
         {
           "sender": "Chính sách RL",
@@ -345,6 +375,8 @@
       ],
       "sources": [],
       "graph_evidence": [],
+      "graph_status": "not-requested",
+      "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
       "response_mode": "kb-rules",
@@ -494,21 +526,43 @@
         },
         {
           "sender": "Điều phối",
-          "receiver": "Tri thức",
+          "receiver": "Đồ thị tri thức",
           "type": "REQUEST",
-          "content": "phân loại nhãn tổng hợp classification High Moderate Low"
+          "content": {
+            "document_ids": [
+              "classification_scope"
+            ]
+          }
         },
         {
-          "sender": "Tri thức",
-          "receiver": "Đối chiếu",
+          "sender": "Đồ thị tri thức",
+          "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "Đã truy xuất: classification_scope"
-        },
-        {
-          "sender": "Neo4j",
-          "receiver": "Tri thức",
-          "type": "INFORM",
-          "content": "2 quan hệ có nguồn"
+          "content": {
+            "facts": [
+              {
+                "source": "Mô hình phân loại",
+                "relation": "học từ",
+                "target": "nhãn tổng hợp High / Moderate / Low",
+                "document": "classification_scope",
+                "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+                "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+              },
+              {
+                "source": "Nhãn tổng hợp",
+                "relation": "không phải",
+                "target": "chẩn đoán cá nhân",
+                "document": "classification_scope",
+                "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+                "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
+              }
+            ],
+            "storage": "Neo4j",
+            "rejected": 0,
+            "document_ids": [
+              "classification_scope"
+            ]
+          }
         },
         {
           "sender": "Chính sách RL",
@@ -609,14 +663,22 @@
         {
           "source": "Mô hình phân loại",
           "relation": "học từ",
-          "target": "nhãn tổng hợp High / Moderate / Low"
+          "target": "nhãn tổng hợp High / Moderate / Low",
+          "document": "classification_scope",
+          "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+          "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
         },
         {
           "source": "Nhãn tổng hợp",
           "relation": "không phải",
-          "target": "chẩn đoán cá nhân"
+          "target": "chẩn đoán cá nhân",
+          "document": "classification_scope",
+          "evidence": "High, Moderate và Low là các nhãn của bộ dữ liệu tổng hợp. Mô hình phân loại chỉ tái hiện nhãn trong bộ dữ liệu này; kết quả không phải chẩn đoán hoặc xác suất mắc bệnh của một người. Đánh giá ngoài mẫu và giới hạn của từng lớp được trình bày trong bảng thực nghiệm.",
+          "source_url": "https://www.kaggle.com/datasets/mobeenfatimah/diabetes-risk-prediction-dataset-50k-patients"
         }
       ],
+      "graph_status": "Neo4j",
+      "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
       "response_mode": "kb-rules",
@@ -764,21 +826,43 @@
         },
         {
           "sender": "Điều phối",
-          "receiver": "Tri thức",
+          "receiver": "Đồ thị tri thức",
           "type": "REQUEST",
-          "content": "điểm tiến triển diabetes"
+          "content": {
+            "document_ids": [
+              "model"
+            ]
+          }
         },
         {
-          "sender": "Tri thức",
-          "receiver": "Đối chiếu",
+          "sender": "Đồ thị tri thức",
+          "receiver": "Điều phối",
           "type": "INFORM",
-          "content": "Đã truy xuất: model"
-        },
-        {
-          "sender": "Neo4j",
-          "receiver": "Tri thức",
-          "type": "INFORM",
-          "content": "2 quan hệ có nguồn"
+          "content": {
+            "facts": [
+              {
+                "source": "Mô hình diabetes",
+                "relation": "dự báo",
+                "target": "điểm tiến triển nghiên cứu",
+                "document": "model",
+                "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+                "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+              },
+              {
+                "source": "Điểm tiến triển",
+                "relation": "không phải",
+                "target": "xác suất mắc bệnh",
+                "document": "model",
+                "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+                "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
+              }
+            ],
+            "storage": "Neo4j",
+            "rejected": 0,
+            "document_ids": [
+              "model"
+            ]
+          }
         },
         {
           "sender": "Chính sách RL",
@@ -878,14 +962,22 @@
         {
           "source": "Mô hình diabetes",
           "relation": "dự báo",
-          "target": "điểm tiến triển nghiên cứu"
+          "target": "điểm tiến triển nghiên cứu",
+          "document": "model",
+          "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+          "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
         },
         {
           "source": "Điểm tiến triển",
           "relation": "không phải",
-          "target": "xác suất mắc bệnh"
+          "target": "xác suất mắc bệnh",
+          "document": "model",
+          "evidence": "Mô hình học trên 442 người đã mắc tiểu đường để ước lượng điểm tiến triển sau một năm. Điểm này không phải glucose, HbA1c hay phần trăm nguy cơ mắc bệnh. Khoảng dự báo và sai số ngoài mẫu giúp nhìn thấy mức bất định.",
+          "source_url": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html"
         }
       ],
+      "graph_status": "Neo4j",
+      "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
       "response_mode": "kb-rules",
@@ -1069,21 +1161,25 @@
         },
         {
           "sender": "Điều phối",
-          "receiver": "Tri thức",
+          "receiver": "Đồ thị tri thức",
           "type": "REQUEST",
-          "content": "HbA1c"
+          "content": {
+            "document_ids": [
+              "a1c"
+            ]
+          }
         },
         {
-          "sender": "Tri thức",
-          "receiver": "Đối chiếu",
-          "type": "INFORM",
-          "content": "Đã truy xuất: a1c"
-        },
-        {
-          "sender": "Neo4j",
-          "receiver": "Tri thức",
+          "sender": "Đồ thị tri thức",
+          "receiver": "Điều phối",
           "type": "FAILURE",
-          "content": "Không kết nối; câu trả lời chỉ dùng truy xuất văn bản."
+          "content": "RuntimeError"
+        },
+        {
+          "sender": "Điều phối",
+          "receiver": "Truy xuất",
+          "type": "INFORM",
+          "content": "Đồ thị chưa sẵn sàng; tiếp tục bằng văn bản KB đã có nguồn."
         },
         {
           "sender": "Chính sách RL",
@@ -1159,6 +1255,8 @@
         }
       ],
       "graph_evidence": [],
+      "graph_status": "unavailable",
+      "graph_context_supplied": false,
       "feedback_supported": false,
       "response_id": null,
       "response_mode": "kb-rules",

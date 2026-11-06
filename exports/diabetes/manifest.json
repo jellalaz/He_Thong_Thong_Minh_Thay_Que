@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "documents": 46,
+  "sources": 19,
+  "nodes": 143,
+  "relationships": 86,
+  "graph_origin": "exact local Neo4j snapshot, checked against KB",
+  "dependencies": {
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "neo4j": "6.4.1"
+  },
+  "files": {
+    "code/app/__init__.py": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "code/app/agents.py": {
+      "bytes": 1096,
+      "sha256": "311de7193dc2e2bbdc1bd171fb8e1f724f80f56c01ce21ba7f8a9aff3df5d055"
+    },
+    "code/app/answer_display.py": {
+      "bytes": 813,
+      "sha256": "0de325cb9f58348acd3de35e30c9eef3242adc7133bc4ebf7e27d4898381b90e"
+    },
+    "code/app/conversation.py": {
+      "bytes": 21031,
+      "sha256": "236c18fc3d621e9ca6735e43f2cd32e156d1c265348a6acc4a01d555dcb00b57"
+    },
+    "code/app/dialogue.py": {
+      "bytes": 9026,
+      "sha256": "9fd561621cb9ee8f197c672d090ee3e82b2c7f1b744284551d3fb3c9e753449c"
+    },
+    "code/app/graph_knowledge.py": {
+      "bytes": 2868,
+      "sha256": "e406e5c044d5ce30d33b214478795afed88ba8f56aa0718813800861261dd057"
+    },
+    "code/app/intent.py": {
+      "bytes": 605,
+      "sha256": "95341417d726e7355ae09116abc3460c4d3193b91479ddd4c480d1fda8034236"
+    },
+    "code/app/local_prompt.py": {
+      "bytes": 4710,
+      "sha256": "5533186d85763891c76eef0e6806c1564c5df8b71fc49589a4db62983f092472"
+    },
+    "code/app/retrieval.py": {
+      "bytes": 3577,
+      "sha256": "6b15333d6d68935ac629f6981d04d88c0e0349c4e6fc6ac800b7465bdc011c85"
+    },
+    "code/app/safety.py": {
+      "bytes": 8833,
+      "sha256": "ad3b91db25c14b1a825af214c7888150237659c8d09712c2988310765d13c63b"
+    },
+    "code/models/chat_intent.joblib": {
+      "bytes": 243058,
+      "sha256": "4c9605ea2137105657554bd6135289445f0a3802201514f5dcf791ac6abafe27"
+    },
+    "code/scripts/query_knowledge_export.py": {
+      "bytes": 3555,
+      "sha256": "30f4b9e85f183383e8b78057b4706d9662438b3fcc0c44a3e47a3133946bfc95"
+    },
+    "code/scripts/restore_knowledge_export.py": {
+      "bytes": 1709,
+      "sha256": "38f4ed3e3734d6c41ef2376df08e3de5b03b7134b60313108d320d4ff8ff61c5"
+    },
+    "examples/agent_runs.json": {
+      "bytes": 84727,
+      "sha256": "9eb9feaf36974adada5c6cbede775574d398bb6e4df44b8bb766b8ae95abdfca"
+    },
+    "kb/knowledge.json": {
+      "bytes": 50049,
+      "sha256": "5bca55feeaa5734b8bd70de6d1bb4372c40002a79fff4d91a03b39c593e93b14"
+    },
+    "kg/graph.json": {
+      "bytes": 71769,
+      "sha256": "08412c55f0dd976c2ab5938cf9155634995f528e60d473b12746fcf3d59cbe85"
+    },
+    "kg/import.cypher": {
+      "bytes": 50437,
+      "sha256": "336c0d5296845aa9accec2e165cefbcd227c13cc4fa1401eb2aad8e029bfaee9"
+    },
+    "kg/nodes.csv": {
+      "bytes": 5511,
+      "sha256": "d657d565df5aaaaea86600cb04cc8dba7e18c207286b6571b8add36ff4925830"
+    },
+    "kg/relationships.csv": {
+      "bytes": 41811,
+      "sha256": "bfdd2dcbc6ce4b6f644026dbb9231a690ad8c7e80ce822551da37169e815f721"
+    },
+    "rag/evaluation.json": {
+      "bytes": 9248,
+      "sha256": "7611cb0c526b49ab24d8f12d8a7f715b4cf2d74df3fc3c40a3f468669e16f486"
+    },
+    "rag/index.joblib": {
+      "bytes": 154901,
+      "sha256": "616d2618fd6273b88805c7ecbd65d31da4f1aba99264650a38119fc47993e903"
+    },
+    "rag/queries.json": {
+      "bytes": 4391,
+      "sha256": "e8740fbe8c87d708b4fc3a4f40cfc1fa3c85a60685bbdc9b91d6f7303d156979"
+    },
+    "rag/settings.json": {
+      "bytes": 303,
+      "sha256": "a0308ea35a88c6fb61e1c7d2efba3964edd739c37eebffd26388d170036cc82d"
+    },
+    "README.md": {
+      "bytes": 2884,
+      "sha256": "9f53ad252625d8fb413759b72cb7fe8759fa1014ec89d27a97b04ebed79e3db3"
+    },
+    "requirements.txt": {
+      "bytes": 64,
+      "sha256": "d597a3e022d02f967d849ca37daa0aaf26e71d2b22bac7ea66c9bd1eca7bbee8"
+    }
+  }
+}
