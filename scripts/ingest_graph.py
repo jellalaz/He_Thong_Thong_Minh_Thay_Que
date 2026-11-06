@@ -4,11 +4,13 @@ from neo4j import GraphDatabase
 root=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(root))
 from app.settings import database
+from app.retrieval import load_knowledge
 env=os.environ
-kb=json.loads((root/'data/knowledge.json').read_text(encoding='utf-8'))
-rows=[dict(source=t[0],label=t[1],target=t[2],document=d['id'],evidence=d['text']) for d in kb['documents'] for t in d.get('triples',[])]
+kb=load_knowledge()
+assert all(d.get('triples') for d in kb['documents']), 'Every published topic must have grounded relationships'
+rows=[dict(source=t[0],label=t[1],target=t[2],document=d['id'],evidence=d['text'],source_url=kb['sources'][d['source']]['url']) for d in kb['documents'] for t in d['triples']]
 constraint='CREATE CONSTRAINT concept_name IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE'
-ingest='UNWIND $rows AS row MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target}) MERGE (a)-[r:RELATED_TO {label:row.label,document:row.document}]->(b) SET r.evidence=row.evidence'
+ingest='UNWIND $rows AS row MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target}) MERGE (a)-[r:RELATED_TO {label:row.label,document:row.document}]->(b) SET r.evidence=row.evidence, r.source_url=row.source_url'
 if '--https' in sys.argv:
  import httpx
  from urllib.parse import urlparse,quote

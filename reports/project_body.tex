@@ -6,7 +6,7 @@ GlucoGuide phát triển từ các thực nghiệm học phần, bổ sung cơ c
 \section{Phạm vi đầu ra}
 Hai bộ dữ liệu có định nghĩa nhãn khác nhau. Bộ phân loại gồm các nhãn High, Moderate và Low của dữ liệu tổng hợp. Bộ hồi quy gồm những người đã mắc bệnh và một thước đo tiến triển sau một năm. Vì vậy không thể ghép một nhãn High với một điểm hồi quy để suy ra xác suất mắc bệnh. Ứng dụng dùng hai biểu mẫu riêng và công bố phạm vi ngay tại đầu ra.
 
-Bản công khai sử dụng tổng hợp trích đoạn xác định. Câu trả lời được ghép từ các đoạn văn truy xuất được và thông tin về phạm vi mô hình; không gọi mô hình ngôn ngữ bên ngoài. Bản cục bộ bổ sung Qwen3 1.7B tinh chỉnh LoRA để diễn đạt trên tài liệu truy xuất; các yêu cầu về thông số và thuốc vẫn qua luật. Hai chế độ đều phụ thuộc chất lượng và độ phủ của kho tài liệu.
+Bản công khai sử dụng tổng hợp trích đoạn xác định. Câu trả lời được ghép từ các đoạn văn truy xuất được và thông tin về phạm vi mô hình; không gọi mô hình ngôn ngữ bên ngoài. Bản cục bộ dùng Qwen3 4B lượng tử hóa để diễn đạt trên tài liệu truy xuất; các yêu cầu có nguy cơ được phân loại trước và xử lý bằng luật. Hai chế độ đều phụ thuộc chất lượng và độ phủ của kho tài liệu.
 \section{Mục tiêu đánh giá}
 Phân loại được đo bằng accuracy và macro-F1. Hồi quy được đo bằng MAE và hệ số xác định. Truy xuất cần kiểm tra cả tài liệu được chọn và quan hệ có nguồn trên Neo4j. Kiểm tra ứng dụng tập trung vào các tình huống có bằng chứng, thiếu bằng chứng, thiếu đầu vào, giá trị không hợp lệ và cơ sở dữ liệu đồ thị không hoạt động.
 \chapter{Agent và cơ chế phối hợp}
@@ -30,11 +30,11 @@ DB có sẵn cung cấp dữ liệu cho quá trình huấn luyện. Pipeline ph�
 \section{Nhánh tri thức}
 Nguồn tri thức là các đoạn văn đã được tổ chức trong tiểu luận 02. Mỗi tài liệu có mã, tiêu đề, từ khóa, văn bản, định danh nguồn và các bộ ba. Project bảo toàn những trường này khi chuyển sang kho tri thức mới. Việc cập nhật hướng dẫn y tế từ web chưa tự động hóa; phiên bản kho tài liệu phải được xem như một bản chụp dữ liệu cần rà soát trước khi mở rộng phạm vi sử dụng.
 
-Bản cập nhật có 26 đoạn tri thức và 40 bộ ba từ 13 nguồn đang được tham chiếu. Bốn đoạn mới bổ sung chăm sóc bàn chân, ngày bị ốm, theo dõi thận và kế hoạch vận động; từng đoạn dẫn tới trang CDC hoặc NIDDK tương ứng. Các câu hỏi có chủ đề rõ được định tuyến đến đúng đoạn trước khi đưa vào Qwen cục bộ; câu chưa có bằng chứng phù hợp được yêu cầu làm rõ. Kho này vẫn là các đoạn biên soạn có nguồn, chưa phải bộ sưu tập sách toàn văn.
+Kho tri thức gồm 46 đoạn từ 19 nguồn được tham chiếu. Mọi đoạn đều có quan hệ gắn với nguồn và trích đoạn làm căn cứ; tổng cộng 86 bộ ba được nạp vào Neo4j local. Nội dung gồm xét nghiệm, ăn uống, vận động, theo dõi, thuốc, các loại tiểu đường và trợ giúp sinh hoạt.
 
 Một bộ ba gồm khái niệm đầu, tên quan hệ và khái niệm cuối. Neo4j lưu hai đầu dưới nhãn Concept; quan hệ RELATED\_TO có thuộc tính label biểu diễn tên quan hệ, document biểu diễn tài liệu và evidence biểu diễn đoạn văn làm căn cứ. Ràng buộc duy nhất theo tên khái niệm và thao tác MERGE giúp nạp lại dữ liệu mà không tạo các bản sao giống hệt.
 \section{Luồng người dùng}
-Câu hỏi kiến thức được chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 64 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
+Yêu cầu được phân loại an toàn trước khi chuyển đến truy xuất. Yêu cầu mô hình phải đi qua kiểm tra các trường trước khi suy luận. Văn bản và kết quả đồ thị được chuyển sang đối chiếu; chính sách học và luật xác định kiểu phản hồi. Giao diện hiển thị câu trả lời, tài liệu nguồn và các bước xử lý. Lớp hội thoại nhận tối đa 64 thông điệp gần nhất để giải quyết câu hỏi tiếp nối; chỉ dùng câu hỏi người dùng làm gợi ý chủ đề, không dùng lời trả lời cũ làm căn cứ y tế. Các trường của hai mô hình được tách riêng để tránh biến đổi sai đơn vị hoặc tự suy diễn giá trị còn thiếu.
 
 Sau khi chạy một trong hai mô hình, nút ``Giải thích kết quả'' gửi lại loại bài toán và các giá trị đã nhập đến agent mô hình. Chatbot trả lời bằng nhãn hoặc điểm thực tế của mẫu, kèm chỉ số đánh giá ngoài mẫu và giới hạn sử dụng. Nhánh này dùng giải thích xác định, không để Qwen suy đoán ý nghĩa lâm sàng của nhãn tổng hợp hoặc điểm tiến triển.
 \chapter{Các thành phần và thực nghiệm}
@@ -52,29 +52,31 @@ Các biến s1 đến s6 là những trường nghiên cứu của bộ dữ li�
 \input{metrics.tex}
 MLP cải thiện accuracy và macro-F1 so với Logistic Regression trong lần chạy này. Tuy nhiên macro-F1 còn thấp so với accuracy, phản ánh hiệu năng không đồng đều giữa các lớp. Ở hồi quy, Ridge có MAE thấp hơn và hệ số xác định cao hơn MLP. Báo cáo vẫn trình diễn MLP để minh họa nhánh Deep Learning, đồng thời công bố đầy đủ đối chứng và không nhận MLP là mô hình tốt nhất.
 \section{Truy xuất và đồ thị}
-Văn bản được biểu diễn bằng TF-IDF với unigram và bigram, bỏ dấu khi chuẩn hóa. Câu hỏi được biến đổi bằng cùng từ vựng. Điểm truy xuất là tích vô hướng của các vector đã chuẩn hóa. Hệ thống giữ tối đa ba đoạn có điểm lớn hơn 0,04. Ngưỡng này là quy tắc triển khai chưa được chọn trên một bộ validation độc lập.
+Văn bản được chuẩn hóa không dấu rồi biểu diễn bằng TF--IDF từ và ký tự. Điểm kết hợp dùng trọng số 0,55 và 0,45, có cộng ưu tiên nhỏ cho từ khóa và chủ đề. Câu hỏi được biến đổi bằng cùng từ vựng. Điểm truy xuất là tích vô hướng của các vector đã chuẩn hóa. Hệ thống giữ tối đa bốn đoạn có điểm đạt ngưỡng 0,15 và ít nhất 58\% điểm của đoạn đứng đầu. Các ngưỡng là cấu hình triển khai, chưa được tối ưu trên một bộ validation độc lập.
 
 Neo4j lấy các cạnh có thuộc tính document trùng với mã tài liệu đã truy xuất. Do đó đồ thị cung cấp cấu trúc và căn cứ bổ sung cho truy xuất văn bản; đây chưa phải một bộ máy suy luận đa bước tổng quát. Một nhãn quan hệ không chứng minh quan hệ nhân quả. Khi không có tài liệu đủ điểm, hệ thống yêu cầu người dùng làm rõ.
 \chapter{Code và demo}
 \section{Địa chỉ và cách chạy}
-\noindent\textbf{Demo công khai}\par
-\noindent\url{https://glucoguide-giang254.vercel.app}\par\medskip
-\noindent\textbf{Mã nguồn}\par
-\noindent\url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}\par\medskip
-\noindent\textbf{Demo cục bộ}\par
+\noindent\textbf{Bản hoàn thiện chạy trên máy cá nhân}\par
 \noindent\url{http://localhost:8765}\par\medskip
+\noindent\textbf{Xem đồ thị trên web, không cần nhập lệnh}\par
+\noindent\url{http://localhost:8765/\#graph}\par\medskip
 \noindent\textbf{Neo4j Browser cục bộ}\par
 \noindent\url{http://localhost:7474/browser/}\par\medskip
-Địa chỉ localhost dành cho máy chạy dịch vụ. Bản demo công khai kết nối Neo4j AuraDB Free.
+\noindent\textbf{Kho mã nguồn}\par
+\noindent\url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}\par\medskip
+\noindent\textbf{Demo Vercel của phiên bản trước}\par
+\noindent\url{https://glucoguide-giang254.vercel.app}\par\medskip
+Các địa chỉ localhost chỉ truy cập dịch vụ trên máy đang chạy sản phẩm. Bản hoàn thiện dùng Qwen3 4B và Neo4j local; không thể mở từ máy khác bằng các địa chỉ này. Bản Vercel là triển khai trước đây, chưa được xác nhận đồng bộ mô hình, đồ thị và luật an toàn mới.
 
 
-Cài requirements.txt để chạy ứng dụng; dùng requirements-training.txt khi huấn luyện và tái lập thực nghiệm. Chạy \path{scripts/train_models.py} để tạo checkpoint, \path{scripts/train_policy.py} để tạo chính sách và \path{scripts/ingest_graph.py} để nạp đồ thị. Sau đó chạy uvicorn app.main:app từ thư mục project. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
+Trên máy thực nghiệm, chạy \path{start-neo4j.ps1} nếu cơ sở dữ liệu chưa hoạt động, rồi mở \path{START_CHATBOT_LOCAL.cmd} để khởi động Qwen và web. Tệp requirements.txt mô tả thư viện ứng dụng; requirements-training.txt dành cho tái lập huấn luyện. Các script \path{scripts/train_models.py}, \path{scripts/train_policy.py} và \path{scripts/ingest_graph.py} lần lượt tạo checkpoint, chính sách và dữ liệu đồ thị. Quá trình phục vụ dùng tài nguyên đã có trên máy, không tự tải mô hình hoặc tài liệu. Cấu hình Neo4j nằm trong .env và không đưa lên repository.
 \section{Kịch bản trình diễn}
-Kịch bản thứ nhất: hỏi ``HbA1c là gì?''. Kiểm tra câu trả lời có mã tài liệu, kiểm tra bước truy xuất và số quan hệ Neo4j. Kịch bản thứ hai: hỏi một chủ đề không có trong kho, chẳng hạn lịch sử một đội bóng. Hệ thống phải yêu cầu làm rõ hoặc báo thiếu bằng chứng, không tự tạo nguồn.
+Kịch bản thứ nhất: hỏi ``HbA1c là gì?''. Kiểm tra nội dung, mở nguồn tham khảo, đối chiếu bước truy xuất và số quan hệ Neo4j. Kịch bản thứ hai: hỏi một chủ đề không có trong kho, chẳng hạn lịch sử một đội bóng. Hệ thống phải nêu phạm vi hỗ trợ hoặc hỏi làm rõ, không tự tạo nguồn.
 
 Kịch bản thứ ba: nhập đủ tám trường phân loại bằng một mẫu của dữ liệu. Ghi lại nhãn, thông báo phạm vi và nhật ký mô hình. Kịch bản thứ tư: nhập đủ mười trường hồi quy từ mẫu nghiên cứu, kiểm tra đầu ra số và thông báo đây là điểm tiến triển. Hai kịch bản không dùng chung biểu mẫu.
 
-Kịch bản thứ năm: bỏ một trường bắt buộc. Hệ thống phải nêu trường còn thiếu. Kịch bản thứ sáu: nhập giá trị không hữu hạn hoặc chuỗi ký tự vào API, hệ thống phải từ chối. Kịch bản thứ bảy: tắt Neo4j rồi hỏi kiến thức, kiểm tra nhật ký FAILURE và việc công bố chỉ dùng văn bản. Kịch bản thứ tám: mở Neo4j Browser và thực hiện truy vấn dưới đây để đối chiếu với giao diện đồ thị.
+Kịch bản thứ năm: bỏ một trường bắt buộc. Hệ thống phải nêu trường còn thiếu. Kịch bản thứ sáu: nhập giá trị không hữu hạn hoặc chuỗi ký tự vào API, hệ thống phải từ chối. Kịch bản thứ bảy: dùng kiểm thử giả lập Neo4j mất kết nối để kiểm tra nhánh dự phòng; không cần tắt dịch vụ đang phục vụ người dùng. Kịch bản thứ tám: mở Neo4j Browser và thực hiện truy vấn dưới đây để đối chiếu với giao diện đồ thị.
 \begin{verbatim}
 MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
 RETURN a,r,b LIMIT 100;

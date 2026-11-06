@@ -1,21 +1,55 @@
-# GlucoGuide – Hệ đa agent cho bệnh tiểu đường
+# GlucoGuide - Hệ đa agent hỗ trợ tìm hiểu tiểu đường
 
-Hai báo cáo LaTeX độc lập nằm trong `reports/`: tiểu luận final và Project 01.
+Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 02.
 
-## Hai chế độ demo
+## Chạy sản phẩm local
 
-- Bản công khai: https://glucoguide-giang254.vercel.app – KB, luật, mô hình dữ liệu bảng và Neo4j Aura Free.
-- Bản Qwen local: chạy `run-local-qwen.ps1`, mở http://localhost:8766. Cần mô hình nền và adapter đã huấn luyện. Suy luận trên GPU máy cá nhân; không gọi API LLM bên ngoài, không bật thanh toán.
+1. Khởi động Neo4j bằng start-neo4j.ps1 nếu dịch vụ chưa chạy.
+2. Chạy START_CHATBOT_LOCAL.cmd hoặc run-chatbot-local.ps1.
+3. Mở http://localhost:8765 và http://localhost:7474/browser/.
 
-## Huấn luyện và kiểm tra
+Xem đồ thị ngay trên http://localhost:8765/#graph: nút **Xem toàn bộ đồ thị** nằm cạnh bộ lọc chủ đề. Có thể phóng to, kéo và bấm khái niệm để đọc quan hệ, không cần dán lệnh hoặc đăng nhập Neo4j Browser riêng.
 
-- Hướng dẫn Qwen LoRA: `experiments/local_qwen/README.md`.
-- Mô hình nhận diện ý định: `TRAINING_CHATBOT.md`.
-- Kiểm thử: `python -m scripts.test_chatbot`, `python -m scripts.test_intent`, `python -m scripts.test_local_agents`.
-- Kết quả mô hình và dữ liệu đánh giá: `results/`.
+Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp/Vulkan tại 127.0.0.1:11435; Neo4j local ở cổng 7687. Luồng hỏi đáp không gọi dịch vụ xử lý bên ngoài, không tự tải tài nguyên. Tệp cấu hình và khóa nội bộ nằm ngoài Git.
 
-Qwen hỗ trợ diễn đạt kiến thức có tài liệu. Thông số, thuốc và tình huống khẩn cấp đi qua luật; sản phẩm phục vụ học tập và hỗ trợ tra cứu, không xác nhận chẩn đoán hoặc kê đơn. Hai tập kiểm tra hội thoại nội bộ không phải dữ liệu lâm sàng độc lập.
+## Dữ liệu và các thành phần
 
-Không đưa `.env`, thông tin đăng nhập, mô hình nền hoặc cache lên Git. Neo4j local dùng cấu hình `.env`; thông tin mẫu ở `.env.example`.
+- Phân loại: Diabetes Risk Prediction 50K, 40.000 dòng train và 10.000 dòng test; MLP học nhãn tổng hợp High/Moderate/Low.
+- Hồi quy: diabetes/scikit-learn, 353 mẫu train và 89 mẫu test; dự đoán điểm tiến triển nghiên cứu.
+- Tri thức: knowledge.json và knowledge_dialogue.json trong data/, tổng 46 đoạn từ 19 nguồn được tham chiếu.
+- Đồ thị local: 143 khái niệm, 86 quan hệ, phủ đủ 46 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
+- Hội thoại: định tuyến, truy xuất TF-IDF từ/ký tự, Qwen local và kiểm tra phản hồi. Trọng số 4B dùng nguyên bản; các thí nghiệm LoRA 1.7B được giữ riêng.
+- An toàn: phân loại trước RAG, không chờ đồ thị hoặc mô hình khi cần hành động ưu tiên.
+- Phản hồi: bảng Q học ba cách trình bày theo chủ đề; không học liều thuốc hoặc điều trị.
 
-Bản local có nút phản hồi dưới câu trả lời kiến thức. Bảng Q học cách trình bày từ phản hồi; checkpoint Qwen của lượt thử hội thoại thứ hai chưa được triển khai vì còn lỗi câu trả lời.
+## Nạp lại đồ thị và kiểm thử
+
+Từ thư mục project, dùng Python của .venv:
+
+    python scripts/ingest_graph.py
+    python -m scripts.test_graph_coverage
+    python -m scripts.test_safety_offline
+    python -m scripts.test_local_feedback
+
+Kiểm thử an toàn chặn DNS/kết nối ngoài; kết nối loopback được giữ cho các thành phần nội bộ. Kết quả nằm trong results/. Script evaluate_chat_local.py cần web cùng mô hình local đang chạy và lưu phản hồi để đọc lại.
+
+Kiểm thử giao diện: `node scripts/test_graph_view.cjs`, cần Playwright và Edge đã có sẵn. Script không tải trình duyệt; chặn trang truy cập máy chủ ngoài và kiểm tra đủ 46 bộ lọc cùng các thao tác trên desktop/điện thoại. Ảnh desktop được lưu trực tiếp tại reports/demo-graph-current.png để báo cáo và kiểm thử dùng chung một bản.
+
+## Hai báo cáo
+
+Hai PDF và mã LaTeX được giữ riêng trong reports/:
+
+- tieuluan_final_06_02_giangkt.254: nền tảng và các thực nghiệm học phần.
+- project01_06_02_giangkt.254: kiến trúc sản phẩm, dữ liệu, mô hình, đồ thị, hội thoại và kiểm thử.
+
+Dùng scripts/assemble_reports.py để ghép nguồn; biên dịch từng tệp chính từ reports/ bằng Tectonic hoặc XeLaTeX. Font cần có: Times New Roman và Consolas. Các hình demo là ảnh chụp ứng dụng; số liệu mô hình được giữ trong results/.
+
+## Cấu trúc thư mục
+
+app/: backend; web/: giao diện; data/: KB và ví dụ; models/: checkpoint; scripts/: xử lý và kiểm thử; results/: bằng chứng thực nghiệm; experiments/: thí nghiệm bổ sung; legacy_tieuluan/: tài liệu thực nghiệm kế thừa; reports/: hai báo cáo.
+
+.runtime/ chứa bộ chạy local và dữ liệu Neo4j; .local-models/ chứa trọng số; .local-training/ chứa checkpoint và bảng Q trên máy. Những thư mục này được bỏ qua khi đưa lên Git, nhưng một số tệp cần để vận hành trên máy hiện tại.
+
+`scripts/clean_generated.ps1` mặc định chỉ liệt kê tệp có thể dọn; thêm `-Apply` để xóa danh sách đã kiểm tra. Script giữ tài nguyên đang chạy, kiểm tra đường dẫn và ghi lịch sử tại results/cleanup_manifest.json. Không xóa models/, experiments/ hoặc legacy_tieuluan/: các thư mục này chứa checkpoint và bằng chứng thực nghiệm được báo cáo sử dụng.
+
+Bản Vercel/Aura là triển khai trước đây, không chạy Qwen4B. Các số liệu và ảnh của bản hoàn thiện được kiểm tra trên local. Dữ liệu tổng hợp, tập hội thoại tự biên soạn và kiểm thử chức năng chưa thay thế đánh giá chuyên môn y tế.

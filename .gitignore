@@ -12,6 +12,10 @@ runtime/
 *.aux
 *.toc
 *.out
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
 *.synctex.gz
 reports/converted.tex
 reports/legacy.tex
@@ -21,3 +25,4 @@ reports/legacy.tex
 .venv-llm/
 .local-models/
 .local-training/
+.pytest_cache/

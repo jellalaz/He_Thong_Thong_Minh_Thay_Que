@@ -10,19 +10,21 @@ from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
+from app.dialogue import plan_turn
+from app.answer_display import clean_answer
+from app.retrieval import load_knowledge, Retriever
 from app import local_llm, feedback
+from app import safety
 from app.model_explanation import explain
 from app.settings import database, browser_url
 from typing import Literal
-from sklearn.feature_extraction.text import TfidfVectorizer
 ROOT=Path(__file__).resolve().parents[1]
 for line in (ROOT/'.env').read_text().splitlines() if (ROOT/'.env').exists() else []:
  if '=' in line:
   k,v=line.split('=',1);os.environ.setdefault(k,v)
-kb=json.loads((ROOT/'data/knowledge.json').read_text(encoding='utf-8'))
+kb=load_knowledge()
 docs=kb['documents']
-vec=TfidfVectorizer(strip_accents='unicode',ngram_range=(1,2))
-mat=vec.fit_transform([d['title']+' '+' '.join(d['terms'])+' '+d['text'] for d in docs])
+retriever=Retriever(docs)
 schema=json.loads((ROOT/'models/schema.json').read_text())
 models={k:joblib.load(ROOT/'models'/f'{v}.joblib') for k,v in [('classification','MLPClassifier'),('regression','MLPRegressor')]}
 app=FastAPI(title='GlucoGuide • Giang KT')
@@ -36,8 +38,13 @@ class Request(BaseModel):
  task:str='knowledge'
  values:dict=Field(default_factory=dict)
  history:list[Turn]=Field(default_factory=list,max_length=64)
+ preferred_format:Literal['auto','brief','steps','explain']='auto'
 def graph_driver():
- return GraphDatabase.driver(os.environ.get('NEO4J_URI','bolt://127.0.0.1:7687'),auth=(os.environ.get('NEO4J_USER','neo4j'),os.environ.get('NEO4J_PASSWORD','')),connection_timeout=3,connection_acquisition_timeout=4,max_transaction_retry_time=0)
+ uri=os.environ.get('NEO4J_URI','bolt://127.0.0.1:7687')
+ if os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1':
+  from urllib.parse import urlparse
+  if urlparse(uri).hostname not in {'localhost','127.0.0.1','::1'}:raise RuntimeError('Local mode requires a local graph')
+ return GraphDatabase.driver(uri,auth=(os.environ.get('NEO4J_USER','neo4j'),os.environ.get('NEO4J_PASSWORD','')),connection_timeout=3,connection_acquisition_timeout=4,max_transaction_retry_time=0)
 @app.get('/')
 def home():return FileResponse(ROOT/'web/index.html')
 @app.get('/api/metrics')
@@ -58,12 +65,25 @@ def graph():
 def chat(req:Request):
  bus=MessageBus();trace=bus.trace
  bus.register(Agent("Mô hình",lambda payload,b: models[payload["task"]].predict(payload["x"])[0]))
- bus.register(Agent("Truy xuất",lambda payload,b: (mat@vec.transform([payload]).T).toarray().ravel()))
+ bus.register(Agent("Truy xuất",lambda payload,b: retriever.search(payload)))
  bus.register(Agent("Đối chiếu",lambda payload,b: {"scope":payload.get("scope","Kiến thức có nguồn"),"allow_diagnosis":False}))
- bus.register(Agent("Phản hồi",lambda payload,b: "\n\n".join(d["text"]+" ["+d["id"]+"]" for d in payload)))
+ def grounded_reply(payload,b):
+  selected=payload[:2]
+  if any(d['id']=='meal_example' for d in selected):selected=[d for d in selected if d['id']!='plate']
+  return '\n\n'.join(d['text']+' ['+d['id']+']' for d in selected)
+ bus.register(Agent('Phản hồi',grounded_reply))
  def msg(sender,receiver,kind,content):trace.append(dict(sender=sender,receiver=receiver,type=kind,content=content))
  msg('Người dùng','Điều phối','REQUEST',req.question or req.task)
  if req.task not in ['knowledge','classification','regression']:raise HTTPException(422,'Bài toán không hợp lệ')
+ bus.register(Agent('An toàn',lambda payload,b: safety.classify(payload['question'],payload['history'])))
+ assessment=bus.request('Điều phối','An toàn',{'question':req.question,'history':[h.model_dump() for h in req.history]})
+ # Triage precedes model input checks, topic routing, Neo4j and language generation.
+ if safety.protected(assessment):
+  ids=['low','urgent'] if assessment.reason=='possible_hypoglycemia' else ['sick_day','urgent'] if assessment.reason in {'possible_dka','high_glucose_with_vomiting','high_glucose'} else ['medicine'] if assessment.medication_risk and assessment.level=='ROUTINE' else ['urgent'] if assessment.level=='EMERGENCY' else []
+  selected=[d for i in ids for d in docs if d['id']==i]
+  answer=safety.validate(assessment,clean_answer(safety.response(assessment)))
+  msg('An toàn','Người dùng','INFORM',{'level':assessment.level,'reason':assessment.reason,'generation_bypassed':True,'validation':'protected-response'})
+  return {'answer':answer,'safety':assessment.public(),'result':None,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb['sources'].get(d['source'],{})} for d in selected],'graph_evidence':[],'feedback_supported':False,'response_id':None,'response_mode':'rules','generator':'Luật an toàn cục bộ','suggestions':[],'context_used':assessment.context_used,'topic':'low' if assessment.reason=='possible_hypoglycemia' else 'urgent' if assessment.level=='EMERGENCY' else 'medicine' if assessment.medication_risk else 'safety','tone':'urgent' if assessment.level!='ROUTINE' else 'normal'}
  result=None
  if req.task!='knowledge':
   fields=schema[req.task];missing=[f for f in fields if f not in req.values or req.values[f] in ['',None]]
@@ -83,14 +103,11 @@ def chat(req:Request):
   msg('Mô hình','Đối chiếu','INFORM',json.dumps(result,ensure_ascii=False))
  q=req.question or ('phân loại nhãn tổng hợp classification High Moderate Low' if req.task=='classification' else 'điểm tiến triển diabetes')
  plan=route(q,[h.model_dump() for h in req.history])
+ plan=plan_turn(q,[h.model_dump() for h in req.history],plan)
  if result is not None:
-  plan.update(topic=req.task,ids=['classification_scope'] if req.task=='classification' else ['model'],override=None,intro='',suggestions=['HbA1c là gì?','Tôi cần kiểm tra đường huyết thế nào?'])
+  plan.update(topic=req.task,ids=['classification_scope'] if req.task=='classification' else ['model'],override=None,intro='',fixed_sources=True,skip_retrieval=False,suggestions=['HbA1c là gì?','Tôi cần kiểm tra đường huyết thế nào?'])
  msg('Hội thoại','Điều phối','INFORM',{'topic':plan['topic'],'context_used':plan['context_used']})
- scores=bus.request('Điều phối','Truy xuất',plan['query'])
- selected=[docs[i] for i in np.argsort(-scores)[:3] if scores[i]>max(.04,float(scores.max())*.65)]
- if plan['ids']:
-  selected=[next(d for d in docs if d['id']==doc_id) for doc_id in plan['ids']]
- if plan['override'] and not plan['ids']:selected=[]
+ selected=bus.request('Điều phối','Truy xuất',plan)
  msg('Điều phối','Tri thức','REQUEST',q)
  msg('Tri thức','Đối chiếu','INFORM','Đã truy xuất: '+', '.join(d['id'] for d in selected))
  graph_evidence=[]
@@ -113,9 +130,10 @@ def chat(req:Request):
  msg('Đối chiếu','Phản hồi','INFORM','Giữ đúng phạm vi mô hình, dẫn nguồn tài liệu; không suy ra chẩn đoán từ nhãn tổng hợp.')
  response_mode="kb-rules"
  feedback_id=None;presentation=0
- if local_llm.enabled() and plan['topic'] in {'meal','fruit','activity','monitor','diabetes','symptoms','knowledge'} and selected and not re.search(r'\d',q):
-  feedback_id,presentation=feedback.choose(plan['topic'])
-  msg('Chính sách phản hồi','Điều phối','INFORM',{'strategy':('trực tiếp','từng bước')[presentation]})
+ if local_llm.enabled() and selected and not plan.get('guarded') and result is None:
+  feedback_id,presentation=feedback.choose(plan['topic'],req.preferred_format)
+  plan['format']=feedback.FORMATS[presentation]
+  msg('Chính sách phản hồi','Điều phối','INFORM',{'strategy':plan['format'],'selected_by':'user' if req.preferred_format!='auto' else 'local-Q'})
  if local_llm.enabled() and result is None:
   bus.register(Agent('Kiểm chứng phản hồi',local_llm.verify))
   bus.register(Agent('Ngôn ngữ cục bộ',local_llm.respond))
@@ -125,10 +143,13 @@ def chat(req:Request):
    msg('Kiểm chứng phản hồi','Điều phối','INFORM',{'mode':generated['mode'],'reason':generated['reason']})
   except Exception as exc:
    msg('Ngôn ngữ cục bộ','Điều phối','FAILURE',type(exc).__name__+'; sử dụng phản hồi KB')
- if feedback_id and presentation==1 and plan['tone']!='urgent' and '?' not in answer:
-  answer+='\n\nBạn muốn mình hướng dẫn từng bước theo trường hợp của bạn không? Hãy nói rõ bữa ăn, chỉ số hoặc việc bạn đang cần làm.'
  msg('Phản hồi','Người dùng','INFORM','Hoàn thành')
- return {'answer':answer,'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'feedback_supported':bool(feedback_id),'response_id':feedback_id,'response_mode':response_mode,'generator':('Qwen3 LoRA cục bộ + KB' if response_mode=='qwen-lora' else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
+ if response_mode.startswith('qwen'):
+  cited=set(re.findall(r'\[([a-z0-9_]+)\]',answer))
+  selected=[d for d in selected if d['id'] in cited]
+ answer=clean_answer(answer)
+ answer=safety.validate(assessment,answer)
+ return {'answer':answer,'safety':assessment.public(),'result':result,'trace':trace,'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'retrieval_score':d.get('retrieval_score'),'source':kb.get('sources',{}).get(d.get('source'),{})} for d in selected],'graph_evidence':graph_evidence,'feedback_supported':bool(feedback_id),'response_id':feedback_id,'response_mode':response_mode,'generator':('Qwen3 cục bộ + RAG' if response_mode.startswith('qwen') else 'KB và luật có nguồn'),'suggestions':plan['suggestions'],'context_used':plan['context_used'],'topic':plan['topic'],'tone':plan['tone']}
 
 
 @app.get('/api/knowledge')
@@ -139,9 +160,10 @@ def knowledge(q:str=''):
 
 @app.get('/api/status')
 def status():
+ model_name='Qwen3 4B · RAG local' if os.environ.get('GLUCOGUIDE_LLAMA_URL') else 'Qwen3 1.7B LoRA' if local_llm.enabled() else None
  try:
-  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
- except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled()}
+  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled(),'model_name':model_name,'local_only':os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1'}
+ except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled(),'model_name':model_name,'local_only':os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1'}
 
 class FeedbackRequest(BaseModel):
  response_id:str=Field(min_length=10,max_length=80)

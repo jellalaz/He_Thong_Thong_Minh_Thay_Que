@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "nodes": 143,
+  "edges": 86,
+  "components": 57,
+  "document_filters_checked": 46,
+  "checks": [
+    "Exact Neo4j nodes retained; bounded deterministic layout; inputs unchanged; empty graph supported",
+    "All graph visible initially; view-all button above canvas",
+    "All 46 document filters retain exact node and edge counts",
+    "View-all and reload preserve complete graph",
+    "Zoom in/out, reset and pointer pan work",
+    "Node details and document source open by clicking",
+    "View-all stays on screen at 1024px and 390px; no horizontal overflow"
+  ],
+  "browser_errors": [],
+  "external_page_requests": []
+}

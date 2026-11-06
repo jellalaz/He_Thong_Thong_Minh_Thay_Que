@@ -28,7 +28,7 @@ cases=[
  ('hypoglycemia',{'question':'Đường huyết hiện tại 55 mg/dL'},lambda b:b['tone']=='urgent' and b['sources'][0]['id']=='low'),
  ('emergency',{'question':'Bố tôi đang bất tỉnh'},lambda b:b['tone']=='urgent' and b['sources'][0]['id']=='urgent'),
  ('education',{'question':'Dấu hiệu hạ đường huyết là gì?'},lambda b:b['topic']=='low' and b['tone']=='normal'),
- ('dose',{'question':'Tôi nên tiêm bao nhiêu đơn vị insulin?'},lambda b:b['topic']=='medicine' and 'không chọn thuốc' in b['answer']),
+ ('dose',{'question':'Tôi nên tiêm bao nhiêu đơn vị insulin?'},lambda b:b['topic']=='medicine' and b['safety']['medication_risk'] and 'không tính hay chỉ định liều' in b['answer']),
  ('pregnancy',{'question':'Tôi mang thai HbA1c 6,2%'},lambda b:'không áp bảng ngưỡng' in b['answer'] and '6.2%' not in b['answer']),
  ('food',{'question':'Có cần bỏ cơm hoàn toàn không?'},lambda b:any(s['id']=='carb' for s in b['sources'])),
  ('self_identity',{'question':'bạn là ai','history':[{'role':'user','content':'Đường huyết là gì?'}]},lambda b:b['topic']=='social' and not b['sources'] and 'GlucoGuide' in b['answer']),

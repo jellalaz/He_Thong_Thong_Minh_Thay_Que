@@ -1,25 +1,19 @@
-# Bản demo công khai
+# Xem đồ thị tri thức trên máy
 
-Mở https://glucoguide-giang254.vercel.app/#graph để xem đồ thị, không cần cài Neo4j. Dữ liệu chạy trên AuraDB Free. Chủ tài khoản mở https://console.neo4j.io rồi chọn instance GlucoGuide và Query để truy vấn trực tiếp. Không chia sẻ mật khẩu hoặc tệp môi trường.
+Mở http://localhost:8765/#graph. Bấm **Xem toàn bộ đồ thị** cạnh bộ lọc **Chủ đề**. Không cần nhập lệnh hoặc đăng nhập Neo4j Browser riêng.
 
-Các bước dưới đây dành cho môi trường cục bộ.
+- Dữ liệu được đọc trực tiếp từ Neo4j local: 143 khái niệm, 86 quan hệ và 46 tài liệu.
+- Chọn một chủ đề để đọc rõ tên các khái niệm; bấm một nút để xem các quan hệ liên quan.
+- Dùng **+**, **−**, **Vừa khung** và kéo để thay đổi vùng đang xem.
+- Mở **Danh sách quan hệ**, rồi bấm mã tài liệu để xem nội dung và nguồn gốc.
 
-# Xem đồ thị tri thức
+Đồ thị có 57 cụm rời nhau. Web và Neo4j Browser hiển thị cùng dữ liệu nhưng sắp xếp vị trí khác nhau. Bố cục không tự thêm các quan hệ chưa có trong kho tri thức.
 
-Máy này đã có Neo4j Community trong thư mục `.runtime`. Bạn không cần tải lại để dùng bản demo hiện tại.
+## Neo4j Browser
 
-1. Mở http://localhost:8765/ và chọn **03 · Bản đồ tri thức**.
-2. Kiểm tra dòng **Neo4j đã kết nối**.
-3. Chọn chủ đề **Hiểu chỉ số HbA1c**.
-4. Bấm vào nút **HbA1c** để đọc các quan hệ; bấm mã **a1c** trong bảng để xem đoạn nguồn.
+Mở http://localhost:7474/browser/ trên máy chạy dịch vụ. Database user là `neo4j`; mật khẩu nằm sau `NEO4J_PASSWORD=` trong `.env` cục bộ. Không đưa tệp này lên GitHub.
 
-**Nút** là khái niệm. **Mũi tên** là quan hệ có hướng. Ví dụ: HbA1c → phản ánh → đường huyết trung bình. Mỗi quan hệ gắn với tài liệu. Neo4j lưu/truy vấn cấu trúc này, không tự chẩn đoán, huấn luyện mô hình hoặc xác nhận kiến thức là đúng.
-
-## Khi muốn xem bằng Neo4j Browser
-
-Mở http://localhost:7474/browser/ trên chính máy chạy dịch vụ. Tài khoản mặc định trong dự án là `neo4j`; mật khẩu hiện có trong biến `NEO4J_PASSWORD` của file `.env` cục bộ. Không đăng hoặc chia sẻ file đó. Mở Browser là tùy chọn; xem đồ thị trên web không cần nhập mật khẩu.
-
-Dán truy vấn sau vào ô lệnh và bấm nút chạy:
+Sau khi kết nối, có thể bấm nhãn **Concept** trong bảng Database information để xem nút. Truy vấn sau dành cho việc đối chiếu nút và quan hệ:
 
 ```cypher
 MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
@@ -34,12 +28,22 @@ WHERE r.document = 'a1c'
 RETURN a,r,b;
 ```
 
-## Khi web báo chưa kết nối
+Neo4j lưu và truy vấn quan hệ có nguồn; nó không tự huấn luyện mô hình, chẩn đoán hoặc xác nhận nội dung y khoa.
 
-Mở PowerShell tại thư mục TIEULUAN_FINAL và chạy `./start-neo4j.ps1`. Giữ tiến trình đó chạy. Nếu web chưa mở được, mở PowerShell thứ hai ở cùng thư mục và chạy `./run.ps1`. Sau đó bấm **Kiểm tra kết nối** trên web.
+## Khi chưa kết nối được
 
-Thông báo Authentication failure ở Neo4j Browser nghĩa là cần đối chiếu mật khẩu đang nhập với cấu hình cục bộ; không phải cài lại Neo4j. Link localhost chỉ dùng trên máy cài dịch vụ. Người xem link demo công khai dùng đồ thị tích hợp trong web.
+1. Chạy `start-neo4j.ps1` từ thư mục project nếu cơ sở dữ liệu chưa hoạt động.
+2. Chạy `START_CHATBOT_LOCAL.cmd` để khởi động web và Qwen local.
+3. Mở lại web và bấm **Làm mới** trong mục đồ thị.
 
-## Kịch bản trình diễn 2 phút
+Lỗi Authentication failure trong Neo4j Browser nghĩa là cần đối chiếu thông tin đăng nhập với cấu hình cục bộ, không phải cài lại Neo4j.
 
-Hỏi trợ lý “HbA1c là gì?” → đọc căn cứ a1c → bấm “Xem quan hệ của tài liệu” → bấm nút HbA1c → mở mã a1c để đối chiếu nguồn. Đây là cách minh họa KB + truy xuất + đồ thị mà không cần viết câu lệnh.
+## Phân biệt các địa chỉ
+
+Bản hoàn thiện chạy ở localhost, cần máy cá nhân và các tiến trình đang hoạt động. Người khác không thể truy cập máy này bằng địa chỉ localhost của họ.
+
+https://glucoguide-giang254.vercel.app là bản Vercel/Aura đã triển khai trước đây, chưa được xác nhận đồng bộ Qwen3 4B, 46 tài liệu và bộ luật an toàn mới. Dùng bản local khi trình diễn đầy đủ sản phẩm hiện tại.
+
+## Kịch bản ngắn
+
+Hỏi trợ lý “HbA1c là gì?” → mở nguồn → chọn **Xem quan hệ của tài liệu** → bấm một khái niệm → mở mã `a1c` trong bảng để đối chiếu. Kịch bản này không yêu cầu viết câu lệnh.

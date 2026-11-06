@@ -14,7 +14,7 @@ body=body.replace('Hướng ưu tiên là triển khai giao thức agent thực,
 body=body.replace('điểm lớn hơn 0,04','điểm lớn hơn giá trị lớn nhất giữa 0,04 và 65\\% điểm của đoạn đứng đầu')
 body=body.replace(r'\section{Nhánh dữ liệu}',r'\begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/architecture.png}\caption{Hai nhánh hội tụ về điều phối và trợ giúp, dựng lại từ sơ đồ trên bảng.}\end{figure}'+'\n'+r'\section{Nhánh dữ liệu}')
 body=body.replace(r'\chapter{Code và demo}',r'\input{project_details.tex}'+'\n'+r'\chapter{Code và demo}')
-body+=r'\input{local_qwen.tex}\chapter{Giao diện và kịch bản sử dụng}\input{web_walkthrough.tex}'+'\n'
+body+=r'\input{local_qwen.tex}\input{safety_validation.tex}\chapter{Giao diện và kịch bản sử dụng}\input{web_walkthrough.tex}'+'\n'
 body=body.replace(r'\chapter{Các thành phần và thực nghiệm}',r'\input{data_methodology.tex}\chapter{Các thành phần và thực nghiệm}')
 (p/'project_content.tex').write_text(body,encoding='utf-8')
 intro=r'''\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
@@ -31,6 +31,7 @@ bib=r'''\begin{thebibliography}{99}
 \bibitem{kien} Nguyễn Tự Kiên, Tiểu luận final CT\_07 và Project01 CT\_07, báo cáo học phần.
 \bibitem{lam} Bùi Văn Lâm, Tiểu luận final CT\_03 và Project01 CT\_03, mã 477, báo cáo học phần.
 \bibitem{lora} E. J. Hu và cộng sự, LoRA: Low-Rank Adaptation of Large Language Models, 2021. \url{https://arxiv.org/abs/2106.09685}.
+\bibitem{qwen4} Qwen Team, Qwen3 4B GGUF, model card. \url{https://huggingface.co/Qwen/Qwen3-4B-GGUF}.
 \bibitem{qwen} Qwen Team, Qwen3 1.7B, model card và hướng dẫn suy luận. \url{https://huggingface.co/Qwen/Qwen3-1.7B}.
 \bibitem{gcn} T. Kipf và M. Welling, Semi-Supervised Classification with Graph Convolutional Networks, ICLR 2017. \url{https://arxiv.org/abs/1609.02907}.
 \bibitem{sage} W. Hamilton, R. Ying và J. Leskovec, Inductive Representation Learning on Large Graphs, 2017. \url{https://arxiv.org/abs/1706.02216}.
@@ -42,6 +43,7 @@ bib=r'''\begin{thebibliography}{99}
 \bibitem{kb} Danh mục nguồn tri thức của project được lưu tại data/knowledge.json; mỗi đoạn văn có mã tài liệu, mã nguồn và các bộ ba có căn cứ.
 \end{thebibliography}
 '''
+bib = r'\begingroup\small\setstretch{1.1}' + '\n' + bib.replace(r' \url{',r'\par\noindent\url{') + '\n' + r'\endgroup'
 (p/'bibliography.tex').write_text(bib,encoding='utf-8')
 (p/'bibliography_thesis.tex').write_text('\n'.join(line for line in bib.splitlines() if not any(key in line for key in [r'\bibitem{diabetes}',r'\bibitem{niddk}',r'\bibitem{kb}'])),encoding='utf-8')
 for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINAL',intro+r'\input{abbreviations.tex}\input{data_overview.tex}\part{Nền tảng và tổng hợp}\input{thesis_core.tex}\input{theory_extension.tex}\input{thesis_conclusion.tex}'),('project01_06_02_giangkt.254','PROJECT 01',r'\setcounter{secnumdepth}{2}\input{project_content.tex}')]:
@@ -54,9 +56,10 @@ for fn,title,content in [('tieuluan_final_06_02_giangkt.254','TIỂU LUẬN FINA
 Hà Nội, tháng 11 năm 2026\end{titlepage}\pagenumbering{roman}\tableofcontents\clearpage\listoffigures\clearpage\listoftables\clearpage\pagenumbering{arabic}
 '''
  appendix=r'\input{bibliography.tex}\appendix\chapter{Mã nguồn tái lập}'+'\n'
- for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
+ for f in (['scripts/train_cora.py'] if 'final' in fn else ['scripts/ingest_graph.py','scripts/train_models.py','scripts/train_policy.py','app/agents.py','app/conversation.py','app/main.py','app/safety.py','app/retrieval.py','scripts/test_scenarios.py','scripts/test_chatbot.py']):
   appendix+=r'\section{'+f.replace('_',r'\_')+'}\n'+r'\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../'+f+'}\n'
  if 'final' in fn:
   appendix=appendix.replace(r'\input{bibliography.tex}',r'\input{bibliography_thesis.tex}')
- (p/(fn+'.tex')).write_text(pre+cover+content+appendix+r'\end{document}',encoding='utf-8')
+ metadata=r'\hypersetup{pdftitle={'+title+r'},pdfauthor={Kiều Trường Giang},pdfsubject={Phát triển các hệ thống thông minh}}'+'\n'
+ (p/(fn+'.tex')).write_text(pre+metadata+cover+content+appendix+r'\end{document}',encoding='utf-8')
 print('Report sources assembled')

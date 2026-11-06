@@ -1,0 +1,35 @@
+\chapter{Phân loại an toàn và kiểm thử}
+\section{Mục tiêu và vị trí trong hệ thống}
+Nhận đúng chủ đề chưa đủ để chọn cách phản hồi. Một câu về đường huyết có thể là câu hỏi kiến thức, yêu cầu làm rõ kết quả hoặc mô tả tình huống đang diễn biến. Bộ phân loại an toàn được đặt trước RAG để xem xét đồng thời triệu chứng, số đo, đơn vị, ngữ cảnh và yêu cầu thay đổi thuốc.
+\section{Mức độ ưu tiên và dữ kiện sử dụng}
+\begin{longtable}{p{4.3cm}p{9.7cm}}\toprule Mức hoặc cờ & Cách xử lý\\\midrule
+EMERGENCY & Đưa hành động cấp cứu lên đầu; không chờ Qwen, Neo4j hoặc thông tin thời điểm đo.\\
+URGENT & Khuyến nghị được đánh giá sớm; nêu cách theo dõi và dấu hiệu cần nâng mức xử trí.\\
+ROUTINE & Tiếp tục định tuyến kiến thức, truy xuất và sinh phản hồi theo nguồn.\\
+MEDICATION\_RISK & Cờ độc lập, có thể đi cùng các mức trên; không tính liều, đổi liều hoặc hướng dẫn tự ngừng thuốc.\\\bottomrule\end{longtable}
+Số đo có đơn vị được xét riêng để tránh lấy liều insulin, tuổi hoặc LDL làm đường huyết. Quy đổi mmol/L sang mg/dL dùng hệ số xấp xỉ 18. Tổ hợp đường huyết cao kèm nôn hoặc đau bụng được xét trước bảng diễn giải xét nghiệm. Ngưỡng 250 mg/dL là ngưỡng vận hành của bản thử nghiệm, không được dùng như tiêu chí chẩn đoán DKA.
+
+Mất đáp ứng, co giật, khó thở, lú lẫn hoặc không nuốt được là những dấu hiệu chức năng cần ưu tiên. Cụm run tay, vã mồ hôi và chóng mặt trong bối cảnh tiểu đường được xét theo nguy cơ hạ đường huyết. Luật nhận diện một số cách nói gián tiếp như gọi không trả lời hoặc lay không tỉnh.
+\section{Phủ định và ngữ cảnh}
+Bộ kiểm tra xét phủ định gần cụm triệu chứng và tách các mệnh đề tương phản. Câu hỏi định nghĩa, giả định và lịch sử đã hết triệu chứng được kiểm tra để tránh kích hoạt cấp cứu chỉ vì xuất hiện từ khóa. Khi bổ sung triệu chứng ở lượt sau, số đo gần nhất chỉ được dùng nếu ngữ cảnh còn phù hợp; không chuyển số đo của một người sang người khác.
+\section{Bảo vệ phản hồi}
+Nhánh ưu tiên dùng các thành phần câu tương ứng với nhóm nguy cơ, không so khớp nguyên văn câu test. Bộ sinh và truy xuất không được ghi đè phản hồi này. Bước kiểm tra cuối khôi phục nội dung an toàn nếu một thành phần phía sau đưa ra văn bản không phù hợp.
+
+Với nghi hạ đường huyết, phản hồi nhắc kiểm tra ngay nếu có máy; hướng dẫn xử trí có điều kiện còn tỉnh táo, nuốt được và nêu khi nào cần tìm trợ giúp. Với đường huyết cao kèm triệu chứng cấp tính, phản hồi cảnh báo khả năng DKA hoặc tình trạng cấp tính khác, không xác nhận bệnh qua chat. Yêu cầu đổi thuốc được chuyển về nhóm điều trị.
+\section{Kiểm thử hoàn toàn nội bộ}
+Tệp \path{scripts/test_safety_offline.py} chạy 28 tình huống phân loại và một kiểm tra bảo vệ phản hồi. DNS và kết nối ra ngoài bị chặn; loopback được giữ để dùng các thành phần nội bộ. Nhánh an toàn còn được thử khi Neo4j mất kết nối và khi RAG/Qwen bị thay bằng hàm báo lỗi nếu bị gọi sai thứ tự.
+\begin{longtable}{p{8cm}p{5.8cm}}\caption{Các nhóm kiểm thử an toàn chính.}\\\toprule Tình huống & Kết quả đã kiểm tra\\\midrule\endfirsthead\toprule Tình huống & Kết quả đã kiểm tra\\\midrule\endhead
+Run tay, vã mồ hôi, chóng mặt ở người tiểu đường & URGENT; đo và xử trí có điều kiện.\\
+350 mg/dL kèm nôn, đau bụng & EMERGENCY; không chờ hỏi lúc đói/sau ăn.\\
+300 mg/dL và đề nghị tăng insulin & URGENT, kèm MEDICATION\_RISK.\\
+Bất tỉnh hoặc co giật & EMERGENCY; không cho ăn uống qua miệng.\\
+Đường cao, phủ định dấu hiệu cấp cứu & URGENT, không tự nâng thành cấp cứu.\\
+Tiểu ra máu & URGENT; không tự kết luận nguyên nhân.\\
+HbA1c 6,2\% & ROUTINE; giữ giải thích xét nghiệm.\\
+Đề nghị tự ngừng thuốc & MEDICATION\_RISK; không đổi đơn.\\
+Câu hỏi bữa ăn & ROUTINE; giữ luồng tri thức.\\
+Không dấu, sai chính tả, diễn đạt gián tiếp & Nhận diện được các mẫu trong tập test.\\\bottomrule\end{longtable}
+Toàn bộ 29 điều kiện an toàn và 81 điều kiện hồi quy đạt trong lần chạy lưu tại \path{results/safety_offline.json}; số lần thử kết nối ra ngoài bằng không. Hồi quy gồm hội thoại, nguồn tham khảo, chuyển kết quả mô hình sang chat, giao thức agent và bộ lọc phản hồi.
+\section{Giới hạn áp dụng}
+Phủ định dài, thay đổi thời gian hoặc chủ thể phức tạp có thể vẫn bị hiểu sai. Kết quả xác nhận hành vi phần mềm trên tập câu đã xây dựng, chưa phải đánh giá lâm sàng. Cần rà soát chuyên môn đối với nội dung hướng dẫn, ngưỡng định tuyến và nhóm đặc biệt trước khi mở rộng sử dụng.
+\begin{figure}[H]\centering\includegraphics[width=.94\linewidth,height=.60\textheight,keepaspectratio]{demo-safety-current.png}\caption{Nhánh an toàn trên web local: hành động ưu tiên được đưa trước phần diễn giải.}\end{figure}

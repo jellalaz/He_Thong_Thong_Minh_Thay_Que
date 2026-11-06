@@ -1,0 +1,430 @@
+{
+  "passed": 29,
+  "regression_checks": 81,
+  "external_attempts": [],
+  "cases": [
+    {
+      "case": "hypo_symptoms",
+      "passed": true,
+      "safety": {
+        "level": "URGENT",
+        "medication_risk": false,
+        "reason": "possible_hypoglycemia",
+        "symptoms": [
+          "tremor",
+          "sweating",
+          "dizzy"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Các dấu hiệu này có thể là hạ đường huyết. Kiểm tra đường huyết ngay nếu có máy; không chờ chat nếu tình trạng nặng lên. Với người lớn còn tỉnh táo và nuốt được, nếu số đo dưới 70 mg/dL hoặc nghi hạ đường huyết mà chưa đo được, dùng 15 g carbohydrate hấp thu nhanh, đo lại sau 15 phút và lặp lại nếu vẫn thấp. Nếu không cải thiện hoặc triệu chứng nặng hơn, cần trợ giúp y tế ngay. Nếu bất tỉnh, co giật, lơ mơ hoặc không nuốt được: nhờ người bên cạnh gọi cấp cứu, không cho ăn uống qua miệng. Trẻ em và thai kỳ cần kế hoạch xử trí riêng với nhóm chăm sóc."
+    },
+    {
+      "case": "dka",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          350.0
+        ],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    },
+    {
+      "case": "insulin_change",
+      "passed": true,
+      "safety": {
+        "level": "URGENT",
+        "medication_risk": true,
+        "reason": "high_glucose",
+        "symptoms": [],
+        "glucose_mg_dl": [
+          300.0
+        ],
+        "context_used": false
+      },
+      "answer": "Số đường huyết bạn nêu đang cao; hãy liên hệ nhóm điều trị hoặc cơ sở y tế để được đánh giá sớm, nhất là nếu đo lại vẫn cao. Nếu có máy, kiểm tra lại và ghi kết quả, đơn vị, thời điểm cùng triệu chứng; theo kế hoạch xử trí ngày ốm đã được bác sĩ hướng dẫn nếu bạn có. Nếu nôn, đau bụng, khó thở, lơ mơ hoặc không giữ được nước uống, hãy đến khoa cấp cứu ngay. Không dùng ngưỡng xét nghiệm lúc đói để kết luận trường hợp này. Không tự tăng, giảm, ngừng hoặc tiêm bù insulin/thuốc theo gợi ý trên chat. Đặc biệt, tự tăng insulin có thể gây hạ đường huyết nguy hiểm; mình không tính hay chỉ định liều cho bạn. Hãy liên hệ nhóm điều trị để xử lý số đo hiện tại. Nếu xuất hiện nôn, đau bụng, khó thở, lơ mơ hoặc không nuốt được, cần cấp cứu ngay."
+    },
+    {
+      "case": "unconscious",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "severe_function_impairment",
+        "symptoms": [
+          "unconscious",
+          "seizure"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Khi người bệnh bất tỉnh, co giật, lơ mơ hoặc không nuốt được, không cho ăn uống qua miệng. Nhờ người ở cạnh hỗ trợ và làm theo hướng dẫn của nhân viên cấp cứu."
+    },
+    {
+      "case": "high_without_red_flags",
+      "passed": true,
+      "safety": {
+        "level": "URGENT",
+        "medication_risk": false,
+        "reason": "high_glucose",
+        "symptoms": [],
+        "glucose_mg_dl": [
+          300.0
+        ],
+        "context_used": false
+      },
+      "answer": "Số đường huyết bạn nêu đang cao; hãy liên hệ nhóm điều trị hoặc cơ sở y tế để được đánh giá sớm, nhất là nếu đo lại vẫn cao. Nếu có máy, kiểm tra lại và ghi kết quả, đơn vị, thời điểm cùng triệu chứng; theo kế hoạch xử trí ngày ốm đã được bác sĩ hướng dẫn nếu bạn có. Nếu nôn, đau bụng, khó thở, lơ mơ hoặc không giữ được nước uống, hãy đến khoa cấp cứu ngay. Không dùng ngưỡng xét nghiệm lúc đói để kết luận trường hợp này."
+    },
+    {
+      "case": "blood_urine",
+      "passed": true,
+      "safety": {
+        "level": "URGENT",
+        "medication_risk": false,
+        "reason": "blood_in_urine",
+        "symptoms": [
+          "blood_urine"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Bạn nên được cơ sở y tế đánh giá sớm khi tiểu ra máu; không tự quy triệu chứng này cho tiểu đường. Chatbot chưa đủ căn cứ xác định nguyên nhân. Nếu kèm tình trạng lơ mơ, khó thở hoặc diễn biến nặng, cần trợ giúp cấp cứu ngay."
+    },
+    {
+      "case": "a1c",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "educational_or_resolved_history",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "HbA1c 6.2% trong khoảng sàng lọc tiền đái tháo đường theo bảng tham chiếu NIDDK cho người không mang thai. Đây chưa phải kết luận chẩn đoán của riêng bạn. Nếu bạn đã được chẩn đoán, mục tiêu điều trị cần trao đổi riêng với bác sĩ.\n\nHbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả."
+    },
+    {
+      "case": "stop_medicine",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": true,
+        "reason": "medication_change",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Việc đổi hoặc tự ngừng thuốc cần trao đổi với bác sĩ hoặc dược sĩ đang theo dõi bạn; ghi lại tên thuốc, liều được kê, giờ dùng, kết quả đường huyết và triệu chứng để được hướng dẫn. Không tự tăng, giảm, ngừng hoặc tiêm bù insulin/thuốc theo gợi ý trên chat. Đặc biệt, tự tăng insulin có thể gây hạ đường huyết nguy hiểm; mình không tính hay chỉ định liều cho bạn. Hãy liên hệ nhóm điều trị để xử lý số đo hiện tại. Nếu xuất hiện nôn, đau bụng, khó thở, lơ mơ hoặc không nuốt được, cần cấp cứu ngay."
+    },
+    {
+      "case": "nutrition",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu."
+    },
+    {
+      "case": "no_accents",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          350.0
+        ],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    },
+    {
+      "case": "indirect_unconscious",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "severe_function_impairment",
+        "symptoms": [
+          "unconscious"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Khi người bệnh bất tỉnh, co giật, lơ mơ hoặc không nuốt được, không cho ăn uống qua miệng. Nhờ người ở cạnh hỗ trợ và làm theo hướng dẫn của nhân viên cấp cứu."
+    },
+    {
+      "case": "indirect_breathing",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "severe_function_impairment",
+        "symptoms": [
+          "breathing",
+          "confused"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Khi người bệnh bất tỉnh, co giật, lơ mơ hoặc không nuốt được, không cho ăn uống qua miệng. Nhờ người ở cạnh hỗ trợ và làm theo hướng dẫn của nhân viên cấp cứu."
+    },
+    {
+      "case": "indirect_gi",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    },
+    {
+      "case": "low_number",
+      "passed": true,
+      "safety": {
+        "level": "URGENT",
+        "medication_risk": false,
+        "reason": "possible_hypoglycemia",
+        "symptoms": [],
+        "glucose_mg_dl": [
+          55.0
+        ],
+        "context_used": false
+      },
+      "answer": "Các dấu hiệu này có thể là hạ đường huyết. Kiểm tra đường huyết ngay nếu có máy; không chờ chat nếu tình trạng nặng lên. Với người lớn còn tỉnh táo và nuốt được, nếu số đo dưới 70 mg/dL hoặc nghi hạ đường huyết mà chưa đo được, dùng 15 g carbohydrate hấp thu nhanh, đo lại sau 15 phút và lặp lại nếu vẫn thấp. Nếu không cải thiện hoặc triệu chứng nặng hơn, cần trợ giúp y tế ngay. Nếu bất tỉnh, co giật, lơ mơ hoặc không nuốt được: nhờ người bên cạnh gọi cấp cứu, không cho ăn uống qua miệng. Trẻ em và thai kỳ cần kế hoạch xử trí riêng với nhóm chăm sóc."
+    },
+    {
+      "case": "converted_units",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          349.2
+        ],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    },
+    {
+      "case": "educational",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "educational_or_resolved_history",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Tiểu đường (đái tháo đường) là bệnh mạn tính xảy ra khi cơ thể không tạo đủ insulin hoặc sử dụng insulin không hiệu quả, khiến đường huyết tăng. Insulin là hormone giúp điều hòa đường trong máu. Có nhiều loại bệnh; xét nghiệm và thăm khám giúp xác định loại và kế hoạch theo dõi. Điều trị và theo dõi phù hợp giúp giảm nguy cơ biến chứng."
+    },
+    {
+      "case": "hypothetical",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "educational_or_resolved_history",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng.\n\nKhi được kê thuốc, nên hỏi rõ giờ dùng, cách xử lý khi quên liều và tác dụng phụ cần báo. Nếu đã quên liều hoặc có khó chịu, cần tên thuốc, dạng thuốc, liều kê và thời điểm để hỏi bác sĩ hoặc dược sĩ. Chatbot không tự tính liều bù, đổi thuốc hoặc khuyên uống gấp đôi."
+    },
+    {
+      "case": "negative_severe",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Nếu đang bất tỉnh, co giật, lú lẫn rõ, khó thở hoặc không nuốt được, cần người bên cạnh gọi cấp cứu địa phương hoặc đưa đến cơ sở y tế ngay. Không tự lái xe và không cố cho ăn uống khi khả năng nuốt bị ảnh hưởng."
+    },
+    {
+      "case": "contrast",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "severe_function_impairment",
+        "symptoms": [
+          "breathing"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Khi người bệnh bất tỉnh, co giật, lơ mơ hoặc không nuốt được, không cho ăn uống qua miệng. Nhờ người ở cạnh hỗ trợ và làm theo hướng dẫn của nhân viên cấp cứu."
+    },
+    {
+      "case": "insulin_number_not_glucose",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Insulin giúp kiểm soát đường huyết. Type 1 cần insulin vì cơ thể không tự tạo đủ; một số người type 2 cũng cần insulin hoặc thuốc khác, có thể ở từng giai đoạn. Bắt đầu insulin không tự đồng nghĩa với giai đoạn cuối. Kế hoạch điều trị được chọn theo nhu cầu từng người, không tự ngừng insulin.\n\nType 1: hệ miễn dịch phá hủy tế bào sản xuất insulin, cơ thể tạo rất ít hoặc không tạo insulin; người bệnh cần insulin để sống. Type 2: cơ thể sử dụng insulin kém hiệu quả và có thể không tạo đủ insulin. Cả hai có thể xuất hiện ở nhiều lứa tuổi; tuổi hoặc cân nặng riêng lẻ không xác định được type. Cần khám và xét nghiệm để phân biệt."
+    },
+    {
+      "case": "lipids_not_glucose",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "educational_or_resolved_history",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Cần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận."
+    },
+    {
+      "case": "mixed_tests",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [],
+        "glucose_mg_dl": [
+          95.0
+        ],
+        "context_used": false
+      },
+      "answer": "Bạn đo lúc đói, sau ăn hay ngẫu nhiên, và đo tại nhà hay xét nghiệm ở cơ sở y tế? Tôi chưa áp ngưỡng lúc đói cho số đo thiếu bối cảnh.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận."
+    },
+    {
+      "case": "resolved_history",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "educational_or_resolved_history",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Bạn đo lúc đói, sau ăn hay ngẫu nhiên, và đo tại nhà hay xét nghiệm ở cơ sở y tế? Tôi chưa áp ngưỡng lúc đói cho số đo thiếu bối cảnh.\n\nCần biết đơn vị và thời điểm đo. Với xét nghiệm huyết tương lúc đói sau ít nhất 8 giờ không ăn, NIDDK nêu: dưới 100 mg/dL; tiền đái tháo đường 100–125 mg/dL; ngưỡng đái tháo đường từ 126 mg/dL. Không áp bảng này cho số đo sau ăn. Máy đo tại nhà không xác lập chẩn đoán; bác sĩ xem xét xét nghiệm xác nhận."
+    },
+    {
+      "case": "new_symptom_after_high",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          350.0
+        ],
+        "context_used": true
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    },
+    {
+      "case": "topic_change",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Bạn có thể thử một bữa cơm theo cách chia đĩa:\n- Rau luộc hoặc salad không ngọt, không nhiều tinh bột: nửa đĩa.\n- Cá, thịt nạc, trứng hoặc đậu phụ: một phần tư đĩa.\n- Cơm hoặc thực phẩm chứa tinh bột: một phần tư còn lại.\n- Đồ uống: nước lọc.\nĐây là ví dụ phân nhóm thực phẩm; phần ăn thực tế cần phù hợp nhu cầu và thuốc của bạn. Không tự ấn định số bát cơm hay số gram khi chưa biết nhu cầu."
+    },
+    {
+      "case": "different_patient",
+      "passed": true,
+      "safety": {
+        "level": "ROUTINE",
+        "medication_risk": false,
+        "reason": "no_priority_rule",
+        "symptoms": [
+          "dizzy"
+        ],
+        "glucose_mg_dl": [],
+        "context_used": false
+      },
+      "answer": "Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu."
+    },
+    {
+      "case": "dka_and_medication",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": true,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          350.0
+        ],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat. Không tự tăng, giảm, ngừng hoặc tiêm bù insulin/thuốc theo gợi ý trên chat. Đặc biệt, tự tăng insulin có thể gây hạ đường huyết nguy hiểm; mình không tính hay chỉ định liều cho bạn. Hãy liên hệ nhóm điều trị để xử lý số đo hiện tại. Nếu xuất hiện nôn, đau bụng, khó thở, lơ mơ hoặc không nuốt được, cần cấp cứu ngay."
+    },
+    {
+      "case": "acute_question_definition",
+      "passed": true,
+      "safety": {
+        "level": "EMERGENCY",
+        "medication_risk": false,
+        "reason": "possible_dka",
+        "symptoms": [
+          "vomiting",
+          "abdomen"
+        ],
+        "glucose_mg_dl": [
+          350.0
+        ],
+        "context_used": false
+      },
+      "answer": "Hãy đến khoa cấp cứu ngay hoặc nhờ người bên cạnh gọi cấp cứu địa phương. Không tự lái xe và không trì hoãn để chờ chat hay bổ sung thời điểm đo. Đường huyết cao kèm nôn hoặc đau bụng có thể là dấu hiệu nhiễm toan ceton do đái tháo đường (DKA) hoặc một tình trạng cấp tính khác; cần được đánh giá trực tiếp, chưa thể chẩn đoán chắc chắn qua chat."
+    }
+  ]
+}

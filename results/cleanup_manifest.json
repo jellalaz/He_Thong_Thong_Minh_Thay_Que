@@ -1,0 +1,289 @@
+{
+  "schema_version": 2,
+  "bytes_removed": 15684663550,
+  "known_files_removed": 396,
+  "file_count_complete": false,
+  "runs": [
+    {
+      "completed_at": "2026-11-06T02:48:29.1939524+07:00",
+      "bytes_removed": 8156985464,
+      "files_removed": 379.0,
+      "items": [
+        {
+          "path": ".local-models/download-parts",
+          "bytes": 3441185608,
+          "files": 206
+        },
+        {
+          "path": ".local-models/hf-cache/hub/models--Qwen--Qwen3-1.7B/blobs/169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5.incomplete",
+          "bytes": 3334471680,
+          "files": 1
+        },
+        {
+          "path": ".runtime/llama-cpp",
+          "bytes": 676530461,
+          "files": 53
+        },
+        {
+          "path": ".runtime/llama-b12128-bin-win-cuda-12.4-x64.zip",
+          "bytes": 288918265,
+          "files": 1
+        },
+        {
+          "path": ".runtime/llama-b12128-bin-win-vulkan-x64.zip",
+          "bytes": 37684327,
+          "files": 1
+        },
+        {
+          "path": ".runtime/neo4j.zip",
+          "bytes": 246525398,
+          "files": 1
+        },
+        {
+          "path": ".runtime/pandoc.zip",
+          "bytes": 42983200,
+          "files": 1
+        },
+        {
+          "path": ".runtime/tectonic.zip",
+          "bytes": 21060223,
+          "files": 1
+        },
+        {
+          "path": ".runtime/cloudflared.exe",
+          "bytes": 55390512,
+          "files": 1
+        },
+        {
+          "path": ".runtime/pdf-qa",
+          "bytes": 10650610,
+          "files": 51
+        },
+        {
+          "path": ".runtime/tunnel-new.stderr.log",
+          "bytes": 67787,
+          "files": 1
+        },
+        {
+          "path": ".runtime/tunnel-new.stdout.log",
+          "bytes": 0,
+          "files": 1
+        },
+        {
+          "path": ".runtime/tunnel.stderr.log",
+          "bytes": 47287,
+          "files": 1
+        },
+        {
+          "path": ".runtime/tunnel.stdout.log",
+          "bytes": 0,
+          "files": 1
+        },
+        {
+          "path": ".runtime/api.stderr.log",
+          "bytes": 514,
+          "files": 1
+        },
+        {
+          "path": ".runtime/api.stdout.log",
+          "bytes": 1671,
+          "files": 1
+        },
+        {
+          "path": ".runtime/web.stderr.log",
+          "bytes": 202,
+          "files": 1
+        },
+        {
+          "path": ".runtime/web.stdout.log",
+          "bytes": 6159,
+          "files": 1
+        },
+        {
+          "path": ".runtime/local-qwen.err.log",
+          "bytes": 406,
+          "files": 1
+        },
+        {
+          "path": ".runtime/local-qwen.out.log",
+          "bytes": 1018,
+          "files": 1
+        },
+        {
+          "path": ".runtime/local-qwen.pid",
+          "bytes": 7,
+          "files": 1
+        },
+        {
+          "path": ".runtime/complete_graph.py",
+          "bytes": 4396,
+          "files": 1
+        },
+        {
+          "path": ".runtime/update_reports_current.py",
+          "bytes": 23404,
+          "files": 1
+        },
+        {
+          "path": ".runtime/finalize_sources.py",
+          "bytes": 5145,
+          "files": 1
+        },
+        {
+          "path": ".runtime/probe_generation.py",
+          "bytes": 833,
+          "files": 1
+        },
+        {
+          "path": ".runtime/refine_reports.py",
+          "bytes": 12229,
+          "files": 1
+        },
+        {
+          "path": ".runtime/dialogue-comparison.json",
+          "bytes": 7771,
+          "files": 1
+        },
+        {
+          "path": ".runtime/dialogue-live-checks.json",
+          "bytes": 206698,
+          "files": 1
+        },
+        {
+          "path": ".runtime/safety-offline-results.json",
+          "bytes": 24845,
+          "files": 1
+        },
+        {
+          "path": "app/__pycache__",
+          "bytes": 117616,
+          "files": 13
+        },
+        {
+          "path": "scripts/__pycache__",
+          "bytes": 53318,
+          "files": 13
+        },
+        {
+          "path": "experiments/local_qwen/__pycache__",
+          "bytes": 14684,
+          "files": 1
+        },
+        {
+          "path": "README.txt",
+          "bytes": 5864,
+          "files": 1
+        },
+        {
+          "path": "reports/converted.tex",
+          "bytes": 206426,
+          "files": 1
+        },
+        {
+          "path": "reports/legacy.tex",
+          "bytes": 203417,
+          "files": 1
+        },
+        {
+          "path": "reports/demo-chat.png",
+          "bytes": 88754,
+          "files": 1
+        },
+        {
+          "path": "reports/demo-graph.png",
+          "bytes": 53091,
+          "files": 1
+        },
+        {
+          "path": "reports/demo-local-context.png",
+          "bytes": 78361,
+          "files": 1
+        },
+        {
+          "path": "reports/demo-local-qwen.png",
+          "bytes": 76281,
+          "files": 1
+        },
+        {
+          "path": "reports/demo-sources.png",
+          "bytes": 91779,
+          "files": 1
+        },
+        {
+          "path": "reports/project01_06_02_giangkt.254.aux",
+          "bytes": 7446,
+          "files": 1
+        },
+        {
+          "path": "reports/project01_06_02_giangkt.254.log",
+          "bytes": 39893,
+          "files": 1
+        },
+        {
+          "path": "reports/project01_06_02_giangkt.254.out",
+          "bytes": 5759,
+          "files": 1
+        },
+        {
+          "path": "reports/project01_06_02_giangkt.254.toc",
+          "bytes": 2853,
+          "files": 1
+        },
+        {
+          "path": "reports/tieuluan_final_06_02_giangkt.254.aux",
+          "bytes": 46629,
+          "files": 1
+        },
+        {
+          "path": "reports/tieuluan_final_06_02_giangkt.254.log",
+          "bytes": 48623,
+          "files": 1
+        },
+        {
+          "path": "reports/tieuluan_final_06_02_giangkt.254.out",
+          "bytes": 18528,
+          "files": 1
+        },
+        {
+          "path": "reports/tieuluan_final_06_02_giangkt.254.toc",
+          "bytes": 15486,
+          "files": 1
+        }
+      ]
+    },
+    {
+      "completed_at": "2026-11-06T08:40:21.9121835+07:00",
+      "bytes_removed": 7069204,
+      "files_removed": null,
+      "targets_removed": 2,
+      "note": "Removed duplicate screenshot and PDF preview folder. Byte counts recovered from the preceding inventory; nested file count was not saved.",
+      "items": [
+        {
+          "path": ".runtime/pdf-qa",
+          "bytes": 6980334
+        },
+        {
+          "path": "results/graph_ui_desktop.png",
+          "bytes": 88870
+        }
+      ]
+    },
+    {
+      "completed_at": "2026-11-06T08:44:27.5723284+07:00",
+      "bytes_removed": 7520608882,
+      "files_removed": 17.0,
+      "items": [
+        {
+          "path": ".local-models/hf-cache",
+          "bytes": 7520608882,
+          "files": 17
+        },
+        {
+          "path": ".local-models/qwen4-parts",
+          "bytes": 0,
+          "files": 0
+        }
+      ]
+    }
+  ]
+}

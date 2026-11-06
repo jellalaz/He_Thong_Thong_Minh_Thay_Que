@@ -6,7 +6,7 @@ Tỷ lệ lỗi giữa Moderate và High cho thấy ranh giới của nhãn tổ
 \begin{figure}[htbp]\centering\includegraphics[width=\linewidth]{figures/regression.png}\caption{Dự đoán và phần dư của MLP trên 89 mẫu kiểm tra.}\end{figure}
 Đường chéo thể hiện dự đoán bằng giá trị thật. Những điểm cách xa đường chéo đóng góp lớn vào MAE. Phần dư được tính bằng giá trị thực trừ dự đoán; phần dư dương biểu thị dự đoán thấp hơn thực tế. Không thể dùng một chỉ số tổng hợp để bảo đảm mọi nhóm đầu vào có sai số tương đương. Bản này chưa xây dựng khoảng dự báo và chưa hiệu chỉnh bất định.
 \section{Hợp đồng dữ liệu và API}
-GET /api/schema cung cấp thứ tự đặc trưng. GET /api/examples cung cấp một mẫu từ mỗi bộ dữ liệu để trình diễn. POST /api/chat nhận question, task và values. Với task knowledge, hệ thống truy xuất văn bản; với classification hoặc regression, values phải đủ các trường tương ứng. Kết quả gồm answer, result, sources, graph\_evidence và trace.
+GET /api/schema cung cấp thứ tự đặc trưng. GET /api/examples cung cấp một mẫu từ mỗi bộ dữ liệu để trình diễn. POST /api/chat nhận question, task và values. Với task knowledge, hệ thống truy xuất văn bản; với classification hoặc regression, values phải đủ các trường tương ứng. Kết quả gồm answer, result, safety, sources, graph\_evidence và trace. Trường safety tách mức ưu tiên khỏi cờ rủi ro thuốc; nhánh ưu tiên có thể trả trước khi suy luận mô hình.
 
 Trường result của phân loại gồm label, scores và scope. scores là đầu ra xác suất lớp của mô hình trên nhãn tổng hợp, chưa được hiệu chỉnh. Trường result của hồi quy gồm value và scope. Việc tách cấu trúc này tránh dùng chung một con số cho hai ý nghĩa khác nhau. Dữ liệu mẫu là mẫu của bộ nghiên cứu, không phải hồ sơ do người dùng cung cấp.
 
@@ -26,4 +26,4 @@ Phân loại và dự đoán & Hai lựa chọn trong phòng thực nghiệm, c�
 Web/sách đến KB & Kế thừa KB đã biên soạn từ tiểu luận 02; bảo toàn mã nguồn tài liệu, không tự động thu thập web ở thời điểm chạy.\\
 KB và RAG & TF-IDF chọn đoạn văn; Neo4j trả các quan hệ cùng mã tài liệu; phản hồi trích đoạn có nguồn.\\
 Agent và RL + rule & Handler và MessageBus xử lý yêu cầu; chính sách học một bước chọn kiểu phản hồi, luật chặn thiếu bằng chứng.\\
-Tư vấn, trợ giúp & Chatbot giải thích kiến thức và phạm vi đầu ra; bản local dùng Qwen LoRA cho câu kiến thức có nguồn, còn câu thông số và thuốc theo luật.\\\bottomrule\end{longtable}
+Tư vấn, trợ giúp & Chatbot giải thích kiến thức và phạm vi đầu ra; bản local dùng Qwen3 4B cho câu kiến thức có nguồn, còn câu thông số và thuốc theo luật.\\\bottomrule\end{longtable}

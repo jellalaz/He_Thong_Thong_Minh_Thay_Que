@@ -232,12 +232,12 @@ giảm khó khăn học phụ thuộc dài hạn do biến mất gradient trong 
 
 • 2001 --- Random Forest (Leo Breiman): Đề xuất thuật toán Rừng ngẫu
 nhiên kết hợp Bagging và lựa chọn ngẫu nhiên tập đặc trưng, trở thành
-thuật toán mạnh mẽ và bền bỉ hàng đầu cho dữ liệu dạng bảng.
+một phương pháp thường dùng cho dữ liệu dạng bảng.
 
 • 2006 --- Geoffrey Hinton và "Deep Learning": Hinton cùng các cộng sự
 công bố kỹ thuật tiền huấn luyện từng lớp (Layer-wise Pre-training) cho
 mạng Deep Belief Networks, góp phần khôi phục quan tâm đến huấn luyện
-mạng sâu và nhen nhóm sự phát triển của học sâu.
+mạng sâu.
 \end{quote}
 
 Giai đoạn 5: Cuộc cách mạng Học sâu (Deep Learning Revolution) (2010 --
@@ -256,13 +256,12 @@ ngữ nghĩa trong không gian liên tục (Vector Embedding), nắm bắt quan 
 ngữ nghĩa tinh tế.
 
 • 2014 --- Mạng sinh đối kháng GAN (Ian Goodfellow): Đề xuất kiến trúc
-hai mạng Generator và Discriminator thi đấu đối kháng, khai sinh lĩnh
-vực tạo sinh hình ảnh chân thực.
+hai mạng Generator và Discriminator được huấn luyện đối kháng để học
+phân phối dữ liệu và tạo mẫu mới.
 
 • 2015 --- Mạng ResNet (Kaiming He et al.): Sáng tạo cơ chế kết nối tắt
 (Residual Skip Connections), cho phép huấn luyện thành công các mạng
-nơ-ron sâu tới 152 lớp mà không bị suy thoái gradient, vượt qua độ chính
-xác của con người trên ImageNet.
+nơ-ron sâu tới 152 lớp, giảm khó khăn khi tối ưu mạng nhiều tầng.
 
 • 2016 --- AlphaGo đánh bại Lee Sedol: Mô hình AlphaGo (DeepMind) kết
 hợp Deep RL và tìm kiếm cây Monte Carlo thắng kỳ thủ cờ vây hàng đầu thế
@@ -271,7 +270,7 @@ giới 4- 1, cho thấy khả năng áp dụng học sâu kết hợp tìm kiế
 • 2017 --- Kiến trúc Transformer ("Attention Is All You Need"): Đội ngũ
 nghiên cứu Google đề xuất kiến trúc Transformer dựa thuần túy trên cơ
 chế tự chú ý (Self-Attention), loại bỏ hoàn toàn cấu trúc tuần tự của
-RNN, tạo bước ngoặt khai sinh các mô hình nền tảng như BERT, GPT.
+RNN trong kiến trúc gốc và là cơ sở cho các mô hình như BERT, GPT.
 \end{quote}
 
 Giai đoạn 6: Kỷ nguyên AI Tạo sinh, LLM và Multimodal Agents (2020 --
@@ -279,13 +278,13 @@ Hiện tại)
 
 \begin{quote}
 • 2020 --- GPT-3 (OpenAI): Mô hình ngôn ngữ với 175 tỉ tham số thể hiện
-năng lực học vài ví dụ (Few-shot In-context Learning) phi thường mà
+khả năng học từ một số ví dụ trong ngữ cảnh (Few-shot In-context Learning) mà
 không cần tái huấn luyện trọng số.
 
-• 2022 --- ChatGPT \& Bùng nổ AI Đại chúng: Kết hợp tinh chỉnh chỉ dẫn
+• 2022 --- ChatGPT và ứng dụng hội thoại: Kết hợp tinh chỉnh chỉ dẫn
 (Instruction Tuning) và Học tăng cường từ phản hồi của con người (RLHF),
-ChatGPT cán mốc 100 triệu người dùng chỉ sau 2 tháng, mở màn cuộc cách
-mạng AI tạo sinh thương mại hóa toàn cầu.
+các hệ hội thoại trở thành một hướng ứng dụng phổ biến, đồng thời đặt ra
+những yêu cầu về kiểm chứng thông tin, quyền riêng tư và đánh giá đầu ra.
 
 • Từ 2023: Mô hình nền tảng đa phương thức kết hợp văn bản, hình ảnh và
 âm thanh. Các tác tử dùng mô hình ngôn ngữ để lựa chọn công cụ và thực
@@ -295,8 +294,8 @@ sát con người.
 
 \section{Bản đồ phân loại toàn cảnh các kỹ thuật AI}\label{bux1ea3n-ux111ux1ed3-phuxe2n-loux1ea1i-touxe0n-cux1ea3nh-cuxe1c-kux1ef9-thuux1eadt-ai}
 
-Dưới đây là sơ đồ kiến trúc phân cấp toàn cảnh, thể hiện mối quan hệ hữu
-cơ giữa các trường phái Trí tuệ Nhân tạo từ cổ điển đến hiện đại:
+Sơ đồ phân cấp trình bày quan hệ giữa các nhóm phương pháp và phạm vi
+ứng dụng của chúng:
 
 \begin{figure}[H]
 \centering
@@ -308,9 +307,9 @@ cơ giữa các trường phái Trí tuệ Nhân tạo từ cổ điển đến 
 
 \section{Ba trụ cột tạo nên sự bùng nổ của Deep Learning sau 2012}\label{ba-trux1ee5-cux1ed9t-tux1ea1o-nuxean-sux1ef1-buxf9ng-nux1ed5-cux1ee7a-deep-learning-sau-2012}
 
-Tại sao các ý tưởng mạng nơ-ron đã xuất hiện từ thập niên 1980 nhưng
-phải đợi tới sau năm 2012 mới tạo nên cuộc cách mạng công nghệ bùng nổ?
-Câu trả lời nằm ở sự hội tụ đồng thời của ba trụ cột nền tảng:
+Sự phát triển của học sâu sau năm 2012 gắn với khả năng khai thác dữ liệu
+lớn, năng lực tính toán và những tiến bộ về thuật toán. Ba yếu tố này
+bổ sung cho nhau trong quá trình huấn luyện mạng:
 
 \Needspace{7\baselineskip}
 \captionof{table}{Ba trụ cột phát triển của học sâu}\label{tab:legacy-1.2}

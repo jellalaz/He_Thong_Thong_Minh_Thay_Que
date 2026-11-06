@@ -42,5 +42,5 @@ assert isinstance(regression['result']['value'], float)
 assert 'sai số tuyệt đối' in regression['answer'] and 'không phải đường huyết' in regression['answer']
 assert [s['id'] for s in regression['sources']] == ['model']
 
-assert client.get('/api/knowledge').json()['total'] == 26
+assert client.get('/api/knowledge').json()['total'] == 46
 print('7 expanded RAG and model explanation checks passed')

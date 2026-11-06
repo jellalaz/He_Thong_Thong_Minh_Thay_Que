@@ -1,5 +1,6 @@
 \chapter*{Dữ liệu và phạm vi thực nghiệm}\addcontentsline{toc}{chapter}{Dữ liệu và phạm vi thực nghiệm}
 Các thực nghiệm khảo sát bốn dạng đầu vào: dữ liệu bảng, ảnh, chuỗi thời gian và đồ thị. Mỗi dạng có mục tiêu, phép chia và chỉ số đánh giá riêng. Bảng dưới tổng hợp nguồn dữ liệu; các chương tương ứng trình bày quy trình xử lý và kết quả.
+\begingroup\small\setstretch{1.15}
 \begin{longtable}{p{3cm}p{5cm}p{6cm}}\caption{Nguồn dữ liệu và nhiệm vụ trong tiểu luận.}\\\toprule Dữ liệu & Nguồn & Nhiệm vụ\\\midrule\endfirsthead\toprule Dữ liệu & Nguồn & Nhiệm vụ\\\midrule\endhead
 Diabetes Risk 50K & Kaggle / Mobeen Fatimah & Phân loại ba nhãn từ dữ liệu bảng tổng hợp, Chương 2.\\
 Vietnam Housing 2024 & Kaggle / Nguyễn Tiến Nhân & Hồi quy giá bất động sản, Chương 2.\\
@@ -8,8 +9,7 @@ FPT.VN và GC=F & Yahoo Finance & Dự báo chuỗi giá theo thời gian, Chư�
 Kho tri thức ba miền & Các nguồn được định danh trong artifact & Truy xuất thông tin về tiểu đường, chứng khoán và giá vàng, Chương 5.\\
 Cora & Kho dữ liệu tkipf/pygcn & Phân loại chủ đề 2.708 bài báo từ 1.433 đặc trưng và liên kết trích dẫn, Chương 6.\\
 Thị trường hai người bán & Môi trường mô phỏng của bài thực hành AGENT 02 & So sánh Q-learning với agent theo luật, Chương 7.\\\bottomrule\end{longtable}
-Nguồn Housing: \par\noindent\url{https://www.kaggle.com/datasets/nguyentiennhan/vietnam-housing-dataset-2024}.\par  Nguồn MNIST: \par\noindent\url{https://storage.googleapis.com/cvdf-datasets/mnist/}.\par  Nguồn Cora: \par\noindent\url{https://github.com/tkipf/pygcn/tree/master/data/cora}.\par 
+Nguồn Housing: \par\noindent\url{https://www.kaggle.com/datasets/nguyentiennhan/vietnam-housing-dataset-2024}.\par  Nguồn MNIST: \par\noindent\url{https://storage.googleapis.com/cvdf-datasets/mnist/}.\par  Nguồn Cora: \par\noindent\url{https://github.com/tkipf/pygcn/tree/master/data/cora}.\par
+\endgroup
 
-Notebook \path{legacy_tieuluan/main.ipynb} và \path{legacy_tieuluan/Tieuluan02_06_02_Giangkt.ipynb} lưu quy trình các thực nghiệm học phần. Kết quả dữ liệu bảng, CNN và chuỗi được lưu dưới \path{legacy_tieuluan/artifacts_tl03/}; thí nghiệm Cora nằm trong \path{results/cora/}; dữ liệu AGENT 02 nằm trong \path{experiments/agent02/}. Tệp dữ liệu lớn được tải theo nguồn gốc thay vì đóng gói cùng báo cáo.
-
-Việc đánh giá chú trọng khả năng tái lập và phạm vi kết luận. Chỉ số trên dữ liệu tổng hợp không thể thay cho đánh giá lâm sàng; kết quả dự báo lịch sử không phải cam kết về giá tương lai; lợi nhuận trong mô phỏng không đại diện cho hiệu quả kinh doanh thực tế.
+Notebook trong \path{legacy_tieuluan/} lưu quy trình học phần; kết quả dữ liệu bảng, CNN và chuỗi nằm tại \path{legacy_tieuluan/artifacts_tl03/}. Cora có kết quả ở \path{results/cora/}, mô phỏng hai người bán ở \path{experiments/agent02/}. Các chỉ số chỉ có ý nghĩa trong phạm vi từng dữ liệu và phép chia đã công bố.

@@ -94,11 +94,11 @@
     "scope": "442 người đã mắc bệnh; điểm nghiên cứu không phải glucose, HbA1c hoặc % nguy cơ."
   },
   "knowledge": {
-    "file": "data/knowledge.json",
-    "documents": 26,
-    "used_sources": 13,
-    "source_registry_entries": 17,
-    "triples": 40,
+    "file": "data/knowledge.json + data/knowledge_dialogue.json",
+    "documents": 46,
+    "used_sources": 19,
+    "source_registry_entries": 23,
+    "triples": 86,
     "sources": [
       {
         "id": "diagnosis",
@@ -127,9 +127,12 @@
         "documents": [
           "plate",
           "carb",
-          "fruit"
+          "fruit",
+          "meal_example",
+          "rice_portion",
+          "fruit_whole"
         ],
-        "count": 3
+        "count": 6
       },
       {
         "id": "who",
@@ -148,9 +151,12 @@
         "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/managing-diabetes",
         "documents": [
           "medicine",
-          "monitor"
+          "monitor",
+          "care_questions",
+          "glucose_log",
+          "new_diagnosis"
         ],
-        "count": 2
+        "count": 5
       },
       {
         "id": "dataset",
@@ -229,9 +235,71 @@
           "activity_plan"
         ],
         "count": 1
+      },
+      {
+        "id": "types",
+        "label": "NIDDK · What Is Diabetes?",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes",
+        "documents": [
+          "types_compare",
+          "prediabetes",
+          "pregnancy_diabetes",
+          "complications"
+        ],
+        "count": 4
+      },
+      {
+        "id": "living",
+        "label": "NIDDK · Healthy Living with Diabetes",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+        "documents": [
+          "drinks",
+          "meal_timing",
+          "alcohol"
+        ],
+        "count": 3
+      },
+      {
+        "id": "treatments",
+        "label": "NIDDK · Insulin, Medicines & Treatments",
+        "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/insulin-medicines-treatments",
+        "documents": [
+          "metformin_info",
+          "insulin_info",
+          "missed_medicine"
+        ],
+        "count": 3
+      },
+      {
+        "id": "mental",
+        "label": "CDC · Diabetes and Mental Health",
+        "url": "https://www.cdc.gov/diabetes/living-with/mental-health.html",
+        "documents": [
+          "diabetes_distress",
+          "stress_glucose"
+        ],
+        "count": 2
+      },
+      {
+        "id": "myths",
+        "label": "ADA · Facts About Diabetes",
+        "url": "https://diabetes.org/about-diabetes/diabetes-myths",
+        "documents": [
+          "not_contagious"
+        ],
+        "count": 1
+      },
+      {
+        "id": "remission",
+        "label": "ADA · Diabetes Remission Criteria",
+        "url": "https://diabetes.org/newsroom/international-experts-outline-diabetes-remission-diagnosis-criteria",
+        "documents": [
+          "remission_info"
+        ],
+        "count": 1
       }
     ],
-    "scope": "26 đoạn có nguồn về kiến thức tiểu đường và phạm vi mô hình; chưa có bộ nạp PDF/web tự động."
+    "scope": "46 đoạn có nguồn; mọi chủ đề có quan hệ Neo4j, chưa có bộ nạp PDF/web tự động."
   },
   "seed": 254
 }

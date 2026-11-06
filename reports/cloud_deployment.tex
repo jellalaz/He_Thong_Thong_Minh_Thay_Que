@@ -1,14 +1,5 @@
-\section{Triển khai công khai trên Vercel và Neo4j Aura}
-\productlink{GlucoGuide -- bản demo công khai}{https://glucoguide-giang254.vercel.app}
-\subsection{Kiến trúc triển khai}
-Vercel Hobby phục vụ giao diện và API FastAPI từ cùng tên miền. Các checkpoint dữ liệu bảng và nhận diện ý định được đóng gói cùng mã nguồn; đồ thị nằm trên Neo4j AuraDB Free. Vì vậy bản demo không phụ thuộc tiến trình chạy trên máy cá nhân. Người xem không cần cài Neo4j hoặc đăng nhập để sử dụng bốn chức năng trên web.
+\section{Bản triển khai công khai và bản local}
+\productlink{Bản công khai đã triển khai}{https://glucoguide-giang254.vercel.app}
+Bản Vercel Hobby và Neo4j AuraDB Free trình diễn giao diện, dữ liệu bảng và truy xuất của phiên bản trước. Kết quả triển khai lưu tại \path{results/deployment_checks.json}. Báo cáo đánh giá bản local với Qwen3 4B, kho tri thức đầy đủ và bộ luật an toàn đã bổ sung.
 
-Các biến môi trường kết nối (URI, tài khoản, mật khẩu và tên cơ sở dữ liệu) được cấu hình trên máy chủ. Trình duyệt gọi API của ứng dụng, không nhận thông tin đăng nhập cơ sở dữ liệu. Các tệp môi trường, dữ liệu thô và tài liệu báo cáo không được đóng gói vào hàm phục vụ web.
-\subsection{Nạp dữ liệu và kiểm tra}
-Script \path{scripts/ingest_graph.py} nạp kho tri thức theo phép MERGE để có thể chạy lại. Tùy chọn \texttt{--https} sử dụng Query API khi môi trường phát triển không kết nối được Bolt. Đồ thị triển khai có 60 nút Concept và 32 quan hệ; kho văn bản ở lần kiểm tra công khai trước gồm 21 đoạn; bản mã nguồn mới bổ sung đoạn định nghĩa tiểu đường, thành 22 đoạn.
-
-Ngày 05/11/2026, script \path{scripts/check_deployment.py} đã kiểm tra thành công 12 nhóm điều kiện trên địa chỉ công khai, gồm tải giao diện, trạng thái cơ sở dữ liệu, đồ thị, hội thoại có căn cứ, câu hỏi tiếp nối, thiếu đơn vị, câu ngoài phạm vi, nhận diện tình huống cần trợ giúp, hai bài toán mô hình, dữ liệu đầu vào không hợp lệ và tra cứu KB. Kết quả lưu tại \path{results/deployment_checks.json}. Kiểm tra này xác nhận các tình huống đã chạy; không thay thế đánh giá chuyên gia hoặc kiểm thử tải.
-\subsection{Vận hành trong gói miễn phí}
-Triển khai sử dụng Vercel Hobby và AuraDB Free. Không bật dịch vụ trả phí. Tài nguyên và thời gian đáp ứng phụ thuộc giới hạn của hai gói; lần gọi đầu có thể chậm do khởi động hàm. Chủ tài khoản cần theo dõi trạng thái Aura khi lâu không sử dụng, giữ bản sao dữ liệu và có thể nạp lại bằng script đã cung cấp.
-
-Để xem trực tiếp bằng Neo4j, chủ tài khoản mở Aura Console, chọn instance và mục Query; thực hiện câu lệnh MATCH trong kịch bản trình diễn. Khách xem dùng mục Đồ thị trên web. Bản Neo4j cục bộ vẫn dùng được cho phát triển nhưng không phải điều kiện để demo công khai hoạt động.
+Qwen3 4B chạy trên máy cá nhân. Đồ thị local có 46 chủ đề, 143 khái niệm và 86 quan hệ; bản công khai chưa được xác nhận đồng bộ những thay đổi này. Kịch bản trình diễn đầy đủ sử dụng địa chỉ local cùng mô hình và cơ sở dữ liệu đang chạy.

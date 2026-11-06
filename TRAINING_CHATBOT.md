@@ -2,7 +2,7 @@
 
 Chạy `python scripts/train_intent.py`, sau đó `python -m scripts.test_intent` và `python -m scripts.test_chatbot`.
 
-Dữ liệu `data/intent_examples.json`: 64 câu train và 16 câu test được viết riêng, 8 nhãn. Đây là dữ liệu phát triển tự biên soạn, không phải dữ liệu bệnh nhân hoặc bộ đánh giá độc lập của chuyên gia. Không sinh biến thể từ câu test vào train. TF-IDF ký tự 2–5 gram và Logistic Regression học từ train; không gọi API và không fine-tune LLM.
+Dữ liệu gồm `data/intent_examples.json` và `data/intent_expansion.json`: tổng 112 câu train, 32 câu test và 8 nhãn. Đây là dữ liệu phát triển tự biên soạn, không phải hồ sơ bệnh nhân hoặc bộ đánh giá độc lập của chuyên gia. TF-IDF ký tự 2–5 gram và Logistic Regression học từ train. Accuracy nội bộ là 93,75%, macro-F1 là 0,937; kết quả từng câu nằm trong `results/intent_evaluation.json`.
 
 Checkpoint: `models/chat_intent.joblib`. Chỉ số và dự đoán từng câu: `results/intent_evaluation.json`. Tập test nhỏ nên kết quả cao không chứng minh chất lượng hội thoại rộng hoặc độ an toàn y khoa.
 
@@ -10,4 +10,4 @@ Khi luật không xác định được chủ đề, mô hình đề xuất ý �
 
 ## Nhánh Qwen chạy local
 
-Nhánh hội thoại mới có thực nghiệm tinh chỉnh LoRA riêng trên Qwen3 1.7B. Xem `experiments/local_qwen/README.md` và log `results/local_qwen`. Mô hình ý định ở trên vẫn là một thành phần khác, không đồng nhất với Qwen. Bản Vercel dùng KB/luật; để dùng Qwen trên GPU máy cá nhân, chạy `run-local-qwen.ps1` rồi mở http://localhost:8766.
+Sản phẩm hiện dùng Qwen3 4B Q4_K_M cùng RAG trên máy, khởi động bằng `START_CHATBOT_LOCAL.cmd` và mở http://localhost:8765. Trọng số 4B không được tinh chỉnh lại. Hai lượt LoRA 1.7B được giữ làm thực nghiệm trong `experiments/local_qwen/` và `results/local_qwen*`. Bộ phân loại an toàn chạy trước định tuyến; kiểm thử nội bộ bằng `python -m scripts.test_safety_offline`.
