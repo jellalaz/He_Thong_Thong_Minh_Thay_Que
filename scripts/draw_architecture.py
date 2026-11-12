@@ -18,4 +18,4 @@ arrow([(7.58,6.3),(10.5,6.3),(10.5,3.98)]);arrow([(7.58,5.2),(9.5,5.2),(9.5,3.98
 arrow([(2.1,3.55),(2.62,3.55)]);arrow([(4.78,3.55),(5.42,3.55)]);arrow([(7.58,3.55),(8.52,3.55)])
 arrow([(7.58,1.45),(8,1.45),(8,3.1),(8.8,3.1)]);arrow([(10.05,3.12),(10.05,1.88)])
 ax.text(.2,2.55,'Hai nhánh dữ liệu và tri thức cùng cung cấp căn cứ cho phản hồi.',fontsize=10,fontfamily='DejaVu Sans')
-fig.savefig(Path(__file__).resolve().parents[1]/'reports/figures/architecture.png',dpi=220,bbox_inches='tight');plt.close(fig)
+fig.savefig(Path(__file__).resolve().parents[1]/'report_sources/figures/architecture.png',dpi=220,bbox_inches='tight');plt.close(fig)

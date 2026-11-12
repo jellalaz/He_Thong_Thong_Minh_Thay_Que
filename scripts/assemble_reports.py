@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 import json
-r=Path(__file__).resolve().parents[1];p=r/'reports'
+r=Path(__file__).resolve().parents[1];p=r/'report_sources'
 old=(p/'tieuluan_final_06_02_giangkt.254.tex').read_text(encoding='utf-8')
 if not (p/'thesis_core.tex').exists():
  core=old[old.index(r'\clearpage\section*{CHƯƠNG 1'):old.index(r'\chapter{Giới thiệu}')]

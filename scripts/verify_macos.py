@@ -48,9 +48,9 @@ def main():
                   platform=platform.platform(), architecture=platform.machine(), python=sys.version,
                   python_executable=sys.executable)
     for name in names:
-        # Existing scripts write their Windows-era report paths. Keep their new
-        # evidence separately and restore those inputs byte-for-byte afterward.
-        originals = {p: p.read_bytes() for folder in ['results', 'reports']
+        # Checks can update figures and results. Keep the new evidence separately
+        # and restore the original inputs byte-for-byte afterward.
+        originals = {p: p.read_bytes() for folder in ['results', 'report_sources']
                      for p in (ROOT / folder).rglob('*') if p.is_file() and p != report_file}
         destination = OUT / name
         destination.mkdir(exist_ok=True)
@@ -72,7 +72,7 @@ def main():
             passed = False
             log = 'Timed out: ' + str(exc)
         finally:
-            for folder in ['results', 'reports']:
+            for folder in ['results', 'report_sources']:
                 for p in (ROOT / folder).rglob('*'):
                     if not p.is_file() or p == report_file:
                         continue

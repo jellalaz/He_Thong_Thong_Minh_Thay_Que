@@ -19,7 +19,7 @@ def main():
     quality=json.loads((ROOT/'results/v2/report_quality.json').read_text())
     assert quality['passed'] and quality.get('visual_reviewed'),'Complete final PDF review before packaging'
     for name in ['tieuluan_final_06_02_giangkt_v2.pdf','project01_06_02_giangkt_v2.pdf']:
-        p=ROOT/'reports/v2'/name
+        p=ROOT/'reports'/name
         assert hashlib.sha256(p.read_bytes()).hexdigest()==quality['files'][name]['sha256']
         shutil.copy2(p,stage/name)
     source=ROOT/'exports/diabetes';manifest=verify_bundle(source)
@@ -31,10 +31,8 @@ def main():
     old=json.loads((ROOT/'results/macos_setup_checks.json').read_text())
     assert checks['passed']>=11 and ui['passed']>=7 and old['passed']
     listed=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT).decode().split('\0')
-    study_sources={'reports/v2/oral.tex','reports/v2/goi_y_tra_loi_51_cau.tex',
-                   'examination_50_questions_v2.pdf'}
     files=sorted({n for n in listed if n and (ROOT/n).is_file()
-                  and n not in study_sources and not n.startswith('ON_VAN_DAP/')})
+                  and not n.startswith('ON_VAN_DAP/')})
     hashes={}
     archive=stage/'code_data_kb_rag.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
@@ -46,11 +44,13 @@ def main():
             z.write(ROOT/n,'He_Thong_Thong_Minh_Thay_Que/'+n)
             hashes[n]=hashlib.sha256((ROOT/n).read_bytes()).hexdigest()
         for relative in ['live_qwen/results/dialogue_live_checks.json','graph_ui/results/graph_ui_checks.json','support_ui/results/support_ui_tests.json','graph_ui/reports/demo-graph-current.png','support_ui/reports/demo-pdf-sources.png']:
-            p=ROOT/'.runtime/macos-verification'/relative
+            evidence=ROOT/'.runtime/macos-verification'
+            p=evidence/relative.replace('/reports/', '/report_sources/')
+            if not p.exists():p=evidence/relative
             if p.exists():z.write(p,'minh_chung_mac/'+relative)
         summary={'created_at':now.isoformat(),'export':{k:manifest[k] for k in ['sources','documents','nodes','relationships']},'retrieval_cases_replayed':len(cases),'integration':checks,'ui':ui,'old_regression_passed':old['passed'],'report_quality':quality,'source_sha256':hashes}
         z.writestr('KIEM_TRA_DONG_GOI.json',json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
-        z.writestr('NOI_DUNG_ZIP.txt','Code đầy đủ: He_Thong_Thong_Minh_Thay_Que/\nPDF V1 nguyên bản trong reports/. LaTeX/PDF V2: reports/v2/.\nData/nguồn: data/v2/. Checkpoint: models/v2/. Kết quả: results/v2/.\nKB/KG/RAG và code truy vấn độc lập: exports/diabetes/.\n')
+        z.writestr('NOI_DUNG_ZIP.txt','Code đầy đủ: He_Thong_Thong_Minh_Thay_Que/\nPDF V1 và V2: reports/. Mã LaTeX và hình: report_sources/.\nData/nguồn: data/v2/. Checkpoint: models/v2/. Kết quả: results/v2/.\nKB/KG/RAG và code truy vấn độc lập: exports/diabetes/.\n')
     digest=hashlib.sha256(archive.read_bytes()).hexdigest()
     guide=f'''GLUCOGUIDE V2 — BỘ NỘP CHỈ 5 TỆP
 Đóng gói: {now.strftime('%d/%m/%Y %H:%M')} (Việt Nam)
@@ -120,7 +120,7 @@ Checkpoint đã đóng gói: không cần train lại chỉ để demo.
 Muốn train V2 offline: .venv/bin/python -m scripts.train_v2
 Nguồn nhỏ có sẵn ở data/v2/sources/. Kết quả và CSV predictions: results/v2/.
 Test: .venv/bin/python -m scripts.test_v2
-LaTeX và ảnh ở reports/v2/, có thể biên dịch bằng XeLaTeX/Tectonic.
+LaTeX và ảnh ở report_sources/, có thể biên dịch bằng XeLaTeX/Tectonic.
 Qwen khoảng 2,5 GB, runtime, .venv và mật khẩu không đóng gói; setup tải trên máy mới.
 Không cần cài thêm vào Miniforge base. ZIP Diabetes 50K để train model cũ vẫn thiếu;
 không chặn hai dataset V2 hoặc inference checkpoint đã có.

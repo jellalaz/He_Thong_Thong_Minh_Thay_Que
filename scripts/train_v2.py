@@ -86,7 +86,7 @@ def load_data(key):
 
 def main():
     for folder in [DATA, OUT, MODELS]: folder.mkdir(parents=True, exist_ok=True)
-    figdir = ROOT / 'reports/v2/figures'; figdir.mkdir(parents=True, exist_ok=True)
+    figdir = ROOT / 'report_sources/v2/figures'; figdir.mkdir(parents=True, exist_ok=True)
     sources = json.loads((RAW / 'sources.json').read_text())
     registry = {'system_version': '2.0', 'datasets': {}}
     report = {'trained_at': datetime.now(ZoneInfo('Asia/Ho_Chi_Minh')).isoformat(), 'split_seed': 254,

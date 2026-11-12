@@ -31,10 +31,10 @@ catalog={'classification':{'name':'Diabetes Risk Prediction Dataset (50K patient
 for name,n,train,test in [('classification',len(df),tr,te),('regression',len(reg.target),rt,re)]:
  split=np.full(n,'train',dtype='<U5');split[test]='test';pd.DataFrame({'row':np.arange(n),'split':split}).to_csv(ROOT/f'results/{name}_split.csv',index=False)
 rows='\n'.join(tex(f['name'])+' & '+str(f['missing'])+' & '+f"{f['min']:g} / {f['median']:g} / {f['max']:g}"+r'\\' for f in fields)
-(ROOT/'reports/data_fields.tex').write_text(r'''\begin{longtable}{p{6cm}rp{5cm}}\caption{Kiểm kê tám biến đầu vào trên toàn bộ CSV, trước tiền xử lý.}\label{tab:data-fields}\\\toprule Biến & Số ô thiếu & Min / trung vị / max\\\midrule\endfirsthead\toprule Biến & Số ô thiếu & Min / trung vị / max\\\midrule\endhead
+(ROOT/'report_sources/data_fields.tex').write_text(r'''\begin{longtable}{p{6cm}rp{5cm}}\caption{Kiểm kê tám biến đầu vào trên toàn bộ CSV, trước tiền xử lý.}\label{tab:data-fields}\\\toprule Biến & Số ô thiếu & Min / trung vị / max\\\midrule\endfirsthead\toprule Biến & Số ô thiếu & Min / trung vị / max\\\midrule\endhead
 '''+rows+r'\bottomrule\end{longtable}',encoding='utf-8')
 rows='\n'.join(tex(s['label'])+' & '+tex(', '.join(s['documents']))+' & '+str(s['count'])+r'\\' for s in sources)
 links='\n\n'.join(r'\noindent\textbf{'+tex(s['label'])+r'}\par\noindent\url{'+s['url']+r'}\par\medskip' for s in sources)
-(ROOT/'reports/kb_sources.tex').write_text(r'''\begin{longtable}{p{5cm}p{8cm}r}\caption{Nguồn thực sự được '''+str(len(k['documents']))+r''' tài liệu trong KB tham chiếu.}\label{tab:kb-sources}\\\toprule Nguồn & Mã tài liệu & Số đoạn\\\midrule\endfirsthead\toprule Nguồn & Mã tài liệu & Số đoạn\\\midrule\endhead
+(ROOT/'report_sources/kb_sources.tex').write_text(r'''\begin{longtable}{p{5cm}p{8cm}r}\caption{Nguồn thực sự được '''+str(len(k['documents']))+r''' tài liệu trong KB tham chiếu.}\label{tab:kb-sources}\\\toprule Nguồn & Mã tài liệu & Số đoạn\\\midrule\endfirsthead\toprule Nguồn & Mã tài liệu & Số đoạn\\\midrule\endhead
 '''+rows+r'\bottomrule\end{longtable}'+links,encoding='utf-8')
 print(json.dumps({'rows':len(df),'columns':len(df.columns),'documents':len(k['documents']),'used_sources':len(sources),'triples':catalog['knowledge']['triples']}))

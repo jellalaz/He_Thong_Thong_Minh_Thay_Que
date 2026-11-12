@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix,classification_report
-r=Path(__file__).resolve().parents[1];out=r/'reports/figures';out.mkdir(exist_ok=True)
+r=Path(__file__).resolve().parents[1];out=r/'report_sources/figures';out.mkdir(exist_ok=True)
 plt.rcParams.update({'font.family':'DejaVu Sans','text.color':'black','axes.labelcolor':'black','font.size':10})
 c=pd.read_csv(r/'results/classification_predictions.csv');labels=['Low','Moderate','High'];cm=confusion_matrix(c.actual,c.predicted,labels=labels)
 fig,ax=plt.subplots(figsize=(6,4));ax.imshow(cm,cmap='Greys',vmax=cm.max()*1.8)

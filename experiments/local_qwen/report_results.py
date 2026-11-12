@@ -11,7 +11,7 @@ fig,ax=plt.subplots(figsize=(8,3.7))
 ax.plot([x['step'] for x in logs],[x['train_loss'] for x in logs],color='black',lw=1,label='Training loss (4 mẫu/bước)')
 v=[x for x in logs if 'validation_loss' in x]
 ax.plot([0]+[x['step'] for x in v],[s['baseline_validation_loss']]+[x['validation_loss'] for x in v],color='black',linestyle='--',marker='o',label='Validation loss')
-ax.set_xlabel('Bước cập nhật',fontproperties=f);ax.set_ylabel('Cross-entropy',fontproperties=f);ax.legend(prop=f);ax.grid(alpha=.2);fig.tight_layout();fig.savefig(R/'reports/figures/qwen_learning.png',dpi=220);plt.close(fig)
+ax.set_xlabel('Bước cập nhật',fontproperties=f);ax.set_ylabel('Cross-entropy',fontproperties=f);ax.legend(prop=f);ax.grid(alpha=.2);fig.tight_layout();fig.savefig(R/'report_sources/figures/qwen_learning.png',dpi=220);plt.close(fig)
 rows=[]
 for model,label in [('base','Qwen nền'),('lora','Qwen LoRA')]:
  for group,gl in [('knowledge','Kiến thức'),('dialogue','Hội thoại')]:
@@ -30,5 +30,5 @@ Có dẫn mã chỉ kiểm tra sự xuất hiện của mã tài liệu, không 
 Tệp \path{results/local_qwen/base_answers.json} và \path{results/local_qwen/lora_answers.json} lưu nguyên văn từng phản hồi. Tệp \path{results/local_qwen/training_summary.json} lưu cấu hình, mã băm dữ liệu và tài nguyên đo được. Các tệp này cho phép kiểm tra lại kết luận mà không cần dựa vào ảnh minh họa.
 """
 for key,value in {'PARAMS':f"{s['trainable_parameters']:,}",'TOTAL':f"{s['total_parameters']:,}",'EPOCH':s['best_epoch'],'BASELOSS':f"{s['baseline_validation_loss']:.4f}",'BESTLOSS':f"{s['best_validation_loss']:.4f}",'MINUTES':f"{s['training_seconds']/60:.2f}",'MEMORY':f"{s['peak_gpu_gib']:.2f}",'ROWS':'\n'.join(rows)}.items():tex=tex.replace(key,str(value))
-(R/'reports/local_qwen_results.tex').write_text(tex,encoding='utf-8')
+(R/'report_sources/local_qwen_results.tex').write_text(tex,encoding='utf-8')
 print('Wrote training figure and result section')

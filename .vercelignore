@@ -4,6 +4,7 @@
 .venv
 .runtime
 reports
+report_sources
 references
 legacy_tieuluan
 data/raw

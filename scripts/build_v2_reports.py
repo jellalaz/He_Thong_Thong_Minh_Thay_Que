@@ -8,7 +8,7 @@ import subprocess
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'reports/v2'
+OUT=ROOT/'report_sources/v2'
 os.environ.setdefault('MPLCONFIGDIR',str(ROOT/'.runtime/matplotlib'))
 import matplotlib
 matplotlib.use('Agg')

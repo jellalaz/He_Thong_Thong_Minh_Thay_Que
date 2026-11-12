@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 ROOT=Path(__file__).resolve().parents[1]
 RAW=ROOT/'data/raw/cora'; RAW.mkdir(parents=True,exist_ok=True)
 OUT=ROOT/'results/cora'; OUT.mkdir(parents=True,exist_ok=True)
-FIG=ROOT/'reports/figures'; FIG.mkdir(exist_ok=True)
+FIG=ROOT/'report_sources/figures'; FIG.mkdir(exist_ok=True)
 BASE='https://raw.githubusercontent.com/tkipf/pygcn/master/data/cora/'
 for name in ['cora.content','cora.cites']:
     if not (RAW/name).exists():

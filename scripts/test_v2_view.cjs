@@ -27,8 +27,8 @@ const {chromium}=require('playwright');
    assert((await page.locator('#v2-result').innerText()).includes('KG/RAG'));
   }
   await run('pima','v2');checks.push('Pima V2 runs real model, graph, versioned trace and audit');
-  fs.mkdirSync('reports/v2/figures',{recursive:true});
-  await page.screenshot({path:'reports/v2/figures/demo-v2.png',fullPage:true});
+  fs.mkdirSync('report_sources/v2/figures',{recursive:true});
+  await page.screenshot({path:'report_sources/v2/figures/demo-v2.png',fullPage:true});
   await run('pima','v1');checks.push('V1 comparator is runnable on the same schema');
   await run('early_stage','v2');
   assert.equal(await page.locator('#v2-fields [name]').count(),16);

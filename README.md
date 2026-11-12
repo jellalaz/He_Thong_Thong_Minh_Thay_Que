@@ -12,10 +12,8 @@ Tiểu luận Final V2 dùng toàn bộ bảy chương và phụ lục từ ngu�
 
 | Tài liệu | V1 gốc | V2 |
 | --- | --- | --- |
-| Tiểu luận Final | [PDF](reports/tieuluan_final_06_02_giangkt.254.pdf) | [PDF](reports/v2/tieuluan_final_06_02_giangkt_v2.pdf) |
-| Project 01 | [PDF](reports/project01_06_02_giangkt.254.pdf) | [PDF](reports/v2/project01_06_02_giangkt_v2.pdf) |
-
-[Gợi ý ôn 51 câu](ON_VAN_DAP/goi_y_tra_loi_51_cau.pdf) để riêng trong thư mục ôn vấn đáp.
+| Tiểu luận Final | [PDF](reports/tieuluan_final_06_02_giangkt.254.pdf) | [PDF](reports/tieuluan_final_06_02_giangkt_v2.pdf) |
+| Project 01 | [PDF](reports/project01_06_02_giangkt.254.pdf) | [PDF](reports/project01_06_02_giangkt_v2.pdf) |
 
 ```bash
 .venv/bin/python -m scripts.train_v2
@@ -99,7 +97,7 @@ Từ thư mục project, dùng Python của .venv:
 
 Kiểm thử an toàn chặn DNS/kết nối ngoài; kết nối loopback được giữ cho các thành phần nội bộ. Kết quả nằm trong results/. Script evaluate_chat_local.py cần web cùng mô hình local đang chạy và lưu phản hồi để đọc lại.
 
-Kiểm thử giao diện: `node scripts/test_graph_view.cjs`, cần Playwright và Edge đã có sẵn. Script không tải trình duyệt; chặn trang truy cập máy chủ ngoài và kiểm tra đủ 58 bộ lọc cùng các thao tác trên desktop/điện thoại. Ảnh desktop được lưu trực tiếp tại reports/demo-graph-current.png để báo cáo và kiểm thử dùng chung một bản.
+Kiểm thử giao diện bằng `node scripts/test_graph_view.cjs` với Playwright và Edge. Script chặn truy cập máy chủ ngoài và kiểm tra đủ 58 bộ lọc cùng các thao tác trên desktop và điện thoại. Ảnh desktop được lưu tại `report_sources/demo-graph-current.png`.
 
 ## Bộ nộp KB, KG và RAG
 
@@ -118,18 +116,13 @@ Chế độ này trả văn bản và quan hệ từ bản chụp, có nhãn `ex
 
 Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chối: Hit@1 85%, Hit@4 100%, MRR@4 0,917. Đây là tập chức năng tự biên soạn, không phải độ chính xác tư vấn hoặc chẩn đoán. Agent KG hiện lấy cạnh theo tài liệu, chưa có tìm đường nhiều bước hoặc thuật toán cộng đồng Microsoft GraphRAG.
 
-## Hai báo cáo
+## Mã nguồn báo cáo
 
-Hai PDF và mã LaTeX được giữ riêng trong reports/:
-
-- tieuluan_final_06_02_giangkt.254: nền tảng và các thực nghiệm học phần.
-- project01_06_02_giangkt.254: kiến trúc sản phẩm, dữ liệu, mô hình, đồ thị, hội thoại và kiểm thử.
-
-Dùng scripts/assemble_reports.py để ghép nguồn; biên dịch từng tệp chính từ reports/ bằng Tectonic hoặc XeLaTeX. Font cần có: Times New Roman và Consolas. Các hình demo là ảnh chụp ứng dụng; số liệu mô hình được giữ trong results/.
+Bốn PDF chính nằm trong [`reports/`](reports/). Mã LaTeX và hình nằm trong [`report_sources/`](report_sources/). Dùng `scripts/assemble_reports.py` để ghép nguồn V1. Script `scripts/build_v2_reports.py` biên dịch V2 bằng Tectonic và lưu bản dựng tại `report_sources/v2/`.
 
 ## Cấu trúc thư mục
 
-app/: backend; web/: giao diện; data/: KB và ví dụ; models/: checkpoint; scripts/: xử lý và kiểm thử; results/: bằng chứng thực nghiệm; experiments/: thí nghiệm bổ sung; legacy_tieuluan/: tài liệu thực nghiệm kế thừa; reports/: hai báo cáo.
+`app/` chứa backend, `web/` chứa giao diện, `data/` chứa KB và ví dụ, `models/` chứa checkpoint, `scripts/` chứa mã xử lý và kiểm thử. Kết quả thực nghiệm nằm trong `results/`, `experiments/` và `legacy_tieuluan/`.
 
 .runtime/ chứa bộ chạy local và dữ liệu Neo4j; .local-models/ chứa trọng số; .local-training/ chứa checkpoint và bảng Q trên máy. Những thư mục này được bỏ qua khi đưa lên Git, nhưng một số tệp cần để vận hành trên máy hiện tại.
 

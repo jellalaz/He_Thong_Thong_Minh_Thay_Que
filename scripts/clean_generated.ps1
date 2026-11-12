@@ -21,14 +21,14 @@ $relativePaths = @(
     '.runtime/probe_generation.py', '.runtime/refine_reports.py',
     '.runtime/dialogue-comparison.json', '.runtime/dialogue-live-checks.json', '.runtime/safety-offline-results.json',
     'app/__pycache__', 'scripts/__pycache__', 'experiments/local_qwen/__pycache__',
-    'README.txt', 'reports/converted.tex', 'reports/legacy.tex',
-    'reports/demo-chat.png', 'reports/demo-graph.png', 'reports/demo-local-context.png',
-    'reports/demo-local-qwen.png', 'reports/demo-sources.png',
+    'README.txt', 'report_sources/converted.tex', 'report_sources/legacy.tex',
+    'report_sources/demo-chat.png', 'report_sources/demo-graph.png', 'report_sources/demo-local-context.png',
+    'report_sources/demo-local-qwen.png', 'report_sources/demo-sources.png',
     'results/graph_ui_desktop.png'
 )
-$relativePaths += Get-ChildItem -LiteralPath (Join-Path $projectRoot 'reports') -File |
+$relativePaths += Get-ChildItem -LiteralPath (Join-Path $projectRoot 'report_sources') -File |
     Where-Object { $_.Extension -in @('.aux','.log','.out','.toc','.lof','.lot','.xdv','.fls','.fdb_latexmk') -or $_.Name.EndsWith('.synctex.gz') } |
-    ForEach-Object { 'reports/' + $_.Name }
+    ForEach-Object { 'report_sources/' + $_.Name }
 
 # Download parts are disposable only after validating the standalone completed model.
 $modelPath = Join-Path $projectRoot '.local-models/Qwen3-1.7B/model.safetensors'

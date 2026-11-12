@@ -17,8 +17,9 @@ runtime/
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-reports/converted.tex
-reports/legacy.tex
+/report_sources/converted.tex
+/report_sources/legacy.tex
+/report_sources/**/*.pdf
 *.xdv
 .vercel/
 

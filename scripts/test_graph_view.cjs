@@ -84,7 +84,7 @@ const captureScreenshots = !process.argv.includes('--no-screenshots');
     await all.click();
     await page.waitForFunction(n => document.querySelectorAll('#network [data-node]').length === n, graph.nodes.length);
     await page.locator('.edge-details summary').click();
-    if (captureScreenshots) await page.screenshot({path: path.join(__dirname, '../reports/demo-graph-current.png'), fullPage: true});
+    if (captureScreenshots) await page.screenshot({path: path.join(__dirname, '../report_sources/demo-graph-current.png'), fullPage: true});
     for (const width of [1024, 390]) {
       await page.setViewportSize({width, height: 844});
       const box = await all.boundingBox();
