@@ -1,4 +1,4 @@
-"""Create the flat five-file V2 hand-in, preserving the previous generated copy."""
+"""Build the V2 hand-in with directly accessible knowledge files and source code."""
 from datetime import datetime
 import hashlib
 import json
@@ -7,10 +7,28 @@ import shutil
 import subprocess
 import sys
 from zoneinfo import ZoneInfo
-import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from scripts.query_knowledge_export import verify_bundle,query_bundle
+
+KNOWLEDGE_FILES = {
+    'kb/knowledge.json': 'KB_knowledge.json',
+    'kg/graph.json': 'KG_graph.json',
+    'kg/import.cypher': 'kb_diabet.cypher',
+    'kg/nodes.csv': 'KG_nodes.csv',
+    'kg/relationships.csv': 'KG_relationships.csv',
+    'rag/evaluation.json': 'RAG_evaluation.json',
+    'rag/index.joblib': 'RAG_index.joblib',
+    'rag/queries.json': 'RAG_queries.json',
+    'rag/settings.json': 'RAG_settings.json',
+    'rag/source_evaluation.json': 'RAG_source_evaluation.json',
+}
+
+
+def copy_knowledge_files(source, destination):
+    destination.mkdir()
+    for relative, name in KNOWLEDGE_FILES.items():
+        shutil.copy2(source/relative, destination/name)
 
 
 def main():
@@ -25,7 +43,7 @@ def main():
     source=ROOT/'exports/diabetes';manifest=verify_bundle(source)
     cases=json.loads((source/'rag/evaluation.json').read_text())['cases']
     for c in cases:assert query_bundle(source,c['question'],c.get('history'))['sources']==c['selected']
-    shutil.copy2(source/'kg/import.cypher',stage/'kb_diabet.cypher')
+    copy_knowledge_files(source, stage/'KB_KG_RAG')
     checks=json.loads((ROOT/'results/v2/integration_checks.json').read_text())
     ui=json.loads((ROOT/'results/v2/ui_checks.json').read_text())
     old=json.loads((ROOT/'results/macos_setup_checks.json').read_text())
@@ -34,25 +52,27 @@ def main():
     files=sorted({n for n in listed if n and (ROOT/n).is_file()
                   and not n.startswith('ON_VAN_DAP/')})
     hashes={}
-    archive=stage/'code_data_kb_rag.zip'
-    with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
-        for n in files:
-            p=Path(n)
-            assert not any(x in {'.git','.venv','.venv-llm','.runtime','.local-models','.local-training','__pycache__','BAN_GIAO_GLUCOGUIDE'} for x in p.parts)
-            assert not(p.name.startswith('.env') and p.name!='.env.example')
-            assert p.name!='.DS_Store'
-            z.write(ROOT/n,'He_Thong_Thong_Minh_Thay_Que/'+n)
-            hashes[n]=hashlib.sha256((ROOT/n).read_bytes()).hexdigest()
-        for relative in ['live_qwen/results/dialogue_live_checks.json','graph_ui/results/graph_ui_checks.json','support_ui/results/support_ui_tests.json','graph_ui/reports/demo-graph-current.png','support_ui/reports/demo-pdf-sources.png']:
-            evidence=ROOT/'.runtime/macos-verification'
-            p=evidence/relative.replace('/reports/', '/report_sources/')
-            if not p.exists():p=evidence/relative
-            if p.exists():z.write(p,'minh_chung_mac/'+relative)
-        summary={'created_at':now.isoformat(),'export':{k:manifest[k] for k in ['sources','documents','nodes','relationships']},'retrieval_cases_replayed':len(cases),'integration':checks,'ui':ui,'old_regression_passed':old['passed'],'report_quality':quality,'source_sha256':hashes}
-        z.writestr('KIEM_TRA_DONG_GOI.json',json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
-        z.writestr('NOI_DUNG_ZIP.txt','Code đầy đủ: He_Thong_Thong_Minh_Thay_Que/\nPDF V1 và V2: reports/. Mã LaTeX và hình: report_sources/.\nData/nguồn: data/v2/. Checkpoint: models/v2/. Kết quả: results/v2/.\nKB/KG/RAG và code truy vấn độc lập: exports/diabetes/.\n')
-    digest=hashlib.sha256(archive.read_bytes()).hexdigest()
-    guide=f'''GLUCOGUIDE V2 — BỘ NỘP CHỈ 5 TỆP
+    code=stage/'MA_NGUON'
+    for n in files:
+        p=Path(n)
+        assert not any(x in {'.git','.venv','.venv-llm','.runtime','.local-models','.local-training','__pycache__','BAN_GIAO_GLUCOGUIDE'} for x in p.parts)
+        assert not(p.name.startswith('.env') and p.name!='.env.example')
+        assert p.name!='.DS_Store'
+        target=code/p
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(ROOT/p,target)
+        hashes[n]=hashlib.sha256(target.read_bytes()).hexdigest()
+    for relative in ['live_qwen/results/dialogue_live_checks.json','graph_ui/results/graph_ui_checks.json','support_ui/results/support_ui_tests.json','graph_ui/reports/demo-graph-current.png','support_ui/reports/demo-pdf-sources.png']:
+        evidence=ROOT/'.runtime/macos-verification'
+        p=evidence/relative.replace('/reports/', '/report_sources/')
+        if not p.exists():p=evidence/relative
+        if p.exists():
+            target=code/'minh_chung_mac'/relative
+            target.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(p,target)
+    summary={'created_at':now.isoformat(),'export':{k:manifest[k] for k in ['sources','documents','nodes','relationships']},'retrieval_cases_replayed':len(cases),'integration':checks,'ui':ui,'old_regression_passed':old['passed'],'report_quality':quality,'source_sha256':hashes}
+    (code/'KIEM_TRA_DONG_GOI.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    guide=f'''GLUCOGUIDE V2 — BỘ NỘP
 Đóng gói: {now.strftime('%d/%m/%Y %H:%M')} (Việt Nam)
 
 1. tieuluan_final_06_02_giangkt_v2.pdf
@@ -62,10 +82,11 @@ def main():
    Chương minh chứng có ảnh Pima V1/V2, đồ thị Neo4j và lượt chat Qwen có nguồn.
    Các chương kỹ thuật và phụ lục code chỉ rõ cách huấn luyện, điều phối, kiểm lỗi
    và truy lại tài liệu. Tiểu luận cũng có phụ lục code V2 với số dòng gốc.
-3. kb_diabet.cypher
+3. KB_KG_RAG/
+   Mở trực tiếp để xem KB_knowledge.json, các tệp KG_*, các tệp RAG_* và kb_diabet.cypher.
    FILE CYPHER THẦY YÊU CẦU: 169 Concept, 106 RELATED_TO, có document/evidence/URL.
    Tài liệu thầy gọi DB_diabet.cypher; ở đây đặt tên theo ảnh bảng kb_diabet.cypher.
-4. code_data_kb_rag.zip
+4. MA_NGUON/
    Code, nguồn dữ liệu nhỏ, checkpoint, LaTeX, kết quả, KB/KG/RAG và hai PDF V1.
 5. DOC_TRUOC.txt
    Chính tệp hướng dẫn này.
@@ -83,7 +104,7 @@ V2 KHÁC V1
   và ma trận nhầm lẫn trong Project 01 để trình bày đánh đổi của hai model.
 - Qwen4B dùng nguyên trọng số. Train MLP không phải fine-tune Qwen.
 - Tiểu luận V2 phát triển từ nguồn LaTeX của bản Final. Phần III bổ sung giao thức
-  dữ liệu, MLP năm tầng, tích hợp agent và kiểm chứng. PDF V1 trong ZIP để đối chiếu.
+  dữ liệu, MLP năm tầng, tích hợp agent và kiểm chứng. PDF V1 trong MA_NGUON/reports/.
 
 DEMO TRÊN MAC HIỆN TẠI
 Từ thư mục project gốc: bash run-macos.sh start
@@ -97,22 +118,23 @@ Tắt: bash run-macos.sh stop. Đọc tình trạng: bash run-macos.sh status.
 
 CYPHER, KB VÀ RAG NẰM ĐÂU?
 Neo4j Browser: http://localhost:7474/browser/
-Copy kb_diabet.cypher vào Browser để chạy; MERGE không xóa graph khác.
+Copy KB_KG_RAG/kb_diabet.cypher vào Browser để chạy; MERGE không xóa graph khác.
   MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) RETURN a,r,b LIMIT 100;
   MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) WHERE r.document='a1c' RETURN a,r,b;
-Giải nén code_data_kb_rag.zip, đi vào He_Thong_Thong_Minh_Thay_Que/:
-  exports/diabetes/kb/knowledge.json: 58 đoạn, 22 nguồn, nội dung và triple.
-  exports/diabetes/kg/: CSV, JSON và Cypher (bản chụp Neo4j).
-  exports/diabetes/rag/: index.joblib, settings, queries, evaluation.
-  exports/diabetes/sources/: PDF NIDDK, văn bản nguồn và trích dẫn ngắn Vinmec.
-Code retrieval/graph có trong exports/diabetes/code/app/ và app/ của project.
+Mở KB_KG_RAG/ để trình diễn:
+  KB_knowledge.json: 58 đoạn, 22 nguồn, nội dung và triple.
+  KG_graph.json, KG_nodes.csv, KG_relationships.csv: bản chụp và bảng nút/cạnh.
+  RAG_index.joblib, RAG_settings.json, RAG_queries.json, RAG_evaluation.json,
+  RAG_source_evaluation.json: chỉ mục, cấu hình, câu hỏi và kết quả.
+PDF NIDDK, văn bản nguồn và trích dẫn Vinmec ở MA_NGUON/exports/diabetes/sources/.
+Code retrieval/graph ở MA_NGUON/exports/diabetes/code/app/ và MA_NGUON/app/.
 RAG dùng TF-IDF word/char, không dùng neural embedding hoặc multi-hop GraphRAG.
 Truy vấn file offline từ project có .venv:
   .venv/bin/python scripts/query_knowledge_export.py exports/diabetes --question "HbA1c là gì?"
 Chế độ file trả căn cứ snapshot, không chạy Qwen và không giả kết nối Neo4j.
 
-CHẠY LẠI SAU KHI GIẢI NÉN
-Đi vào He_Thong_Thong_Minh_Thay_Que/ trong gói.
+CHẠY LẠI TỪ MÃ NGUỒN
+Đi vào MA_NGUON/ trong bộ nộp.
 Mac cần Python 3.14 + Java 21 ARM64; Edge để test UI.
   bash setup-macos.sh
   bash run-macos.sh start
@@ -128,18 +150,16 @@ không chặn hai dataset V2 hoặc inference checkpoint đã có.
 KIỂM TRA
 {len(cases)} câu truy xuất replay đúng; {checks['passed']} kiểm tra tích hợp V2;
 {ui['passed']} kiểm tra UI V2; các nhóm hồi quy chức năng cũ đều qua.
-SHA-256 ZIP code/data: {digest}
-Manifest chi tiết nằm trong ZIP để không thêm file rời ở cấp ngoài.
+Manifest đóng gói: MA_NGUON/KIEM_TRA_DONG_GOI.json.
 '''
     (stage/'DOC_TRUOC.txt').write_text(guide,encoding='utf-8')
-    assert len(list(stage.iterdir()))==5 and all(p.is_file() for p in stage.iterdir())
-    with zipfile.ZipFile(archive) as z:assert z.testzip() is None
+    assert len(list(stage.iterdir()))==5 and len(list((stage/'KB_KG_RAG').iterdir()))==len(KNOWLEDGE_FILES)
     dest=ROOT/'BAN_GIAO_GLUCOGUIDE'
     if dest.exists():dest.rename(ROOT/'.runtime'/('delivery-previous-'+stamp))
     oldzip=ROOT/'BAN_GIAO_GLUCOGUIDE.zip'
     if oldzip.exists():oldzip.rename(ROOT/'.runtime'/('delivery-previous-'+stamp+'.zip'))
     stage.rename(dest)
-    print(json.dumps({'folder':str(dest),'files':[p.name for p in sorted(dest.iterdir())],'source_files':len(files),'zip_sha256':digest},ensure_ascii=False,indent=2))
+    print(json.dumps({'folder':str(dest),'entries':[p.name for p in sorted(dest.iterdir())],'source_files':len(files)},ensure_ascii=False,indent=2))
 
 
 if __name__=='__main__':main()

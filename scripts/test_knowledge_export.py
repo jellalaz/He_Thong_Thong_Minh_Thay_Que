@@ -10,11 +10,11 @@ import subprocess
 import sys
 import tempfile
 from unittest.mock import patch
-import zipfile
 from app.retrieval import load_knowledge
 from app.settings import database
 from app.main import graph_driver
 from scripts.query_knowledge_export import verify_bundle, query_bundle
+from scripts.package_delivery import KNOWLEDGE_FILES, copy_knowledge_files
 
 ROOT=Path(__file__).resolve().parents[1]
 folder=ROOT/'exports/diabetes'
@@ -38,11 +38,15 @@ assert {(r['document'],names[r['source_id']],r['relation'],names[r['target_id']]
 assert all(r['evidence']==next(d['text'] for d in kb['documents'] if d['id']==r['document']) for r in edges)
 checks.append('UTF-8 CSV preserves Vietnamese, document IDs, endpoints and evidence')
 
-with zipfile.ZipFile(folder.parent/'glucoguide_kb_kg_rag.zip') as archive:
-    for name,record in manifest['files'].items():
-        assert hashlib.sha256(archive.read('diabetes/'+name)).hexdigest()==record['sha256']
-    assert json.loads(archive.read('diabetes/manifest.json'))==manifest
-checks.append('ZIP contains the same verified files as the expanded bundle')
+with tempfile.TemporaryDirectory() as temporary:
+    flat = Path(temporary)/'KB_KG_RAG'
+    copy_knowledge_files(folder, flat)
+    expected_files = {name for name in manifest['files'] if name.split('/')[0] in {'kb', 'kg', 'rag'}}
+    assert set(KNOWLEDGE_FILES) == expected_files
+    assert {p.name for p in flat.iterdir()} == set(KNOWLEDGE_FILES.values())
+    for name, target in KNOWLEDGE_FILES.items():
+        assert hashlib.sha256((flat/target).read_bytes()).hexdigest() == manifest['files'][name]['sha256']
+checks.append('Flat KB_KG_RAG directory contains all ten verified KB, KG and RAG files')
 
 evaluation=json.loads((folder/'rag/evaluation.json').read_text(encoding='utf-8'))
 with patch('socket.create_connection',side_effect=AssertionError('Offline query attempted network')),patch.object(socket.socket,'connect',side_effect=AssertionError('Offline query attempted network')):

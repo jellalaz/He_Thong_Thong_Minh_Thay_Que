@@ -24,7 +24,7 @@ Tiểu luận Final V2 dùng toàn bộ bảy chương và phụ lục từ ngu�
 
 Hai nguồn nhỏ đã có trong `data/v2/sources/`, có thể train V2 offline. Tải lại nguồn và Tectonic bằng `scripts/setup_v2_assets.py` nếu cần. Biên dịch LaTeX cần Times New Roman/Courier New và Tectonic hoặc XeLaTeX. Tập tin `results/v2/report_quality.json` ghi QA của PDF hiện tại; đóng gói yêu cầu hash đúng bản đã rà render.
 
-`BAN_GIAO_GLUCOGUIDE/` là bản sinh để nộp, chỉ có 5 tệp: hai PDF V2, `kb_diabet.cypher`, `code_data_kb_rag.zip`, `DOC_TRUOC.txt`. ZIP giữ code/data/checkpoint, KB/KG/RAG, kết quả và hai PDF V1 để đối chiếu. Không mang runtime, venv, mật khẩu hoặc trọng số Qwen. Các bộ nộp sinh trước được chuyển vào `.runtime/` để thư mục nộp không lẫn file cũ.
+`BAN_GIAO_GLUCOGUIDE/` chứa hai PDF V2 và `DOC_TRUOC.txt`. Mở `KB_KG_RAG/` để xem trực tiếp cả 10 tệp KB, KG, RAG và Cypher. `MA_NGUON/` chứa project có thể mở trực tiếp, kèm dữ liệu, checkpoint, kết quả và hai PDF V1. Runtime, môi trường Python, mật khẩu và trọng số Qwen nằm ngoài bộ nộp.
 
 ## Chạy trên macOS Apple Silicon
 
@@ -101,7 +101,7 @@ Kiểm thử giao diện bằng `node scripts/test_graph_view.cjs` với Playwri
 
 ## Bộ nộp KB, KG và RAG
 
-[Bộ tệp đã xuất](exports/diabetes/) và [ZIP để nộp](exports/glucoguide_kb_kg_rag.zip) có KB JSON; KG dạng CSV, JSON và Cypher; chỉ mục RAG đã fit; cấu hình; 22 câu hỏi và kết quả; ví dụ chạy local cùng trace; code chạy lại và manifest SHA-256. Bộ nộp không chứa mật khẩu hoặc trọng số Qwen.
+[Bộ tệp đã xuất](exports/diabetes/) có KB JSON, KG dạng CSV/JSON/Cypher, chỉ mục RAG, 22 câu hỏi cùng kết quả, trace mẫu và manifest SHA-256. Lệnh đóng gói gom mười tệp để trình diễn vào `BAN_GIAO_GLUCOGUIDE/KB_KG_RAG/`.
 
 Xuất lại từ Neo4j và web local đang chạy:
 
