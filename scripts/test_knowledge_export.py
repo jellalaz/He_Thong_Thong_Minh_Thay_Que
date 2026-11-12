@@ -43,9 +43,10 @@ with tempfile.TemporaryDirectory() as temporary:
     copy_knowledge_files(folder, flat)
     expected_files = {name for name in manifest['files'] if name.split('/')[0] in {'kb', 'kg', 'rag'}}
     assert set(KNOWLEDGE_FILES) == expected_files
-    assert {p.name for p in flat.iterdir()} == set(KNOWLEDGE_FILES.values())
-    for name, target in KNOWLEDGE_FILES.items():
-        assert hashlib.sha256((flat/target).read_bytes()).hexdigest() == manifest['files'][name]['sha256']
+    for view in (flat, folder.parent/'KB_KG_RAG'):
+        assert {p.name for p in view.iterdir()} == set(KNOWLEDGE_FILES.values())
+        for name, target in KNOWLEDGE_FILES.items():
+            assert hashlib.sha256((view/target).read_bytes()).hexdigest() == manifest['files'][name]['sha256']
 checks.append('Flat KB_KG_RAG directory contains all ten verified KB, KG and RAG files')
 
 evaluation=json.loads((folder/'rag/evaluation.json').read_text(encoding='utf-8'))

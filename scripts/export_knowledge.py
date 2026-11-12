@@ -17,6 +17,7 @@ from app.settings import database
 from app.retrieval import load_knowledge, Retriever, RETRIEVAL_CONFIG
 from app.conversation import route
 from app.dialogue import plan_turn
+from scripts.package_delivery import copy_knowledge_files
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'exports/diabetes'
@@ -179,6 +180,7 @@ Trên máy đã có Qwen3 4B và Neo4j, chạy `bash run-macos.sh start` trên M
     files={p.relative_to(OUT).as_posix():{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.rglob('*')) if p.is_file() and p.name!='manifest.json'}
     manifest={'schema_version':1,'documents':len(kb['documents']),'sources':len(kb['sources']),'nodes':len(graph['nodes']),'relationships':len(graph['relationships']),'graph_origin':'exact local Neo4j snapshot, checked against KB','dependencies':dependencies,'files':files}
     write_json(OUT/'manifest.json',manifest)
+    copy_knowledge_files(OUT, OUT.parent/'KB_KG_RAG')
     result={'documents':manifest['documents'],'sources':manifest['sources'],'nodes':manifest['nodes'],'relationships':manifest['relationships'],'files':len(files)+1,'retrieval_hit_at_4':evaluation['hit_at_4'],'retrieval_passed_cases':evaluation['passed_cases'],'retrieval_total_cases':evaluation['total_cases'],'live_examples':len(examples)}
     write_json(ROOT/'results/knowledge_export.json',result)
     print(json.dumps(result))

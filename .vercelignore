@@ -19,6 +19,7 @@ results/cora
 .local-training
 
 models/qwen_adapter
+exports/KB_KG_RAG
 BAN_GIAO_GLUCOGUIDE
 BAN_GIAO_GLUCOGUIDE.zip
 ON_VAN_DAP

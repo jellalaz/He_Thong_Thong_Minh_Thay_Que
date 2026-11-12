@@ -26,7 +26,7 @@ KNOWLEDGE_FILES = {
 
 
 def copy_knowledge_files(source, destination):
-    destination.mkdir()
+    destination.mkdir(exist_ok=True)
     for relative, name in KNOWLEDGE_FILES.items():
         shutil.copy2(source/relative, destination/name)
 
@@ -50,7 +50,7 @@ def main():
     assert checks['passed']>=11 and ui['passed']>=7 and old['passed']
     listed=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT).decode().split('\0')
     files=sorted({n for n in listed if n and (ROOT/n).is_file()
-                  and not n.startswith('ON_VAN_DAP/')})
+                  and not n.startswith(('ON_VAN_DAP/', 'exports/KB_KG_RAG/'))})
     hashes={}
     code=stage/'MA_NGUON'
     for n in files:

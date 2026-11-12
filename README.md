@@ -101,7 +101,7 @@ Kiểm thử giao diện bằng `node scripts/test_graph_view.cjs` với Playwri
 
 ## Bộ nộp KB, KG và RAG
 
-[Bộ tệp đã xuất](exports/diabetes/) có KB JSON, KG dạng CSV/JSON/Cypher, chỉ mục RAG, 22 câu hỏi cùng kết quả, trace mẫu và manifest SHA-256. Lệnh đóng gói gom mười tệp để trình diễn vào `BAN_GIAO_GLUCOGUIDE/KB_KG_RAG/`.
+Mở [KB_KG_RAG](exports/KB_KG_RAG/) để xem trực tiếp cả 10 tệp, gồm `kb_diabet.cypher`, KB JSON, đồ thị CSV/JSON và chỉ mục RAG. [Bộ chạy offline](exports/diabetes/) có thêm trace mẫu, tài liệu nguồn, mã truy vấn và manifest SHA-256. Lệnh đóng gói đưa cùng 10 tệp vào `BAN_GIAO_GLUCOGUIDE/KB_KG_RAG/`.
 
 Xuất lại từ Neo4j và web local đang chạy:
 
