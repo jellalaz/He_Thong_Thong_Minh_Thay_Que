@@ -1,6 +1,6 @@
 [
   {
-    "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+    "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
     "system_version": "2.0",
     "prediction": {
       "label": 1,
@@ -17,12 +17,14 @@
       "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
     },
     "rules": {
+      "prediction_consistent": true,
       "allow_diagnosis": false,
       "allow_dose_change": false,
       "flags": [
         "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
         "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-        "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+        "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+        "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
       ]
     },
     "answer": "Mô hình pima-v1-seed254 xếp mẫu vào nhãn Positive, với điểm lớp Positive 0.524. Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.\n\nThông tin tham khảo: HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
@@ -46,12 +48,12 @@
           },
           "question": "HbA1c là gì?"
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.019
+        "elapsed_ms": 0.022
       },
       {
         "sender": "Data",
@@ -83,12 +85,12 @@
             "insu"
           ]
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.023
+        "elapsed_ms": 0.026
       },
       {
         "sender": "Coordinator",
@@ -124,12 +126,12 @@
             ]
           }
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 1.508
+        "elapsed_ms": 1.75
       },
       {
         "sender": "Prediction",
@@ -149,12 +151,12 @@
           "checkpoint_sha256": "2428969df7a16ee3c34330efdc9c87a39980d63c94e7865b9182567bdcfe8f92",
           "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 1.509
+        "elapsed_ms": 1.752
       },
       {
         "sender": "Coordinator",
@@ -187,46 +189,62 @@
               "skin",
               "insu"
             ]
+          },
+          "prediction": {
+            "label": 1,
+            "label_text": "Positive",
+            "positive_label_score": 0.5238927093637016,
+            "threshold": 0.5,
+            "hidden_layers": [
+              64,
+              32,
+              16
+            ],
+            "model_version": "pima-v1-seed254",
+            "checkpoint_sha256": "2428969df7a16ee3c34330efdc9c87a39980d63c94e7865b9182567bdcfe8f92",
+            "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           }
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.003
+        "elapsed_ms": 0.005
       },
       {
         "sender": "Rule",
         "receiver": "Coordinator",
         "type": "INFORM",
         "content": {
+          "prediction_consistent": true,
           "allow_diagnosis": false,
           "allow_dose_change": false,
           "flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
             "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ]
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.004
+        "elapsed_ms": 0.006
       },
       {
         "sender": "Coordinator",
         "receiver": "KG/RAG",
         "type": "REQUEST",
         "content": "HbA1c là gì?",
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 21.069
+        "elapsed_ms": 144.823
       },
       {
         "sender": "KG/RAG",
@@ -280,12 +298,12 @@
           ],
           "graph_status": "Neo4j"
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 21.073
+        "elapsed_ms": 144.832
       },
       {
         "sender": "Coordinator",
@@ -307,12 +325,14 @@
             "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           },
           "rules": {
+            "prediction_consistent": true,
             "allow_diagnosis": false,
             "allow_dose_change": false,
             "flags": [
               "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
               "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-              "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+              "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+              "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
             ]
           },
           "knowledge": {
@@ -364,12 +384,12 @@
             "graph_status": "Neo4j"
           }
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.009
+        "elapsed_ms": 0.016
       },
       {
         "sender": "Explanation",
@@ -394,44 +414,46 @@
           "review_flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
             "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ],
           "source_ids": [
             "a1c"
           ],
           "generator": "Mẫu giải thích có nguồn / Explanation Agent V2"
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.01
+        "elapsed_ms": 0.016
       },
       {
         "sender": "Coordinator",
         "receiver": "Monitoring",
         "type": "REQUEST",
         "content": {
-          "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+          "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
           "system_version": "2.0",
           "model_version": "pima-v1-seed254",
           "checkpoint_sha256": "2428969df7a16ee3c34330efdc9c87a39980d63c94e7865b9182567bdcfe8f92",
           "status": "ok",
           "dataset": "pima",
-          "seconds": 0.0229,
+          "seconds": 0.1469,
           "source_ids": [
             "a1c"
           ],
           "graph_status": "Neo4j",
-          "model_invoked": true
+          "model_invoked": true,
+          "prediction_consistent": true
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.232
+        "elapsed_ms": 0.303
       },
       {
         "sender": "Monitoring",
@@ -439,23 +461,23 @@
         "type": "INFORM",
         "content": {
           "stored": true,
-          "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+          "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
           "raw_input_stored": false
         },
-        "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+        "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
         "system_version": "2.0",
         "model_version": "pima-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.233
+        "elapsed_ms": 0.305
       }
     ],
     "audit": {
       "stored": true,
-      "request_id": "bbd1db9c572e4a80aa006a02cb26e07f",
+      "request_id": "6a4b4dd2fc6744dc858e9bf6c68094e5",
       "raw_input_stored": false
     },
-    "seconds": 0.0229,
+    "seconds": 0.1469,
     "sources": [
       {
         "id": "a1c",
@@ -496,7 +518,7 @@
     }
   },
   {
-    "request_id": "1324cfac389d467893fa1c015655a7a7",
+    "request_id": "cd7e56596067410d932aba735ae8b274",
     "system_version": "2.0",
     "prediction": {
       "label": 1,
@@ -515,12 +537,14 @@
       "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
     },
     "rules": {
+      "prediction_consistent": true,
       "allow_diagnosis": false,
       "allow_dose_change": false,
       "flags": [
         "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
         "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-        "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+        "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+        "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
       ]
     },
     "answer": "Mô hình pima-v2-seed254 xếp mẫu vào nhãn Positive, với điểm lớp Positive 0.547. Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.\n\nThông tin tham khảo: HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
@@ -544,12 +568,12 @@
           },
           "question": "HbA1c là gì?"
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.016
+        "elapsed_ms": 0.017
       },
       {
         "sender": "Data",
@@ -581,12 +605,12 @@
             "insu"
           ]
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.021
+        "elapsed_ms": 0.019
       },
       {
         "sender": "Coordinator",
@@ -622,12 +646,12 @@
             ]
           }
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 1.639
+        "elapsed_ms": 1.71
       },
       {
         "sender": "Prediction",
@@ -649,12 +673,12 @@
           "checkpoint_sha256": "e0ea2970463ba5b77a0ae0d728aa53c4b4e067f1d4b5db83df4990ef333a13f1",
           "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 1.64
+        "elapsed_ms": 1.712
       },
       {
         "sender": "Coordinator",
@@ -687,46 +711,64 @@
               "skin",
               "insu"
             ]
+          },
+          "prediction": {
+            "label": 1,
+            "label_text": "Positive",
+            "positive_label_score": 0.547196423816525,
+            "threshold": 0.5,
+            "hidden_layers": [
+              64,
+              32,
+              16,
+              8,
+              4
+            ],
+            "model_version": "pima-v2-seed254",
+            "checkpoint_sha256": "e0ea2970463ba5b77a0ae0d728aa53c4b4e067f1d4b5db83df4990ef333a13f1",
+            "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           }
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.003
+        "elapsed_ms": 0.005
       },
       {
         "sender": "Rule",
         "receiver": "Coordinator",
         "type": "INFORM",
         "content": {
+          "prediction_consistent": true,
           "allow_diagnosis": false,
           "allow_dose_change": false,
           "flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
             "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ]
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.004
+        "elapsed_ms": 0.005
       },
       {
         "sender": "Coordinator",
         "receiver": "KG/RAG",
         "type": "REQUEST",
         "content": "HbA1c là gì?",
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 5.467
+        "elapsed_ms": 7.305
       },
       {
         "sender": "KG/RAG",
@@ -780,12 +822,12 @@
           ],
           "graph_status": "Neo4j"
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 5.471
+        "elapsed_ms": 7.308
       },
       {
         "sender": "Coordinator",
@@ -809,12 +851,14 @@
             "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           },
           "rules": {
+            "prediction_consistent": true,
             "allow_diagnosis": false,
             "allow_dose_change": false,
             "flags": [
               "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
               "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-              "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+              "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+              "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
             ]
           },
           "knowledge": {
@@ -866,7 +910,7 @@
             "graph_status": "Neo4j"
           }
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
@@ -898,14 +942,15 @@
           "review_flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
             "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
-            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu"
+            "Có trường thiếu; được điền trung vị chỉ học trên tập train: skin, insu",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ],
           "source_ids": [
             "a1c"
           ],
           "generator": "Mẫu giải thích có nguồn / Explanation Agent V2"
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
@@ -917,25 +962,26 @@
         "receiver": "Monitoring",
         "type": "REQUEST",
         "content": {
-          "request_id": "1324cfac389d467893fa1c015655a7a7",
+          "request_id": "cd7e56596067410d932aba735ae8b274",
           "system_version": "2.0",
           "model_version": "pima-v2-seed254",
           "checkpoint_sha256": "e0ea2970463ba5b77a0ae0d728aa53c4b4e067f1d4b5db83df4990ef333a13f1",
           "status": "ok",
           "dataset": "pima",
-          "seconds": 0.0072,
+          "seconds": 0.0091,
           "source_ids": [
             "a1c"
           ],
           "graph_status": "Neo4j",
-          "model_invoked": true
+          "model_invoked": true,
+          "prediction_consistent": true
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.21
+        "elapsed_ms": 0.194
       },
       {
         "sender": "Monitoring",
@@ -943,23 +989,23 @@
         "type": "INFORM",
         "content": {
           "stored": true,
-          "request_id": "1324cfac389d467893fa1c015655a7a7",
+          "request_id": "cd7e56596067410d932aba735ae8b274",
           "raw_input_stored": false
         },
-        "request_id": "1324cfac389d467893fa1c015655a7a7",
+        "request_id": "cd7e56596067410d932aba735ae8b274",
         "system_version": "2.0",
         "model_version": "pima-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.211
+        "elapsed_ms": 0.195
       }
     ],
     "audit": {
       "stored": true,
-      "request_id": "1324cfac389d467893fa1c015655a7a7",
+      "request_id": "cd7e56596067410d932aba735ae8b274",
       "raw_input_stored": false
     },
-    "seconds": 0.0072,
+    "seconds": 0.0091,
     "sources": [
       {
         "id": "a1c",
@@ -1000,7 +1046,7 @@
     }
   },
   {
-    "request_id": "d13b855df6324a5181d7e44800040ca8",
+    "request_id": "7eac031917124e528daa57be7299301e",
     "system_version": "2.0",
     "prediction": {
       "label": 1,
@@ -1017,11 +1063,13 @@
       "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
     },
     "rules": {
+      "prediction_consistent": true,
       "allow_diagnosis": false,
       "allow_dose_change": false,
       "flags": [
         "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-        "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+        "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+        "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
       ]
     },
     "answer": "Mô hình early_stage-v1-seed254 xếp mẫu vào nhãn Positive, với điểm lớp Positive 0.908. Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.\n\nThông tin tham khảo: HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
@@ -1053,7 +1101,7 @@
           },
           "question": "HbA1c là gì?"
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
@@ -1103,12 +1151,12 @@
           ],
           "missing_fields": []
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.019
+        "elapsed_ms": 0.02
       },
       {
         "sender": "Coordinator",
@@ -1157,12 +1205,12 @@
             "missing_fields": []
           }
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 1.373
+        "elapsed_ms": 1.494
       },
       {
         "sender": "Prediction",
@@ -1182,12 +1230,12 @@
           "checkpoint_sha256": "653ee99547ca3c2abb76129ae68b713582c2a2ae37ba6890ca6a3a77d1b0547d",
           "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 1.374
+        "elapsed_ms": 1.496
       },
       {
         "sender": "Coordinator",
@@ -1233,45 +1281,61 @@
               0.0
             ],
             "missing_fields": []
+          },
+          "prediction": {
+            "label": 1,
+            "label_text": "Positive",
+            "positive_label_score": 0.9078905227149436,
+            "threshold": 0.5,
+            "hidden_layers": [
+              64,
+              32,
+              16
+            ],
+            "model_version": "early_stage-v1-seed254",
+            "checkpoint_sha256": "653ee99547ca3c2abb76129ae68b713582c2a2ae37ba6890ca6a3a77d1b0547d",
+            "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           }
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.002
+        "elapsed_ms": 0.004
       },
       {
         "sender": "Rule",
         "receiver": "Coordinator",
         "type": "INFORM",
         "content": {
+          "prediction_consistent": true,
           "allow_diagnosis": false,
           "allow_dose_change": false,
           "flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ]
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.003
+        "elapsed_ms": 0.004
       },
       {
         "sender": "Coordinator",
         "receiver": "KG/RAG",
         "type": "REQUEST",
         "content": "HbA1c là gì?",
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 7.516
+        "elapsed_ms": 8.724
       },
       {
         "sender": "KG/RAG",
@@ -1325,12 +1389,12 @@
           ],
           "graph_status": "Neo4j"
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 7.518
+        "elapsed_ms": 8.727
       },
       {
         "sender": "Coordinator",
@@ -1352,11 +1416,13 @@
             "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           },
           "rules": {
+            "prediction_consistent": true,
             "allow_diagnosis": false,
             "allow_dose_change": false,
             "flags": [
               "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-              "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+              "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+              "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
             ]
           },
           "knowledge": {
@@ -1408,7 +1474,7 @@
             "graph_status": "Neo4j"
           }
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
@@ -1437,14 +1503,15 @@
           },
           "review_flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ],
           "source_ids": [
             "a1c"
           ],
           "generator": "Mẫu giải thích có nguồn / Explanation Agent V2"
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
@@ -1456,25 +1523,26 @@
         "receiver": "Monitoring",
         "type": "REQUEST",
         "content": {
-          "request_id": "d13b855df6324a5181d7e44800040ca8",
+          "request_id": "7eac031917124e528daa57be7299301e",
           "system_version": "2.0",
           "model_version": "early_stage-v1-seed254",
           "checkpoint_sha256": "653ee99547ca3c2abb76129ae68b713582c2a2ae37ba6890ca6a3a77d1b0547d",
           "status": "ok",
           "dataset": "early_stage",
-          "seconds": 0.009,
+          "seconds": 0.0103,
           "source_ids": [
             "a1c"
           ],
           "graph_status": "Neo4j",
-          "model_invoked": true
+          "model_invoked": true,
+          "prediction_consistent": true
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.182
+        "elapsed_ms": 0.175
       },
       {
         "sender": "Monitoring",
@@ -1482,23 +1550,23 @@
         "type": "INFORM",
         "content": {
           "stored": true,
-          "request_id": "d13b855df6324a5181d7e44800040ca8",
+          "request_id": "7eac031917124e528daa57be7299301e",
           "raw_input_stored": false
         },
-        "request_id": "d13b855df6324a5181d7e44800040ca8",
+        "request_id": "7eac031917124e528daa57be7299301e",
         "system_version": "2.0",
         "model_version": "early_stage-v1-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.183
+        "elapsed_ms": 0.176
       }
     ],
     "audit": {
       "stored": true,
-      "request_id": "d13b855df6324a5181d7e44800040ca8",
+      "request_id": "7eac031917124e528daa57be7299301e",
       "raw_input_stored": false
     },
-    "seconds": 0.009,
+    "seconds": 0.0103,
     "sources": [
       {
         "id": "a1c",
@@ -1539,7 +1607,7 @@
     }
   },
   {
-    "request_id": "5a8e737d975b4faf857e0e989c144852",
+    "request_id": "45bd7f259a10421dbb26cfe1200a942b",
     "system_version": "2.0",
     "prediction": {
       "label": 1,
@@ -1558,11 +1626,13 @@
       "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
     },
     "rules": {
+      "prediction_consistent": true,
       "allow_diagnosis": false,
       "allow_dose_change": false,
       "flags": [
         "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-        "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+        "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+        "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
       ]
     },
     "answer": "Mô hình early_stage-v2-seed254 xếp mẫu vào nhãn Positive, với điểm lớp Positive 1.000. Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.\n\nThông tin tham khảo: HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả. [a1c]",
@@ -1594,7 +1664,7 @@
           },
           "question": "HbA1c là gì?"
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
@@ -1644,12 +1714,12 @@
           ],
           "missing_fields": []
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.019
+        "elapsed_ms": 0.017
       },
       {
         "sender": "Coordinator",
@@ -1698,12 +1768,12 @@
             "missing_fields": []
           }
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 1.514
+        "elapsed_ms": 1.622
       },
       {
         "sender": "Prediction",
@@ -1725,12 +1795,12 @@
           "checkpoint_sha256": "0b691bf9f43697641b3ae008edddfa7530ce038ce350ae17fcc030421c3a4ba2",
           "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 1.515
+        "elapsed_ms": 1.624
       },
       {
         "sender": "Coordinator",
@@ -1776,28 +1846,46 @@
               0.0
             ],
             "missing_fields": []
+          },
+          "prediction": {
+            "label": 1,
+            "label_text": "Positive",
+            "positive_label_score": 0.9999870640979085,
+            "threshold": 0.5,
+            "hidden_layers": [
+              64,
+              32,
+              16,
+              8,
+              4
+            ],
+            "model_version": "early_stage-v2-seed254",
+            "checkpoint_sha256": "0b691bf9f43697641b3ae008edddfa7530ce038ce350ae17fcc030421c3a4ba2",
+            "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           }
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.002
+        "elapsed_ms": 0.003
       },
       {
         "sender": "Rule",
         "receiver": "Coordinator",
         "type": "INFORM",
         "content": {
+          "prediction_consistent": true,
           "allow_diagnosis": false,
           "allow_dose_change": false,
           "flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ]
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
@@ -1809,12 +1897,12 @@
         "receiver": "KG/RAG",
         "type": "REQUEST",
         "content": "HbA1c là gì?",
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 4.726
+        "elapsed_ms": 5.897
       },
       {
         "sender": "KG/RAG",
@@ -1868,12 +1956,12 @@
           ],
           "graph_status": "Neo4j"
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 4.729
+        "elapsed_ms": 5.899
       },
       {
         "sender": "Coordinator",
@@ -1897,11 +1985,13 @@
             "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
           },
           "rules": {
+            "prediction_consistent": true,
             "allow_diagnosis": false,
             "allow_dose_change": false,
             "flags": [
               "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-              "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+              "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+              "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
             ]
           },
           "knowledge": {
@@ -1953,7 +2043,7 @@
             "graph_status": "Neo4j"
           }
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
@@ -1984,14 +2074,15 @@
           },
           "review_flags": [
             "Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.",
-            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam."
+            "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+            "Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình."
           ],
           "source_ids": [
             "a1c"
           ],
           "generator": "Mẫu giải thích có nguồn / Explanation Agent V2"
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
@@ -2003,25 +2094,26 @@
         "receiver": "Monitoring",
         "type": "REQUEST",
         "content": {
-          "request_id": "5a8e737d975b4faf857e0e989c144852",
+          "request_id": "45bd7f259a10421dbb26cfe1200a942b",
           "system_version": "2.0",
           "model_version": "early_stage-v2-seed254",
           "checkpoint_sha256": "0b691bf9f43697641b3ae008edddfa7530ce038ce350ae17fcc030421c3a4ba2",
           "status": "ok",
           "dataset": "early_stage",
-          "seconds": 0.0063,
+          "seconds": 0.0076,
           "source_ids": [
             "a1c"
           ],
           "graph_status": "Neo4j",
-          "model_invoked": true
+          "model_invoked": true,
+          "prediction_consistent": true
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "requested",
-        "elapsed_ms": 0.158
+        "elapsed_ms": 0.175
       },
       {
         "sender": "Monitoring",
@@ -2029,23 +2121,23 @@
         "type": "INFORM",
         "content": {
           "stored": true,
-          "request_id": "5a8e737d975b4faf857e0e989c144852",
+          "request_id": "45bd7f259a10421dbb26cfe1200a942b",
           "raw_input_stored": false
         },
-        "request_id": "5a8e737d975b4faf857e0e989c144852",
+        "request_id": "45bd7f259a10421dbb26cfe1200a942b",
         "system_version": "2.0",
         "model_version": "early_stage-v2-seed254",
         "agent_version": "2.0",
         "status": "ok",
-        "elapsed_ms": 0.159
+        "elapsed_ms": 0.175
       }
     ],
     "audit": {
       "stored": true,
-      "request_id": "5a8e737d975b4faf857e0e989c144852",
+      "request_id": "45bd7f259a10421dbb26cfe1200a942b",
       "raw_input_stored": false
     },
-    "seconds": 0.0063,
+    "seconds": 0.0076,
     "sources": [
       {
         "id": "a1c",

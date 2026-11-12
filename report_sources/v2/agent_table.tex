@@ -4,7 +4,7 @@ Vai trò & Đầu vào & Đầu ra & Thực hiện\\\midrule
 Coordinator & Request + dataset/version & Response tích hợp hoặc lỗi & Workflow trong v2.py\\
 Data & Feature thô và schema & Feature order, missing flags hoặc lỗi & validate\_data\\
 Prediction & Dữ liệu chuẩn hóa & Label, score, threshold, version, hash & predict / pipeline\\
-Rule & Dataset, cờ dữ liệu & Cờ phạm vi và giới hạn & reviewed\_rules\\
+Rule & Dữ liệu đã kiểm tra và dự đoán & Nhất quán điểm, ngưỡng, nhãn và cờ phạm vi & reviewed\_rules\\
 KG/RAG & Câu hỏi kiến thức & Đoạn có nguồn, cạnh đã đối chiếu & Retriever + GraphKnowledgeAgent\\
 Explanation & Model + rules + evidence & Giải thích có nguồn, không chẩn đoán & explain\\
 Monitoring & Metadata lượt chạy & Trạng thái lưu request/version & monitor / JSONL\\\bottomrule\end{tabular}\end{table}

@@ -108,12 +108,12 @@ Kiến trúc theo tài liệu giảng viên \cite{architecture-v2} được áp 
 \input{agent_table.tex}
 \fig{figures/layers.png}{0.70}{Sáu tầng tổ chức phần mềm. Coordinator điều phối sáu vai trò chuyên trách.}
 
-Một lần thực nghiệm bắt đầu bằng việc cấp mã yêu cầu. Data Agent kiểm tra tập tên trường, giá trị hữu hạn và các miền đã khai báo. Prediction Agent dùng đúng checkpoint của phiên bản được chọn. Rule Agent gắn cờ phạm vi dữ liệu và xử lý thiếu. KG/RAG Agent truy xuất đoạn và đối chiếu cạnh. Explanation Agent kết hợp điểm nghiên cứu và thông tin nguồn. Monitoring Agent lưu metadata. API trả trace gắn mã yêu cầu để người xem nhận ra mỗi bước được gọi và kết thúc thế nào.
+Một lần thực nghiệm bắt đầu bằng việc cấp mã yêu cầu. Data Agent kiểm tra tập tên trường, giá trị hữu hạn và các miền đã khai báo. Prediction Agent dùng đúng checkpoint của phiên bản được chọn. Rule Agent nhận dữ liệu và dự đoán, đối chiếu tính nhất quán của điểm, ngưỡng, nhãn và gắn cờ phạm vi. Kết quả bất nhất bị chặn trước Explanation. KG/RAG Agent truy xuất đoạn và đối chiếu cạnh. Explanation Agent kết hợp điểm nghiên cứu và thông tin nguồn. Monitoring Agent lưu metadata. API trả trace gắn mã yêu cầu để người xem nhận ra mỗi bước được gọi và kết thúc thế nào.
 
 Khi yêu cầu chứa tình huống ưu tiên, bước an toàn chặn việc gọi mô hình. Dữ liệu sai hợp đồng dừng ở bước kiểm tra. Nếu Neo4j gián đoạn, phản hồi ghi trạng thái đồ thị và có thể dùng bằng chứng văn bản từ KB. Các tình huống này được kiểm tra riêng để người xem nhận biết nguồn thông tin đang có.
 
 \section{Nguồn tri thức, chỉ mục và truy vấn cạnh}
-KB hợp nhất 58 đoạn từ 22 nguồn. Mỗi đoạn có định danh tài liệu, văn bản và nguồn. Các đoạn được biên soạn từ PDF hoặc web có thể truy lại vị trí hoặc văn bản lưu và mã băm khi có. Bản xuất KG gồm 169 nút \code{Concept} và 106 cạnh \code{RELATED_TO}. Thuộc tính document nối quan hệ về đoạn KB, evidence lưu đoạn làm căn cứ và source URL chỉ tới nguồn. Tệp \code{kb_diabet.cypher} chứa lệnh nạp đồ thị và đặt ở cấp ngoài của bộ nộp.
+KB hợp nhất 58 đoạn từ 22 nguồn. Mỗi đoạn có định danh tài liệu, văn bản và nguồn. Các đoạn được biên soạn từ PDF hoặc web có thể truy lại vị trí hoặc văn bản lưu và mã băm khi có. Bản xuất KG gồm 169 nút \code{Concept} và 106 cạnh \code{RELATED_TO}. Thuộc tính document nối quan hệ về đoạn KB, evidence lưu đoạn làm căn cứ và source URL chỉ tới nguồn. Tệp \code{kb_diabet.cypher} chứa lệnh nạp đồ thị và nằm trong \nolinkurl{exports/KB_KG_RAG/}.
 
 \input{triple_table.tex}
 
@@ -125,7 +125,7 @@ WHERE r.document = 'a1c'
 RETURN a.name, r.label, b.name, r.evidence, r.source_url
 \end{Verbatim}
 
-Nhánh trò chuyện dùng Qwen3 4B local để sinh câu trả lời từ ngữ cảnh. Nhánh thực nghiệm MLP dùng mẫu giải thích có nguồn để người xem theo được kết quả của từng bước. Hai nhánh dùng chung kho tri thức và có cách tạo đầu ra riêng. Checkpoint V2 lưu mô hình phân loại dạng bảng. Trọng số Qwen thuộc mô hình trò chuyện.
+Nhánh trò chuyện dùng Qwen3 4B local để sinh câu trả lời từ ngữ cảnh. Nhánh thực nghiệm MLP dùng mẫu giải thích có nguồn. Mac chạy Neo4j trực tiếp và lưu audit tệp. Vercel có thể dùng bản chụp đồ thị khi Aura gián đoạn. Hai nhánh dùng chung kho tri thức và có cách tạo đầu ra riêng. Checkpoint V2 lưu mô hình phân loại dạng bảng. Trọng số Qwen thuộc mô hình trò chuyện.
 
 \section{Một ví dụ có dấu vết thực thi}
 Với mẫu công khai của Pima, câu hỏi HbA1c được đưa vào nhánh tri thức. Cùng mẫu đó cho điểm Positive 0,5239 ở V1 và 0,5472 ở V2 trong lượt kiểm thử đã lưu. Hai điểm cùng nằm trên ngưỡng 0,5 nên nhãn giữ nguyên. Bước KG/RAG chọn mã tài liệu \code{a1c}, đối chiếu hai cạnh và trả nguồn. Lượt chạy có 12 thông điệp, gồm yêu cầu và kết quả cho sáu vai trò chuyên trách.

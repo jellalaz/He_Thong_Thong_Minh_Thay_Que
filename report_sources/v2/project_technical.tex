@@ -77,7 +77,7 @@ Một yêu cầu sinh một bus riêng. Coordinator gọi sáu vai trò theo th�
 
 \input{project_trace_example.tex}
 
-Prediction nhận feature order và giá trị từ Data. Rule nhận dataset và trạng thái trường thiếu. KG/RAG nhận câu hỏi đi kèm, trả đoạn và cạnh đã kiểm tra. Explanation nhận ba nhóm kết quả để trình bày phạm vi và căn cứ. Monitoring nhận metadata đã trích từ lượt chạy và ghi một dòng JSONL. Một người xem có thể dò theo mã lượt, nhận diện checkpoint qua hash và tìm lại mã đoạn tri thức.
+Prediction nhận feature order và giá trị từ Data. Rule nhận dữ liệu đã kiểm tra và dự đoán. Nó kiểm tra điểm, ngưỡng và nhãn trước khi cho phép trình bày kết quả. KG/RAG nhận câu hỏi đi kèm, trả đoạn và cạnh đã kiểm tra. Explanation nhận ba nhóm kết quả để trình bày phạm vi và căn cứ. Monitoring nhận metadata đã trích từ lượt chạy và ghi một dòng JSONL. Một người xem có thể dò theo mã lượt, nhận diện checkpoint qua hash và tìm lại mã đoạn tri thức.
 
 \section{Phân biệt phản hồi lỗi và phản hồi giảm tính năng}
 \begin{table}[H]\centering\small\setstretch{1.12}
@@ -87,7 +87,8 @@ Tình huống & Xử lý & Dấu hiệu trên đầu ra\\\midrule
 Yêu cầu hợp lệ & Thực hiện sáu lời gọi chuyên trách & Dự đoán, nguồn, trace và audit\\
 Sai tập trường hoặc số không hữu hạn & Data báo lỗi trước Prediction & HTTP 422, mã yêu cầu và trace lỗi\\
 Câu hỏi ưu tiên an toàn & Nhánh ưu tiên chạy trước schema và model & Không có kết quả model, audit ghi bỏ qua\\
-Neo4j gián đoạn & Giữ đoạn văn bản đã tìm, trả graph unavailable & Nguồn văn bản còn, danh sách cạnh rỗng\\
+Đầu ra mô hình bất nhất & Rule chặn trước Explanation, Monitoring ghi lỗi & HTTP 503 và mã yêu cầu\\
+Neo4j gián đoạn & Mac giữ văn bản. Vercel có thể dùng bản chụp & Phản hồi ghi rõ nguồn đồ thị\\
 Không ghi được audit & Monitoring trả trạng thái lưu thất bại & Kết quả còn, trường stored bằng false\\\bottomrule
 \end{tabular}
 \end{table}
@@ -155,7 +156,7 @@ Bản xuất chứa JSON KB, CSV/JSON graph, tệp Cypher, chỉ mục TF-IDF, c
   exports/diabetes --question "HbA1c là gì?"
 \end{Verbatim}
 
-Khi muốn dựng lại graph local từ bộ xuất, dùng \nolinkurl{scripts/restore_knowledge_export.py}. Script kiểm manifest, tạo ràng buộc tên Concept duy nhất và gọi MERGE. Bộ kiểm tra xuất kiểm tám điều kiện, trong đó có hash, dữ liệu UTF-8, tái hiện 22 ca và cú pháp Cypher. Tệp \code{kb_diabet.cypher} cấp ngoài là bản để mở nhanh khi trình bày.
+Khi muốn dựng lại graph local từ bộ xuất, dùng \nolinkurl{scripts/restore_knowledge_export.py}. Script kiểm manifest, tạo ràng buộc tên Concept duy nhất và gọi MERGE. Bộ kiểm tra xuất kiểm tám điều kiện, trong đó có hash, dữ liệu UTF-8, tái hiện 22 ca và cú pháp Cypher. Tệp \nolinkurl{exports/KB_KG_RAG/kb_diabet.cypher} là bản để mở nhanh khi trình bày.
 
 \chapter{Hội thoại cục bộ, kiểm chứng và giới hạn}\label{pr:chat-control}
 
@@ -188,7 +189,7 @@ Các kết quả trên mô tả ca đã chạy trên dữ liệu và câu hỏi 
 \chapter{Tái lập và trình diễn theo từng tình huống}\label{pr:repeatable-demo}
 
 \section{Chuẩn bị bộ nộp và môi trường chạy}
-Bộ nộp có hai PDF, một tệp Cypher, một ZIP mã nguồn và hướng dẫn. Giải nén ZIP và vào thư mục project. Môi trường đã dựng trên máy demo dùng Python 3.14 riêng trong \code{.venv}. Runtime, model GGUF và thông tin đăng nhập nằm ngoài ZIP. Trên máy Mac khác, setup tải phần runtime cần thiết và model local. Neo4j, Qwen và FastAPI có bước kiểm tra sẵn sàng riêng. Checkpoint của Pima và Early Stage đã lưu trong gói.
+Mở hai PDF trong \code{reports/} và tệp Cypher trong \nolinkurl{exports/KB_KG_RAG/}. Để chạy lại, vào thư mục gốc repository hoặc \code{MA_NGUON/} trong bản bàn giao trên Mac. Môi trường đã dựng trên máy demo dùng Python 3.14 riêng trong \code{.venv}. Runtime, model GGUF và thông tin đăng nhập được cài hoặc cấu hình riêng. Trên máy Mac khác, setup tải phần runtime cần thiết và model local. Neo4j, Qwen và FastAPI có bước kiểm tra sẵn sàng riêng. Checkpoint của Pima và Early Stage đã lưu trong gói.
 
 \begin{table}[H]\centering\small\setstretch{1.12}
 \caption{Tệp tối thiểu cần mở để chứng minh từng việc.}

@@ -1,6 +1,6 @@
 \chapter{Mã nguồn chính của V2 có chú thích}\label{ch:v2-core-code}
 
-Các đoạn dưới được lấy trực tiếp từ mã nguồn của bộ nộp. Số ở lề trái là số dòng trong tệp gốc. Phần chữ trước và sau mỗi đoạn giải thích dữ liệu vào, tác dụng của lệnh và kết quả chuyển sang bước tiếp theo. Các tệp đầy đủ nằm trong ZIP.
+Các đoạn dưới được lấy trực tiếp từ mã nguồn của bộ nộp. Số ở lề trái là số dòng trong tệp gốc. Phần chữ trước và sau mỗi đoạn giải thích dữ liệu vào, tác dụng của lệnh và kết quả chuyển sang bước tiếp theo. Các tệp đầy đủ nằm trong repository.
 
 \newcommand{\vTwoExcerpt}[3]{%
   \par\noindent\textit{\nolinkurl{#1}, dòng #2--#3.}\par
@@ -26,12 +26,12 @@ Dòng 118--121 tạo model và trọng số mẫu. \code{partial_fit} học trê
 Data Agent lấy tên trường có thứ tự từ registry. Nó phân biệt giá trị thiếu với khóa thiếu, kiểm số hữu hạn và mã nhị phân. Trong Pima, quy tắc 0 thành thiếu giống quy tắc khi chuẩn bị dữ liệu. Đầu ra trả danh sách tên, giá trị theo thứ tự và các trường thiếu để Prediction dùng đúng cột.
 \vTwoExcerpt{app/v2.py}{63}{87}
 
-\code{predict} dựng DataFrame một hàng rồi gọi \code{predict_proba}. Dòng 94 chọn cột lớp 1 theo \code{classes_}. Kết quả có điểm, nhãn theo ngưỡng 0,5, số tầng, phiên bản và hash. Rule Agent bổ sung phạm vi, quần thể và thông tin điền thiếu.
-\vTwoExcerpt{app/v2.py}{90}{107}
+\code{predict} dựng DataFrame một hàng rồi gọi \code{predict_proba}. Dòng 94 chọn cột lớp 1 theo \code{classes_}. Kết quả có điểm, nhãn theo ngưỡng 0,5, số tầng, phiên bản và hash. Rule Agent nhận dự đoán và dữ liệu, kiểm tra điểm, ngưỡng và nhãn, rồi gắn cờ phạm vi.
+\vTwoExcerpt{app/v2.py}{90}{115}
 
 \section{Điều phối và gộp kết quả}
-Đoạn đầu tạo mã lượt và kiểm an toàn trước Prediction. Nếu Data Agent báo lỗi, Coordinator trả 422 và ghi metadata nhánh lỗi. Khi hợp lệ, nó gọi Prediction, Rule và KG/RAG. Dòng 174 đưa cả ba kết quả cho Explanation. Dòng 176--183 ghi metadata và trả nguồn, cạnh và trace về web.
-\vTwoExcerpt{app/v2.py}{145}{183}
+Đoạn đầu tạo mã lượt và kiểm an toàn trước Prediction. Nếu Data Agent báo lỗi, Coordinator trả 422 và ghi metadata nhánh lỗi. Khi hợp lệ, nó gọi Prediction, Rule và KG/RAG. Dòng 172--177 kiểm tra và chặn kết quả không nhất quán. Dòng 187 đưa cả ba kết quả cho Explanation. Dòng 189--196 ghi metadata và trả nguồn, cạnh và trace về web.
+\vTwoExcerpt{app/v2.py}{153}{196}
 
 \section{Truy xuất văn bản và đối chiếu Neo4j}
 Retriever xử lý ba đường vào: bỏ qua truy xuất, nguồn đã được chỉ định, hoặc xếp hạng. Với xếp hạng, điểm từ và ký tự được gộp, bổ sung điểm cụm từ và điểm định tuyến, rồi áp ngưỡng để chọn kết quả.

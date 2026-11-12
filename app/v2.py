@@ -100,11 +100,19 @@ def predict(payload, _bus):
 
 
 def reviewed_rules(payload, _bus):
+    prediction = payload['prediction']
+    score = prediction['positive_label_score']
+    threshold = prediction['threshold']
+    valid_score = math.isfinite(score) and 0 <= score <= 1 and math.isfinite(threshold) and 0 <= threshold <= 1
+    expected_label = int(score >= threshold)
+    consistent = valid_score and prediction['label'] == expected_label and prediction['label_text'] == ('Positive' if expected_label else 'Negative')
     flags = ['Điểm mô hình chưa được hiệu chuẩn thành nguy cơ mắc bệnh cá nhân.',
              registry()['datasets'][payload['dataset']]['population']]
     if payload['data']['missing_fields']:
         flags.append('Có trường thiếu; được điền trung vị chỉ học trên tập train: ' + ', '.join(payload['data']['missing_fields']))
-    return {'allow_diagnosis': False, 'allow_dose_change': False, 'flags': flags}
+    if consistent:
+        flags.append('Rule Agent đã đối chiếu điểm, ngưỡng và nhãn nghiên cứu của mô hình.')
+    return {'prediction_consistent': consistent, 'allow_diagnosis': False, 'allow_dose_change': False, 'flags': flags}
 
 
 def explain(payload, _bus):
@@ -161,7 +169,12 @@ def coordinated_prediction(req: StudyRequest):
                     'status':'validation-error','dataset':req.dataset,'model_invoked':False})
         raise HTTPException(422, {'request_id': request_id, 'message': str(exc), 'trace': bus.trace})
     prediction = bus.request('Coordinator', 'Prediction', {'dataset':req.dataset,'version':req.version,'data':data})
-    rules = bus.request('Coordinator', 'Rule', {'dataset':req.dataset,'data':data})
+    rules = bus.request('Coordinator', 'Rule', {'dataset':req.dataset,'data':data,'prediction':prediction})
+    if not rules['prediction_consistent']:
+        bus.request('Coordinator', 'Monitoring', {'request_id':request_id,'system_version':SYSTEM_VERSION,
+                    'status':'prediction-review-failed','dataset':req.dataset,'model_invoked':True})
+        raise HTTPException(503, {'request_id':request_id, 'code':'prediction-review-failed',
+                                  'message':'Đầu ra mô hình không qua kiểm tra nhất quán.'})
     def knowledge(payload, _bus):
         plan = plan_turn(payload, [], route(payload, [])); docs = retriever.search(plan)
         try:
@@ -176,7 +189,7 @@ def coordinated_prediction(req: StudyRequest):
     audit = bus.request('Coordinator', 'Monitoring', {'request_id':request_id,'system_version':SYSTEM_VERSION,
                         'model_version':prediction['model_version'],'checkpoint_sha256':prediction['checkpoint_sha256'],
                         'status':'ok','dataset':req.dataset,'seconds':seconds,'source_ids':explanation['source_ids'],
-                        'graph_status':facts['graph_status'],'model_invoked':True})
+                        'graph_status':facts['graph_status'],'model_invoked':True,'prediction_consistent':True})
     return {'request_id':request_id,'system_version':SYSTEM_VERSION,'prediction':prediction,'rules':rules,
             'answer':explanation['text'],'trace':bus.trace,'audit':audit,'seconds':seconds,
             'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb['sources'][d['source']]} for d in facts['documents']],

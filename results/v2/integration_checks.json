@@ -1,5 +1,5 @@
 {
-  "passed": 11,
+  "passed": 13,
   "checks": [
     "pima: unique feature rows and disjoint train/validation/test",
     "pima/v1: checkpoint/test probability parity; real six-role workflow and grounded graph",
@@ -11,6 +11,8 @@
     "early_stage: missing fields and non-finite values rejected",
     "Priority safety bypasses model and feature validation",
     "Controlled graph outage is explicit and retains KB evidence",
+    "Rule Agent checks the prediction and preserves flags from validated input",
+    "Invalid model output returns 503 and never reaches Explanation",
     "Persistent audit contains request/version metadata without raw inputs or answer text"
   ]
 }

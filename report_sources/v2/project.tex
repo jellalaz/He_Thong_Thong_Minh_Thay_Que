@@ -18,7 +18,7 @@ Kết quả lưu của bản gốc gồm accuracy 0,818 và macro-F1 0,5441 cho 
 V2 dùng lại Neo4j, bộ truy xuất và bước kiểm tra an toàn trong luồng thực nghiệm. Qwen local tiếp tục phục vụ luồng Trò chuyện. Màn hình mới cho xem cùng lúc cấu hình mạng, đoạn tri thức và mã lượt chạy. Tiểu luận Final V2 giải thích nền tảng học và cách đánh giá. Project 01 V2 đi sâu vào đường đi của yêu cầu, triển khai, kiểm thử và thao tác demo.
 
 \section{Điều kiện chấp nhận}
-Một mẫu hợp lệ phải cho kết quả từ checkpoint thật, cờ phạm vi, nguồn và trace có request ID. Một mẫu sai dừng trước model. Tình huống ưu tiên an toàn không chờ model hoặc graph. Mất Neo4j phải thể hiện trạng thái rõ, không giả dữ liệu. Bộ nộp cần một file Cypher ở cấp ngoài, hai báo cáo đúng tên, mã nguồn và data trong một ZIP, cùng hướng dẫn ngắn.
+Một mẫu hợp lệ phải cho kết quả từ checkpoint thật, cờ phạm vi, nguồn và trace có request ID. Một mẫu sai dừng trước model. Tình huống ưu tiên an toàn không chờ model hoặc graph. Mất Neo4j phải thể hiện trạng thái rõ, không giả dữ liệu. Bộ nộp có hai báo cáo, thư mục \code{KB_KG_RAG/} chứa Cypher và các tệp tri thức, thư mục mã nguồn và hướng dẫn.
 
 Chương~\ref{pr:walkthrough} minh họa các lượt chạy trên giao diện. Các chương kỹ thuật tiếp theo đi sâu vào phép chia và model, cách xử lý lỗi, truy vết tài liệu, hội thoại và tái lập. Phụ lục~\ref{ch:v2-core-code} đưa các đoạn code có số dòng để đối chiếu thiết kế với chương trình đang dùng.
 
@@ -41,7 +41,7 @@ Coordinator gọi các vai trò qua MessageBus. Các lớp/handler trong \code{a
 \section{Đường đi từ nút Chạy đến checkpoint}
 Khi mở màn thực nghiệm, \code{web/v2.js}, dòng 21--29, lấy schema và cấu hình mạng từ \code{GET /api/v2/study}. Dòng 9 điền mẫu công khai từ registry. Dòng 11--16 chuyển form thành JSON, gửi \code{POST /api/v2/predict} và hiển thị nhãn, số lớp, nguồn và trace. Hai dataset có danh sách trường riêng. Khi đổi dataset, giao diện dựng lại form theo registry mới.
 
-Tại backend, \code{app/v2.py}, dòng 63--87, kiểm tên trường, thứ tự và giá trị. Dòng 90--99 dùng pipeline từ file joblib, chọn cột xác suất của lớp 1 qua \code{classes_} và áp ngưỡng 0,5. Dòng 163 gọi Prediction qua bus. Dòng 174 chuyển kết quả đã tính, cờ luật và nguồn cho Explanation. Dòng 176--183 ghi metadata và trả phản hồi. Hash trong kết quả nhận diện checkpoint đã chạy, giúp đối chiếu trực tiếp với tệp thực nghiệm.
+Tại backend, \code{app/v2.py}, dòng 63--87, kiểm tên trường, thứ tự và giá trị. Dòng 90--99 dùng pipeline từ file joblib, chọn cột xác suất của lớp 1 qua \code{classes_} và áp ngưỡng 0,5. Dòng 171 gọi Prediction qua bus. Dòng 172--177 chuyển dữ liệu và dự đoán cho Rule, rồi dừng nếu kết quả thiếu nhất quán. Dòng 187 đưa dự đoán, cờ luật và nguồn cho Explanation. Dòng 189--196 ghi metadata và trả phản hồi. Hash trong kết quả nhận diện checkpoint đã chạy, giúp đối chiếu trực tiếp với tệp thực nghiệm.
 
 \section{Luồng thực thi và ưu tiên}
 \begin{enumerate}
@@ -49,7 +49,7 @@ Tại backend, \code{app/v2.py}, dòng 63--87, kiểm tên trường, thứ tự
 \item Kiểm tra an toàn trước khi gọi model. Nếu ưu tiên, trả nhánh an toàn và ghi audit việc bỏ qua model.
 \item Data đối chiếu schema riêng; thiếu key, NaN dạng số hoặc trường lạ bị từ chối. Null từng trường có thể được impute; thiếu toàn bộ bị từ chối.
 \item Prediction nạp pipeline cố định thứ tự feature, trả nhãn, điểm, cấu hình và hash checkpoint.
-\item Rule ghi các cờ phạm vi nghiên cứu, quần thể và imputation; không thay thuốc hoặc kết luận bệnh.
+\item Rule nhận dữ liệu đã kiểm tra và kết quả Prediction theo mục 6.3 của tài liệu giảng viên. Agent kiểm điểm, ngưỡng và nhãn, đồng thời ghi cờ phạm vi, quần thể và điền thiếu. Nếu đầu ra sai, API trả 503 trước Explanation.
 \item KG/RAG truy xuất văn bản, lấy cạnh Neo4j và đối chiếu căn cứ. Coordinator chuyển kết quả sang Explanation.
 \item Explanation trả báo cáo có nguồn. Monitoring lưu metadata; response mang trace và trạng thái lưu.
 \end{enumerate}
@@ -58,7 +58,7 @@ Nhánh model V2 dùng mẫu giải thích xác định để giữ rõ phạm vi
 \section{Message và audit}
 Message giữ sender, receiver, type, content và thêm request ID, system version 2.0, agent version, model version, status, elapsed time. Model version có dạng \code{pima-v2-seed254}. Cả message đi và về đều gắn cùng request ID. Trạng thái requested/ok/error giúp đọc luồng và phân biệt lỗi chủ động với dữ liệu rỗng.
 
-Audit bền vững nằm tại \code{.runtime/audit-v2.jsonl}, chỉ chứa request/version, hash model, dataset, thời gian, ID nguồn và trạng thái graph. Không ghi raw features, câu hỏi, câu trả lời hoặc credential vào audit này. Trace trả trong response chứa chi tiết phục vụ demo, khác bản audit đã giảm dữ liệu.
+Trên Mac, audit được lưu tại \code{.runtime/audit-v2.jsonl}, chỉ chứa request/version, hash model, dataset, thời gian, ID nguồn, trạng thái đồ thị và kết quả kiểm tra nhất quán. Không ghi raw features, câu hỏi, câu trả lời hoặc credential vào audit này. Trace trả trong response chứa chi tiết phục vụ demo, khác bản audit đã giảm dữ liệu.
 
 \section{Hợp đồng yêu cầu và kết quả thực tế}
 \code{POST /api/v2/predict} nhận \code{dataset}, \code{version}, \code{values} và câu hỏi tùy chọn. Dataset chọn tập trường và checkpoint. Trong \code{values}, khóa thiếu hoặc lạ gây lỗi 422 ở Data Agent. Một khóa hợp lệ mang \code{null} là trường thiếu có thể điền trung vị, miễn là còn ít nhất một trường có giá trị. Điểm dự đoán, cờ luật, nguồn văn bản và cạnh đồ thị nằm ở các trường riêng để người xem đối chiếu.
@@ -116,7 +116,7 @@ KB hợp nhất từ ba tệp trong data/:
 \end{itemize}
 Tổng cộng 58 đoạn, 22 nguồn. Mỗi đoạn có ID và source ID; các đoạn PDF/web được biên soạn có provenance lưu trích đoạn, số trang, file và hash. Các bản PDF NIDDK và văn bản nguồn nằm trong source documents; Vinmec chỉ lưu trích dẫn ngắn và URL.
 
-KG xuất 169 Concept và 106 RELATED\_TO, có thuộc tính nhãn quan hệ, document, evidence, URL và provenance nếu có. File \code{kb_diabet.cypher} được đặt ngay cấp ngoài thư mục nộp; đây là cùng nội dung \code{exports/diabetes/kg/import.cypher}. Tên \code{DB_diabet.cypher} trong tài liệu thầy là tên ví dụ, không phải một loại tệp khác.
+KG xuất 169 Concept và 106 RELATED\_TO, có thuộc tính nhãn quan hệ, document, evidence, URL và provenance nếu có. Tệp \code{kb_diabet.cypher} nằm trong \nolinkurl{exports/KB_KG_RAG/} trên GitHub; Nội dung trùng tệp gốc trong \nolinkurl{exports/diabetes/kg/import.cypher}. Tên \code{DB_diabet.cypher} trong tài liệu thầy là tên ví dụ, không phải một loại tệp khác.
 \input{triple_table.tex}
 
 \section{Trình diễn Neo4j}
@@ -223,9 +223,9 @@ Luồng thực nghiệm dùng Explanation dạng mẫu. Luồng Trò chuyện d�
 \section{Khởi chạy trên Mac}
 Môi trường Python nằm trong \code{.venv/} của project, không cài gói vào Miniforge base. Runtime nằm trong \code{.runtime/}, Qwen trong \code{.local-models/}. Các thư mục này và credential được loại khỏi gói code. Trên máy đã setup:
 \begin{quote}\ttfamily bash run-macos.sh start\\bash run-macos.sh status\\bash run-macos.sh stop\end{quote}
-Mở \url{http://localhost:8765}. Qwen dùng cổng 11435; Neo4j Bolt 7687 và Browser 7474. Launcher có restart để nạp code mới. Người khác không thể dùng localhost của họ để truy cập laptop này.
+Mở \url{http://localhost:8765}. Qwen dùng cổng 11435; Neo4j Bolt 7687 và Browser 7474. Launcher có restart để nạp code mới. Người khác không thể dùng localhost của họ để truy cập laptop này. Bản \url{https://glucoguide-giang254.vercel.app/} chạy MLP và truy xuất KB. Khi Aura mất kết nối, nó trả bản chụp có nhãn. Qwen qua llama.cpp và audit lưu tệp thuộc môi trường Mac.
 
-Máy khác cần Python 3.14 và Java 21 ARM64; chạy setup-macos, setup-v2-assets nếu cần tải lại nguyên liệu train, train-v2 nếu chủ động tạo lại checkpoint, rồi start. Các checkpoint V2 và CSV sạch có trong gói nên không cần train lại chỉ để demo. ZIP Diabetes 50K cũ chưa khôi phục do endpoint Kaggle trả 404; việc này không chặn inference các model đã có hoặc hai thực nghiệm mới.
+Máy khác cần Python 3.14 và Java 21 ARM64; chạy setup-macos, setup-v2-assets nếu cần tải lại nguyên liệu train, train-v2 nếu chủ động tạo lại checkpoint, rồi start. Các checkpoint V2 và CSV sạch có trong gói nên không cần train lại chỉ để demo. Tệp dữ liệu nén Diabetes 50K cũ chưa khôi phục do endpoint Kaggle trả 404; việc này không chặn inference các model đã có hoặc hai thực nghiệm mới.
 
 \section{Kịch bản thuyết trình khoảng bảy phút}
 \begin{enumerate}
@@ -238,8 +238,8 @@ Máy khác cần Python 3.14 và Java 21 ARM64; chạy setup-macos, setup-v2-ass
 \item Phút 6--7: trình bày kết quả kiểm thử, giới hạn và hướng phát triển.
 \end{enumerate}
 
-\section{Bộ nộp chỉ gồm năm tệp ở cấp ngoài}
-Hai PDF V2 đúng tên, \code{kb_diabet.cypher}, một ZIP chứa code/data/KB/RAG/kết quả và PDF V1, cùng \code{DOC_TRUOC.txt}. Không để hàng chục ảnh/JSON lẻ ở cấp ngoài. Source LaTeX, dataset registry, metric và trace vẫn có trong ZIP để truy vết. File Cypher được giữ riêng vì thầy yêu cầu chỉ trực tiếp.
+\section{Thư mục bàn giao và đường dẫn trên GitHub}
+Hai PDF V2 nằm trong \code{reports/}. Mở \nolinkurl{exports/KB_KG_RAG/} để xem trực tiếp mười tệp tri thức, gồm \code{kb_diabet.cypher}. Bản gom trên Mac đặt mã nguồn trong \code{MA_NGUON/} và hướng dẫn trong \code{DOC_TRUOC.txt}.
 
 \section{Hướng phát triển có thứ tự}
 Ưu tiên đánh giá ngoài mẫu và chất lượng nguồn trước khi tăng độ sâu mạng. Sau đó có thể hiệu chuẩn xác suất trên validation độc lập, kiểm tra nhiều phép chia theo người/bệnh viện, bổ sung kiểm thử paraphrase, đánh giá câu trả lời bởi người có chuyên môn và quản lý audit. Nếu triển khai semantic retrieval hoặc multi-hop KG, cần benchmark mới và version mới; không mô tả các đề xuất đó như phần đã chạy của V2.

@@ -41,7 +41,9 @@ with patch.object(v2,'AUDIT',audit):
    roles={m['receiver'] for m in body['trace'] if m['type']=='REQUEST'}
    assert roles=={'Data','Prediction','Rule','KG/RAG','Explanation','Monitoring'}
    assert all(m['request_id']==body['request_id'] and m['system_version']=='2.0' for m in body['trace'])
-   assert body['rules']['allow_diagnosis'] is False
+   rule_input=next(m['content'] for m in body['trace'] if m['type']=='REQUEST' and m['receiver']=='Rule')
+   assert rule_input['data']['features']==features and rule_input['prediction']==body['prediction']
+   assert body['rules']['prediction_consistent'] and not body['rules']['allow_diagnosis'] and not body['rules']['allow_dose_change']
    checks.append(dataset+'/'+version+': checkpoint/test probability parity; real six-role workflow and grounded graph')
   bad={'dataset':dataset,'values':{}}
   assert client.post('/api/v2/predict',json=bad).status_code==422
@@ -56,9 +58,21 @@ with patch.object(v2,'AUDIT',audit):
   body=client.post('/api/v2/predict',json={'values':registry['datasets']['pima']['example']}).json()
   assert body['graph_status']=='unavailable' and body['sources'] and not body['graph_evidence']
  checks.append('Controlled graph outage is explicit and retains KB evidence')
+ values=dict(registry['datasets']['pima']['example'], plas=None)
+ body=client.post('/api/v2/predict',json={'values':values}).json()
+ assert body['rules']['prediction_consistent'] and any('plas' in flag for flag in body['rules']['flags'])
+ checks.append('Rule Agent checks the prediction and preserves flags from validated input')
+ for score, label in [(0.8, 0), (float('nan'), 1)]:
+  invalid={'positive_label_score':score, 'threshold':.5, 'label':label, 'label_text':'Positive' if label else 'Negative'}
+  with patch('app.v2.predict',return_value=invalid), patch('app.v2.explain',side_effect=AssertionError('Invalid prediction must not reach Explanation')):
+   response=client.post('/api/v2/predict',json={'values':registry['datasets']['pima']['example']})
+  assert response.status_code==503 and response.json()['detail']['code']=='prediction-review-failed'
+  assert 'prediction' not in response.json()
+ checks.append('Invalid model output returns 503 and never reaches Explanation')
  records=[json.loads(line) for line in audit.read_text().splitlines()]
  assert len({r['request_id'] for r in records})==len(records)
- assert not any(key in r for r in records for key in ['values','features','question','answer','trace'])
+ assert sum(r['status']=='prediction-review-failed' for r in records)==2
+ assert not any(key in r for r in records for key in ['values','features','question','answer','trace','prediction','positive_label_score'])
  checks.append('Persistent audit contains request/version metadata without raw inputs or answer text')
  (ROOT/'results/v2/agent_examples.json').write_text(json.dumps(examples,ensure_ascii=False,indent=2)+'\n')
 result={'passed':len(checks),'checks':checks}

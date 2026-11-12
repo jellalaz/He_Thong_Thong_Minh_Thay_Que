@@ -2,8 +2,8 @@
   "passed": true,
   "files": {
     "tieuluan_final_06_02_giangkt_v2.pdf": {
-      "pages": 138,
-      "sha256": "cbc776d76fcf7274cff474f6d4b0b23c5fb4c7952827591b304277d165740e42",
+      "pages": 139,
+      "sha256": "d5f2350df9aa43b2b76aea0d9cb788c97441d1e2c367ae5a8ae523edd92c295b",
       "chapters_begin_new_page": [
         {
           "title": "Lịch sử và phát triển AI",
@@ -47,15 +47,15 @@
         },
         {
           "title": "Kiểm chứng, tái lập và phát triển tiếp",
-          "pdf_page": 118
+          "pdf_page": 119
         },
         {
           "title": "Mã nguồn tái lập",
-          "pdf_page": 125
+          "pdf_page": 126
         },
         {
           "title": "Mã nguồn chính của V2 có chú thích",
-          "pdf_page": 128
+          "pdf_page": 129
         }
       ],
       "layout_issues": [],
@@ -92,8 +92,8 @@
       ]
     },
     "project01_06_02_giangkt_v2.pdf": {
-      "pages": 68,
-      "sha256": "7f021694e756594d147fa36b41b8779bcde9a4da2bb11bb324612ce4ec025ef2",
+      "pages": 69,
+      "sha256": "d009310a93972842dad0c5407921a95f634d74c910024227844fd8e783ab25c4",
       "chapters_begin_new_page": [
         {
           "title": "Yêu cầu, phạm vi và hai phiên bản",
@@ -152,5 +152,5 @@
     }
   },
   "visual_reviewed": true,
-  "visual_review_notes": "Reviewed expanded Project chapters, technical tables, preserved thesis content, and both numbered code appendices. Verified all 16 source ranges against files in the repository."
+  "visual_review_notes": "Rendered updated architecture, Rule Agent contracts, demo and appendix pages. Verified page boundaries, chapter starts and both final PDF checksums."
 }

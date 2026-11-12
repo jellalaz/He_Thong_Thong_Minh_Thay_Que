@@ -298,7 +298,7 @@ def main():
               ['Coordinator','Request + dataset/version','Response tích hợp hoặc lỗi','Workflow trong v2.py'],
               ['Data','Feature thô và schema','Feature order, missing flags hoặc lỗi',r'validate\_data'],
               ['Prediction','Dữ liệu chuẩn hóa','Label, score, threshold, version, hash','predict / pipeline'],
-              ['Rule','Dataset, cờ dữ liệu','Cờ phạm vi và giới hạn',r'reviewed\_rules'],
+              ['Rule','Dữ liệu đã kiểm tra và dự đoán','Nhất quán điểm, ngưỡng, nhãn và cờ phạm vi',r'reviewed\_rules'],
               ['KG/RAG','Câu hỏi kiến thức','Đoạn có nguồn, cạnh đã đối chiếu','Retriever + GraphKnowledgeAgent'],
               ['Explanation','Model + rules + evidence','Giải thích có nguồn, không chẩn đoán','explain'],
               ['Monitoring','Metadata lượt chạy','Trạng thái lưu request/version','monitor / JSONL']])
@@ -308,7 +308,7 @@ def main():
               ['V2 tích hợp',str(tests['passed'])+r' kiểm tra qua; results/v2/integration\_checks.json.'],
               ['Model parity','Hai dataset, hai version seed 254: xác suất khớp CSV test tới sai số 1e-12.'],
               ['Graph coverage','58/58 tài liệu, 106 cạnh; exact triples, evidence và URL khớp KB.'],
-              ['Export','8 nhóm; checksum, CSV/ZIP, replay 22 câu offline, Cypher EXPLAIN.'],
+              ['Export','8 nhóm; checksum, CSV và thư mục phẳng, replay 22 câu offline, Cypher EXPLAIN.'],
               ['V1 regression suite','Nguồn/PDF, an toàn, feedback, intent, graph, model support và UI trên Mac.'],
               ['Live chat','13 lượt smoke test local; 7 lượt sinh Qwen kèm context KG; không là benchmark y khoa.']])
     table('feature_table.tex','Tám feature Pima; đơn vị theo mô tả nguồn, không phải ngưỡng chẩn đoán.','p{2.2cm}p{6.5cm}p{5cm}',
