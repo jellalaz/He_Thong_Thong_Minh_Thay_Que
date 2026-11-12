@@ -1,0 +1,87 @@
+{
+  "checks": {
+    "metal": {
+      "passed": true,
+      "seconds": 0.12,
+      "log": ".runtime/macos-verification/metal/output.log"
+    },
+    "graph": {
+      "passed": true,
+      "seconds": 1.61,
+      "log": ".runtime/macos-verification/graph/output.log"
+    },
+    "safety": {
+      "passed": true,
+      "seconds": 1.71,
+      "log": ".runtime/macos-verification/safety/output.log"
+    },
+    "intent": {
+      "passed": true,
+      "seconds": 0.87,
+      "log": ".runtime/macos-verification/intent/output.log"
+    },
+    "feedback": {
+      "passed": true,
+      "seconds": 1.19,
+      "log": ".runtime/macos-verification/feedback/output.log"
+    },
+    "knowledge_agents": {
+      "passed": true,
+      "seconds": 1.26,
+      "log": ".runtime/macos-verification/knowledge_agents/output.log"
+    },
+    "sources_support": {
+      "passed": true,
+      "seconds": 1.43,
+      "log": ".runtime/macos-verification/sources_support/output.log"
+    },
+    "api": {
+      "passed": true,
+      "seconds": 1.29,
+      "log": ".runtime/macos-verification/api/output.log"
+    },
+    "export": {
+      "passed": true,
+      "seconds": 2.85,
+      "log": ".runtime/macos-verification/export/output.log"
+    },
+    "graph_ui": {
+      "passed": true,
+      "seconds": 2.7,
+      "log": ".runtime/macos-verification/graph_ui/output.log"
+    },
+    "support_ui": {
+      "passed": true,
+      "seconds": 8.2,
+      "log": ".runtime/macos-verification/support_ui/output.log"
+    },
+    "live_qwen": {
+      "passed": true,
+      "seconds": 38.35,
+      "log": ".runtime/macos-verification/live_qwen/output.log"
+    }
+  },
+  "checked_at": "2026-11-13T01:00:21.741601+07:00",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "python": "3.14.10 | packaged by conda-forge | (main, Oct 26 2026, 11:32:16) [Clang 20.1.8 ]",
+  "python_executable": "/Users/jellalaz/He_Thong_Thong_Minh_Thay_Que/.venv/bin/python",
+  "services": {
+    "web": {
+      "neo4j": true,
+      "nodes": 169,
+      "edges": 106,
+      "documents": 58,
+      "neo4j_browser": "http://localhost:7474/browser/",
+      "local_llm": true,
+      "model_name": "Qwen3 4B · RAG local",
+      "local_only": true
+    },
+    "qwen": {
+      "status": "ok"
+    },
+    "neo4j_http": true,
+    "ready": true
+  },
+  "passed": true
+}

@@ -18,3 +18,13 @@ results/cora
 .local-training
 
 models/qwen_adapter
+BAN_GIAO_GLUCOGUIDE
+BAN_GIAO_GLUCOGUIDE.zip
+ON_VAN_DAP
+project_architecture_multiagent_diabet_v1.pdf
+exports/glucoguide_kb_kg_rag.zip
+data/v2
+scripts
+results/**/*predictions*
+results/**/*split*
+.DS_Store

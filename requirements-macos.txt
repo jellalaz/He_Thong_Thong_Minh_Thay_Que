@@ -1,0 +1,6 @@
+# Runtime and existing report/analysis scripts; no CUDA or PyTorch is needed for GGUF.
+-r requirements.txt
+requests==2.34.2
+matplotlib==3.11.2
+pillow==13.0.0
+networkx==3.7

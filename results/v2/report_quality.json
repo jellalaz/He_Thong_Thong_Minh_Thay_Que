@@ -1,0 +1,156 @@
+{
+  "passed": true,
+  "files": {
+    "tieuluan_final_06_02_giangkt_v2.pdf": {
+      "pages": 138,
+      "sha256": "cbc776d76fcf7274cff474f6d4b0b23c5fb4c7952827591b304277d165740e42",
+      "chapters_begin_new_page": [
+        {
+          "title": "Lịch sử và phát triển AI",
+          "pdf_page": 17
+        },
+        {
+          "title": "Các kỹ thuật machine learning cơ bản",
+          "pdf_page": 28
+        },
+        {
+          "title": "Mạng nơ-ron tích chập CNN",
+          "pdf_page": 44
+        },
+        {
+          "title": "Mạng nơ-ron hồi tiếp RNN",
+          "pdf_page": 53
+        },
+        {
+          "title": "Knowledge graph và RAG",
+          "pdf_page": 63
+        },
+        {
+          "title": "Học sâu trên đồ thị",
+          "pdf_page": 89
+        },
+        {
+          "title": "Agent, hệ đa agent và học tăng cường",
+          "pdf_page": 95
+        },
+        {
+          "title": "Thiết kế thực nghiệm tiểu đường V2",
+          "pdf_page": 105
+        },
+        {
+          "title": "Mạng năm tầng ẩn và phân tích kết quả",
+          "pdf_page": 109
+        },
+        {
+          "title": "Tích hợp mô hình với KB, Neo4j và RAG",
+          "pdf_page": 114
+        },
+        {
+          "title": "Kiểm chứng, tái lập và phát triển tiếp",
+          "pdf_page": 118
+        },
+        {
+          "title": "Mã nguồn tái lập",
+          "pdf_page": 125
+        },
+        {
+          "title": "Mã nguồn chính của V2 có chú thích",
+          "pdf_page": 128
+        }
+      ],
+      "layout_issues": [],
+      "baseline_pages": 107,
+      "original_chapters_compared": [
+        {
+          "title": "Lịch sử và phát triển AI",
+          "token_overlap": 1.0
+        },
+        {
+          "title": "Các kỹ thuật machine learning cơ bản",
+          "token_overlap": 1.0
+        },
+        {
+          "title": "Mạng nơ-ron tích chập CNN",
+          "token_overlap": 1.0
+        },
+        {
+          "title": "Mạng nơ-ron hồi tiếp RNN",
+          "token_overlap": 1.0
+        },
+        {
+          "title": "Knowledge graph và RAG",
+          "token_overlap": 1.0
+        },
+        {
+          "title": "Học sâu trên đồ thị",
+          "token_overlap": 0.9995
+        },
+        {
+          "title": "Agent, hệ đa agent và học tăng cường",
+          "token_overlap": 0.999
+        }
+      ]
+    },
+    "project01_06_02_giangkt_v2.pdf": {
+      "pages": 68,
+      "sha256": "7f021694e756594d147fa36b41b8779bcde9a4da2bb11bb324612ce4ec025ef2",
+      "chapters_begin_new_page": [
+        {
+          "title": "Yêu cầu, phạm vi và hai phiên bản",
+          "pdf_page": 8
+        },
+        {
+          "title": "Kiến trúc sáu tầng và phối hợp agent",
+          "pdf_page": 11
+        },
+        {
+          "title": "Hai dataset và huấn luyện mô hình",
+          "pdf_page": 16
+        },
+        {
+          "title": "KB, KG, Cypher và RAG có nguồn",
+          "pdf_page": 21
+        },
+        {
+          "title": "Kiểm thử tích hợp và bằng chứng demo",
+          "pdf_page": 25
+        },
+        {
+          "title": "Minh chứng demo V2",
+          "pdf_page": 28
+        },
+        {
+          "title": "Chạy, trình bày và bộ nộp gọn",
+          "pdf_page": 32
+        },
+        {
+          "title": "Hồ sơ mô hình và kiểm toán dữ liệu",
+          "pdf_page": 34
+        },
+        {
+          "title": "Vận hành agent, xử lý lỗi và dấu vết",
+          "pdf_page": 40
+        },
+        {
+          "title": "Kiểm chứng nguồn tri thức và chỉ mục truy xuất",
+          "pdf_page": 44
+        },
+        {
+          "title": "Hội thoại cục bộ, kiểm chứng và giới hạn",
+          "pdf_page": 48
+        },
+        {
+          "title": "Tái lập và trình diễn theo từng tình huống",
+          "pdf_page": 51
+        },
+        {
+          "title": "Mã nguồn chính của V2 có chú thích",
+          "pdf_page": 55
+        }
+      ],
+      "layout_issues": []
+    }
+  },
+  "visual_reviewed": true,
+  "visual_review_notes": "Reviewed expanded Project chapters, technical tables, preserved thesis content, and both numbered code appendices. Verified all 16 source ranges against files in the repository."
+}

@@ -26,3 +26,10 @@ reports/legacy.tex
 .local-models/
 .local-training/
 .pytest_cache/
+
+# Generated delivery copies; rebuild with scripts/package_delivery.py.
+/BAN_GIAO_GLUCOGUIDE/
+/BAN_GIAO_GLUCOGUIDE.zip
+/ON_VAN_DAP/examination_50_questions_v2.pdf
+/project_architecture_multiagent_diabet_v1.pdf
+.DS_Store

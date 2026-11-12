@@ -1,0 +1,33 @@
+\Needspace{16\baselineskip}\noindent\textbf{Yêu cầu dùng mẫu Pima công khai.}\par
+\begin{Verbatim}[fontsize=\small]
+{
+  "dataset": "pima",
+  "version": "v2",
+  "values": {
+    "preg": 5.0,
+    "plas": 128.0,
+    "pres": 80.0,
+    "skin": null,
+    "insu": null,
+    "mass": 34.6,
+    "pedi": 0.144,
+    "age": 45.0
+  },
+  "question": "HbA1c là gì?"
+}
+\end{Verbatim}
+\Needspace{13\baselineskip}\noindent\textbf{Trích phản hồi của lượt kiểm thử.}\par
+\begin{Verbatim}[fontsize=\small]
+{
+  "request_id": "1324cfac389d467893fa1c015655a7a7",
+  "prediction": {
+    "model_version": "pima-v2-seed254",
+    "hidden_layers": [64, 32, 16, 8, 4],
+    "label_text": "Positive",
+    "positive_label_score": 0.5472,
+    "threshold": 0.5
+  },
+  "source_ids": ["a1c"],
+  "graph_status": "Neo4j"
+}
+\end{Verbatim}

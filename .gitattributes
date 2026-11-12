@@ -1,3 +1,4 @@
 # Preserve exported bytes so manifest checksums survive clone on Windows/Linux.
 exports/diabetes/** -text whitespace=cr-at-eol
 data/source_documents/** -text whitespace=cr-at-eol
+data/v2/sources/** -text whitespace=cr-at-eol,-blank-at-eol

@@ -1,0 +1,308 @@
+{
+  "system_version": "2.0",
+  "datasets": {
+    "pima": {
+      "title": "Pima / OpenML 37",
+      "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.",
+      "population": "Nữ từ 21 tuổi, quần thể Pima trong dữ liệu lịch sử.",
+      "source": "https://www.openml.org/d/37",
+      "features": [
+        {
+          "name": "preg",
+          "label": "Số lần mang thai",
+          "min": 0.0,
+          "max": 17.0,
+          "binary": false
+        },
+        {
+          "name": "plas",
+          "label": "Glucose xét nghiệm của dataset",
+          "min": 44.0,
+          "max": 199.0,
+          "binary": false
+        },
+        {
+          "name": "pres",
+          "label": "Huyết áp tâm trương",
+          "min": 24.0,
+          "max": 122.0,
+          "binary": false
+        },
+        {
+          "name": "skin",
+          "label": "Độ dày nếp gấp da",
+          "min": 7.0,
+          "max": 99.0,
+          "binary": false
+        },
+        {
+          "name": "insu",
+          "label": "Insulin xét nghiệm",
+          "min": 14.0,
+          "max": 846.0,
+          "binary": false
+        },
+        {
+          "name": "mass",
+          "label": "BMI",
+          "min": 18.2,
+          "max": 67.1,
+          "binary": false
+        },
+        {
+          "name": "pedi",
+          "label": "Chỉ số phả hệ của dataset",
+          "min": 0.078,
+          "max": 2.42,
+          "binary": false
+        },
+        {
+          "name": "age",
+          "label": "Tuổi",
+          "min": 21.0,
+          "max": 81.0,
+          "binary": false
+        }
+      ],
+      "example": {
+        "preg": 5.0,
+        "plas": 128.0,
+        "pres": 80.0,
+        "skin": null,
+        "insu": null,
+        "mass": 34.6,
+        "pedi": 0.144,
+        "age": 45.0
+      },
+      "deployment_seed": 254,
+      "versions": [
+        "v1",
+        "v2"
+      ],
+      "audit": {
+        "raw_rows": 768,
+        "clean_rows": 768,
+        "removed_rows": 0,
+        "conflicting_feature_groups": 0,
+        "zeros_as_missing": {
+          "plas": 5,
+          "pres": 35,
+          "skin": 227,
+          "insu": 374,
+          "mass": 11
+        },
+        "class_counts": {
+          "0": 500,
+          "1": 268
+        },
+        "url": "https://openml.org/data/v1/download/37/diabetes.arff",
+        "sha256": "4eddd5b2b64679e8888348e306520a393d6a28e1ddc9643cfb76fc5d912d6d40",
+        "source": "https://www.openml.org/d/37",
+        "version": "1",
+        "train": 460,
+        "validation": 154,
+        "test": 154,
+        "features": [
+          "preg",
+          "plas",
+          "pres",
+          "skin",
+          "insu",
+          "mass",
+          "pedi",
+          "age"
+        ],
+        "clean_csv_sha256": "5c2793534839c95247cec0f54bcc904498c98dc2f968511a9dcc136e36513ca6",
+        "paired_accuracy_difference_v2_minus_v1": -0.01948051948051948,
+        "paired_bootstrap_95_percentile": [
+          -0.07792207792207792,
+          0.032467532467532464
+        ]
+      }
+    },
+    "early_stage": {
+      "title": "Early Stage / UCI 529",
+      "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân.",
+      "population": "Mẫu bảng hỏi tại Sylhet, Bangladesh; chưa đại diện dân số Việt Nam.",
+      "source": "https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset",
+      "features": [
+        {
+          "name": "Age",
+          "label": "Tuổi",
+          "min": 16.0,
+          "max": 90.0,
+          "binary": false
+        },
+        {
+          "name": "Gender",
+          "label": "Giới tính (nam=1, nữ=0)",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Polyuria",
+          "label": "Tiểu nhiều",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Polydipsia",
+          "label": "Khát nhiều",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "sudden weight loss",
+          "label": "Sụt cân đột ngột",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "weakness",
+          "label": "Yếu sức",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Polyphagia",
+          "label": "Ăn nhiều",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Genital thrush",
+          "label": "Nấm sinh dục",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "visual blurring",
+          "label": "Nhìn mờ",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Itching",
+          "label": "Ngứa",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Irritability",
+          "label": "Dễ cáu",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "delayed healing",
+          "label": "Chậm lành vết thương",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "partial paresis",
+          "label": "Yếu/liệt một phần",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "muscle stiffness",
+          "label": "Cứng cơ",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Alopecia",
+          "label": "Rụng tóc",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        },
+        {
+          "name": "Obesity",
+          "label": "Béo phì (mã dataset)",
+          "min": 0.0,
+          "max": 1.0,
+          "binary": true
+        }
+      ],
+      "example": {
+        "Age": 66.0,
+        "Gender": 1.0,
+        "Polyuria": 1.0,
+        "Polydipsia": 1.0,
+        "sudden weight loss": 0.0,
+        "weakness": 1.0,
+        "Polyphagia": 0.0,
+        "Genital thrush": 1.0,
+        "visual blurring": 0.0,
+        "Itching": 1.0,
+        "Irritability": 1.0,
+        "delayed healing": 1.0,
+        "partial paresis": 1.0,
+        "muscle stiffness": 0.0,
+        "Alopecia": 0.0,
+        "Obesity": 0.0
+      },
+      "deployment_seed": 254,
+      "versions": [
+        "v1",
+        "v2"
+      ],
+      "audit": {
+        "raw_rows": 520,
+        "clean_rows": 251,
+        "removed_rows": 269,
+        "conflicting_feature_groups": 0,
+        "zeros_as_missing": {},
+        "class_counts": {
+          "0": 78,
+          "1": 173
+        },
+        "url": "https://archive.ics.uci.edu/static/public/529/early+stage+diabetes+risk+prediction+dataset.zip",
+        "sha256": "67594c0f11257688b57493798e70737b7156ba37a2e6ac75507ae3a35221a388",
+        "source": "https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset",
+        "train": 150,
+        "validation": 50,
+        "test": 51,
+        "features": [
+          "Age",
+          "Gender",
+          "Polyuria",
+          "Polydipsia",
+          "sudden weight loss",
+          "weakness",
+          "Polyphagia",
+          "Genital thrush",
+          "visual blurring",
+          "Itching",
+          "Irritability",
+          "delayed healing",
+          "partial paresis",
+          "muscle stiffness",
+          "Alopecia",
+          "Obesity"
+        ],
+        "clean_csv_sha256": "039bc011a5f75cbb5ae67ced9d3d915f794af40ae1d7a7b11b7d3d79dd34206d",
+        "paired_accuracy_difference_v2_minus_v1": 0.0392156862745098,
+        "paired_bootstrap_95_percentile": [
+          0.0,
+          0.09803921568627451
+        ]
+      }
+    }
+  }
+}

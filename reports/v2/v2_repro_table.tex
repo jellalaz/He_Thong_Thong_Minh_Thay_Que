@@ -1,0 +1,9 @@
+\par\FloatBarrier\begin{table}[H]\centering\small\setstretch{1.15}\setlength{\tabcolsep}{5pt}
+\caption{Đối chiếu từng loại bằng chứng với vị trí trong gói mã nguồn.}\begin{tabular}{P{4.4cm}P{5.2cm}P{4.7cm}}\toprule
+Bằng chứng & Vị trí & Cách kiểm tra\\\midrule
+Nguồn và hợp đồng dữ liệu & \code{data/v2/sources/} & Xem nguồn, phiên bản và dữ liệu gốc.\\
+Phép chia train, validation, test & \code{data/v2/pima.csv} và \code{early_stage.csv} & Đếm nhãn, hàng và khóa đặc trưng theo tập.\\
+Điểm từng hàng test & \code{results/v2/} & Dùng cột xác suất và ngưỡng 0,5 để lập lại ma trận.\\
+Checkpoint và registry & \code{models/v2/} & Đối chiếu thứ tự đặc trưng và SHA-256.\\
+Vết chạy đa agent & \code{results/v2/} và \code{agent_examples.json} & Xem model version, mã yêu cầu và mã đoạn nguồn.\\
+Kho tri thức và chỉ mục & \code{exports/diabetes/} & Đọc KB, Cypher và phát lại bộ câu truy xuất.\\\bottomrule\end{tabular}\end{table}

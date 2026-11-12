@@ -1,0 +1,16 @@
+{
+  "passed": 11,
+  "checks": [
+    "pima: unique feature rows and disjoint train/validation/test",
+    "pima/v1: checkpoint/test probability parity; real six-role workflow and grounded graph",
+    "pima/v2: checkpoint/test probability parity; real six-role workflow and grounded graph",
+    "pima: missing fields and non-finite values rejected",
+    "early_stage: unique feature rows and disjoint train/validation/test",
+    "early_stage/v1: checkpoint/test probability parity; real six-role workflow and grounded graph",
+    "early_stage/v2: checkpoint/test probability parity; real six-role workflow and grounded graph",
+    "early_stage: missing fields and non-finite values rejected",
+    "Priority safety bypasses model and feature validation",
+    "Controlled graph outage is explicit and retains KB evidence",
+    "Persistent audit contains request/version metadata without raw inputs or answer text"
+  ]
+}

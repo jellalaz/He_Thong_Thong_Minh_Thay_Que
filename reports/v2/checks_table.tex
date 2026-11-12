@@ -1,0 +1,9 @@
+\par\FloatBarrier\begin{table}[H]\centering\small\setstretch{1.15}\setlength{\tabcolsep}{5pt}
+\caption{Bằng chứng kiểm thử thực tế; kiểm thử phần mềm không là chứng nhận lâm sàng.}\begin{tabular}{P{5.4cm}P{8.5cm}}\toprule
+Nhóm & Kết quả / nơi kiểm tra\\\midrule
+V2 tích hợp & 11 kiểm tra qua; results/v2/integration\_checks.json.\\
+Model parity & Hai dataset, hai version seed 254: xác suất khớp CSV test tới sai số 1e-12.\\
+Graph coverage & 58/58 tài liệu, 106 cạnh; exact triples, evidence và URL khớp KB.\\
+Export & 8 nhóm; checksum, CSV/ZIP, replay 22 câu offline, Cypher EXPLAIN.\\
+V1 regression suite & Nguồn/PDF, an toàn, feedback, intent, graph, model support và UI trên Mac.\\
+Live chat & 13 lượt smoke test local; 7 lượt sinh Qwen kèm context KG; không là benchmark y khoa.\\\bottomrule\end{tabular}\end{table}

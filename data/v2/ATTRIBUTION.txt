@@ -1,0 +1,20 @@
+Two public research datasets used by the V2 experiment (downloaded 13 November 2026):
+
+Pima Indians Diabetes Database: OpenML dataset 37, version 1.
+https://www.openml.org/d/37
+Original source: NIDDK; historical donor Vincent Sigillito / Johns Hopkins Applied Physics Laboratory.
+OpenML metadata labels the licence "Public"; this project does not relabel it as a different licence.
+The included pima_metadata.json preserves the source attribution and original study description.
+768 records, 8 input features, tested_negative / tested_positive.
+Restricted historical population: females at least 21 years old of Pima heritage.
+
+Early Stage Diabetes Risk Prediction: UCI dataset 529, DOI 10.24432/C5VG8H.
+https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset
+M. M. F. Islam, Rahatara Ferdousi, Sadikur Rahman, Humayra Yasmin Bushra.
+UCI lists CC BY 4.0. 520 questionnaire records from Sylhet Diabetes Hospital, Bangladesh.
+The V2 experiment removes repeated feature rows before splitting, leaving 251 rows.
+
+sources/ contains the downloaded files and SHA-256 metadata.
+pima.csv and early_stage.csv contain the cleaned numeric inputs, target and fixed split.
+No data was generated to replace missing real source data. No patient identifier is included.
+These sources are not representative Vietnamese clinical validation datasets.

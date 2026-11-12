@@ -1,0 +1,56 @@
+\input{../preamble.tex}
+\makeatletter
+\def\input@path{{../}}
+\makeatother
+\graphicspath{{../}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\sourcefile}[1]{\par\noindent{\small\textit{Bằng chứng:} \code{#1}.}\par}
+\newcommand{\fig}[3]{\begin{figure}[htbp]\centering\includegraphics[width=#2\linewidth]{#1}\caption{#3}\end{figure}\FloatBarrier}
+\newcommand{\thesisBibliographyExtension}{%
+  \bibitem{architecture-v2} Trần Đình Quế, \emph{Hybrid Multiagent System Architecture for Diabetes Decision Support}, tài liệu kiến trúc giảng viên cung cấp, tháng 11/2026.
+  \bibitem{pima-v2} OpenML, Diabetes, dataset ID 37, phiên bản 1. \url{https://www.openml.org/d/37}.
+  \bibitem{early-v2} UCI Machine Learning Repository, Early Stage Diabetes Risk Prediction, dataset ID 529, DOI 10.24432/C5VG8H. \url{https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset}.
+  \bibitem{mlp-v2} Scikit-learn, \emph{MLPClassifier}. \url{https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html}.
+  \bibitem{neo4j-v2} Neo4j, \emph{Cypher Manual}. \url{https://neo4j.com/docs/cypher-manual/current/}.%
+}
+\hypersetup{pdftitle={TIỂU LUẬN FINAL V2},pdfauthor={Kiều Trường Giang},pdfsubject={Phát triển các hệ thống thông minh}}
+\begin{document}
+\begin{titlepage}\centering
+{\large HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\\KHOA CÔNG NGHỆ THÔNG TIN 1}\vfill
+{\LARGE\bfseries TIỂU LUẬN FINAL V2}\par\vspace{1cm}
+{\Large\bfseries HỌC MÁY, BIỂU DIỄN TRI THỨC VÀ HỆ ĐA AGENT}\par\vspace{1cm}
+{\large PHÁT TRIỂN CÁC HỆ THỐNG THÔNG MINH}\vfill
+\begin{tabular}{ll}Giảng viên:&PGS. TS. Trần Đình Quế\\Sinh viên:&Kiều Trường Giang\\Mã sinh viên:&B23DCCN254\\Nhóm học phần:&06\\Nhóm thực hiện:&02\end{tabular}\vfill
+Hà Nội, tháng 11 năm 2026
+\end{titlepage}
+\pagenumbering{roman}
+\tableofcontents\clearpage
+\listoffigures\clearpage
+\listoftables\clearpage
+\pagenumbering{arabic}
+\chapter*{Mở đầu}\addcontentsline{toc}{chapter}{Mở đầu}
+Báo cáo nghiên cứu cách kết hợp học máy, học sâu và biểu diễn tri thức trong một hệ thống hỗ trợ người dùng. Phần I trình bày lịch sử AI, các mô hình học máy trên dữ liệu bảng, CNN trên ảnh và RNN trên chuỗi. Phần II đi từ Knowledge Graph và RAG đến học sâu trên đồ thị, phối hợp đa agent và học tăng cường. Thực nghiệm Cora đối chiếu GCN với MLP, còn mô phỏng Agent02 khảo sát chính sách theo luật và chính sách học tăng cường.
+
+Tiểu luận Final V2 phát triển từ bản Final bằng Phần III. Chương~\ref{ch:v2-protocol} xây dựng hai thực nghiệm tiểu đường có quy trình dữ liệu chung. Chương~\ref{ch:v2-mlp} huấn luyện và phân tích mạng MLP năm tầng ẩn. Chương~\ref{ch:v2-agents} nối mô hình với KB, Neo4j và RAG trong hệ đa agent. Chương~\ref{ch:v2-verification} kiểm tra kết quả, phân tích giới hạn và hướng dẫn tái lập.
+
+Các kết quả trong hai phần đầu thuộc những thực nghiệm của bản Final. Các số liệu của Phần III được ghi theo hai bộ dữ liệu, cấu hình và checkpoint cụ thể. Báo cáo Project 01 trình bày cách triển khai và vận hành ứng dụng GlucoGuide.
+\input{abbreviations.tex}
+\input{data_overview.tex}
+\part{Nền tảng và tổng hợp}
+\input{thesis_core.tex}
+\input{theory_extension.tex}
+\part{Phát triển thực nghiệm và hệ thống V2}
+\input{thesis.tex}
+\input{thesis_conclusion.tex}
+\section*{Kết quả bổ sung của V2}
+Hai thực nghiệm V2 cho thấy thay đổi kiến trúc cần được đọc cùng đặc điểm của dữ liệu và ma trận nhầm lẫn. Mạng năm tầng ẩn cải thiện macro-F1 trên Early Stage trong phép chia đã dùng. Trên Pima, recall dương tính tăng và macro-F1 giảm. Các kết quả này gợi ý kiểm tra thêm qua nhiều phép chia, tách riêng ảnh hưởng của độ sâu, L2 và trọng số lớp, rồi xác nhận bằng dữ liệu mới.
+
+Ở cấp hệ thống, GlucoGuide V2 đưa thông tin phiên bản mô hình, nguồn truy xuất và kết quả từng bước vào cùng một lượt chạy. Tệp Cypher, chỉ mục RAG, dữ liệu test, checkpoint và nhật ký kỹ thuật tạo thành đường đối chiếu từ báo cáo đến demo.
+\input{bibliography_thesis.tex}
+\appendix
+\chapter{Mã nguồn tái lập}
+\section{scripts/train\_cora.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines=true,breakanywhere=true]{../../scripts/train_cora.py}
+\input{v2_core_code.tex}
+\end{document}

@@ -3,8 +3,7 @@
   "framework": "fastapi",
   "functions": {
     "app/main.py": {
-      "maxDuration": 60,
-      "excludeFiles": "{models/qwen_adapter/**,.venv-llm/**,.local-models/**,.local-training/**,experiments/**,results/cora/**,reports/**,references/**,legacy_tieuluan/**,.runtime/**,.venv/**,data/raw/**,scripts/**,results/*predictions*,results/*split*,**/*.pdf}"
+      "maxDuration": 60
     }
   }
 }

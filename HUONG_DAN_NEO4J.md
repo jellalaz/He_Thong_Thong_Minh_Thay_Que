@@ -2,12 +2,12 @@
 
 Mở http://localhost:8765/#graph. Bấm **Xem toàn bộ đồ thị** cạnh bộ lọc **Chủ đề**. Không cần nhập lệnh hoặc đăng nhập Neo4j Browser riêng.
 
-- Dữ liệu được đọc trực tiếp từ Neo4j local: 143 khái niệm, 86 quan hệ và 46 tài liệu.
+- Dữ liệu được đọc trực tiếp từ Neo4j local: 169 khái niệm, 106 quan hệ và 58 tài liệu.
 - Chọn một chủ đề để đọc rõ tên các khái niệm; bấm một nút để xem các quan hệ liên quan.
 - Dùng **+**, **−**, **Vừa khung** và kéo để thay đổi vùng đang xem.
 - Mở **Danh sách quan hệ**, rồi bấm mã tài liệu để xem nội dung và nguồn gốc.
 
-Đồ thị có 57 cụm rời nhau. Web và Neo4j Browser hiển thị cùng dữ liệu nhưng sắp xếp vị trí khác nhau. Bố cục không tự thêm các quan hệ chưa có trong kho tri thức.
+Đồ thị có 63 cụm rời nhau. Web và Neo4j Browser hiển thị cùng dữ liệu nhưng sắp xếp vị trí khác nhau. Bố cục không tự thêm các quan hệ chưa có trong kho tri thức.
 
 ## Neo4j Browser
 
@@ -32,6 +32,10 @@ Neo4j lưu và truy vấn quan hệ có nguồn; nó không tự huấn luyện 
 
 ## Khi chưa kết nối được
 
+Trên macOS: chạy `bash run-macos.sh start` để bật cả Neo4j, Qwen và web. Xem trạng thái bằng `bash run-macos.sh status`.
+
+Trên Windows:
+
 1. Chạy `start-neo4j.ps1` từ thư mục project nếu cơ sở dữ liệu chưa hoạt động.
 2. Chạy `START_CHATBOT_LOCAL.cmd` để khởi động web và Qwen local.
 3. Mở lại web và bấm **Làm mới** trong mục đồ thị.
@@ -42,7 +46,7 @@ Lỗi Authentication failure trong Neo4j Browser nghĩa là cần đối chiếu
 
 Bản hoàn thiện chạy ở localhost, cần máy cá nhân và các tiến trình đang hoạt động. Người khác không thể truy cập máy này bằng địa chỉ localhost của họ.
 
-https://glucoguide-giang254.vercel.app là bản Vercel/Aura đã triển khai trước đây, chưa được xác nhận đồng bộ Qwen3 4B, 46 tài liệu và bộ luật an toàn mới. Dùng bản local khi trình diễn đầy đủ sản phẩm hiện tại.
+https://glucoguide-giang254.vercel.app/#graph mở đồ thị trên web. Khi Aura không kết nối, web dùng bản chụp tại `exports/diabetes/kg/graph.json`. Để trình diễn truy vấn Neo4j trực tiếp và Qwen 4B, mở bản chạy trên Mac.
 
 ## Kịch bản ngắn
 

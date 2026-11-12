@@ -1,0 +1,13 @@
+{
+  "early_stage": {
+    "url": "https://archive.ics.uci.edu/static/public/529/early+stage+diabetes+risk+prediction+dataset.zip",
+    "sha256": "67594c0f11257688b57493798e70737b7156ba37a2e6ac75507ae3a35221a388",
+    "source": "https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset"
+  },
+  "pima": {
+    "url": "https://openml.org/data/v1/download/37/diabetes.arff",
+    "sha256": "4eddd5b2b64679e8888348e306520a393d6a28e1ddc9643cfb76fc5d912d6d40",
+    "source": "https://www.openml.org/d/37",
+    "version": "1"
+  }
+}

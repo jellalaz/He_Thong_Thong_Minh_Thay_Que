@@ -1,0 +1,8 @@
+\par\FloatBarrier\begin{table}[H]\centering\small\setstretch{1.15}\setlength{\tabcolsep}{5pt}
+\caption{Yêu cầu và bằng chứng có thể mở trong buổi demo.}\begin{tabular}{P{3.7cm}P{6.0cm}P{4.1cm}}\toprule
+Yêu cầu & Cách thể hiện trong GlucoGuide & Mở để kiểm tra\\\midrule
+Hai phiên bản và hai bộ train & V1 đối chứng và V2 dùng cùng phép chia trong mỗi bộ. V2 có năm tầng ẩn. & Chương~\ref{pr:model}, bảng test, màn V1/V2.\\
+DL có thể dùng lại & Mô hình V1 gốc phục vụ luồng cũ. Nhánh V2 nạp pipeline đã huấn luyện khi suy luận. & \code{app/main.py}, \code{app/v2.py}.\\
+Sáu tầng và hợp đồng agent & Coordinator gọi Data, Prediction, Rule, KG/RAG, Explanation và Monitoring. & Chương~\ref{pr:mas}, trace có mã yêu cầu.\\
+Neo4j, Cypher và nguồn RAG & Nạp cạnh từ Cypher. Đối chiếu mã tài liệu, trích đoạn và URL giữa KB, đồ thị và câu trả lời. & Chương~\ref{pr:knowledge}, Neo4j Browser.\\
+Đánh giá từng phần và toàn hệ & Đối chiếu checkpoint, replay retrieval, chạy API và giao diện. Tách đánh giá kỹ thuật khỏi đánh giá lâm sàng. & Chương~\ref{pr:checks}, JSON kiểm thử.\\\bottomrule\end{tabular}\end{table}

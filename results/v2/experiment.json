@@ -1,0 +1,488 @@
+{
+  "trained_at": "2026-11-13T01:52:46.378494+07:00",
+  "split_seed": 254,
+  "initialization_seeds": [
+    254,
+    255,
+    256
+  ],
+  "test_threshold": 0.5,
+  "selection": "external validation macro-F1, then validation log loss; no test selection",
+  "configs": {
+    "v1": {
+      "hidden_layer_sizes": [
+        64,
+        32,
+        16
+      ],
+      "alpha": 0.0001,
+      "balanced": false
+    },
+    "v2": {
+      "hidden_layer_sizes": [
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "alpha": 0.01,
+      "balanced": true
+    }
+  },
+  "datasets": {
+    "pima": {
+      "raw_rows": 768,
+      "clean_rows": 768,
+      "removed_rows": 0,
+      "conflicting_feature_groups": 0,
+      "zeros_as_missing": {
+        "plas": 5,
+        "pres": 35,
+        "skin": 227,
+        "insu": 374,
+        "mass": 11
+      },
+      "class_counts": {
+        "0": 500,
+        "1": 268
+      },
+      "url": "https://openml.org/data/v1/download/37/diabetes.arff",
+      "sha256": "4eddd5b2b64679e8888348e306520a393d6a28e1ddc9643cfb76fc5d912d6d40",
+      "source": "https://www.openml.org/d/37",
+      "version": "1",
+      "train": 460,
+      "validation": 154,
+      "test": 154,
+      "features": [
+        "preg",
+        "plas",
+        "pres",
+        "skin",
+        "insu",
+        "mass",
+        "pedi",
+        "age"
+      ],
+      "clean_csv_sha256": "5c2793534839c95247cec0f54bcc904498c98dc2f968511a9dcc136e36513ca6",
+      "paired_accuracy_difference_v2_minus_v1": -0.01948051948051948,
+      "paired_bootstrap_95_percentile": [
+        -0.07792207792207792,
+        0.032467532467532464
+      ]
+    },
+    "early_stage": {
+      "raw_rows": 520,
+      "clean_rows": 251,
+      "removed_rows": 269,
+      "conflicting_feature_groups": 0,
+      "zeros_as_missing": {},
+      "class_counts": {
+        "0": 78,
+        "1": 173
+      },
+      "url": "https://archive.ics.uci.edu/static/public/529/early+stage+diabetes+risk+prediction+dataset.zip",
+      "sha256": "67594c0f11257688b57493798e70737b7156ba37a2e6ac75507ae3a35221a388",
+      "source": "https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset",
+      "train": 150,
+      "validation": 50,
+      "test": 51,
+      "features": [
+        "Age",
+        "Gender",
+        "Polyuria",
+        "Polydipsia",
+        "sudden weight loss",
+        "weakness",
+        "Polyphagia",
+        "Genital thrush",
+        "visual blurring",
+        "Itching",
+        "Irritability",
+        "delayed healing",
+        "partial paresis",
+        "muscle stiffness",
+        "Alopecia",
+        "Obesity"
+      ],
+      "clean_csv_sha256": "039bc011a5f75cbb5ae67ced9d3d915f794af40ae1d7a7b11b7d3d79dd34206d",
+      "paired_accuracy_difference_v2_minus_v1": 0.0392156862745098,
+      "paired_bootstrap_95_percentile": [
+        0.0,
+        0.09803921568627451
+      ]
+    }
+  },
+  "results": [
+    {
+      "dataset": "pima",
+      "version": "logistic",
+      "seed": 254,
+      "accuracy": 0.7727272727272727,
+      "macro_f1": 0.7336298492710649,
+      "precision": 0.7142857142857143,
+      "recall": 0.5660377358490566,
+      "roc_auc": 0.8088922099757145,
+      "log_loss": 0.5093947939561784,
+      "confusion_matrix": [
+        [
+          89,
+          12
+        ],
+        [
+          23,
+          30
+        ]
+      ]
+    },
+    {
+      "dataset": "pima",
+      "version": "v1",
+      "seed": 254,
+      "best_epoch": 16,
+      "epochs_run": 76,
+      "validation_macro_f1": 0.7703320739709684,
+      "validation_log_loss": 0.4295843208989282,
+      "parameters": 3201,
+      "train_seconds": 0.307,
+      "accuracy": 0.7532467532467533,
+      "macro_f1": 0.7266953110405381,
+      "precision": 0.6415094339622641,
+      "recall": 0.6415094339622641,
+      "roc_auc": 0.81543059966374,
+      "log_loss": 0.508515841950703,
+      "confusion_matrix": [
+        [
+          82,
+          19
+        ],
+        [
+          19,
+          34
+        ]
+      ],
+      "checkpoint_sha256": "2428969df7a16ee3c34330efdc9c87a39980d63c94e7865b9182567bdcfe8f92"
+    },
+    {
+      "dataset": "pima",
+      "version": "v1",
+      "seed": 255,
+      "best_epoch": 33,
+      "epochs_run": 93,
+      "validation_macro_f1": 0.7778846153846153,
+      "validation_log_loss": 0.4766015733353174,
+      "parameters": 3201,
+      "train_seconds": 0.36,
+      "accuracy": 0.7597402597402597,
+      "macro_f1": 0.7350630027432928,
+      "precision": 0.6481481481481481,
+      "recall": 0.660377358490566,
+      "roc_auc": 0.794320941528115,
+      "log_loss": 0.5868008641172697,
+      "confusion_matrix": [
+        [
+          82,
+          19
+        ],
+        [
+          18,
+          35
+        ]
+      ]
+    },
+    {
+      "dataset": "pima",
+      "version": "v1",
+      "seed": 256,
+      "best_epoch": 13,
+      "epochs_run": 73,
+      "validation_macro_f1": 0.7550208789023662,
+      "validation_log_loss": 0.44341768237503254,
+      "parameters": 3201,
+      "train_seconds": 0.281,
+      "accuracy": 0.7727272727272727,
+      "macro_f1": 0.7471264367816092,
+      "precision": 0.6730769230769231,
+      "recall": 0.660377358490566,
+      "roc_auc": 0.8275733233700728,
+      "log_loss": 0.4812712509772437,
+      "confusion_matrix": [
+        [
+          84,
+          17
+        ],
+        [
+          18,
+          35
+        ]
+      ]
+    },
+    {
+      "dataset": "pima",
+      "version": "v2",
+      "seed": 254,
+      "best_epoch": 5,
+      "epochs_run": 65,
+      "validation_macro_f1": 0.7780257590551913,
+      "validation_log_loss": 0.48711812834555823,
+      "parameters": 3361,
+      "train_seconds": 0.306,
+      "accuracy": 0.7337662337662337,
+      "macro_f1": 0.7209528439474964,
+      "precision": 0.5882352941176471,
+      "recall": 0.7547169811320755,
+      "roc_auc": 0.8080515598729685,
+      "log_loss": 0.5315441289520283,
+      "confusion_matrix": [
+        [
+          73,
+          28
+        ],
+        [
+          13,
+          40
+        ]
+      ],
+      "checkpoint_sha256": "e0ea2970463ba5b77a0ae0d728aa53c4b4e067f1d4b5db83df4990ef333a13f1"
+    },
+    {
+      "dataset": "pima",
+      "version": "v2",
+      "seed": 255,
+      "best_epoch": 24,
+      "epochs_run": 84,
+      "validation_macro_f1": 0.7771748960028939,
+      "validation_log_loss": 0.45616373668338706,
+      "parameters": 3361,
+      "train_seconds": 0.391,
+      "accuracy": 0.7272727272727273,
+      "macro_f1": 0.7149656266525648,
+      "precision": 0.5797101449275363,
+      "recall": 0.7547169811320755,
+      "roc_auc": 0.8152437885297964,
+      "log_loss": 0.5375275306158624,
+      "confusion_matrix": [
+        [
+          72,
+          29
+        ],
+        [
+          13,
+          40
+        ]
+      ]
+    },
+    {
+      "dataset": "pima",
+      "version": "v2",
+      "seed": 256,
+      "best_epoch": 72,
+      "epochs_run": 132,
+      "validation_macro_f1": 0.7710295111511601,
+      "validation_log_loss": 0.8633742623881026,
+      "parameters": 3361,
+      "train_seconds": 0.608,
+      "accuracy": 0.6753246753246753,
+      "macro_f1": 0.6586879432624113,
+      "precision": 0.5223880597014925,
+      "recall": 0.660377358490566,
+      "roc_auc": 0.7599476928824958,
+      "log_loss": 0.906852614909038,
+      "confusion_matrix": [
+        [
+          69,
+          32
+        ],
+        [
+          18,
+          35
+        ]
+      ]
+    },
+    {
+      "dataset": "early_stage",
+      "version": "logistic",
+      "seed": 254,
+      "accuracy": 0.9803921568627451,
+      "macro_f1": 0.9768287142208087,
+      "precision": 0.9722222222222222,
+      "recall": 1.0,
+      "roc_auc": 0.9964285714285714,
+      "log_loss": 0.10476904267071513,
+      "confusion_matrix": [
+        [
+          15,
+          1
+        ],
+        [
+          0,
+          35
+        ]
+      ]
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v1",
+      "seed": 254,
+      "best_epoch": 10,
+      "epochs_run": 70,
+      "validation_macro_f1": 0.9047619047619048,
+      "validation_log_loss": 0.3453479158424072,
+      "parameters": 3713,
+      "train_seconds": 0.17,
+      "accuracy": 0.8627450980392157,
+      "macro_f1": 0.8145454545454545,
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "roc_auc": 0.9875,
+      "log_loss": 0.28678739332623515,
+      "confusion_matrix": [
+        [
+          9,
+          7
+        ],
+        [
+          0,
+          35
+        ]
+      ],
+      "checkpoint_sha256": "653ee99547ca3c2abb76129ae68b713582c2a2ae37ba6890ca6a3a77d1b0547d"
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v1",
+      "seed": 255,
+      "best_epoch": 5,
+      "epochs_run": 65,
+      "validation_macro_f1": 0.8571428571428572,
+      "validation_log_loss": 0.4298161181413252,
+      "parameters": 3713,
+      "train_seconds": 0.159,
+      "accuracy": 0.8431372549019608,
+      "macro_f1": 0.7935222672064777,
+      "precision": 0.8292682926829268,
+      "recall": 0.9714285714285714,
+      "roc_auc": 0.9803571428571428,
+      "log_loss": 0.4194578191277269,
+      "confusion_matrix": [
+        [
+          9,
+          7
+        ],
+        [
+          1,
+          34
+        ]
+      ]
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v1",
+      "seed": 256,
+      "best_epoch": 17,
+      "epochs_run": 77,
+      "validation_macro_f1": 0.8417005879692447,
+      "validation_log_loss": 0.33274706677522764,
+      "parameters": 3713,
+      "train_seconds": 0.182,
+      "accuracy": 0.9215686274509803,
+      "macro_f1": 0.9015444015444015,
+      "precision": 0.8974358974358975,
+      "recall": 1.0,
+      "roc_auc": 0.9875,
+      "log_loss": 0.20545781519688808,
+      "confusion_matrix": [
+        [
+          12,
+          4
+        ],
+        [
+          0,
+          35
+        ]
+      ]
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v2",
+      "seed": 254,
+      "best_epoch": 46,
+      "epochs_run": 106,
+      "validation_macro_f1": 0.9271491015055853,
+      "validation_log_loss": 0.4587346767960872,
+      "parameters": 3873,
+      "train_seconds": 0.28,
+      "accuracy": 0.9019607843137255,
+      "macro_f1": 0.874074074074074,
+      "precision": 0.875,
+      "recall": 1.0,
+      "roc_auc": 1.0,
+      "log_loss": 0.27087701711665596,
+      "confusion_matrix": [
+        [
+          11,
+          5
+        ],
+        [
+          0,
+          35
+        ]
+      ],
+      "checkpoint_sha256": "0b691bf9f43697641b3ae008edddfa7530ce038ce350ae17fcc030421c3a4ba2"
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v2",
+      "seed": 255,
+      "best_epoch": 24,
+      "epochs_run": 84,
+      "validation_macro_f1": 0.8498498498498499,
+      "validation_log_loss": 0.39908698903459344,
+      "parameters": 3873,
+      "train_seconds": 0.236,
+      "accuracy": 0.9411764705882353,
+      "macro_f1": 0.9347547974413646,
+      "precision": 1.0,
+      "recall": 0.9142857142857143,
+      "roc_auc": 0.9839285714285714,
+      "log_loss": 0.2892425516987876,
+      "confusion_matrix": [
+        [
+          16,
+          0
+        ],
+        [
+          3,
+          32
+        ]
+      ]
+    },
+    {
+      "dataset": "early_stage",
+      "version": "v2",
+      "seed": 256,
+      "best_epoch": 18,
+      "epochs_run": 78,
+      "validation_macro_f1": 0.9047619047619048,
+      "validation_log_loss": 0.34260019273200343,
+      "parameters": 3873,
+      "train_seconds": 0.219,
+      "accuracy": 0.9215686274509803,
+      "macro_f1": 0.9015444015444015,
+      "precision": 0.8974358974358975,
+      "recall": 1.0,
+      "roc_auc": 0.9910714285714286,
+      "log_loss": 0.2516871658293372,
+      "confusion_matrix": [
+        [
+          12,
+          4
+        ],
+        [
+          0,
+          35
+        ]
+      ]
+    }
+  ]
+}

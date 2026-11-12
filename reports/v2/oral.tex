@@ -1,0 +1,294 @@
+\chapter*{Gợi ý trả lời 51 câu vấn đáp}
+\pretocmd{\section}{\Needspace{8\baselineskip}}{}{}
+Tài liệu ôn tập theo thứ tự câu hỏi trong đề của giảng viên. Mỗi câu có câu nói ngắn, phần giải thích và vị trí mở code khi phù hợp. Đường dẫn tính từ thư mục gốc project. Các câu 39--51 dùng để tập bảo vệ GlucoGuide, nên thử mở đúng file và làm lại thao tác trước khi học thuộc số liệu.
+
+\section{Machine Learning và Deep Learning: câu 1--10}
+\oral{1}{Ba hình thức học}{Có giám sát học từ cặp feature--label, như phân loại Pima. Không giám sát tìm cấu trúc không có label, như phân cụm văn bản. RL học hành động qua reward trong môi trường, như chọn chiến lược mô phỏng. Trong project, bảng Q cho cách trình bày không cập nhật trọng số Qwen.}
+\study{Phân biệt theo tín hiệu học}{Học máy xây hàm dự đoán hoặc chính sách từ dữ liệu hay tương tác. Có giám sát có nhãn \(y\), ví dụ dự đoán nhãn Pima. Không giám sát dùng \(x\) để tìm cấu trúc, ví dụ gom nhóm bài viết theo độ giống. Học tăng cường nhận reward sau hành động, ví dụ chọn hành động trong mô phỏng Agent02. Nhãn đúng của một hàng và reward theo chuỗi hành động là hai tín hiệu khác nhau.}
+\loc{scripts/train_v2.py}{59}{70} Hàm \code{load_data} chuyển nhãn gốc của hai bộ thành 0/1. Cora GCN trong tiểu luận là bài toán có giám sát bán phần: chỉ một phần nút cung cấp nhãn để học.
+
+\oral{2}{Workflow ML}{Xác định target, kiểm kê nguồn, làm sạch/loại trùng, chia train, validation và test, fit imputer và scaler chỉ trên train, train model, chọn epoch bằng validation rồi báo cáo test. Chỉ được thay cấu hình sau khi xem test nếu thừa nhận test đó đã trở thành tập phát triển và có test mới.}
+\study{Trình bày theo thứ tự}{Xác định biến mục tiêu, nguồn và phạm vi. Kiểm tra nhãn, dòng lặp, giá trị thiếu và biến có khả năng làm lộ nhãn. Chia train/validation/test, học tiền xử lý trên train, huấn luyện, dùng validation để chọn checkpoint, đánh giá test rồi đóng gói cùng schema. Feature engineering trong Pima gồm quy ước 0 thành thiếu ở năm trường đo. Early Stage mã hóa Yes/No và Gender.}
+\loc{scripts/train_v2.py}{59}{84} Đọc nhãn, chuẩn hóa giá trị và loại bản ghi theo chữ ký trước khi chia.
+\loc{scripts/train_v2.py}{96}{112} Chia phân tầng, fit trung vị và chuẩn hóa trên train, rồi chỉ transform ở validation/test.
+\loc{scripts/train_v2.py}{123}{143} Chọn epoch bằng validation, tính test và lưu pipeline.
+
+\oral{3}{Classification và regression}{Classification dự đoán lớp; V2 trả Positive/Negative của dataset. Regression dự đoán số; giá nhà, giá cổ phiếu và điểm tiến triển là ví dụ khác đơn vị. Không so F1 với MAE hoặc diễn giải điểm tiến triển như nồng độ glucose.}
+\study{Ba ví dụ của mình}{Tiểu đường V2 dự đoán nhãn 0/1 và dùng macro-F1. FPT dự đoán lợi suất phiên tới rồi đổi sang giá, đo MAE theo VND. Giá nhà dự đoán giá liên tục, đo MAE theo tỷ VND. Ví dụ MAE 0,5 tỷ là trung bình sai lệch tuyệt đối theo đơn vị giá, còn F1 0,5 là số đo chất lượng phân lớp.}
+\loc{app/v2.py}{90}{99} Ngưỡng 0,5 đổi điểm thành lớp.
+\loc{legacy_tieuluan/src/experiments03.py}{307}{331} Mục tiêu chuỗi là log-return, \code{bases[test]*np.exp(testret)} đưa kết quả về giá. Dòng 180--198 cùng file là pipeline giá nhà.
+
+\oral{4}{Kiến trúc ANN}{Đầu vào nhận đặc trưng, các tầng ẩn kết hợp thông tin và đầu ra cho điểm lớp dương tính. V2 có năm tầng ẩn, lần lượt 64, 32, 16, 8 và 4 neuron. V1 có ba tầng ẩn 64, 32 và 16 neuron. Mạng V2 có 3.361 tham số trên Pima.}
+\study{Vẽ tại bàn}{Input 8 hoặc 16 giá trị \(\to64\to32\to16\to8\to4\to1\). Năm lớp giữa dùng \(a=\mathrm{ReLU}(Wa+b)\). Lớp ra sigmoid trả điểm Positive. \(W\) nối đầu ra tầng trước với neuron hiện tại, còn \(b\) là độ lệch của neuron. Một lớp \(m\to n\) có \((m+1)n\) tham số. Pima có 3.361, Early Stage có 3.873 vì thêm 8 đầu vào nối với 64 neuron.}
+\loc{scripts/train_v2.py}{35}{38} Bộ \code{hidden_layer_sizes} ghi số neuron từng lớp. Dòng 133--136 đếm tham số trực tiếp từ trọng số và bias.
+
+\oral{5}{Forward/backpropagation}{Forward tính $z=Wa+b$, activation và loss. Backprop dùng quy tắc dây chuyền tính đạo hàm theo từng tham số. Sau đó optimizer cập nhật tham số; không phải lấy accuracy test rồi sửa trực tiếp từng trọng số. Có thể viết $\delta^{(\ell)}=(W^{(\ell+1)})^T\delta^{(\ell+1)}\odot\phi'(z^{(\ell)})$.}
+\study{Giải thích được hai chiều}{Forward đi từ \(x\) đến dự đoán và loss. Backward đi từ loss về các trọng số bằng quy tắc dây chuyền. Với \(z=Wa+b\), nếu biết \(\delta=\partial L/\partial z\) thì \(\partial L/\partial W=\delta a^\top\) và \(\partial L/\partial b=\delta\). Optimizer dùng các đạo hàm này để cập nhật tham số. Với Adam, bước cập nhật còn dựa vào trung bình gradient và bình phương gradient.}
+\loc{legacy_tieuluan/src/experiments03.py}{237}{264} Dòng 254 forward và backward, 255 giới hạn norm gradient, 256 cập nhật. MLP bảng gọi \code{partial_fit} để thư viện thực hiện nội bộ.
+
+\oral{6}{Loss}{MSE phạt bình phương sai số liên tục; BCE dùng nhãn nhị phân; categorical cross-entropy kết hợp softmax dùng nhiều lớp. V2 dùng MLP với binary log loss; L2 là regularization, khác metric macro-F1 dùng chọn checkpoint validation.}
+\study{Chọn loss theo dạng đích}{MSE lấy trung bình \((y-\hat y)^2\), hợp với đích liên tục và phạt mạnh lỗi lớn. BCE là \(-y\log p-(1-y)\log(1-p)\) cho nhị phân. Cross-entropy nhiều lớp dùng \(-\log p_y\) sau softmax của logits cho bài một nhãn trong nhiều lớp. Accuracy hay F1 mô tả kết quả sau ngưỡng, còn loss xét độ lớn xác suất hoặc sai số.}
+\loc{legacy_tieuluan/src/experiments03.py}{237}{242} CNN MNIST dùng CrossEntropyLoss, nhánh chuỗi dùng MSELoss. \loc{scripts/train_v2.py}{118}{131} MLP V2 học nhị phân và dùng macro-F1 validation để chọn epoch.
+
+\oral{7}{Gradient descent}{Batch dùng toàn tập cho một bước; SGD một mẫu; mini-batch một nhóm. Adam thích nghi tốc độ theo lịch sử gradient. V2 batch tối đa 32, learning rate 0,001; learning rate lớn dễ dao động, nhỏ quá có thể chưa hội tụ.}
+\study{Mỗi bước dùng bao nhiêu mẫu?}{Batch dùng toàn bộ tập train. SGD theo nghĩa hẹp dùng từng mẫu. Mini-batch dùng nhóm nhỏ để cân bằng tốc độ tính với độ nhiễu gradient. Với gradient descent cơ bản, \(w\leftarrow w-\eta\nabla L\). Learning rate \(\eta\) quá lớn có thể vượt vùng tối ưu, quá nhỏ làm hội tụ chậm. Adam điều chỉnh bước theo lịch sử gradient.}
+\loc{scripts/train_v2.py}{118}{125} Cấu hình learning rate 0,001, batch tối đa 32 và gọi \code{partial_fit} theo epoch.
+
+\oral{8}{Overfit/underfit}{Overfit thể hiện chênh lệch train và dữ liệu chưa thấy; underfit là học chưa đủ cả train. Dùng validation, giảm độ phức tạp, L2 và early stopping. Không nói project dùng dropout vì MLP này không triển khai dropout.}
+\study{Nhìn đường học rồi giải thích}{Train loss và validation loss cùng cao có thể là underfit. Train tiếp tục tốt nhưng validation xấu đi gợi ý overfit. L2 thêm phạt lên trọng số. Dropout bỏ ngẫu nhiên activation trong train để giảm phụ thuộc giữa neuron. Early stopping giữ checkpoint được validation chọn. V2 dùng L2 và dừng theo patience 60.}
+\loc{scripts/train_v2.py}{118}{132} L2 truyền qua \code{alpha}; \code{deepcopy} giữ checkpoint tốt nhất. Test được tính sau vòng train.
+
+\oral{9}{Đánh giá classification}{Đọc accuracy, precision, recall, F1, macro-F1 và confusion matrix. Majority classifier có thể accuracy cao trên lớp lệch; ở dataset 50K cũ, lớp Low rất hiếm. Với Pima V2 cần chỉ cả FN giảm và FP tăng; không đọc riêng recall rồi kết luận hoàn toàn tốt hơn.}
+\study{Đọc ma trận theo hàng nhãn thật}{Accuracy bằng \((TP+TN)/N\). Precision bằng \(TP/(TP+FP)\), recall bằng \(TP/(TP+FN)\), F1 là trung bình điều hòa. Macro-F1 lấy trung bình F1 hai lớp. Trên Pima V2 seed 254, ma trận là \([73,28;13,40]\), nên accuracy \(113/154\), precision \(40/68\), recall \(40/53\). Đoán toàn Negative cũng đúng 101/154 nhưng bỏ sót mọi Positive.}
+\loc{scripts/train_v2.py}{51}{56} Áp ngưỡng 0,5, ghi chỉ số và thứ tự nhãn [0,1]. Dòng 144--151 tính bootstrap ghép cặp và lưu CSV test.
+
+\oral{10}{Triển khai model}{Model file phải đi cùng feature order, imputer/scaler, schema, version và output meaning. API kiểm tra dữ liệu, load model tin cậy và trả lỗi rõ. Các rủi ro gồm lệch phân phối, dependency không tương thích, latency và rò rỉ thông tin; hash chỉ xác định artifact, không bảo đảm model đúng.}
+\study{Từ model sang API}{Classification trả lớp và điểm, regression trả số có đơn vị. Khi triển khai phải giữ thứ tự và ý nghĩa đặc trưng, bước điền thiếu, đơn vị, phiên bản model và cách xử lý lỗi. Theo dõi đầu vào lệch khỏi dữ liệu huấn luyện và thời gian phản hồi.}
+\loc{app/v2.py}{27}{42} Registry và checkpoint được cache, yêu cầu giới hạn dataset/phiên bản. Dòng 63--99 kiểm tra đầu vào rồi chạy pipeline.
+
+
+\section{CNN, RNN và LSTM: câu 11--18}
+\oral{11}{CNN}{CNN gồm convolution, activation, pooling và head phân loại. Filter học mẫu cục bộ; feature map là phản ứng của filter ở các vị trí. Thực nghiệm MNIST cũ dùng hai Conv, hai Pool và dense head; không có CNN trong nhánh bảng tiểu đường V2.}
+\study{CNN MNIST theo kích thước}{Ảnh \(1\times28\times28\) qua Conv 8 kênh, ReLU và Pool2 thành \(8\times14\times14\). Conv thứ hai và Pool2 cho \(16\times7\times7\). Flatten được 784 số. Hai Dense cho 64 đặc trưng rồi 10 logits. Filter là trọng số được dùng lại trên nhiều vị trí, feature map là đáp ứng của filter trên ảnh. Pooling gom vùng nhỏ và giảm kích thước.}
+\loc{legacy_tieuluan/src/experiments03.py}{210}{220} Đọc theo thứ tự khai báo Conv/Dense và hàm \code{forward}.
+
+\oral{12}{Kernel/stride/padding}{Kernel quyết định vùng nhìn cục bộ, stride là bước quét, padding thêm biên. Output size $\lfloor(n+2p-k)/s\rfloor+1$. Ảnh 28, kernel 3, padding 1, stride 1 giữ 28; tăng số filter tăng số feature map và tham số.}
+\study{Tự tính một ví dụ}{Với dilation 1, chiều ra là \(\lfloor(n+2p-k)/s\rfloor+1\). Với \(n=28,k=3,p=1,s=1\), chiều ra vẫn là 28. Mỗi filter lấy tổng có trọng số của vùng \(3\times3\) qua tất cả kênh đầu vào, cộng bias. Số filter quyết định số kênh đầu ra. MaxPool2 tiếp theo giảm 28 còn 14.}
+\loc{legacy_tieuluan/src/experiments03.py}{213}{220} \code{Conv2d} nhận số kênh, kích thước kernel và padding. Stride mặc định của Conv là 1.
+
+\oral{13}{Vì sao CNN hợp ảnh?}{Chia sẻ trọng số và kết nối cục bộ giảm tham số, tận dụng cấu trúc không gian. Các tầng đầu học nét đơn giản, sau kết hợp thành dạng phức tạp. Đây là khuynh hướng học biểu diễn, không có nghĩa mỗi neuron luôn gắn với một khái niệm dễ đặt tên.}
+\study{Vì sao hợp ảnh?}{Điểm ảnh gần nhau thường liên quan, nên filter cục bộ học nét và góc. Dùng chung trọng số tiết kiệm tham số và giúp cùng mẫu xuất hiện ở nhiều vị trí vẫn tạo đáp ứng. Các tầng sau có vùng nhìn lớn hơn và kết hợp nét thành hình. Khi xoay hoặc đổi miền ảnh, mô hình vẫn cần dữ liệu và kiểm thử phù hợp.}
+\loc{legacy_tieuluan/src/experiments03.py}{210}{220} Hai lần tích chập và pooling minh họa kết hợp đặc trưng cục bộ. Dòng 245--253 minh họa dịch một pixel trên train.
+
+\oral{14}{Ứng dụng CNN}{Giữ thống nhất resize, grayscale, chuẩn hóa, batch/channel giữa train và inference. Train có validation; chọn checkpoint không nhìn test. Kiểm tra input ảnh trống, kích thước sai và ví dụ sai. Model MNIST cũ đạt accuracy 0,9866; chưa train lại hoặc bật ứng dụng CNN legacy trên Mac ở lần V2.}
+\study{Đi từ dữ liệu đến inference}{Đọc ảnh thành \(N\times1\times28\times28\), chia train/validation, chia pixel cho 255, augmentation chỉ trên train. Chọn trọng số theo validation loss, chạy test với \code{eval} và \code{no_grad}, lấy argmax. Khi đưa lên web cần giữ thứ tự pixel và chuẩn hóa. Thực nghiệm Final đã lưu checkpoint, logits và ví dụ parity.}
+\loc{legacy_tieuluan/src/experiments03.py}{268}{295} Huấn luyện, tính test và xuất JSON. \loc{legacy_tieuluan/src/inference03.py}{67}{80} Suy luận CNN bằng trọng số đã xuất. Đây là phần thực nghiệm Final.
+
+\oral{15}{RNN}{Hidden state $h_t$ nhận cả $x_t$ và $h_{t-1}$, giữ thông tin quá khứ. RNN phù hợp chuỗi có thứ tự; dùng cùng trọng số theo thời gian. Trong bài giá, input là cửa sổ log-return, không phải một tập ngày được xáo ngẫu nhiên.}
+\study{Giải thích trạng thái}{RNN dùng \(h_t=\tanh(W_xx_t+W_hh_{t-1}+b)\). \(h_t\) chứa thông tin từ bước hiện tại và các bước trước. Dùng cùng trọng số ở các bước giúp xử lý chuỗi dài ngắn khác nhau. Với FPT, mỗi mẫu dùng cửa sổ 30 log-return theo thứ tự. Trạng thái ở bước cuối đi qua lớp tuyến tính để dự đoán log-return phiên sau.}
+\loc{legacy_tieuluan/src/experiments03.py}{299}{322} Lớp recurrent và cách tạo cửa sổ theo ngày.
+
+\oral{16}{Vanishing/exploding gradient}{BPTT nhân nhiều Jacobian làm gradient nhỏ dần hoặc tăng vọt. Clipping giúp giới hạn exploding gradient; LSTM dùng đường cell state và cổng để hỗ trợ phụ thuộc dài. Không bảo đảm LSTM luôn thắng RNN trên mọi snapshot.}
+\study{Giải thích từ tích đạo hàm}{BPTT nhân nhiều Jacobian dọc thời gian. Nếu độ lớn theo hướng gradient nhỏ liên tục, tín hiệu từ quá khứ giảm mạnh. Nếu lớn liên tục, gradient tăng và tối ưu mất ổn định. Gradient clipping giới hạn trường hợp tăng quá lớn. LSTM giúp truyền thông tin qua đường trạng thái nhớ có phép cộng và cổng điều khiển.}
+\loc{legacy_tieuluan/src/experiments03.py}{254}{256} Backward, clip norm về ngưỡng 1 và optimizer step là ba thao tác riêng.
+
+\oral{17}{LSTM}{Forget gate giữ/bỏ bộ nhớ cũ, input gate chọn thông tin mới, candidate tạo nội dung mới, output gate chọn phần trạng thái được xuất. Cell state tích lũy qua phép cộng có kiểm soát; hidden state là biểu diễn đầu ra theo thời gian. Viết các phương trình ở chương chuỗi để giải thích.}
+\study{Vẽ năm thành phần}{Forget gate \(f_t\) quyết định giữ bao nhiêu \(c_{t-1}\). Input gate \(i_t\) quyết định ghi bao nhiêu candidate \(\tilde c_t\). \(c_t=f_t\odot c_{t-1}+i_t\odot\tilde c_t\). Output gate \(o_t\) quyết định phần hiện ra trong \(h_t=o_t\odot\tanh(c_t)\). \(c_t\) là trạng thái nhớ, \(h_t\) là trạng thái được truyền ra.}
+\loc{legacy_tieuluan/src/experiments03.py}{299}{304} PyTorch cung cấp cell LSTM. Lớp tự viết lấy output bước cuối và dùng một head tuyến tính.
+
+\oral{18}{CNN/RNN/LSTM}{CNN khai thác lân cận không gian; RNN xử lý trạng thái tuần tự; LSTM thêm cơ chế bộ nhớ/cổng. Cổ phiếu có thứ tự thời gian nên RNN/LSTM là ứng viên, nhưng cần baseline Persistence và backtest phù hợp. Không dùng kết quả test để chọn lại model đã triển khai.}
+\study{So theo cấu trúc dữ liệu}{CNN mạnh khi có lân cận cục bộ như ảnh hoặc mẫu cục bộ trong chuỗi. RNN theo thứ tự nhưng khó giữ phụ thuộc dài. LSTM có cổng để duy trì thông tin và tốn thêm tham số. Với cổ phiếu, thứ tự là một phần đầu vào. Chia theo thời gian và đối chiếu với Persistence, tức dự đoán giá phiên tới bằng giá phiên hiện tại.}
+\loc{legacy_tieuluan/src/experiments03.py}{307}{349} Tách theo ngày nhãn, chuẩn hóa train, huấn luyện ba mô hình và để baseline tham gia chọn theo validation.
+
+
+\section{KG, Neo4j và RAG: câu 19--28}
+\oral{19}{Knowledge Graph}{KG biểu diễn thực thể/khái niệm và quan hệ, có thuộc tính như tên, nguồn và bằng chứng. Project có node Concept, cạnh RELATED\_TO với nhãn quan hệ trong property label. Nguồn của cạnh quan trọng hơn việc đồ thị có nhiều nút hoặc trông nối liền.}
+\study{Ví dụ thật}{Node \code{Concept} có thuộc tính \code{name}. Cạnh có kiểu \code{RELATED_TO}, chiều từ chủ thể đến đối tượng và nhãn tiếng Việt ở \code{r.label}. Cạnh HbA1c đến đường huyết trung bình có nhãn “phản ánh”, document \code{a1c}, đoạn căn cứ và URL. Label của node, type của cạnh và property là ba khái niệm khác nhau.}
+\loc{exports/diabetes/kg/import.cypher}{1}{3} Hai dòng dữ liệu đầu cho ví dụ a1c. Dòng 109--112 đặt cấu trúc node, cạnh và thuộc tính.
+
+\oral{20}{Năm bộ ba}{Dùng năm bộ ba thật ở bảng bộ ba trong báo cáo; mở knowledge.json để chỉ đúng subject--predicate--object và document ID. Không tự nói một triple không có trong snapshot là quan hệ đã triển khai.}
+\study{Năm bộ ba thật để đọc thành tiếng}{(HbA1c, phản ánh, đường huyết trung bình) [a1c]. (Glucose, cần có, đơn vị và thời điểm đo) [testing]. (Tiểu đường, liên quan đến, thiếu hoặc sử dụng insulin kém hiệu quả) [overview]. (Vận động, hỗ trợ, quản lý đường huyết) [activity]. (Liều thuốc, cần được chỉ định bởi, nhân viên y tế) [medicine].}
+\loc{app/graph_knowledge.py}{11}{29} Tạo bộ ba từ record Neo4j, kiểm tra thuộc đúng tài liệu, đoạn trích và URL. Có thể đối chiếu các mã trong \nolinkurl{exports/diabetes/kb/knowledge.json} và bảng bộ ba của Project.
+
+\oral{21}{Neo4j}{Neo4j là cơ sở dữ liệu property graph; node/relationship đều có thể có property. Project đặt unique constraint trên Concept.name; MERGE dùng để nạp lại idempotent. Neo4j không tự train model hoặc xác nhận tính đúng y khoa.}
+\study{Property graph của project}{Neo4j lưu node có label và property; cạnh có type, hướng và property. \code{Concept.name} dùng làm định danh khái niệm trong phạm vi graph này. Cùng hai đầu mút có thể có nhiều cạnh nếu label quan hệ hoặc mã tài liệu khác. Constraint và \code{MERGE} giúp nạp lại dữ liệu có kiểm soát.}
+\loc{scripts/restore_knowledge_export.py}{26}{33} Dòng 32 tạo unique constraint, 26--30 ghi node, cạnh và evidence bằng dữ liệu tham số. File Cypher cấp ngoài mang các lệnh MERGE; script restore bổ sung constraint.
+
+\oral{22}{Cypher cơ bản}{Ví dụ lý thuyết: \code{MERGE (p:Patient {id:'demo'})}, \code{MERGE (d:Disease {name:'Diabetes'})}, rồi \code{MERGE (p)-[:HAS_CONDITION]->(d)}; MATCH để lấy lại. Các label này minh họa cách thiết kế, khác schema Concept thực tế. Không chạy ví dụ tạo bệnh nhân này vào dữ liệu chính chỉ để làm đẹp báo cáo.}
+\study{Bài tập Cypher của thầy}{Tạo hai node theo ID ổn định, nối bằng cạnh có hướng và đọc lại. Dùng database sandbox riêng cho ví dụ giả định. Trên đồ thị nộp thật, minh họa bằng MATCH ở câu 46.}
+\begin{Verbatim}[fontsize=\small]
+MERGE (p:Patient {id:'demo-q22'})
+MERGE (d:Disease {name:'Diabetes'})
+MERGE (p)-[:HAS_CONDITION]->(d);
+
+MATCH (p:Patient {id:'demo-q22'})-[:HAS_CONDITION]->(d:Disease)
+RETURN p.id, d.name;
+\end{Verbatim}
+\loc{scripts/restore_knowledge_export.py}{26}{33} Cùng kỹ thuật MERGE, nhưng schema triển khai của GlucoGuide là Concept và RELATED\_TO.
+
+\oral{23}{Thiết kế KG tiểu đường}{Một ontology mở rộng có Patient, Symptom, Measurement, RiskFactor, Disease và Recommendation; quan hệ cần nguồn, thời điểm và phạm vi. Project hiện chỉ dùng Concept/RELATED\_TO có provenance, chưa triển khai toàn bộ ontology bệnh nhân. Có thể giải thích cách mở rộng nhưng phải phân biệt đề xuất và chức năng đã chạy.}
+\study{Thiết kế đề xuất}{Dùng Patient, Symptom, RiskFactor, Measurement, Disease và Recommendation. Patient có HAS\_SYMPTOM, HAS\_RISK\_FACTOR và HAS\_MEASUREMENT. Measurement lưu loại, giá trị, đơn vị, thời điểm, bối cảnh và nguồn. Quan hệ HAS\_CONDITION cần căn cứ phù hợp. Recommendation có nguồn, đối tượng áp dụng và phiên bản tài liệu. Khi bảo vệ hãy vẽ schema đề xuất này, rồi mở schema Concept đang chạy để chỉ phần thực tế.}
+\loc{app/graph_knowledge.py}{4}{8} Đọc schema đang triển khai và trường được trả về. Chưa lưu hồ sơ bệnh nhân theo schema đề xuất.
+
+\oral{24}{Truy hồi/đa bước}{MATCH có thể theo đường đi dài giới hạn 1--2 cạnh; cần kiểm tra hướng và ý nghĩa của từng cạnh. Agent hiện tại lấy cạnh theo document IDs, không có multi-hop reasoning. Một path tồn tại không chứng minh quan hệ nhân quả hoặc chỉ định điều trị.}
+\study{Demo đọc hai cạnh thật}{Đồ thị có đường từ Thai kỳ / bệnh máu đến HbA1c rồi đến đường huyết trung bình. Có thể duyệt để xem hai cạnh, sau đó đọc riêng ý nghĩa và evidence của từng cạnh. Việc hai cạnh nối nhau chỉ cho phép truy ra chuỗi quan hệ đã lưu.}
+\begin{Verbatim}[fontsize=\small]
+MATCH p=(a:Concept {name:'Thai kỳ / bệnh máu'})
+        -[:RELATED_TO*2]->(b:Concept {name:'đường huyết trung bình'})
+WHERE all(r IN relationships(p) WHERE r.document = 'a1c')
+RETURN p;
+\end{Verbatim}
+\loc{app/graph_knowledge.py}{4}{8} Agent live dùng query một cạnh lọc theo document IDs. Truy vấn hai cạnh trên là minh họa khả năng Neo4j.
+
+\oral{25}{RAG}{RAG lấy tài liệu liên quan, cấp chúng vào context rồi sinh/giải thích có căn cứ. Nó giúp cập nhật tri thức ngoài trọng số và truy vết nguồn, nhưng retrieval sai hoặc generation vượt nguồn vẫn xảy ra. Project có verifier và fallback, chưa có bảo đảm tuyệt đối về hallucination.}
+\study{Retrieval bổ sung gì cho LLM?}{Retriever chọn đoạn phù hợp với truy vấn; prompt đưa đoạn, mã nguồn và các cạnh đã kiểm tra cho LLM. Bước sinh diễn đạt thành câu trả lời và có thể dẫn nguồn. Khi kho thay đổi, cập nhật nguồn và chỉ mục có thể đưa tri thức mới vào ngữ cảnh. Sai nguồn hoặc suy diễn ngoài nguồn vẫn có thể xảy ra.}
+\loc{app/local_prompt.py}{18}{37} Tạo context, nối cạnh và lịch sử giới hạn, yêu cầu dẫn mã đoạn. \loc{app/local_llm.py}{41}{57} Điều kiện sinh, kiểm tra bản nháp và trả chế độ kết quả.
+
+\oral{26}{Pipeline RAG}{Nêu ingestion, chunking, vector hóa/index, retrieval/ranking, context và generation. RAG tổng quát có thể dùng neural embeddings; project dùng TF-IDF word/char sparse, không neural embedding. Các đoạn được biên soạn theo chủ đề và lưu provenance PDF/web.}
+\study{Vẽ pipeline từ trái sang phải}{Nguồn web/PDF \(\to\) trích văn bản và metadata \(\to\) chia đoạn \(\to\) mã hóa đoạn \(\to\) chỉ mục \(\to\) truy xuất \(\to\) context \(\to\) sinh và kiểm tra. RAG tổng quát có thể dùng embedding neural và vector store. Bản đang chạy dùng vector thưa TF-IDF trên đoạn theo chủ đề, cộng định tuyến và lọc. Bản xuất giữ index để phát lại.}
+\loc{app/retrieval.py}{22}{45} Hợp nhất ba JSON, kiểm tra trùng ID và fit từ/ký tự. Dòng 47--76 định tuyến, tính điểm và áp ngưỡng.
+\loc{scripts/export_knowledge.py}{101}{104} Xuất index và cấu hình RAG. Xem \nolinkurl{data/source_curation.json} để truy vị trí nguồn.
+
+\oral{27}{Keyword/vector/graph}{Keyword dễ giải thích nhưng nhạy từ vựng; neural vector gần ngữ nghĩa nhưng cần model/benchmark; graph lấy quan hệ rõ nhưng phụ thuộc độ phủ và cấu trúc. TF-IDF cũng là vector thưa, vì vậy cần phân biệt vector thưa lexical với dense semantic embedding.}
+\study{So sánh bằng cùng ví dụ}{Từ khóa/TF-IDF mạnh với tên chỉ số chính xác, chạy nhẹ nhưng dễ hụt diễn đạt khác. Dense embedding có thể nối các cách nói gần nghĩa, cần model, dữ liệu đánh giá và index. KG trả quan hệ rõ như HbA1c phản ánh gì và quan hệ lấy từ đâu. Kết quả KG phụ thuộc độ phủ cạnh. TF-IDF cũng là biểu diễn vector, cụ thể là vector thưa theo từ và ký tự.}
+\loc{app/retrieval.py}{52}{75} Tính độ giống, boost cụm từ và định tuyến, lọc nguồn. \loc{app/graph_knowledge.py}{46}{53} Lấy cạnh theo các ID đã truy xuất.
+
+\oral{28}{Neo4j kết hợp RAG}{Retriever lấy tối đa bốn đoạn; KG Agent nhận IDs, query cạnh, kiểm tra triple/evidence/URL; Qwen nhận context đã lọc. Có thể chỉ ra mã tài liệu giữa câu trả lời, JSON KB và cạnh Neo4j. Graph không sẵn sàng thì phản hồi phải ghi trạng thái, không tự tạo cạnh.}
+\study{Dùng chung mã đoạn}{Với câu hỏi về HbA1c, định tuyến và truy xuất chọn đoạn a1c. Neo4j tìm cạnh có document a1c. Hàm đối chiếu kiểm tra bộ ba, trích đoạn và URL với KB. Trò chuyện có thể đưa các cạnh hợp lệ vào prompt Qwen. Luồng V2 dự đoán dùng Explanation dạng mẫu và trả evidence ở trường riêng.}
+\loc{app/main.py}{116}{135} Luồng Trò chuyện chọn nguồn, gọi KG và fallback khi graph lỗi. Dòng 156--172 gọi Qwen khi đủ điều kiện và trả nguồn.
+\loc{app/v2.py}{165}{183} Luồng thực nghiệm lấy nguồn, đối chiếu graph và gộp phản hồi.
+
+
+\section{Agent và MAS: câu 29--38}
+\oral{29}{Intelligent Agent}{Agent có môi trường, quan sát, trạng thái, mục tiêu và hành động. Ví dụ Knowledge Agent quan sát câu hỏi/ID, truy xuất KB/KG, trả evidence. Tính tự chủ của project bị giới hạn bởi workflow và công cụ cho phép, không giống agent mở tự lập kế hoạch.}
+\study{Ví dụ theo từng khái niệm}{Với KG Agent, môi trường là KB và Neo4j trong hệ thống. Quan sát là danh sách mã đoạn, trạng thái cục bộ chứa kho và ánh xạ theo ID, hành động là query rồi lọc cạnh. Mục tiêu là trả bằng chứng khớp nguồn. Quyết định hiện theo workflow và kiểm tra xác định.}
+\loc{app/graph_knowledge.py}{39}{53} Constructor gắn kho và driver; \code{receive} nhận ID, truy vấn và trả facts.
+
+\oral{30}{Kiến trúc agent}{Đầu vào có contract; xử lý dùng luật, model hoặc truy vấn; trạng thái ghi thông tin lượt xử lý; đầu ra có result/evidence/status. Có thể thay handler dự đoán mà giữ giao diện message. Không nhất thiết mỗi agent cần một LLM riêng.}
+\study{Hợp đồng của một agent}{Input có cấu trúc. Xử lý dùng luật, mô hình hoặc công cụ. Kiến thức có thể nằm trong KB, registry hoặc trọng số. Quyết định chọn dữ liệu hợp lệ hay lỗi, sau đó xuất kết quả. Data Agent nhận dataset và values, dùng registry để sắp đúng tên trường và trả feature order cùng missing fields.}
+\loc{app/v2.py}{63}{87} 64--69 kiểm tra tên, 71--84 chuẩn hóa và kiểm tra miền, 86--87 tạo output. \loc{app/agents.py}{10}{17} Wrapper gọi handler và cập nhật memory nhỏ theo lượt.
+
+\oral{31}{Single/Multi-agent}{Một agent gộp mọi trách nhiệm đơn giản hơn nhưng khó kiểm thử từng phần khi tác vụ lớn. MAS tách model, luật, nguồn và giải thích, đổi lại tăng overhead/hợp đồng. Chọn MAS vì hai nhánh dữ liệu/tri thức cần phối hợp và truy vết, không chỉ vì tên gọi.}
+\study{Phân rã để test độc lập}{Một agent duy nhất có thể làm từ nhập liệu đến trả lời với ít thông điệp. Với GlucoGuide, phối hợp nhiều vai trò giúp thử riêng schema, model, bằng chứng và audit. Có thể thay checkpoint mà giữ hợp đồng prediction, hoặc giữ dữ liệu khi Neo4j tạm lỗi. Chi phí là thêm hợp đồng và thời gian điều phối.}
+\loc{app/v2.py}{145}{183} Xem đăng ký handler, thứ tự gọi và gộp kết quả. \loc{scripts/test_v2.py}{44}{60} Xem các ca chặn model và lỗi graph.
+
+\oral{32}{Kiến trúc MAS}{V2 có Coordinator điều phối Data, Prediction, Rule, KG/RAG, Explanation, Monitoring; sáu tầng là cách tổ chức hệ thống. Có bảy vai trò nhưng không có bảy tiến trình phân tán. Demo trace là cách chứng minh phối hợp thực tế.}
+\study{Vẽ sáu tầng phần mềm}{Giao diện \(\to\) API/dữ liệu \(\to\) điều phối \(\to\) agent chuyên trách \(\to\) tri thức/model, kèm tầng đánh giá/audit. Coordinator cấp việc theo thứ tự, rồi đưa dự đoán và căn cứ cho Explanation. Bảy vai trò gồm Coordinator và sáu vai trò chuyên trách. Năm lớp ẩn là số lớp bên trong MLP V2.}
+\loc{app/v2.py}{131}{148} Metadata kiến trúc và đăng ký vai trò. Dòng 157--183 cho thấy cách phân công và tập hợp kết quả.
+
+\oral{33}{Tập trung/phân tán/phân cấp}{Tập trung dễ quản lý nhưng có điểm lỗi đơn; phân tán cho các agent phối hợp trực tiếp nhưng cần giao thức nhất quán; phân cấp chia nhiệm vụ theo nhiều cấp. GlucoGuide dùng tập trung, chưa có thương lượng ngang hàng hoặc scheduler phân tán.}
+\study{So ba cách điều phối}{Tập trung có một Coordinator, dễ theo dõi một trace nhưng là điểm lỗi chung. Phi tập trung cho phép agent trao đổi trực tiếp, cần giao thức đồng thuận và xử lý xung đột. Phân cấp chia điều phối theo nhóm để xử lý hệ lớn, đổi lại thêm tầng truyền thông. GlucoGuide là điều phối tập trung trong một backend.}
+\loc{app/v2.py}{145}{179} Cùng một đối tượng bus phục vụ một yêu cầu. Coordinator gọi từng handler đồng bộ.
+
+\oral{34}{Giao tiếp agent}{MessageBus gửi REQUEST, nhận INFORM/FAILURE. V2 gắn request ID, phiên bản, trạng thái và thời gian. Cùng một response có thể truy vết từ model tới nguồn; audit lưu metadata riêng. Dữ liệu dùng chung là KB/model registry, không phải agent tự ghi đè tri thức tùy ý.}
+\study{Đọc một cặp thông điệp}{REQUEST mang sender, receiver, type và content. Agent trả INFORM hoặc lỗi FAILURE. AuditBus gắn request ID, version, status và thời gian để ghép thông điệp cùng lượt. KB và registry cung cấp tri thức chung cho các handler.}
+\loc{app/agents.py}{4}{8} Định nghĩa trường Message. Dòng 21--29 ghi REQUEST, INFORM hoặc FAILURE.
+\loc{app/v2.py}{45}{60} Mở rộng trace với metadata. Một elapsed\_ms đo cả lời gọi và được ghi vào hai thông điệp.
+
+\oral{35}{RL}{State mô tả tình trạng mô phỏng, action là lựa chọn cho phép, reward đánh giá hành động, policy chọn action. Cần định nghĩa reward tránh tối ưu sai mục tiêu. Bảng Q trình bày của project tối ưu đánh giá hữu ích, không tối ưu điều trị bệnh.}
+\study{Ví dụ RL trong học phần}{Trong mô phỏng Agent02, agent quan sát trạng thái, chọn hành động, nhận reward theo cơ chế môi trường rồi cập nhật bảng Q. Policy chọn hành động theo trạng thái; cơ chế khám phá giúp thử phương án chưa biết. Trên web, bảng phản hồi đơn bước học lựa chọn kiểu trình bày theo đánh giá hữu ích.}
+\loc{experiments/agent02/code/agent02_reference.py}{243}{275} Cập nhật Q trong môi trường mô phỏng. \loc{app/feedback.py}{14}{33} Chọn kiểu trình bày, lưu token và cập nhật điểm khi nhận phản hồi. Cơ chế web giới hạn ở trình bày.
+
+\oral{36}{MDP}{MDP gồm $S,A,P,R,\gamma$; giả thiết Markov cho rằng state hiện tại đủ để xác định phân phối chuyển tiếp. Chính sách tối ưu kỳ vọng tổng reward chiết khấu. Workflow Q một bước của project đơn giản hơn một MDP chăm sóc bệnh nhân nhiều giai đoạn.}
+\study{Viết MDP và ánh xạ}{MDP là \((S,A,P,R,\gamma)\). \(P(s'|s,a)\) mô tả chuyển trạng thái; \(R\) là phần thưởng; \(\gamma\) cân bằng phần thưởng hiện tại và tương lai; \(\pi(a|s)\) là chính sách. Markov nghĩa là trạng thái hiện tại chứa đủ thông tin để mô tả bước tiếp. Mục tiêu là tối đa hóa tổng reward kỳ vọng có chiết khấu.}
+\loc{experiments/agent02/code/agent02_reference.py}{243}{275} Dùng trạng thái, hành động, reward và trạng thái sau trong mục tiêu Q. \loc{app/feedback.py}{23}{33} Minh họa cập nhật reward đơn bước cho giao diện.
+
+\oral{37}{Agent và module thường}{Agent thường có mục tiêu, quan sát và cơ chế chọn hành động, có thể dùng tool và giao tiếp. Một callback cố định chưa tự động là agent tự chủ mạnh. Project tổ chức các handler thành vai trò agent có contract, trace và công cụ; phải thừa nhận mức tự chủ giới hạn.}
+\study{Giải thích mức tự chủ của project}{Agent thường được mô tả bằng mục tiêu, quan sát, hành động và mức tự chủ. Một module hàm chỉ nhận input rồi trả output. Trong hệ này, agent là vai trò có hợp đồng và công cụ riêng, nhận yêu cầu qua bus. Điều phối và thứ tự tác vụ đặt trước nên mức tự chủ giới hạn.}
+\loc{app/agents.py}{10}{29} Handler có tên, memory và đường gửi/nhận. \loc{app/v2.py}{165}{172} KG/RAG là ví dụ vai trò kết hợp hai công cụ dưới điều phối.
+
+\oral{38}{Thách thức MAS}{Hợp đồng sai, lỗi dây chuyền, xung đột kết quả, độ trễ và mất nguồn đều ảnh hưởng hệ. V2 kiểm tra dữ liệu trước model, giữ cờ phạm vi, fallback khi mất graph và audit theo request ID. Chưa kiểm thử tải lớn hoặc triển khai phân tán.}
+\study{Nêu thách thức kèm ca kiểm thử}{Phối hợp có thể sai thứ tự; schema có thể lệch; Neo4j có thể gián đoạn; dự đoán và đoạn nguồn có phạm vi khác nhau; trace có thể chứa dữ liệu đầu vào. Đặt hợp đồng rõ, kiểm thử lỗi, ghi metadata tối thiểu và theo dõi độ trễ. Giới hạn hiện tại là chưa đo tải nhiều người và chưa có đánh giá độc lập về xung đột nguồn.}
+\loc{app/v2.py}{149}{179} Chặn ưu tiên và lỗi dữ liệu, ghi trạng thái graph, lưu metadata. Dòng 180--183 cho thấy trace trả cho phiên demo.
+\loc{scripts/test_v2.py}{38}{61} Các ca dữ liệu thiếu, an toàn, mất graph và kiểm tra log.
+
+
+\section{Ứng dụng và bảo vệ project: câu 39--51}
+\oral{39}{Ứng dụng tiểu đường của mình}{V2 nhận tám đặc trưng Pima hoặc 16 đặc trưng Early Stage, đi qua năm tầng ẩn 64--32--16--8--4 rồi trả điểm và nhãn Positive/Negative. V1 gốc có nhãn tổng hợp High/Moderate/Low trên 50K và model điểm tiến triển, với kết quả đánh giá riêng.}
+\study{Câu trả lời đủ bốn ý}{Pima/OpenML 37 có 768 mẫu, tám trường gồm số lần mang thai, glucose, huyết áp tâm trương, độ dày nếp da, insulin, BMI, chỉ số phả hệ và tuổi. Early Stage/UCI 529 có 520 dòng gốc, 251 dòng sau loại trùng, đầu vào là tuổi, giới tính và 14 trường Yes/No. Mỗi bộ có checkpoint riêng. V2 có năm tầng ẩn 64, 32, 16, 8, 4 và một đầu ra sigmoid. Ngưỡng 0,5 chuyển điểm thành Positive hoặc Negative theo nhãn nghiên cứu của bộ dữ liệu.}
+\loc{scripts/train_v2.py}{35}{48} Cấu hình lớp và tên các trường. Dòng 59--85 cho biết lấy nhãn ở đâu, mã hóa thế nào và loại trùng khi nào.
+\loc{app/v2.py}{63}{87} Data Agent đọc thứ tự trường từ registry, giữ vị trí trường thiếu. Dòng 90--99 trả nhãn, điểm, ngưỡng và số lớp.
+\study{Câu hỏi nối tiếp}{V1 có ba tầng ẩn 64, 32, 16. Hai model được huấn luyện lại trên cùng các tập trong mỗi bộ. V2 còn đổi L2 và trọng số lớp. Kiểm tra tác dụng riêng của thêm tầng cần một thực nghiệm đối chứng riêng.}
+
+\oral{40}{Phát triển/triển khai}{Web gửi JSON đến FastAPI; Data kiểm tra schema, Prediction gọi pipeline joblib, rồi luật/nguồn/giải thích/audit. Qwen4B chạy llama.cpp Metal; Neo4j local lưu KG. Máy mới dùng .venv riêng; localhost phục vụ trên laptop, không là public deployment mới.}
+\study{Vẽ đường gọi khi triển khai}{Trình duyệt lấy schema và kết quả thực nghiệm từ GET /api/v2/study. Người dùng chọn dataset, phiên bản, nhập giá trị rồi gửi JSON đến POST /api/v2/predict. Backend FastAPI điều phối, nạp pipeline joblib, tính dự đoán, thêm căn cứ và trả JSON. Trình duyệt dựng bảng kết quả, nguồn và trace. Launcher trên Mac bật Neo4j, llama.cpp và web trên loopback.}
+\loc{web/v2.js}{2}{17} Dòng 5 tạo trường theo schema. Dòng 13 đổi giá trị trống thành null, dòng 14 gửi JSON. Dòng 16 dựng kết quả.
+\loc{app/main.py}{206}{207} Gắn router V2 vào FastAPI. \loc{app/v2.py}{21}{42} Prefix, cache checkpoint và hợp đồng payload.
+\loc{scripts/local_stack.py}{83}{118} Thứ tự khởi động, đợi dịch vụ sẵn sàng, Qwen 11435 và web 8765. Trên máy đã setup dùng \nolinkurl{bash run-macos.sh start}.
+
+\oral{41}{Tiểu đường/cổ phiếu/giá nhà}{Tiểu đường classification có label và F1; cổ phiếu regression có thứ tự thời gian, MAE và baseline; giá nhà regression kiểm soát nhóm địa chỉ. Hai ứng dụng sau có artifact legacy, chưa được bật lại thành các trang của GlucoGuide V2. Có thể đối chiếu notebook và kết quả đã lưu, không nhận là demo live hiện tại.}
+\study{So theo đầu vào, đích và độ đo}{Tiểu đường V2 dùng vector bảng để trả lớp 0/1, đo accuracy, recall và macro-F1. FPT dùng 30 log-return đã biết để dự đoán log-return phiên sau rồi đổi về giá VND, đo MAE và so với Persistence. Giá nhà dùng diện tích, mặt tiền, đường, số tầng, hướng, pháp lý và tỉnh cùng các trường khác để dự đoán giá theo tỷ VND. Giá nhà chia theo nhóm địa chỉ để hạn chế rò rỉ.}
+\loc{legacy_tieuluan/src/experiments03.py}{313}{335} Dòng 319 chia chuỗi theo ngày nhãn. Dòng 330 đổi lợi suất sang giá. Dòng 343--346 chọn ứng viên triển khai theo validation kể cả Persistence.
+\loc{legacy_tieuluan/src/experiments03.py}{165}{199} Lọc và chia theo địa chỉ, tiền xử lý, đổi log giá và chọn mô hình theo MAE nhóm. Xem bảng thật trong \nolinkurl{legacy_tieuluan/artifacts_tl03/data/tabular_results.json} và \nolinkurl{legacy_tieuluan/artifacts_tl03/data/sequence_results.json}.
+\study{Khi demo}{Màn GlucoGuide chạy bài tiểu đường. Với FPT và giá nhà, mở artifact và các phép chia của bản Final để trình bày kết quả đã lưu.}
+
+\oral{42}{Theo dấu một mẫu}{Bấm điền mẫu công khai trên mục Thực nghiệm V1/V2; chỉ thứ tự feature, missing flags, version/hash model, nhãn/điểm, nguồn và request ID trong trace. Mở audit để cho thấy chỉ metadata được lưu. Không gọi điểm Positive là xác suất bệnh của người trình diễn.}
+\study{Thao tác tại bàn}{Mở \href{http://localhost:8765/\#v2}{màn Thực nghiệm V1/V2}, chọn Pima/V2, bấm Điền mẫu công khai và Chạy. Hãy chỉ đúng 8 trường trên form. Data Agent sắp xếp trường, giữ null ở vị trí thiếu. Prediction Agent đưa một hàng vào pipeline gồm imputer, scaler và MLP. Ví dụ đã lưu cho điểm 0,5472, qua ngưỡng 0,5 nên trả Positive. Cùng mẫu V1 cho 0,5239 và vẫn Positive.}
+\loc{web/v2.js}{9}{16} Lấy mẫu, xây JSON và vẽ kết quả. \loc{app/v2.py}{63}{99} Kiểm schema, tạo DataFrame, chọn cột xác suất ứng với lớp 1 và trả kết quả.
+\loc{app/v2.py}{157}{183} Xem thứ tự Data, Prediction, Rule, KG/RAG, Explanation và Monitoring. Mở \nolinkurl{results/v2/agent_examples.json} để đối chiếu điểm với JSON đã lưu.
+\study{Một ca thử lỗi}{Một trường hợp lệ có null đi theo đường điền thiếu. Đổi khóa thành tên sai sẽ nhận 422 ở Data Agent. Hai trường hợp minh họa hai ý nghĩa khác nhau của dữ liệu thiếu.}
+
+\oral{43}{Kiến trúc tổng quan}{Vẽ sáu tầng và hai nhánh model/knowledge hội tụ ở Coordinator/Explanation. Nêu lý do tách trách nhiệm, khả năng kiểm thử và đánh đổi overhead. Không đọc danh sách công nghệ mà bỏ qua đường đi của một request cụ thể.}
+\study{Vẽ tổng thể trước khi mở code}{Sáu tầng là giao diện, API/dữ liệu, điều phối, agent chuyên trách, tri thức/mô hình và đánh giá/audit. Nhánh MLP lấy vector từ Data Agent. Nhánh tri thức lấy câu hỏi, tìm đoạn RAG rồi lấy cạnh Neo4j theo mã đoạn. Coordinator tập hợp hai nhánh. Explanation trình bày cả dự đoán và căn cứ. Monitoring lưu dấu vết kỹ thuật. Chọn MAS để tách hợp đồng, thay từng thành phần và kiểm thử lỗi riêng.}
+\loc{app/v2.py}{131}{148} Trả metadata sáu tầng/bảy vai trò và đăng ký handler. Dòng 163--179 nối hai nhánh ở Explanation và Monitoring.
+\loc{app/agents.py}{18}{29} Một MessageBus cục bộ thực hiện gọi đồng bộ và tạo trace.
+\study{Câu hỏi nối tiếp}{Điều phối tập trung có điểm lỗi chung. Cần xử lý deadline và giám sát khi đưa lên môi trường nhiều người. Năm lớp ẩn mô tả mạng MLP, sáu tầng mô tả kiến trúc phần mềm.}
+
+\oral{44}{Liệt kê agent}{Coordinator nhận request/điều phối; Data chuẩn hóa/kiểm tra; Prediction suy luận; Rule sinh cờ phạm vi; KG/RAG lấy nguồn/cạnh; Explanation tổng hợp; Monitoring ghi metadata. Input/output cụ thể có trong bảng agent của Project 01.}
+\study{Trình bày đủ input, output và bên nhận}{Coordinator nhận StudyRequest, gọi các vai trò dưới đây và trả phản hồi tổng hợp cho trình duyệt.}
+\begin{itemize}
+\item \textbf{Data.} Dataset và values \(\to\) tên trường có thứ tự, giá trị chuẩn hóa kiểu và danh sách trường thiếu. Prediction và Rule dùng kết quả này.
+\item \textbf{Prediction.} Dataset, version, hàng đã kiểm tra \(\to\) nhãn, điểm, ngưỡng, lớp ẩn, model version và hash. Coordinator chuyển kết quả sang Explanation.
+\item \textbf{Rule.} Dataset và trạng thái thiếu \(\to\) cờ quần thể, cờ điền thiếu và giới hạn chẩn đoán/đổi liều. Explanation dùng cờ phạm vi.
+\item \textbf{KG/RAG.} Câu hỏi \(\to\) đoạn nguồn, cạnh đã kiểm tra và trạng thái graph. Kết quả đi sang Explanation và phần nguồn của phản hồi.
+\item \textbf{Explanation.} Prediction, rules, knowledge \(\to\) mẫu giải thích và mã nguồn. Coordinator dùng mã nguồn để ghi audit.
+\item \textbf{Monitoring.} Mã lượt, version, hash, trạng thái và thời gian \(\to\) một dòng metadata và cờ đã lưu.
+\end{itemize}
+\loc{app/v2.py}{63}{128} Đọc lần lượt validate\_data, predict, reviewed\_rules, explain và monitor.
+\loc{app/v2.py}{139}{183} Coordinator gắn mã yêu cầu, đăng ký và gọi các agent. Hàm knowledge ở 165--171 nhận câu hỏi và trả documents, facts và graph status.
+\study{Nếu hỏi có RL trong V2 không?}{Luồng V2 này có bảy vai trò chính. Bài Agent02 và bảng phản hồi trình bày có mục tiêu riêng, xem câu 35--36.}
+
+\oral{45}{Tích hợp DL}{Prediction Agent nạp pipeline gồm imputer, scaler và MLP đúng version; trả score/label/threshold/hash. Coordinator chuyển riêng kết quả model và bằng chứng sang Explanation. Model không tự quyết định Cypher hoặc sửa KB.}
+\study{Lần theo đúng lời gọi}{Dòng 163 gửi dữ liệu đã kiểm tra tới Prediction. Handler gọi checkpoint theo dataset/version. Pipeline chạy imputer rồi scaler trước predict\_proba. Kết quả chọn cột có nhãn 1 qua \code{classes_}. MessageBus trả INFORM cho Coordinator. Dòng 174 chuyển prediction, rules và knowledge cho Explanation. Rule hiện nhận dataset và data, nên mô tả đúng phạm vi hợp đồng đang dùng.}
+\loc{app/v2.py}{32}{35} Chọn file joblib, nạp và tính SHA-256. Dòng 90--99 thực hiện suy luận và định dạng kết quả.
+\loc{app/v2.py}{157}{179} Gọi Prediction rồi chuyển kết quả đi. \loc{app/agents.py}{21}{29} Tạo INFORM khi thành công, FAILURE khi lỗi.
+\loc{scripts/train_v2.py}{132}{143} Test checkpoint và lưu pipeline có tiền xử lý. Khi demo chỉ gọi suy luận. Tên phiên bản dùng để đọc cấu hình, hash đối chiếu tệp cụ thể.
+
+\oral{46}{KG thực tế và Cypher}{Mở \code{kb_diabet.cypher}, chỉ Concept/RELATED\_TO và property document/evidence/source\_url. Chạy MATCH theo tài liệu a1c và mở nguồn tương ứng. Nêu 169 nút, 106 cạnh, 58 đoạn và graph còn phân mảnh; không mô tả Patient/Disease ontology là đã triển khai.}
+\study{Ba thứ chỉ trên Neo4j Browser}{Node \code{Concept}, cạnh \code{RELATED_TO}, và thuộc tính \code{label}, \code{document}, \code{evidence}, \code{source_url}. Bản xuất có 169 nút và 106 cạnh. Mở tệp \nolinkurl{BAN_GIAO_GLUCOGUIDE/kb_diabet.cypher}, chỉ dòng 2--3 cho mẫu HbA1c, rồi xem cuối tệp để thấy UNWIND chuyển dữ liệu thành node/cạnh.}
+\begin{Verbatim}[fontsize=\small]
+MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
+WHERE r.document = 'a1c'
+RETURN a.name, r.label, b.name, r.evidence, r.source_url;
+\end{Verbatim}
+\loc{exports/diabetes/kg/import.cypher}{108}{112} Hết mảng dữ liệu, MERGE node/cạnh và SET provenance. Bản nộp kb\_diabet.cypher có cùng nội dung.
+\loc{app/graph_knowledge.py}{4}{8} Query dùng tham số danh sách mã đoạn. Dòng 46--53 truyền tham số và đối chiếu các record; dòng 17--29 kiểm tra từng bộ ba, văn bản và URL.
+\loc{scripts/restore_knowledge_export.py}{26}{33} Khôi phục bản xuất và tạo constraint trên tên node. Truy vấn MATCH phía trên đọc graph đang chạy.
+
+\oral{47}{RAG và hallucination}{Nêu TF-IDF từ/ký tự, ngưỡng, tối đa bốn đoạn, KG grounding, prompt Qwen, verifier và fallback. Chỉ ra file index và settings. Các kiểm tra trích dẫn/số liệu có giới hạn; chưa có đánh giá faithfulness độc lập bởi chuyên gia.}
+\study{Trình bày 4 bước giảm câu thiếu căn cứ}{(1) Dựng KB từ ba JSON có mã đoạn và nguồn. (2) Truy xuất bằng TF-IDF từ/ký tự, thêm boost và lọc. Chế độ xếp hạng tối đa 4 đoạn; chủ đề có nguồn cố định đi theo danh sách được định tuyến. (3) Neo4j trả các cạnh theo mã đoạn và kiểm tra với KB trước khi đưa vào prompt. (4) Qwen sinh ở nhánh Trò chuyện khi đủ điều kiện, kiểm tra mã dẫn, số liệu và dấu hiệu vượt phạm vi. Nếu bản nháp sai, có thể thử sửa một lần rồi dùng nội dung KB.}
+\loc{app/retrieval.py}{22}{45} Nạp nguồn và fit chỉ mục; 47--76 tính điểm và lọc. \loc{app/graph_knowledge.py}{11}{36} Đối chiếu facts.
+\loc{app/local_prompt.py}{18}{37} Ghép nguồn và cạnh, thêm chỉ dẫn dẫn mã nguồn, giới hạn lịch sử. \loc{app/local_llm.py}{41}{57} Chọn sinh/fallback và một lượt sửa.
+\loc{app/local_llm.py}{72}{97} Bắt mã nguồn lạ, số ngoài nguồn, dấu hiệu vượt phạm vi. Kiểm thử nội dung sâu cần đối chiếu từng khẳng định với tài liệu.
+
+\oral{48}{Luồng complete MAS}{Phân biệt chat thường với model workflow V2. Chat đi an toàn--route--retrieval--KG--Qwen/verifier; model workflow đi an toàn--Data--Prediction--Rule--KG/RAG--Explanation--Monitoring. Không ép mọi request phải gọi model nếu người dùng chỉ hỏi định nghĩa.}
+\study{Tách hai luồng người dùng có thể mở}{Trò chuyện chỉ có câu hỏi: nhận yêu cầu, kiểm tra an toàn, định tuyến, lấy đoạn, đối chiếu KG, sinh hoặc dùng KB rồi trả nguồn. V1 có thể gọi mô hình cũ khi người dùng chọn tác vụ mô hình hoặc gửi model context. Màn Thực nghiệm V1/V2 có vector và câu hỏi: Data kiểm tra, Prediction chạy model, Rule gắn cờ, KG/RAG lấy căn cứ, Explanation dùng mẫu, Monitoring lưu metadata. Cả hai luồng đều có bước ưu tiên trước xử lý chính.}
+\loc{app/main.py}{70}{115} Hợp đồng chat, nhánh an toàn và điều kiện gọi mô hình. Dòng 116--135 định tuyến, retrieval và KG. Dòng 156--172 sinh và trả nguồn.
+\loc{app/v2.py}{139}{183} Xem ưu tiên ở 149--156, dữ liệu sai 157--162 và chuỗi thành công 163--183. \loc{app/v2.py}{110}{117} Định dạng Explanation của nhánh thực nghiệm.
+\study{Nếu thầy hỏi vì sao không gọi Prediction ở mọi câu}{Một câu hỏi khái niệm chỉ cần căn cứ. Prediction của MLP cần đủ hợp đồng feature theo dataset. Mỗi đầu ra có ý nghĩa theo mục đích của luồng.}
+
+\oral{49}{Demo trên laptop}{Chạy mẫu V2, mở trace và nguồn; sang chat hỏi bữa trưa, hỏi tiếp thay món; mở graph/PDF. Chuẩn bị file query snapshot nếu cần chứng minh bộ nộp độc lập. Nếu Qwen/Neo4j tắt thì nói rõ chức năng bị thiếu, không dùng snapshot giả làm server live.}
+\study{Demo trong khoảng hai phút}{Bật bằng \nolinkurl{bash run-macos.sh start}. Mở màn V1/V2, chọn Pima/V2, điền mẫu công khai, giữ câu hỏi HbA1c rồi chạy. Đọc điểm 0,5472, nhãn Positive, năm lớp và cờ phạm vi. Mở trace: Data, Prediction, Rule, KG/RAG, Explanation, Monitoring. Mã đoạn a1c và hai cạnh được trả về. Đổi V1 để chỉ cùng mẫu chạy với ba lớp.}
+\study{Chứng minh KB và Qwen}{Mở Neo4j Browser, chạy MATCH của câu 46. Chỉ đoạn evidence và URL. Sang Trò chuyện, chọn câu thường về bữa ăn và mở nguồn. Khi hệ thống dùng Qwen, xem chế độ trả lời và trace. Nếu hệ thống chọn phản hồi KB, giải thích điều kiện sinh hoặc kiểm chứng của câu 47.}
+\loc{web/v2.js}{9}{16} Điền mẫu, gửi và hiển thị. \loc{app/main.py}{181}{187} Mở tệp nguồn local có provenance. \loc{scripts/local_stack.py}{50}{57} Kiểm tra web, Neo4j và Qwen bằng lệnh status.
+\study{Bằng chứng lưu sẵn}{Dùng agent\_examples.json để chỉ một lượt đã kiểm tra và các số trong báo cáo. Chế độ query offline kiểm tra snapshot. Nếu được yêu cầu demo live, chạy hệ thống local và đối chiếu trạng thái thực tế.}
+
+\oral{50}{Đánh giá hệ thống}{Model: test metrics và confusion matrix, parity checkpoint. Retrieval: Hit@K/MRR trên tập tự biên soạn. MAS: contract, lỗi, ID/version, latency và audit. UI: browser errors, nguồn và thao tác. Chất lượng câu trả lời cần đánh giá độc lập; test phần mềm không thay cho thẩm định lâm sàng.}
+\study{Đánh giá theo sáu nhóm}{Model: macro-F1, recall, accuracy và ma trận, đối chiếu từng hàng với checkpoint. Retrieval: Hit@1 85\%, Hit@4 100\%, MRR@4 khoảng 0,917 trên 20 câu có nguồn kỳ vọng; hai câu từ chối được xét riêng. Nội dung: đối chiếu từng ý và nguồn; test Qwen hiện là kiểm tra chức năng. Điều phối: kiểm đúng vai trò và mã yêu cầu. Độ trễ: tách từng handler, thời gian tới trước audit và thời gian end-to-end. Độ tin cậy: ca sai schema, ưu tiên, mất graph và audit.}
+\loc{scripts/train_v2.py}{51}{56} Tính chỉ số model. Dòng 144--151 bootstrap và lưu dự đoán ghép hàng.
+\loc{scripts/export_knowledge.py}{58}{75} Tính các chỉ số retrieval theo nguồn kỳ vọng. \loc{scripts/test_v2.py}{17}{61} Chạy các tổ hợp, kiểm checkpoint, trace, lỗi và log.
+\loc{app/v2.py}{51}{60} Thời gian theo lời gọi, xuất hiện cả trên REQUEST lẫn INFORM. Dòng 175 đo tổng đến trước Monitoring. Bốn lượt minh họa nằm ở chương kiểm thử Project. Cần nhiều lượt warm/cold và p50/p95 nếu đánh giá hiệu năng.
+
+\oral{51}{Giới hạn và cải tiến}{Dữ liệu nhỏ/lịch sử, quần thể hẹp, một split, chưa calibration, KG rời, lexical retrieval, verifier hữu hạn và audit local. Ưu tiên dữ liệu/đánh giá ngoài mẫu, review nguồn và phân quyền trước khi thêm agent hoặc tăng tầng. Chỉ làm RL mô phỏng; không đề xuất tự tối ưu thuốc trên người.}
+\study{Nói giới hạn kèm cách cải tiến}{Dữ liệu nhỏ và phép chia cố định: xác nhận trên tập mới, thêm phân tích theo nhóm và độ hiệu chuẩn. Kiến trúc: tách riêng tác dụng của độ sâu/L2/trọng số lớp. Tri thức: bổ sung paraphrase, đánh nhãn nguồn kỳ vọng, ghi phiên bản tài liệu và đánh giá mâu thuẫn giữa nguồn. Điều phối: theo dõi timeout, lỗi checkpoint và độ trễ. Triển khai: thêm xác thực, phân quyền, lưu giữ log phù hợp và kiểm thử tải trước khi đưa ra ngoài laptop.}
+\loc{app/v2.py}{102}{107} Cờ phạm vi và xử lý thiếu. Dòng 120--128 lưu metadata và báo khi ghi lỗi; 180--183 vẫn trả trace có thể mang dữ liệu yêu cầu, nên demo dùng mẫu công khai.
+\loc{app/main.py}{48}{53} Giới hạn kết nối đồ thị local khi bật chế độ local. \loc{scripts/local_stack.py}{98}{114} Bind dịch vụ ở loopback.
+\loc{app/local_llm.py}{72}{97} Bộ lọc kỹ thuật hiện có. Khi mở rộng, cần chấm tính trung thực của câu trả lời theo từng ý và kiểm tra bởi người có chuyên môn. RL theo đề cương là mở rộng mô phỏng.
+
+
+\section{Tra nhanh trên laptop}
+\study{Mở đúng dòng mà không cuộn tìm}{Trong VS Code, mở tệp rồi dùng \texttt{Ctrl+G} hoặc lệnh Go to Line. Trong Terminal tại thư mục gốc project, dùng \texttt{nl -ba} để hiện số dòng và \texttt{sed} để giới hạn đoạn cần đọc.}
+
+\begin{Verbatim}[fontsize=\small]
+nl -ba scripts/train_v2.py | sed -n '96,143p'
+nl -ba app/v2.py | sed -n '139,183p'
+nl -ba app/graph_knowledge.py | sed -n '4,53p'
+nl -ba app/local_llm.py | sed -n '41,97p'
+\end{Verbatim}
+
+\begin{itemize}
+\item \textbf{Thầy hỏi train và model.} Mở \nolinkurl{scripts/train_v2.py}, dòng 35--38 cho số lớp, dòng 96--112 cho phép chia và tiền xử lý, dòng 123--143 cho việc chọn checkpoint. Mở bảng macro-F1 và ma trận trong chương thực nghiệm của Project.
+\item \textbf{Thầy hỏi agent thực sự làm gì.} Mở \nolinkurl{app/v2.py}, dòng 157--183. Chỉ một yêu cầu đi từ Data đến Monitoring và chỉ trường \code{request_id} trong trace. Dùng câu 44 để đọc hợp đồng từng vai trò.
+\item \textbf{Thầy hỏi nguồn RAG lấy ở đâu.} Mở \nolinkurl{app/retrieval.py}, dòng 22--45. Lấy mã a1c từ demo, mở Neo4j và kiểm tra câu 46. Mở prompt ở \nolinkurl{app/local_prompt.py}, dòng 18--34 để chỉ cách văn bản và cạnh được đưa vào ngữ cảnh.
+\item \textbf{Thầy hỏi khác nhau giữa V1 và V2.} Nói ba tầng ẩn thành năm tầng ẩn. Đổi phiên bản trên cùng mẫu. Nêu một kết quả tốt hơn và một đánh đổi từ tập test. Phân biệt V1 đối chứng với checkpoint V1 gốc.
+\end{itemize}

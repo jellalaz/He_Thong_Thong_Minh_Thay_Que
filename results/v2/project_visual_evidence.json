@@ -1,0 +1,56 @@
+[
+  {
+    "version": "v1",
+    "prediction": {
+      "label": 1,
+      "label_text": "Positive",
+      "positive_label_score": 0.5238927093637016,
+      "threshold": 0.5,
+      "hidden_layers": [
+        64,
+        32,
+        16
+      ],
+      "model_version": "pima-v1-seed254",
+      "checkpoint_sha256": "2428969df7a16ee3c34330efdc9c87a39980d63c94e7865b9182567bdcfe8f92",
+      "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
+    },
+    "request_id": "c42bce212ddc415589aff0c9e151d63d",
+    "source_ids": [
+      "a1c"
+    ],
+    "graph_status": "Neo4j"
+  },
+  {
+    "version": "v2",
+    "prediction": {
+      "label": 1,
+      "label_text": "Positive",
+      "positive_label_score": 0.547196423816525,
+      "threshold": 0.5,
+      "hidden_layers": [
+        64,
+        32,
+        16,
+        8,
+        4
+      ],
+      "model_version": "pima-v2-seed254",
+      "checkpoint_sha256": "e0ea2970463ba5b77a0ae0d728aa53c4b4e067f1d4b5db83df4990ef333a13f1",
+      "scope": "Chỉ dành cho nghiên cứu; nhãn và điểm mô hình không phải chẩn đoán hay nguy cơ cá nhân."
+    },
+    "request_id": "14ddd0ebf901404ebd50ac42206e01aa",
+    "source_ids": [
+      "a1c"
+    ],
+    "graph_status": "Neo4j"
+  },
+  {
+    "chat": "qwen4-rag",
+    "source_ids": [
+      "plate"
+    ],
+    "graph_status": "Neo4j",
+    "graph_context_supplied": true
+  }
+]

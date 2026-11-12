@@ -1,0 +1,9 @@
+\par\FloatBarrier\begin{table}[H]\centering\small\setstretch{1.15}\setlength{\tabcolsep}{5pt}
+\caption{V1 và phần nâng cấp V2 có thể kiểm tra.}\begin{tabular}{P{2.6cm}P{5.6cm}P{5.6cm}}\toprule
+Hạng mục & V1 gốc / đối chứng & V2\\\midrule
+Dữ liệu model & 50K nhãn tổng hợp và hồi quy; giữ nguyên checkpoint gốc. & Thêm Pima và Early Stage nhị phân; kiểm kê trùng và nguồn.\\
+Mạng đối chứng & Ba tầng ẩn 64--32--16. & Năm tầng ẩn 64--32--16--8--4, L2 mạnh hơn và trọng số lớp cân bằng.\\
+MAS & Có MessageBus và các handler chuyên trách. & Thêm workflow riêng sáu tầng, bảy vai trò, schema theo dataset.\\
+Truy vết & Trace sender/receiver/type/content trong response. & Thêm request ID, version, status, timing, hash và audit metadata.\\
+KB / KG / chat & 58 đoạn, 169 nút, 106 cạnh, TF-IDF và Qwen4B. & Tái sử dụng nguyên; không nhận là các thành phần mới hoặc fine-tune mới.\\
+Tài liệu nộp & Tiểu luận Final, Project 01 và các tệp thực nghiệm. & Tiểu luận phát triển từ Final, Project 01, Cypher, ZIP và hướng dẫn.\\\bottomrule\end{tabular}\end{table}

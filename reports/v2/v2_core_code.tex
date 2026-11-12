@@ -1,0 +1,59 @@
+\chapter{Mã nguồn chính của V2 có chú thích}\label{ch:v2-core-code}
+
+Các đoạn dưới được lấy trực tiếp từ mã nguồn của bộ nộp. Số ở lề trái là số dòng trong tệp gốc. Phần chữ trước và sau mỗi đoạn giải thích dữ liệu vào, tác dụng của lệnh và kết quả chuyển sang bước tiếp theo. Các tệp đầy đủ nằm trong ZIP.
+
+\newcommand{\vTwoExcerpt}[3]{%
+  \par\noindent\textit{\nolinkurl{#1}, dòng #2--#3.}\par
+  \VerbatimInput[fontsize=\small,breaklines=true,breakanywhere=true,numbers=left,
+    numbersep=5pt,xleftmargin=1.5em,firstline=#2,lastline=#3,firstnumber=#2]{../../#1}%
+}
+
+\section{Đọc dữ liệu và khóa phép chia}
+Cấu hình V1/V2 nằm ở dòng 35--38. Hai tuple mô tả số neuron ở các tầng giữa. \code{alpha} đặt mức L2 và \code{balanced} bật trọng số lớp trong V2.
+\vTwoExcerpt{scripts/train_v2.py}{35}{38}
+
+\code{load_data} chuyển nhãn nguồn thành 0/1, xử lý 0 ở các trường đo của Pima và chuẩn hóa các mã của Early Stage. Phần chữ ký nhận diện vector trùng trước khi tạo tập test. Nếu các bản ghi cùng vector có nhãn khác nhau, cả nhóm bị loại khỏi bộ sạch.
+\vTwoExcerpt{scripts/train_v2.py}{59}{79}
+
+Hai lần \code{train_test_split} tạo train và phần còn lại, rồi chia phần còn lại thành validation và test. Dòng 108--109 fit pipeline trên train và chỉ transform ở hai tập sau. Nhờ đó giá trị trên validation và test không tham gia tính trung vị hoặc scaler.
+\vTwoExcerpt{scripts/train_v2.py}{97}{111}
+
+\section{Huấn luyện, chọn epoch và lưu checkpoint}
+Dòng 118--121 tạo model và trọng số mẫu. \code{partial_fit} học trên train. Điểm dùng để chọn checkpoint lấy từ validation. Bộ \code{score} ưu tiên macro-F1 cao, rồi log loss thấp. \code{deepcopy} giữ bản sao tại epoch được chọn, vì mô hình còn được cập nhật ở các epoch sau. Sau vòng học, dòng 132 mới dự đoán test. Seed 254 lưu mô hình cùng imputer và scaler, nên dịch vụ gọi được cả pipeline từ một tệp.
+\vTwoExcerpt{scripts/train_v2.py}{118}{143}
+
+\section{Kiểm đầu vào và suy luận một mẫu}
+Data Agent lấy tên trường có thứ tự từ registry. Nó phân biệt giá trị thiếu với khóa thiếu, kiểm số hữu hạn và mã nhị phân. Trong Pima, quy tắc 0 thành thiếu giống quy tắc khi chuẩn bị dữ liệu. Đầu ra trả danh sách tên, giá trị theo thứ tự và các trường thiếu để Prediction dùng đúng cột.
+\vTwoExcerpt{app/v2.py}{63}{87}
+
+\code{predict} dựng DataFrame một hàng rồi gọi \code{predict_proba}. Dòng 94 chọn cột lớp 1 theo \code{classes_}. Kết quả có điểm, nhãn theo ngưỡng 0,5, số tầng, phiên bản và hash. Rule Agent bổ sung phạm vi, quần thể và thông tin điền thiếu.
+\vTwoExcerpt{app/v2.py}{90}{107}
+
+\section{Điều phối và gộp kết quả}
+Đoạn đầu tạo mã lượt và kiểm an toàn trước Prediction. Nếu Data Agent báo lỗi, Coordinator trả 422 và ghi metadata nhánh lỗi. Khi hợp lệ, nó gọi Prediction, Rule và KG/RAG. Dòng 174 đưa cả ba kết quả cho Explanation. Dòng 176--183 ghi metadata và trả nguồn, cạnh và trace về web.
+\vTwoExcerpt{app/v2.py}{145}{183}
+
+\section{Truy xuất văn bản và đối chiếu Neo4j}
+Retriever xử lý ba đường vào: bỏ qua truy xuất, nguồn đã được chỉ định, hoặc xếp hạng. Với xếp hạng, điểm từ và ký tự được gộp, bổ sung điểm cụm từ và điểm định tuyến, rồi áp ngưỡng để chọn kết quả.
+\vTwoExcerpt{app/retrieval.py}{47}{76}
+
+Neo4j nhận mã tài liệu dưới dạng tham số. Dòng 17--29 kiểm tra bộ ba, đoạn trích và URL so với KB. Truy vấn lưu trong hằng \code{FACT_QUERY}; phần dữ liệu đầu vào được truyền riêng khi gọi driver. Kết quả hợp lệ mới được chuyển sang khâu giải thích.
+\vTwoExcerpt{app/graph_knowledge.py}{4}{8}
+\vTwoExcerpt{app/graph_knowledge.py}{15}{29}
+\vTwoExcerpt{app/graph_knowledge.py}{46}{53}
+
+\section{Tạo ngữ cảnh cho Qwen và bảo vệ phản hồi}
+Trong luồng Trò chuyện, prompt ghép đoạn và cạnh đã đối chiếu. \code{respond} chọn phản hồi bảo vệ nếu có cờ hoặc thiếu căn cứ. Khi gọi Qwen local, nó gửi bản nháp cho verifier và có thể sinh lại một lần. Sau đó trả văn bản đã qua kiểm hoặc phương án KB.
+\vTwoExcerpt{app/local_prompt.py}{18}{27}
+\vTwoExcerpt{app/local_llm.py}{41}{57}
+
+\ifdefined\projectCodeAppendix
+\section{Nối giao diện, backend và dịch vụ local}
+Giao diện biến giá trị trống thành \code{null}, gửi dataset và version tới API, rồi đọc phản hồi JSON. Script chạy local chờ Neo4j, nạp graph, bật Qwen qua llama.cpp và khởi động web. Các dòng dưới giúp đối chiếu thứ tự với trạng thái demo.
+\vTwoExcerpt{web/v2.js}{10}{15}
+\vTwoExcerpt{scripts/local_stack.py}{96}{114}
+
+\section{Kiểm thử đối chiếu checkpoint và trace}
+Test đọc các hàng test đã lưu, tính lại xác suất qua pipeline và yêu cầu khớp tới sai số \(10^{-12}\). Sau đó gọi API với mẫu công khai và kiểm số tầng, nguồn, graph và tập vai trò. Một phép thử gắn bảng kết quả với model, phép thử kia gắn model với đường demo.
+\vTwoExcerpt{scripts/test_v2.py}{28}{42}
+\fi

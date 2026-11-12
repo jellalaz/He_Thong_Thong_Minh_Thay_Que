@@ -1,0 +1,173 @@
+\chapter{Thiết kế thực nghiệm tiểu đường V2}\label{ch:v2-protocol}
+
+\section{Câu hỏi nghiên cứu và liên hệ với bản Final}
+Chương 2 khảo sát mô hình học máy trên dữ liệu bảng. Các chương CNN, RNN và GCN minh họa ba loại cấu trúc đầu vào khác. V2 quay lại dữ liệu bảng để khảo sát một câu hỏi có thể kiểm tra trực tiếp. Khi thêm hai tầng ẩn và điều chỉnh quá trình huấn luyện, sai số của MLP thay đổi thế nào trên hai bộ dữ liệu có cách thu thập khác nhau? Phân tích xét cả số mẫu dương tính được nhận diện và số mẫu âm tính bị báo nhầm.
+
+Thực nghiệm gồm Logistic Regression làm đối chứng tuyến tính, MLP ba tầng ẩn theo hình dạng V1 và MLP năm tầng ẩn của V2. Hai MLP được huấn luyện trên cả Pima lẫn Early Stage. V1 đối chứng là kiến trúc được huấn luyện lại theo giao thức của chương này. Mô hình V1 gốc trên bộ 50K và các kết quả đã trình bày trong Phần I giữ vai trò bối cảnh. Mỗi chỉ số mới gắn với một bộ dữ liệu, một phép chia và một cấu hình cụ thể.
+
+\input{version_table.tex}
+
+\section{Nguồn, quần thể và đơn vị quan sát}
+Pima lấy từ OpenML 37, phiên bản 1 \cite{pima-v2}. Dữ liệu lịch sử gồm 768 bản ghi, tám đặc trưng đầu vào và nhãn phân loại nhị phân. Mẫu thuộc quần thể nữ từ 21 tuổi. Phạm vi này ảnh hưởng cách hiểu kết quả, kể cả khi chương trình nhận một bộ giá trị có hình thức hợp lệ. Các phép đo glucose, huyết áp, insulin và BMI có đơn vị riêng. Giá trị phả hệ là một chỉ số của bộ dữ liệu.
+
+Early Stage lấy từ UCI 529 \cite{early-v2}. Dữ liệu thu từ bảng hỏi ở Sylhet, Bangladesh, có tuổi, giới tính và 14 trường triệu chứng hoặc đặc điểm. Nhãn gắn với quá trình thu thập của nghiên cứu đó. Các trường Yes/No được chuyển sang 1/0 theo từ điển đầu vào. Mỗi bộ có mô hình, bộ tiền xử lý và hợp đồng nhập liệu riêng. Sự khác nhau về quần thể, loại phép đo và nhãn giới hạn diễn giải khi đặt các chỉ số của hai bộ cạnh nhau.
+
+\input{dataset_table.tex}
+\input{feature_table.tex}
+\input{early_feature_table.tex}
+
+\section{Chuẩn hóa bản ghi và chống giao nhau giữa các tập}
+Trước khi chia, chương trình lập chữ ký từ vector đặc trưng để nhận diện các bản ghi có cùng đầu vào. Nếu cùng vector có nhãn mâu thuẫn, cả nhóm bị loại. Nếu nhãn giống nhau, giữ bản ghi đầu tiên. Kiểm tra phát hiện 269 dòng trùng ở Early Stage và không phát hiện nhóm mâu thuẫn. Sau bước này, Early Stage còn 251 mẫu. Trên Pima, bước kiểm tra không loại bản ghi. Chữ ký dựa trên dữ liệu quan sát. Một người có thể xuất hiện ở nhiều hàng với giá trị khác nhau vì nguồn thiếu mã người tham gia.
+
+Ở Pima, giá trị 0 trong năm trường đo gồm glucose, huyết áp, độ dày nếp da, insulin và BMI được biểu diễn thành thiếu. Số lần mang thai bằng 0 là giá trị hợp lệ. Quy tắc này áp dụng trước phép chia. Trung vị để điền thiếu và thống kê chuẩn hóa được học sau khi chia, chỉ từ tập train. Phép biến đổi trên validation và test dùng lại cùng tham số. Nếu một trường có trung bình \(\mu_j\) và độ lệch chuẩn \(\sigma_j\) học trên train, giá trị sau điền thiếu được biến đổi theo
+\[
+    z_{ij}=\frac{x_{ij}-\mu_j}{\sigma_j}.
+\]
+Pipeline đóng gói thứ tự điền thiếu, chuẩn hóa và suy luận. Khi các trường được gửi theo thứ tự khác, Data Agent ghép chúng theo tên trong registry trước khi đưa vào pipeline.
+
+\input{v2_split_table.tex}
+
+\section{Vai trò của train, validation và test}
+Mỗi bộ được chia xấp xỉ 60/20/20 theo lớp bằng seed chia 254. Train dùng để fit tiền xử lý và trọng số. Validation chọn epoch. Test mô tả kết quả sau khi checkpoint được chọn. Trên mỗi bộ, Logistic, V1 và V2 dùng chung các hàng và cùng tiền xử lý. Điều kiện này cho phép đối chiếu các mô hình ở cấp từng bản ghi.
+
+Ba seed 254, 255, 256 kiểm tra độ nhạy với khởi tạo và xáo minibatch. Chúng dùng chung phép chia, vì vậy trung bình và độ lệch chuẩn mô tả biến thiên giữa các lần tối ưu trên đúng dữ liệu đó. Seed 254 được dùng cho demo để có một checkpoint xác định trước. Tập test đã được dùng trong các lần thực nghiệm V2 trước đó, nên kết quả ở đây mang tính so sánh trên bộ dữ liệu đã biết. Một tập mới độc lập sẽ hữu ích để xác nhận.
+
+\section{Vai trò của đối chứng tuyến tính}
+Logistic Regression học một tổ hợp tuyến tính trước sigmoid. Nó cho biết một đường phân tách đơn giản hoạt động ra sao trên phép chia hiện tại. Hai MLP có khả năng học tổ hợp phi tuyến. V2 thay đổi đồng thời độ sâu, L2 và trọng số lớp. Muốn định lượng riêng ảnh hưởng của độ sâu, cần huấn luyện các cấu hình trung gian với cùng L2 và trọng số lớp rồi lặp lại qua nhiều phép chia.
+
+\sourcefile{data/v2/sources/sources.json}
+\sourcefile{scripts/train_v2.py}
+\sourcefile{results/v2/experiment.json}
+
+\chapter{Mạng năm tầng ẩn và phân tích kết quả}\label{ch:v2-mlp}
+
+\section{Cấu trúc lớp và phép tính tiến}
+Mỗi tầng ẩn áp dụng một phép biến đổi affine, sau đó dùng ReLU. Với \(a^{(0)}=x\) và \(\ell=1,\ldots,5\), ta có
+\[
+    z^{(\ell)}=W^{(\ell)}a^{(\ell-1)}+b^{(\ell)},\qquad
+    a^{(\ell)}=\max(0,z^{(\ell)}).
+\]
+Sigmoid biến giá trị ở đầu ra thành điểm \(p\) trong khoảng 0 đến 1. Ở ngưỡng 0,5, hệ thống gán nhãn Positive khi \(p\geq0{,}5\). Ý nghĩa của nhãn do từng bộ dữ liệu quy định. Phần giữa đầu vào và đầu ra có đúng năm tầng, lần lượt 64, 32, 16, 8 và 4 neuron. Cấu hình V1 đi từ 64 qua 32 đến 16 neuron, rồi sang đầu ra.
+
+\fig{figures/mlp.png}{0.95}{Năm tầng ẩn của V2. Đầu vào có tám hoặc 16 đặc trưng tùy bộ dữ liệu.}
+
+Hai tầng bổ sung 8 và 4 neuron nén dần biểu diễn trước khi tính điểm. Mạng Pima có 3.361 tham số, tính theo công thức \(\sum_\ell(n_{\ell-1}+1)n_\ell\):
+\[
+  (8+1)64+(64+1)32+(32+1)16+(16+1)8+(8+1)4+(4+1)1=3361.
+\]
+Early Stage thêm tám đầu vào vào tầng 64 neuron, làm số tham số tăng \(8\times64=512\) so với Pima. Vì vậy mạng có 3.873 tham số. V1 có 3.201 và 3.713 tham số tương ứng. Thay đoạn kết 16--1 của V1 bằng đoạn 16--8--4--1 làm tổng số tham số tăng 160 trên mỗi bộ. Phép đếm bao gồm bias và có thể kiểm tra từ kích thước ma trận trong checkpoint.
+
+\section{Mục tiêu tối ưu và chọn checkpoint}
+Hàm mất mát nhị phân phạt dự đoán sai mạnh hơn khi mô hình gán điểm với độ tự tin cao. Với trọng số mẫu \(w_i\), phần dữ liệu của hàm mất mát có dạng
+\[
+ -\frac{1}{\sum_i w_i}\sum_i w_i
+ \big[y_i\log p_i+(1-y_i)\log(1-p_i)\big].
+\]
+V1 dùng trọng số mẫu bằng nhau và hệ số L2 \(10^{-4}\). V2 dùng trọng số cân bằng \(w_c=N/(2N_c)\), tính riêng từ số mẫu lớp \(c\) trên train, cùng hệ số L2 \(10^{-2}\). Như vậy lớp ít mẫu được tăng đóng góp tương đối vào hàm mất mát. L2 làm giảm khuynh hướng tăng độ lớn trọng số. Với Early Stage, lớp thiểu số là Negative. Với Pima, lớp thiểu số là Positive. Điều này giúp giải thích vì sao cân bằng lớp có thể thay đổi kiểu sai số khác nhau giữa hai bộ.
+
+Adam dùng learning rate \(10^{-3}\), batch tối đa 32 và tối đa 600 epoch \cite{mlp-v2}. Sau mỗi epoch, mô hình tính macro-F1 validation ở ngưỡng 0,5. Nếu bằng điểm, chọn epoch có log loss validation thấp hơn. Dừng nếu qua 60 epoch liên tiếp chưa cải thiện tiêu chí. Checkpoint là bản sao tại epoch tốt nhất. Mô hình dùng chính trọng số này để dự đoán test. Việc fit lại trên cả train và validation sẽ sinh một checkpoint khác.
+
+\input{v2_seed_table.tex}
+\fig{figures/learning.png}{0.96}{Log loss validation theo epoch trên hai bộ dữ liệu, seed 254. Tiêu chí chọn đầu tiên là macro-F1 validation.}
+
+Trên Pima seed 254, V1 chọn epoch 16 và V2 chọn epoch 5. Trên Early Stage, V1 chọn epoch 10 và V2 chọn epoch 46. Độ sâu vì thế không quyết định một số epoch chung cho mọi bộ. Log loss và macro-F1 có thể đạt điểm tốt nhất ở các epoch khác nhau vì log loss xét độ lớn điểm dự đoán, còn F1 dựa trên nhãn sau ngưỡng.
+
+\section{Đọc chỉ số theo từng bộ dữ liệu}
+Accuracy là tỷ lệ dự đoán đúng. Recall Positive bằng \(TP/(TP+FN)\) và precision Positive bằng \(TP/(TP+FP)\). F1 là trung bình điều hòa của precision và recall. Macro-F1 lấy trung bình F1 của hai lớp. Ví dụ, trên Pima seed 254, V2 có \(TP=40\), \(FN=13\), \(FP=28\). Recall Positive đạt \(40/53\approx0{,}755\) và precision Positive đạt \(40/68\approx0{,}588\).
+
+\input{model_table.tex}
+\fig{figures/two_datasets.png}{0.96}{Macro-F1 test theo từng bộ dữ liệu. Vạch sai số là độ lệch chuẩn ba lần khởi tạo. Logistic có một lần chạy.}
+\input{confusion_table.tex}
+\input{comparison_text.tex}
+
+Trên Pima, số mẫu dương tính bị bỏ sót ở seed demo giảm từ 19 còn 13 khi chuyển sang V2. Số báo dương tính nhầm tăng từ 19 lên 28. Tổng dự đoán đúng giảm ba bản ghi, tương đương 1,95 điểm phần trăm accuracy. Trung bình qua ba seed, recall Positive tăng từ 0,654 lên 0,723, trong khi macro-F1 giảm từ 0,736 xuống 0,698.
+
+Trên Early Stage, ở seed demo cả hai cấu hình nhận ra 35 mẫu Positive. V2 dự đoán đúng thêm hai mẫu Negative, nên accuracy tăng 3,92 điểm phần trăm trên 51 mẫu. Trung bình ba seed, macro-F1 của V2 đạt 0,903 so với 0,837 của V1. Logistic đạt 0,977 trên phép chia này. Kết quả của Logistic cho thấy mô hình đơn giản vẫn là một đối chứng quan trọng với dữ liệu có ít đặc trưng và ít mẫu.
+
+\subsection{Theo dõi mẫu đổi trạng thái giữa hai mô hình}
+\input{paired_prediction_table.tex}
+Hai ma trận nhầm lẫn cho biết tổng số lỗi của từng mô hình. Để tìm mẫu đã đổi kết quả, ghép điểm V1 và V2 theo chỉ số hàng test. Ví dụ trên 53 mẫu Positive của Pima, 33 mẫu được cả hai dự đoán đúng, một mẫu chuyển từ đúng sang sai, bảy mẫu chuyển từ sai sang đúng, 12 mẫu sai ở cả hai. Bảy lượt sửa và một lỗi mới tạo mức tăng ròng sáu mẫu dương tính đúng. Trong lớp Negative, một lượt sửa và mười lỗi mới làm số mẫu âm tính đúng giảm chín. Chênh lệch accuracy trên toàn bộ Pima bằng \((6-9)/154\). Trên Early Stage seed 254, cả hai thay đổi có lợi đều ở lớp Negative.
+
+So sánh ghép cặp giữ cùng đầu vào và nhãn, cho phép xem mức thay đổi theo từng lớp. Nó cũng là dữ liệu đầu vào cho khoảng bootstrap ở mục sau. Phân tích theo từng hàng giúp lý giải vì sao recall Positive của V2 có thể cao hơn khi accuracy và macro-F1 thấp hơn trên Pima.
+
+\section{Khoảng bất định và giới hạn suy diễn}
+Để so sánh accuracy theo cặp, đặt \(d_i=\mathbf{1}[\hat{y}_{i,V2}=y_i]-\mathbf{1}[\hat{y}_{i,V1}=y_i]\). Chênh lệch quan sát là trung bình \(d_i\). Bootstrap lấy lại các chỉ số hàng test có hoàn lại 2.000 lần và lấy percentile 2,5\% và 97,5\%. Giữ cặp theo hàng giúp hai dự đoán luôn được đánh giá trên cùng bản ghi. Hai khoảng đều chứa 0, trong đó cận dưới Early Stage bằng 0.
+
+Một phép chia và ba seed khởi tạo chưa đo được mức thay đổi qua cơ sở thu thập, quần thể hoặc thời gian. Các chỉ số phản ánh bài toán phân loại nhãn của bộ dữ liệu. Nghiên cứu tiếp theo có thể dùng nhiều phép chia theo nhóm, khóa bộ test mới và khảo sát độ hiệu chuẩn bằng tập validation riêng. Thí nghiệm tách thành phần cần thay một yếu tố mỗi lượt, giữ các yếu tố còn lại cố định và theo dõi cả thời gian học lẫn sai số theo lớp.
+
+\chapter{Tích hợp mô hình với KB, Neo4j và RAG}\label{ch:v2-agents}
+
+\section{Hai đường dữ liệu hội tụ ở điều phối}
+Các chương trước trình bày mô hình học dựa trên ví dụ và kho tri thức dựa trên tài liệu. Trong GlucoGuide, nhánh mô hình nhận một vector đặc trưng để trả điểm và nhãn nghiên cứu. Nhánh tri thức nhận câu hỏi để lấy đoạn nguồn và cạnh đồ thị. Coordinator tổ chức thứ tự chạy. Explanation trình bày hai loại kết quả trong cùng phản hồi. Đường huấn luyện mô hình dùng Pima và Early Stage. Đường xây KB dùng tài liệu web và PDF có vị trí đối chiếu.
+
+\fig{figures/provenance.png}{0.92}{Đường đi của dữ liệu huấn luyện và tài liệu tri thức trong V2.}
+
+\section{Sáu tầng và bảy vai trò}
+Kiến trúc theo tài liệu giảng viên \cite{architecture-v2} được áp dụng trong một backend local. Giao diện hiển thị biểu mẫu và kết quả. Tầng API kiểm tra yêu cầu theo hợp đồng từng bộ dữ liệu. Tầng điều phối chọn thứ tự gọi các tác vụ. Tầng agent chuyên trách xử lý dữ liệu, mô hình, luật, tri thức, giải thích và nhật ký. Tầng tri thức và mô hình chứa các tài nguyên thực thi. Tầng đánh giá cung cấp kết quả kiểm thử, số đo và dấu vết.
+
+\input{agent_table.tex}
+\fig{figures/layers.png}{0.70}{Sáu tầng tổ chức phần mềm. Coordinator điều phối sáu vai trò chuyên trách.}
+
+Một lần thực nghiệm bắt đầu bằng việc cấp mã yêu cầu. Data Agent kiểm tra tập tên trường, giá trị hữu hạn và các miền đã khai báo. Prediction Agent dùng đúng checkpoint của phiên bản được chọn. Rule Agent gắn cờ phạm vi dữ liệu và xử lý thiếu. KG/RAG Agent truy xuất đoạn và đối chiếu cạnh. Explanation Agent kết hợp điểm nghiên cứu và thông tin nguồn. Monitoring Agent lưu metadata. API trả trace gắn mã yêu cầu để người xem nhận ra mỗi bước được gọi và kết thúc thế nào.
+
+Khi yêu cầu chứa tình huống ưu tiên, bước an toàn chặn việc gọi mô hình. Dữ liệu sai hợp đồng dừng ở bước kiểm tra. Nếu Neo4j gián đoạn, phản hồi ghi trạng thái đồ thị và có thể dùng bằng chứng văn bản từ KB. Các tình huống này được kiểm tra riêng để người xem nhận biết nguồn thông tin đang có.
+
+\section{Nguồn tri thức, chỉ mục và truy vấn cạnh}
+KB hợp nhất 58 đoạn từ 22 nguồn. Mỗi đoạn có định danh tài liệu, văn bản và nguồn. Các đoạn được biên soạn từ PDF hoặc web có thể truy lại vị trí hoặc văn bản lưu và mã băm khi có. Bản xuất KG gồm 169 nút \code{Concept} và 106 cạnh \code{RELATED_TO}. Thuộc tính document nối quan hệ về đoạn KB, evidence lưu đoạn làm căn cứ và source URL chỉ tới nguồn. Tệp \code{kb_diabet.cypher} chứa lệnh nạp đồ thị và đặt ở cấp ngoài của bộ nộp.
+
+\input{triple_table.tex}
+
+RAG biểu diễn văn bản bằng TF-IDF từ và ký tự. Chế độ xếp hạng áp ngưỡng và giữ tối đa bốn đoạn. Một số chủ đề dùng danh sách nguồn đã định tuyến. KG Agent lấy tối đa bốn mã tài liệu và đối chiếu cạnh với đoạn gốc. Với truy vấn trong Neo4j \cite{neo4j-v2}, điều kiện \code{r.document = 'a1c'} lấy các cạnh ứng với nguồn HbA1c. Kết quả có thể đối chiếu với bản xuất JSON và chi tiết nguồn ở giao diện.
+
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept)
+WHERE r.document = 'a1c'
+RETURN a.name, r.label, b.name, r.evidence, r.source_url
+\end{Verbatim}
+
+Nhánh trò chuyện dùng Qwen3 4B local để sinh câu trả lời từ ngữ cảnh. Nhánh thực nghiệm MLP dùng mẫu giải thích có nguồn để người xem theo được kết quả của từng bước. Hai nhánh dùng chung kho tri thức và có cách tạo đầu ra riêng. Checkpoint V2 lưu mô hình phân loại dạng bảng. Trọng số Qwen thuộc mô hình trò chuyện.
+
+\section{Một ví dụ có dấu vết thực thi}
+Với mẫu công khai của Pima, câu hỏi HbA1c được đưa vào nhánh tri thức. Cùng mẫu đó cho điểm Positive 0,5239 ở V1 và 0,5472 ở V2 trong lượt kiểm thử đã lưu. Hai điểm cùng nằm trên ngưỡng 0,5 nên nhãn giữ nguyên. Bước KG/RAG chọn mã tài liệu \code{a1c}, đối chiếu hai cạnh và trả nguồn. Lượt chạy có 12 thông điệp, gồm yêu cầu và kết quả cho sáu vai trò chuyên trách.
+
+Để kiểm tra tại lớp, mở mục Thực nghiệm V1/V2, điền mẫu công khai, chọn V2 và chạy. Màn hình cho thấy năm kích thước lớp. Mở trace để đọc model version và mã yêu cầu. Sau đó đổi V1 đối chứng trên cùng mẫu để so số lớp và điểm. Nguồn \code{a1c} minh họa đường đi của tri thức. Trong Neo4j Browser, tìm cạnh theo mã nguồn và kiểm tra trường evidence. Ví dụ thể hiện khả năng truy vết hệ thống. Nhận xét về chất lượng mô hình dựa trên toàn bộ tập test.
+
+Project 01 V2 mở rộng ví dụ này thành ba bằng chứng: cặp ảnh dự đoán cùng mẫu Pima, đồ thị con của mã \code{a1c} và một lượt Trò chuyện dùng Qwen với nguồn \code{plate}. Các ảnh giúp phân biệt đầu ra mô hình phân loại, căn cứ từ Neo4j và văn bản sinh ở ba bước triển khai.
+
+\begin{figure}[htbp]
+\centering\includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{figures/demo-v2.png}
+\caption{Demo V2 trên Mac với mô hình năm tầng, kết quả, nguồn và dấu vết thực thi.}
+\end{figure}
+\FloatBarrier
+
+\chapter{Kiểm chứng, tái lập và phát triển tiếp}\label{ch:v2-verification}
+
+\section{Đối chiếu từ số liệu trong báo cáo tới tệp gốc}
+Kết quả huấn luyện nằm trong \code{results/v2/experiment.json}. Tệp ghi cấu hình, seed, epoch tốt nhất, chỉ số và mã băm checkpoint demo. Hai CSV test lưu chỉ số hàng, nhãn thực và điểm của từng cấu hình qua ba seed. Có thể chọn cột \code{v2_254_prob}, áp ngưỡng 0,5 và đếm lại bốn ô của ma trận. Tệp \code{learning_curves.csv} lưu lịch sử train loss, log loss validation và macro-F1 validation theo từng epoch.
+
+Mô hình demo gồm tiền xử lý và MLP trong cùng tệp \code{.joblib}. Registry ghi tên trường và phạm vi của từng bộ. Khi load pipeline và chạy lại các hàng trong CSV test, kết quả phải khớp với điểm đã lưu tới sai số tuyệt đối \(10^{-12}\). Phép thử kiểm tra liên kết giữa model triển khai và số liệu báo cáo. Mã băm SHA-256 xác định phiên bản tệp. Khi huấn luyện lại, cần lưu cấu hình và số liệu của chính lần chạy mới.
+
+\input{v2_repro_table.tex}
+
+\section{Kiểm chứng hệ thống và khả năng chạy lại}
+Bộ kiểm thử V2 chạy bốn tổ hợp giữa hai bộ dữ liệu và hai phiên bản trên API. Nó kiểm tra phân chia dữ liệu, điểm dự đoán, hình dạng lớp, nguồn, cạnh đồ thị, dấu vết và nhật ký. Các ca lỗi dùng trường thiếu, giá trị không hữu hạn, yêu cầu ưu tiên và tình huống graph gián đoạn. Kiểm thử giao diện trên Mac chạy cùng luồng và xác nhận danh sách phiên bản hiển thị đúng cấu hình. Kiểm thử truy xuất offline phát lại 22 câu từ bộ xuất để kiểm tra chỉ mục và kết quả truy xuất.
+
+\input{checks_table.tex}
+
+Tại thư mục gốc, chạy \code{bash run-macos.sh start} để bật Neo4j, mô hình ngôn ngữ local và web. Dùng \code{.venv/bin/python -m scripts.train_v2} để huấn luyện lại hai mô hình nghiên cứu từ dữ liệu đã lưu. Khi demo, dùng checkpoint trong gói. Dữ liệu và kết quả của bản Final có đường tái lập riêng, gồm mã Cora trong phụ lục và các artifact được dẫn tại từng chương.
+
+\section{Giới hạn của dữ liệu, mô hình và truy xuất}
+Hai bộ dữ liệu có kích thước nhỏ và quần thể khác nhau. Kết quả chỉ có thể so trực tiếp giữa các cấu hình trong cùng bộ. Kiến trúc, L2 và trọng số lớp thay đổi đồng thời nên cần kiểm tra từng yếu tố riêng để giải thích nguyên nhân. Kết quả Qwen có nguồn vẫn cần kiểm tra nội dung khi mở rộng phạm vi câu hỏi. Hit@K đo sự hiện diện của nguồn trong danh sách truy xuất. Để đánh giá nội dung sinh ra, cần đối chiếu từng khẳng định với nguồn và xem hệ thống xử lý câu hỏi thiếu căn cứ ra sao.
+
+\subsection{Đối chiếu đại lượng đo trong từng lớp hệ thống}
+Kết quả phân loại được đối chiếu ở cấp hàng test. Kết quả truy xuất được đối chiếu ở cấp mã đoạn, với Hit@1, Hit@4 và MRR@4. Ma trận nhầm lẫn kiểm tra lỗi của nhãn dự đoán, còn các chỉ số truy xuất kiểm tra vị trí của nguồn kỳ vọng. Đầu ra bằng văn bản cần thêm đánh giá câu trả lời theo từng mệnh đề. Ở cấp hệ thống, yêu cầu 422, bypass an toàn và fallback Neo4j kiểm tra các nhánh khác nhau của điều phối. Các phép đo có mẫu số và mục tiêu riêng.
+
+Ở tầng audit, mã yêu cầu liên kết với phiên bản và hash model. Trace trả về cho demo cho thấy thông điệp, còn tệp nhật ký chỉ lưu metadata cần để kiểm tra lượt chạy. Thời gian điều phối tới trước bước lưu được tách với thời gian phản hồi end-to-end tại trình duyệt. Khi làm benchmark cần ghi điều kiện máy, trạng thái warm-up, số lượt và phân vị độ trễ cho từng nhánh.
+
+\section{Hướng phát triển theo câu hỏi kiểm chứng}
+\begin{enumerate}
+\item \textbf{Độ bền của mô hình.} Khóa tập test mới và dùng nhiều phép chia theo nhóm khi có mã người tham gia. Báo cáo chỉ số theo từng lớp, quy mô của mỗi nhóm và độ bất định qua các phép chia.
+\item \textbf{Giá trị của độ sâu.} So sánh ba và năm tầng dưới cùng hệ số L2, cùng trọng số lớp và cùng bộ dữ liệu. Sau đó thay riêng L2 hoặc trọng số lớp. Ghi cả thời gian học và sai số theo lớp.
+\item \textbf{Khả năng truy xuất.} Bổ sung câu hỏi diễn đạt lại và ghi nhãn nguồn phù hợp trước khi chạy. Đánh giá việc tìm đúng đoạn, dùng đúng đoạn và xử lý câu không có nguồn đủ rõ.
+\item \textbf{Chi phí điều phối.} Đo thời gian từng tác vụ và tỷ lệ trường hợp lấy được căn cứ hợp lệ khi Neo4j hoặc bộ sinh gián đoạn. Ghi các phép đo theo mã yêu cầu và phiên bản model.
+\end{enumerate}

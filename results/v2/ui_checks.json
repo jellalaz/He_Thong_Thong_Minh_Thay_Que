@@ -1,0 +1,14 @@
+{
+  "passed": 7,
+  "checks": [
+    "Version comparison visible with two datasets and six aggregate model rows",
+    "Pima V2 runs real model, graph, versioned trace and audit",
+    "V1 comparator is runnable on the same schema",
+    "Early Stage uses its own 16-feature contract and trained checkpoint",
+    "Priority safety bypasses model from the real UI",
+    "No document overflow at mobile width",
+    "No browser errors or external page requests"
+  ],
+  "browser_errors": [],
+  "external_page_requests": []
+}

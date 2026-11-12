@@ -3,7 +3,9 @@ import concurrent.futures
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path
+import tarfile
 import time
 import zipfile
 
@@ -56,11 +58,17 @@ def main():
     print('MODEL SHA256 verified', flush=True)
     for part in parts.iterdir():
         if part.is_file() and part.name.isdigit(): part.unlink()
-    runtime = ROOT/'.runtime/llama-vulkan'
-    runtime.mkdir(exist_ok=True)
-    if not (runtime/'llama-server.exe').exists():
-        releases = requests.get('https://api.github.com/repos/ggml-org/llama.cpp/releases?per_page=8', timeout=30).json()
-        asset = next(a for r in releases for a in r.get('assets', []) if a['name'].endswith('-bin-win-vulkan-x64.zip') and a['name'].startswith('llama-'))
+    mac = platform.system() == 'Darwin' and platform.machine() == 'arm64'
+    runtime = ROOT/('.runtime/llama-metal' if mac else '.runtime/llama-vulkan')
+    runtime.mkdir(parents=True, exist_ok=True)
+    if not (runtime/('llama-server' if mac else 'llama-server.exe')).exists():
+        # Pin the tested Apple Silicon build; retain the existing Windows selection.
+        endpoint = 'https://api.github.com/repos/ggml-org/llama.cpp/releases/tags/b12319' if mac else 'https://api.github.com/repos/ggml-org/llama.cpp/releases?per_page=8'
+        response = requests.get(endpoint, timeout=30)
+        response.raise_for_status()
+        releases = [response.json()] if mac else response.json()
+        suffix = '-bin-macos-arm64.tar.gz' if mac else '-bin-win-vulkan-x64.zip'
+        asset = next(a for r in releases for a in r.get('assets', []) if a['name'].endswith(suffix) and a['name'].startswith('llama-'))
         archive = ROOT/'.runtime'/asset['name']
         with requests.get(asset['browser_download_url'], stream=True, timeout=(30,120)) as response:
             response.raise_for_status()
@@ -69,11 +77,19 @@ def main():
         assert archive.stat().st_size == asset['size']
         if asset.get('digest'):
             assert 'sha256:'+hashlib.file_digest(archive.open('rb'), 'sha256').hexdigest() == asset['digest']
-        with zipfile.ZipFile(archive) as z:
-            for name in z.namelist():
-                if name.endswith('/'):continue
-                (runtime/Path(name).name).write_bytes(z.read(name))
-    (ROOT/'.runtime/local-model-manifest.json').write_text(json.dumps({'model': 'Qwen/Qwen3-4B-GGUF', 'file': MODEL, 'sha256': digest, 'bytes': size, 'runtime': 'llama.cpp Vulkan'}, indent=2))
+        if mac:
+            with tarfile.open(archive) as tar:
+                tar.extractall(runtime, filter='data')
+            binary = next(runtime.rglob('llama-server'))
+            # Keep dylibs and Metal resources together as distributed upstream.
+            if binary.parent != runtime:
+                (runtime/'llama-server').symlink_to(binary.relative_to(runtime))
+        else:
+            with zipfile.ZipFile(archive) as z:
+                for name in z.namelist():
+                    if name.endswith('/'):continue
+                    (runtime/Path(name).name).write_bytes(z.read(name))
+    (ROOT/'.runtime/local-model-manifest.json').write_text(json.dumps({'model': 'Qwen/Qwen3-4B-GGUF', 'file': MODEL, 'sha256': digest, 'bytes': size, 'runtime': 'llama.cpp Metal' if mac else 'llama.cpp Vulkan'}, indent=2))
     print('Local model ready', flush=True)
 
 

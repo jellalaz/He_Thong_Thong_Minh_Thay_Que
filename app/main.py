@@ -13,7 +13,7 @@ from app.conversation import route
 from app.dialogue import plan_turn
 from app.answer_display import clean_answer
 from app.retrieval import load_knowledge, Retriever
-from app.graph_knowledge import GraphKnowledgeAgent
+from app.cloud_graph import DeploymentGraphAgent, cloud_graph_view, graph_status, graph_uri
 from app import local_llm, feedback
 from app import safety
 from app.model_support import ModelReviewAgent, SupportAgent, SUPPORT_DOCUMENTS
@@ -46,7 +46,7 @@ class Request(BaseModel):
  preferred_format:Literal['auto','brief','steps','explain']='auto'
  model_context:ModelContext|None=None
 def graph_driver():
- uri=os.environ.get('NEO4J_URI','bolt://127.0.0.1:7687')
+ uri=graph_uri()
  if os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1':
   from urllib.parse import urlparse
   if urlparse(uri).hostname not in {'localhost','127.0.0.1','::1'}:raise RuntimeError('Local mode requires a local graph')
@@ -66,7 +66,7 @@ def graph():
    rows=driver.execute_query('MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) RETURN a.name AS source,b.name AS target,r.label AS label,r.document AS document LIMIT 500', database_=database()).records
    edges=[dict(r) for r in rows]
    return {'storage':'Neo4j','nodes':sorted(set(e[k] for e in edges for k in ['source','target'])),'edges':edges}
- except Exception:raise HTTPException(503,'Chưa kết nối được đồ thị. Vui lòng thử lại sau.')
+ except Exception:return cloud_graph_view()
 @app.post('/api/chat')
 def chat(req:Request):
  bus=MessageBus();trace=bus.trace
@@ -125,7 +125,7 @@ def chat(req:Request):
  selected=bus.request('Điều phối','Truy xuất',plan)
  graph_evidence=[]
  graph_state='not-requested'
- graph_agent=GraphKnowledgeAgent(kb,lambda:graph_driver(),database)
+ graph_agent=DeploymentGraphAgent(kb,lambda:graph_driver(),database)
  bus.register(Agent('Đồ thị tri thức',graph_agent.receive))
  try:
   graph_result=bus.request('Điều phối','Đồ thị tri thức',{'document_ids':[d['id'] for d in selected]})
@@ -189,9 +189,9 @@ def local_source(document_id:str):
 @app.get('/api/status')
 def status():
  model_name='Qwen3 4B · RAG local' if os.environ.get('GLUCOGUIDE_LLAMA_URL') else 'Qwen3 1.7B LoRA' if local_llm.enabled() else None
- try:
-  g=graph();return {'neo4j':True,'nodes':len(g['nodes']),'edges':len(g['edges']),'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled(),'model_name':model_name,'local_only':os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1'}
- except HTTPException:return {'neo4j':False,'nodes':0,'edges':0,'documents':len(docs),'neo4j_browser':browser_url(),'local_llm':local_llm.enabled(),'model_name':model_name,'local_only':os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1'}
+ result=dict(documents=len(docs),neo4j_browser=browser_url(),local_llm=local_llm.enabled(),model_name=model_name,local_only=os.environ.get('GLUCOGUIDE_LOCAL_ONLY')=='1')
+ try:return dict(result,**graph_status(graph()))
+ except HTTPException:return dict(result,**graph_status(None))
 
 class FeedbackRequest(BaseModel):
  response_id:str=Field(min_length=10,max_length=80)
@@ -202,3 +202,6 @@ def rate(req:FeedbackRequest):
  result=feedback.record(req.response_id,req.helpful)
  if result is None:raise HTTPException(409,'Lượt này đã được đánh giá hoặc đã hết hạn.')
  return result
+
+from app.v2 import router as v2_router
+app.include_router(v2_router)

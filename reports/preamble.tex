@@ -1,5 +1,6 @@
 \documentclass[12pt,a4paper,oneside]{report}
-\usepackage{fontspec}\setmainfont{Times New Roman}\setmonofont{Consolas}
+\usepackage{fontspec}\setmainfont{Times New Roman}
+\IfFontExistsTF{Consolas}{\setmonofont{Consolas}}{\setmonofont{Courier New}[Scale=0.85]}
 \usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm,headheight=15pt]{geometry}
 \usepackage{amsmath,amssymb,graphicx,longtable,booktabs,array,calc,etoolbox,fancyvrb,fvextra,caption,unicode-math}
 \usepackage{needspace,fancyhdr,float}\usepackage[section]{placeins}
