@@ -25,6 +25,7 @@ project_architecture_multiagent_diabet_v1.pdf
 exports/glucoguide_kb_kg_rag.zip
 data/v2
 scripts
+docs
 results/**/*predictions*
 results/**/*split*
 .DS_Store

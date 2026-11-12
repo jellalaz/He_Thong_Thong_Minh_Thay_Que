@@ -36,8 +36,8 @@ Trên macOS: chạy `bash run-macos.sh start` để bật cả Neo4j, Qwen và w
 
 Trên Windows:
 
-1. Chạy `start-neo4j.ps1` từ thư mục project nếu cơ sở dữ liệu chưa hoạt động.
-2. Chạy `START_CHATBOT_LOCAL.cmd` để khởi động web và Qwen local.
+1. Chạy `./scripts/windows/start-neo4j.ps1` từ thư mục project nếu cơ sở dữ liệu chưa hoạt động.
+2. Mở `scripts/windows/START_CHATBOT_LOCAL.cmd` để khởi động web và Qwen local.
 3. Mở lại web và bấm **Làm mới** trong mục đồ thị.
 
 Lỗi Authentication failure trong Neo4j Browser nghĩa là cần đối chiếu thông tin đăng nhập với cấu hình cục bộ, không phải cài lại Neo4j.

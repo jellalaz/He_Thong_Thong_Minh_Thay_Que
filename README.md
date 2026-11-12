@@ -56,7 +56,7 @@ bash run-macos.sh start
 .venv/bin/python scripts/verify_macos.py
 ```
 
-Installer dùng phiên bản đã kiểm tra trong `requirements-macos-lock.txt`, tải Qwen khoảng 2,5 GB và runtime chính thức, kiểm tra checksum, tạo `.env` cùng khóa API local. Chỉ giai đoạn setup cần Internet; launcher không tải tài nguyên. Không dùng lock CUDA của Windows để cài trên Mac. Không cần PyTorch/LoRA 1.7B cho luồng sản phẩm Qwen4B hiện tại.
+Installer dùng [lock macOS](scripts/requirements/requirements-macos-lock.txt), tải Qwen khoảng 2,5 GB và runtime chính thức, kiểm tra checksum, tạo `.env` cùng khóa API local. Chỉ giai đoạn setup cần Internet. Luồng Qwen 4B dùng llama.cpp trên Mac.
 
 `results/macos_setup_checks.json` ghi kiểm thử trên máy mới. Chi tiết và ảnh giao diện được giữ tại `.runtime/macos-verification/`, tách khỏi bằng chứng thực nghiệm Windows cũ. Có thể chạy lại một nhóm, ví dụ `.venv/bin/python scripts/verify_macos.py --only graph_ui`.
 
@@ -64,15 +64,19 @@ Installer dùng phiên bản đã kiểm tra trong `requirements-macos-lock.txt`
 
 ## Chạy sản phẩm local trên Windows
 
-1. Khởi động Neo4j bằng start-neo4j.ps1 nếu dịch vụ chưa chạy.
-2. Chạy START_CHATBOT_LOCAL.cmd hoặc run-chatbot-local.ps1.
+1. Nếu Neo4j chưa chạy, mở PowerShell tại thư mục gốc và chạy `./scripts/windows/start-neo4j.ps1`. Với Docker, chạy `docker compose --project-directory . -f scripts/windows/compose.yaml up -d neo4j`.
+2. Mở [START_CHATBOT_LOCAL.cmd](scripts/windows/START_CHATBOT_LOCAL.cmd) hoặc chạy `./scripts/windows/run-chatbot-local.ps1`.
 3. Mở http://localhost:8765 và http://localhost:7474/browser/.
+
+Các đường dẫn Windows trong PDF cũ theo bố cục tại các tag `v1` và `v2`. Các tệp cùng tên hiện nằm trong `scripts/windows/`.
 
 Xem đồ thị ngay trên http://localhost:8765/#graph: nút **Xem toàn bộ đồ thị** nằm cạnh bộ lọc chủ đề. Có thể phóng to, kéo và bấm khái niệm để đọc quan hệ, không cần dán lệnh hoặc đăng nhập Neo4j Browser riêng.
 
 Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp tại 127.0.0.1:11435 (Vulkan trên Windows, Metal trên Mac); Neo4j local ở cổng 7687. Luồng hỏi đáp không gọi dịch vụ xử lý bên ngoài, không tự tải tài nguyên. Tệp cấu hình và khóa nội bộ nằm ngoài Git.
 
 ## Dữ liệu và các thành phần
+
+[Thông tin nguồn dữ liệu](data/DATASET_ATTRIBUTION.txt), [hướng dẫn Neo4j](docs/HUONG_DAN_NEO4J.md) và [huấn luyện nhận diện ý định](docs/TRAINING_CHATBOT.md).
 
 - Phân loại: Diabetes Risk Prediction 50K, 40.000 dòng train và 10.000 dòng test; MLP học nhãn tổng hợp High/Moderate/Low.
 - Hồi quy: diabetes/scikit-learn, 353 mẫu train và 89 mẫu test; dự đoán điểm tiến triển nghiên cứu.

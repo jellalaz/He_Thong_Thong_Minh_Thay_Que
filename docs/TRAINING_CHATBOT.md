@@ -10,4 +10,4 @@ Khi luật không xác định được chủ đề, mô hình đề xuất ý �
 
 ## Nhánh Qwen chạy local
 
-Sản phẩm hiện dùng Qwen3 4B Q4_K_M cùng RAG trên máy, khởi động bằng `START_CHATBOT_LOCAL.cmd` và mở http://localhost:8765. Trọng số 4B không được tinh chỉnh lại. Hai lượt LoRA 1.7B được giữ làm thực nghiệm trong `experiments/local_qwen/` và `results/local_qwen*`. Bộ phân loại an toàn chạy trước định tuyến; kiểm thử nội bộ bằng `python -m scripts.test_safety_offline`.
+Sản phẩm dùng Qwen3 4B Q4_K_M cùng RAG. Khởi động bằng `bash run-macos.sh start` trên Mac hoặc `scripts/windows/START_CHATBOT_LOCAL.cmd` trên Windows, rồi mở http://localhost:8765. Bản 4B dùng trọng số gốc. Hai lượt LoRA 1.7B được giữ làm thực nghiệm trong `experiments/local_qwen/` và `results/local_qwen*`. Bộ phân loại an toàn chạy trước định tuyến. Kiểm thử nội bộ bằng `python -m scripts.test_safety_offline`.

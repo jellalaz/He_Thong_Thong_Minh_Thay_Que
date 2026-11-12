@@ -5,9 +5,9 @@ This experiment trains adapters, not a model from scratch. No hosted inference s
 ## Reproduce
 
 1. Create `.venv-llm` using Python 3.12.
-2. Install CUDA PyTorch 2.8.0 from the official cu128 index; install the remaining versions in `requirements-local-lock.txt`.
+2. Install CUDA PyTorch 2.8.0 from the official cu128 index, then install the remaining versions from `experiments/local_qwen/requirements-lock.txt`.
 3. Run `.venv-llm/Scripts/python.exe experiments/local_qwen/train.py` from the repository root. Initial download requires internet; inference after download is offline.
-4. Run `run-local-qwen.ps1` and open http://localhost:8766.
+4. Run `./scripts/windows/run-local-qwen.ps1` and open http://localhost:8766.
 
 The base model stays in `.local-models/Qwen3-1.7B`. The training checkpoint is saved under `.local-training/qwen-lora/best`; the packaged adapter used by the app is `models/qwen_adapter` (about 6 MB). These large/cache directories are excluded from Git and Vercel. Training requires CUDA; the recorded run uses an RTX 4060 Laptop with 8 GB VRAM. All assets are free; no billing is enabled.
 

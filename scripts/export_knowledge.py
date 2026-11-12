@@ -172,7 +172,7 @@ Script hỏi mật khẩu hoặc đọc NEO4J_PASSWORD từ môi trường. MERG
 
 Mã nguồn gốc: https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que
 
-Trên máy đã có Qwen3 4B và Neo4j, chạy START_CHATBOT_LOCAL.cmd trong project gốc rồi mở http://localhost:8765. Agent đồ thị lấy quan hệ theo tài liệu đã truy xuất; quan hệ phải khớp bộ ba, văn bản và nguồn trước khi cấp cho Qwen. Nhánh cấp cứu trả bằng luật trước RAG/KG.
+Trên máy đã có Qwen3 4B và Neo4j, chạy `bash run-macos.sh start` trên Mac hoặc mở `scripts/windows/START_CHATBOT_LOCAL.cmd` trên Windows từ project gốc, rồi mở http://localhost:8765. Agent đồ thị lấy quan hệ theo tài liệu đã truy xuất và đối chiếu bộ ba, văn bản và nguồn trước khi cấp cho Qwen. Nhánh cấp cứu trả bằng luật trước RAG/KG.
 
 Đồ thị còn các cụm rời nhau; chưa phải ontology y khoa đầy đủ hay Microsoft GraphRAG. Tập câu hỏi do project biên soạn, chưa thay thế đánh giá độc lập hoặc thẩm định lâm sàng. Kết quả truy xuất không phải độ chính xác chẩn đoán. Lệnh truy vấn bộ xuất chỉ tổng hợp căn cứ, không chạy Qwen hoặc các mô hình MLP; luồng đầy đủ chạy từ project gốc.
 '''
