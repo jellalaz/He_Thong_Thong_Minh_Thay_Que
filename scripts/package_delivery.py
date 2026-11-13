@@ -118,11 +118,13 @@ Tắt: bash run-macos.sh stop. Đọc tình trạng: bash run-macos.sh status.
 
 CYPHER, KB VÀ RAG NẰM ĐÂU?
 Neo4j Browser: http://localhost:7474/browser/
-Copy KB_KG_RAG/kb_diabet.cypher vào Browser để chạy; MERGE không xóa graph khác.
+Mở KB_KG_RAG/kb_diabet.cypher. Trong Browser, chạy CREATE CONSTRAINT trước,
+sau đó chạy khối UNWIND … MERGE. MERGE giữ dữ liệu đồ thị ngoài bộ nộp.
   MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) RETURN a,r,b LIMIT 100;
   MATCH (a:Concept)-[r:RELATED_TO]->(b:Concept) WHERE r.document='a1c' RETURN a,r,b;
 Mở KB_KG_RAG/ để trình diễn:
-  KB_knowledge.json: 58 đoạn, 22 nguồn, nội dung và triple.
+  KB_knowledge.json: 58 đoạn từ 22 nguồn đang dùng (21 link web, 1 PDF),
+  cùng nội dung và bộ ba quan hệ.
   KG_graph.json, KG_nodes.csv, KG_relationships.csv: bản chụp và bảng nút/cạnh.
   RAG_index.joblib, RAG_settings.json, RAG_queries.json, RAG_evaluation.json,
   RAG_source_evaluation.json: chỉ mục, cấu hình, câu hỏi và kết quả.

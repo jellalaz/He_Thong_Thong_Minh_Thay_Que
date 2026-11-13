@@ -1,3 +1,7 @@
+// GlucoGuide: chạy hai câu lệnh theo thứ tự trong cơ sở dữ liệu Neo4j đích.
+// Ràng buộc tên khái niệm và MERGE giúp nạp lại cùng tệp mà không nhân bản dữ liệu.
+CREATE CONSTRAINT concept_name IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE;
+
 UNWIND [
 {source:"HbA1c",relation:"phản ánh",target:"đường huyết trung bình",document:"a1c",evidence:"HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",source_url:"https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",source_page:null,source_file:null,source_sha256:null},
 {source:"Thai kỳ / bệnh máu",relation:"có thể ảnh hưởng",target:"HbA1c",document:"a1c",evidence:"HbA1c phản ánh đường huyết trung bình khoảng ba tháng. Theo NIDDK, bảng sàng lọc cho người không mang thai: dưới 5,7%; tiền đái tháo đường 5,7–6,4%; ngưỡng đái tháo đường từ 6,5%. Thường cần xét nghiệm xác nhận. Mục tiêu điều trị của người đã mắc bệnh khác ngưỡng chẩn đoán; thai kỳ và bệnh máu có thể ảnh hưởng kết quả.",source_url:"https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",source_page:null,source_file:null,source_sha256:null},

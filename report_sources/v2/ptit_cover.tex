@@ -1,0 +1,32 @@
+% Khung và logo được trích từ bìa Word PTIT do người dùng cung cấp.
+\newcommand{\ptitcover}[2]{%
+  \begin{titlepage}
+  \AddToHookNext{shipout/background}{%
+    \put(49.22,-29.88){%
+      \raisebox{-\height}{\includegraphics[width=17.55cm,height=24.15cm]{figures/ptit-cover-frame.jpg}}}}%
+  \noindent\makebox[\textwidth][c]{\hspace*{-1cm}\begin{minipage}[t][21.2cm][s]{15.7cm}
+    \centering
+    {\fontsize{16}{20}\selectfont\bfseries HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG\par}
+    \vspace{0.25cm}
+    {\large\bfseries KHOA CÔNG NGHỆ THÔNG TIN I\par}
+    \vspace{0.3cm}
+    {\large\bfseries PHÁT TRIỂN CÁC HỆ THỐNG THÔNG MINH\par}
+    \vspace{1cm}
+    \includegraphics[height=4.2cm]{figures/ptit-logo.png}\par
+    \vfill
+    {\LARGE\bfseries #1\par}
+    \vspace{0.65cm}
+    {\Large\bfseries #2\par}
+    \vspace{0.65cm}
+    \begin{tabular}{@{}ll@{}}
+      Giảng viên hướng dẫn & PGS. TS. Trần Đình Quế\\
+      Sinh viên thực hiện & Kiều Trường Giang\\
+      Mã sinh viên & B23DCCN254\\
+      Nhóm học phần & 06\\
+      Nhóm thực hiện & 02
+    \end{tabular}\par
+    \vfill
+    {\large Hà Nội, tháng 11 năm 2026\par}
+  \end{minipage}}
+  \end{titlepage}%
+}

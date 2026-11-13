@@ -655,25 +655,9 @@
       "label": "AHA · Hiểu số đo huyết áp",
       "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
     },
-    "lowpressure": {
-      "label": "AHA · Huyết áp thấp",
-      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/the-facts-about-high-blood-pressure/low-blood-pressure-when-blood-pressure-is-too-low"
-    },
-    "pregnancyPressure": {
-      "label": "ACOG · Huyết áp trong thai kỳ",
-      "url": "https://www.acog.org/womens-health/faqs/preeclampsia-and-high-blood-pressure-during-pregnancy"
-    },
     "lipids": {
       "label": "MedlinePlus · Các chỉ số cholesterol",
       "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"
-    },
-    "cholesterol": {
-      "label": "Mayo Clinic · Xét nghiệm cholesterol",
-      "url": "https://www.mayoclinic.org/tests-procedures/cholesterol-test/about/pac-20384601"
-    },
-    "triglycerides": {
-      "label": "MedlinePlus · Triglyceride",
-      "url": "https://medlineplus.gov/triglycerides.html"
     },
     "classification_data": {
       "label": "Bộ dữ liệu tổng hợp Diabetes Risk Prediction 50K",

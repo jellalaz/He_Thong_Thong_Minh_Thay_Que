@@ -3,7 +3,7 @@
   "files": {
     "tieuluan_final_06_02_giangkt_v2.pdf": {
       "pages": 139,
-      "sha256": "d5f2350df9aa43b2b76aea0d9cb788c97441d1e2c367ae5a8ae523edd92c295b",
+      "sha256": "a36d3e6484d950155c9de1c9a0324ce4b2342c6e2dc02ceaa6294b9321d0d4c8",
       "chapters_begin_new_page": [
         {
           "title": "Lịch sử và phát triển AI",
@@ -93,7 +93,7 @@
     },
     "project01_06_02_giangkt_v2.pdf": {
       "pages": 69,
-      "sha256": "d009310a93972842dad0c5407921a95f634d74c910024227844fd8e783ab25c4",
+      "sha256": "dde2e2d6eb832d15d8ad990e1720b22a920f3d74d5486196be53f27565209dcb",
       "chapters_begin_new_page": [
         {
           "title": "Yêu cầu, phạm vi và hai phiên bản",
@@ -152,5 +152,5 @@
     }
   },
   "visual_reviewed": true,
-  "visual_review_notes": "Rendered updated architecture, Rule Agent contracts, demo and appendix pages. Verified page boundaries, chapter starts and both final PDF checksums."
+  "visual_review_notes": "Checked PTIT covers, clickable GitHub links, KB counts, Neo4j instructions, full-page text bounds, chapter starts and final PDF checksums."
 }

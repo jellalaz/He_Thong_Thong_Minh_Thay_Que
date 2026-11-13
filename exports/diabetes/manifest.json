@@ -77,8 +77,8 @@
       "sha256": "ac27c14a3609987405544c9b11a1318420e59a44306e05dca5ae83ff4bf234a8"
     },
     "kg/import.cypher": {
-      "bytes": 69910,
-      "sha256": "1bb98dacc831120abdc6084a11b7d1369076264d2f3c388d37f5a030a094ef69"
+      "bytes": 70207,
+      "sha256": "2d0947e148be801bd8dc75c29b951476c73a0fb81d1a85fbe05058d35857280f"
     },
     "kg/nodes.csv": {
       "bytes": 6436,

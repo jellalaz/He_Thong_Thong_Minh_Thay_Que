@@ -113,7 +113,9 @@ Một lần thực nghiệm bắt đầu bằng việc cấp mã yêu cầu. Dat
 Khi yêu cầu chứa tình huống ưu tiên, bước an toàn chặn việc gọi mô hình. Dữ liệu sai hợp đồng dừng ở bước kiểm tra. Nếu Neo4j gián đoạn, phản hồi ghi trạng thái đồ thị và có thể dùng bằng chứng văn bản từ KB. Các tình huống này được kiểm tra riêng để người xem nhận biết nguồn thông tin đang có.
 
 \section{Nguồn tri thức, chỉ mục và truy vấn cạnh}
-KB hợp nhất 58 đoạn từ 22 nguồn. Mỗi đoạn có định danh tài liệu, văn bản và nguồn. Các đoạn được biên soạn từ PDF hoặc web có thể truy lại vị trí hoặc văn bản lưu và mã băm khi có. Bản xuất KG gồm 169 nút \code{Concept} và 106 cạnh \code{RELATED_TO}. Thuộc tính document nối quan hệ về đoạn KB, evidence lưu đoạn làm căn cứ và source URL chỉ tới nguồn. Tệp \code{kb_diabet.cypher} chứa lệnh nạp đồ thị và nằm trong \nolinkurl{exports/KB_KG_RAG/}.
+KB hợp nhất \textbf{58 đoạn từ 22 nguồn đang được sử dụng}, gồm \textbf{21 link web và 1 PDF}. Mỗi nguồn được ít nhất một đoạn tham chiếu. Mục \code{sources} trong \href{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/blob/main/exports/KB_KG_RAG/KB_knowledge.json}{KB\_knowledge.json trên GitHub} liệt kê đủ 22 URL. Nhóm có đối chiếu trích đoạn trong \nolinkurl{data/source_curation.json} gồm ba bài web (một NIDDK và hai Vinmec) cùng một PDF NIDDK \emph{Guiding Principles}, đóng góp 12 đoạn.
+
+Bản xuất KG gồm 169 nút \code{Concept} và 106 cạnh \code{RELATED_TO}. Thuộc tính document nối quan hệ về đoạn KB, evidence lưu đoạn làm căn cứ và source URL chỉ tới nguồn. Tệp \code{kb_diabet.cypher} nằm trong \nolinkurl{exports/KB_KG_RAG/}. Mã nguồn và dữ liệu thực nghiệm có tại \href{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}{repo GlucoGuide trên GitHub}.
 
 \input{triple_table.tex}
 

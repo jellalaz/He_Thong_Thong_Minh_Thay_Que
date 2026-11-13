@@ -78,7 +78,7 @@ Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp tại 127.0.0.1:11435
 
 - Phân loại: Diabetes Risk Prediction 50K, 40.000 dòng train và 10.000 dòng test; MLP học nhãn tổng hợp High/Moderate/Low.
 - Hồi quy: diabetes/scikit-learn, 353 mẫu train và 89 mẫu test; dự đoán điểm tiến triển nghiên cứu.
-- Tri thức: knowledge.json, knowledge_dialogue.json và knowledge_curated.json trong data/, tổng 58 đoạn từ 22 nguồn được tham chiếu.
+- Tri thức: `knowledge.json`, `knowledge_dialogue.json` và `knowledge_curated.json` trong `data/`, tổng 58 đoạn tham chiếu 22 nguồn duy nhất, gồm 21 link web và 1 PDF. Mục `sources` trong [KB_knowledge.json](exports/KB_KG_RAG/KB_knowledge.json) liệt kê đủ 22 nguồn đang dùng.
 - Đồ thị local: 169 khái niệm, 106 quan hệ, phủ đủ 58 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
 - Hội thoại: định tuyến, truy xuất TF-IDF từ/ký tự, Qwen local và kiểm tra phản hồi. Trọng số 4B dùng nguyên bản; các thí nghiệm LoRA 1.7B được giữ riêng.
 - Agent đồ thị: truy vấn Neo4j theo mã tài liệu qua MessageBus, đối chiếu bộ ba/trích đoạn/URL và cấp các quan hệ hợp lệ vào ngữ cảnh Qwen. Không tự sinh Cypher từ câu hỏi và không tự thêm quan hệ vào cơ sở dữ liệu.

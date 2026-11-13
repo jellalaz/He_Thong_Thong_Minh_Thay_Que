@@ -114,13 +114,15 @@ KB hợp nhất từ ba tệp trong data/:
 \item \code{knowledge_dialogue.json}: đoạn phục vụ hội thoại.
 \item \code{knowledge_curated.json}: nguồn web/PDF đã biên soạn, đối chiếu.
 \end{itemize}
-Tổng cộng 58 đoạn, 22 nguồn. Mỗi đoạn có ID và source ID; các đoạn PDF/web được biên soạn có provenance lưu trích đoạn, số trang, file và hash. Các bản PDF NIDDK và văn bản nguồn nằm trong source documents; Vinmec chỉ lưu trích dẫn ngắn và URL.
+Kho có \textbf{58 đoạn từ 22 nguồn đang được sử dụng}, gồm \textbf{21 link web và 1 PDF}. Mỗi nguồn được ít nhất một đoạn tham chiếu và chỉ được đếm một lần theo URL. Mục \code{sources} trong \href{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/blob/main/exports/KB_KG_RAG/KB_knowledge.json}{KB\_knowledge.json trên GitHub} liệt kê đủ 22 nguồn.
+
+Nhóm nguồn dùng để minh họa tiêu chí trên bảng gồm ba bài web (NIDDK về sống khỏe, Vinmec về dinh dưỡng và Vinmec về chăm sóc bàn chân) cùng một PDF NIDDK \emph{Guiding Principles}. Bốn nguồn này đóng góp 12 đoạn biên soạn trong kho. Mở \nolinkurl{data/source_curation.json} để xem URL, mã đoạn và vị trí trích. PDF có số trang vật lý, còn hai bài Vinmec lưu trích dẫn ngắn và URL.
 
 KG xuất 169 Concept và 106 RELATED\_TO, có thuộc tính nhãn quan hệ, document, evidence, URL và provenance nếu có. Tệp \code{kb_diabet.cypher} nằm trong \nolinkurl{exports/KB_KG_RAG/} trên GitHub; Nội dung trùng tệp gốc trong \nolinkurl{exports/diabetes/kg/import.cypher}. Tên \code{DB_diabet.cypher} trong tài liệu thầy là tên ví dụ, không phải một loại tệp khác.
 \input{triple_table.tex}
 
 \section{Trình diễn Neo4j}
-Nạp file Cypher bằng Neo4j Browser hoặc script restore; MERGE không cần xóa graph khác. Truy vấn đối chiếu:
+Trong Neo4j Browser, chạy \code{CREATE CONSTRAINT} trước rồi chạy khối \code{UNWIND} và \code{MERGE} của tệp Cypher. Ràng buộc giữ tên \code{Concept} duy nhất. Chạy lại cùng tệp giữ nguyên 169 nút và 106 cạnh thuộc bộ xuất. Truy vấn đối chiếu:
 \begin{quote}\small\ttfamily
 MATCH (a:Concept)-[r:RELATED\_TO]->(b:Concept)\\
 RETURN a, r, b LIMIT 100;\\[4pt]
@@ -239,6 +241,8 @@ Máy khác cần Python 3.14 và Java 21 ARM64; chạy setup-macos, setup-v2-ass
 \end{enumerate}
 
 \section{Thư mục bàn giao và đường dẫn trên GitHub}
+Mã nguồn và báo cáo được lưu tại \url{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que}. Mở trực tiếp \href{https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/tree/main/exports/KB_KG_RAG}{thư mục KB, KG và RAG} để xem tệp Cypher và các tệp tri thức.
+
 Hai PDF V2 nằm trong \code{reports/}. Mở \nolinkurl{exports/KB_KG_RAG/} để xem trực tiếp mười tệp tri thức, gồm \code{kb_diabet.cypher}. Bản gom trên Mac đặt mã nguồn trong \code{MA_NGUON/} và hướng dẫn trong \code{DOC_TRUOC.txt}.
 
 \section{Hướng phát triển có thứ tự}

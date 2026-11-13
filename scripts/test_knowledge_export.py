@@ -24,7 +24,7 @@ checks.append('All exported file sizes and SHA-256 checksums are valid')
 kb=json.loads((folder/'kb/knowledge.json').read_text(encoding='utf-8'))
 current=load_knowledge()
 assert kb['documents']==current['documents']
-assert set(kb['sources'])=={d['source'] for d in current['documents']}
+assert set(current['sources'])==set(kb['sources'])=={d['source'] for d in current['documents']}
 graph=json.loads((folder/'kg/graph.json').read_text(encoding='utf-8'))
 expected={(d['id'],*t) for d in kb['documents'] for t in d['triples']}
 assert {(r['document'],r['source'],r['relation'],r['target']) for r in graph['relationships']}==expected
@@ -75,9 +75,12 @@ with tempfile.TemporaryDirectory(prefix='verify-export-',dir=ROOT/'.runtime') as
 checks.append('A changed file fails the integrity check before index loading')
 
 with graph_driver() as driver:
-    # EXPLAIN parses and plans the exported Cypher without executing MERGE or SET.
-    driver.execute_query('EXPLAIN '+(folder/'kg/import.cypher').read_text(encoding='utf-8').rstrip(';\n'),database_=database())
-checks.append('Neo4j accepts exported Cypher syntax; validation makes no database writes')
+    # Separate the schema and data statements so each is planned independently.
+    cypher=(folder/'kg/import.cypher').read_text(encoding='utf-8')
+    schema, data=cypher.split(';\n\n', 1)
+    for statement in (schema, data.rstrip(';\n')):
+        driver.execute_query('EXPLAIN '+statement,database_=database())
+checks.append('Neo4j accepts both the uniqueness constraint and the graph MERGE statements')
 result={'passed':len(checks),'checks':checks,'retrieval_roundtrip_cases':len(evaluation['cases']),'nodes':manifest['nodes'],'relationships':manifest['relationships']}
 (ROOT/'results/knowledge_export_checks.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(result))

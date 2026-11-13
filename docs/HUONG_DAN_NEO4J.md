@@ -13,6 +13,8 @@ Mở http://localhost:8765/#graph. Bấm **Xem toàn bộ đồ thị** cạnh b
 
 Mở http://localhost:7474/browser/ trên máy chạy dịch vụ. Database user là `neo4j`; mật khẩu nằm sau `NEO4J_PASSWORD=` trong `.env` cục bộ. Không đưa tệp này lên GitHub.
 
+[kb_diabet.cypher](../exports/KB_KG_RAG/kb_diabet.cypher) là tệp lệnh nạp đồ thị vào Neo4j. Nếu dùng Neo4j Browser, chọn database đích rồi chạy lần lượt câu `CREATE CONSTRAINT` và khối `UNWIND … MERGE` trong tệp. Câu đầu tạo ràng buộc duy nhất cho `Concept.name`. Khối thứ hai nạp nút và cạnh cùng mã tài liệu, đoạn trích và URL nguồn. Chạy lại cùng tệp giữ nguyên số nút và cạnh của bộ xuất.
+
 Sau khi kết nối, có thể bấm nhãn **Concept** trong bảng Database information để xem nút. Truy vấn sau dành cho việc đối chiếu nút và quan hệ:
 
 ```cypher

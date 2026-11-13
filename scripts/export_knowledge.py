@@ -91,7 +91,11 @@ def build(live=False):
         for r in graph['relationships']:
             writer.writerow(dict(source_id=ids[r['source']],target_id=ids[r['target']],**{k:r[k] for k in fields[2:]}))
     literal='[\n'+',\n'.join('{'+','.join(k+':'+json.dumps(v,ensure_ascii=False) for k,v in r.items())+'}' for r in graph['relationships'])+'\n]'
-    cypher='UNWIND '+literal+''' AS row
+    cypher='''// GlucoGuide: chạy hai câu lệnh theo thứ tự trong cơ sở dữ liệu Neo4j đích.
+// Ràng buộc tên khái niệm và MERGE giúp nạp lại cùng tệp mà không nhân bản dữ liệu.
+CREATE CONSTRAINT concept_name IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE;
+
+UNWIND '''+literal+''' AS row
 MERGE (a:Concept {name:row.source}) MERGE (b:Concept {name:row.target})
 MERGE (a)-[r:RELATED_TO {label:row.relation,document:row.document}]->(b)
 SET r.evidence=row.evidence,r.source_url=row.source_url,
