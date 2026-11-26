@@ -6,7 +6,18 @@ let schema,history=[],responses=[],busy=false,graphData,lastResult=null,knowledg
 const welcome=$('#conversation').innerHTML;
 async function api(url,body){const r=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});let j;try{j=await r.json()}catch{throw Error('Máy chủ chưa trả dữ liệu. Hãy thử lại.')}if(!r.ok)throw Error(typeof j.detail==='string'?j.detail:'Đầu vào chưa hợp lệ. Kiểm tra lại các trường.');return j}
 function toast(s){$('#toast').textContent=s;$('#toast').hidden=false;setTimeout(()=>$('#toast').hidden=true,3000)}
-function showView(v){document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));['chat','models','graph','data','v2'].forEach(x=>$('#'+x).hidden=x!==v);historyReplace(v);if(v==='graph')drawGraph();if(v==='data'&&!knowledge.length)loadKB()}
+function showView(v){
+ const study = v==='v3' || v==='v2';
+ if(study){
+  if ($('#v2').dataset.workflow !== v) {
+   $('#v2').dataset.workflow=v;
+   $('#v2-result').innerHTML='<h2>Kết quả nghiên cứu</h2><p>Bấm Chạy luồng đa agent để xử lý mẫu bằng phiên bản đang chọn.</p>';
+  }
+  $('#study-workflow').value=v;
+  $('#v3-disagreement').hidden=v!=='v3';
+  $('#workflow-note').textContent=v==='v3'?'9 vai trò trong luồng nghiên cứu. Chọn một mạng chính để đối chiếu với mạng còn lại trên cùng mẫu.':'7 vai trò trong luồng nghiên cứu V2.';
+ }
+ document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));['chat','models','graph','data','v2'].forEach(x=>$('#'+x).hidden=x!==(study?'v2':v));historyReplace(v);if(v==='graph')drawGraph();if(v==='data'&&!knowledge.length)loadKB()}
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>showView(b.dataset.open));
 function trace(j){$('#trace').innerHTML=(j.trace||[]).map(x=>{let c=x.content;if(Array.isArray(c))c=`${c.length} phần tử đã xử lý`;else if(c&&typeof c==='object')c=JSON.stringify(c);if(String(c).length>450)c=String(c).slice(0,450)+'…';return `<div class="step"><b>${esc(x.sender)} → ${esc(x.receiver)}</b><span>${esc(x.type)}</span><small>${esc(c)}</small></div>`}).join('')}
 function evidence(j){$('#source-count').textContent=String(j.sources?.length||0).padStart(2,'0');$('#evidence').innerHTML=j.sources?.length?j.sources.map(s=>`<article class="source-entry"><span class="source-id">${esc(s.id)}</span><h3>${esc(s.title)}</h3><p>${esc(s.excerpt||'')}</p>${sourceLocator(s)}<a href="${esc(sourceHref(s))}" target="_self" rel="noopener">${esc(s.source?.label||'Tài liệu gốc')} ↗</a><button class="text-button" data-graph="${esc(s.id)}">Xem quan hệ của tài liệu →</button></article>`).join(''):j.topic==='social'?'<div class="evidence-empty"><h3>Đang trò chuyện</h3><p>Lượt này không cần tài liệu y tế.</p></div>':'<div class="evidence-empty"><h3>Chưa có nguồn phù hợp.</h3><p>Thử nêu rõ chủ đề hoặc chỉ số cần tìm hiểu.</p></div>';$('#evidence').querySelectorAll('[data-graph]').forEach(b=>b.onclick=()=>{showView('graph');drawGraph(b.dataset.graph)});trace(j)}
@@ -85,5 +96,5 @@ function renderKB(){const q=norm($('#kb-search').value),rows=knowledge.filter(d=
 async function catalog(){try{const d=await api('/assets/data_catalog.json');$('#catalog').innerHTML='<div class="dataset-grid">'+['classification','regression'].map((k,i)=>{const x=d[k];return `<article class="dataset-card"><span class="eyebrow">0${i+1} / ${i?'HỒI QUY':'PHÂN LOẠI'}</span><h2>${esc(x.name)}</h2><p>${esc(x.scope)}</p><a href="${esc(x.url)}" target="_self" rel="noopener">${esc(x.publisher)} ↗</a><div class="data-statline"><span><b>${x.rows.toLocaleString('vi-VN')}</b>quan sát</span><span><b>${x.used_features}</b>biến đầu vào</span><span><b>${x.test.toLocaleString('vi-VN')}</b>mẫu kiểm tra</span></div><p>Train / test: ${x.train} / ${x.test} · seed ${d.seed}</p><small>${esc(x.file)}</small></article>`}).join('')+`</div><details class="data-details"><summary>Kiểm kê dữ liệu thiếu và khoảng quan sát · 8 trường phân loại</summary><p class="muted">Khoảng quan sát trong snapshot, không phải ngưỡng lâm sàng. Trung vị điền thiếu của mô hình học riêng trên train.</p><div class="table-scroll"><table><tr><th>TRƯỜNG</th><th>THIẾU</th><th>MIN</th><th>TRUNG VỊ</th><th>MAX</th></tr>${d.classification.fields.map(f=>`<tr><td>${esc(f.name)}</td><td>${f.missing}</td><td>${f.min}</td><td>${f.median}</td><td>${f.max}</td></tr>`).join('')}</table></div></details>`}catch(e){$('#catalog').textContent=e.message}}
 (async()=>{checkStatus();loadKB();catalog();try{schema=await api('/api/schema');fields();const m=await api('/api/metrics');$('#metrics').innerHTML=metricTable(m.filter(r=>r.accuracy!==undefined),false)+metricTable(m.filter(r=>r.mae!==undefined),true)}catch(e){$('#metrics').textContent=e.message}})();
 
-window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(['chat','models','graph','data','v2'].includes(v))showView(v)});
-const initialView=location.hash.slice(1);if(['chat','models','graph','data','v2'].includes(initialView))showView(initialView);
+window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(['chat','models','graph','data','v2','v3'].includes(v))showView(v)});
+const initialView=location.hash.slice(1);if(['chat','models','graph','data','v2','v3'].includes(initialView))showView(initialView);

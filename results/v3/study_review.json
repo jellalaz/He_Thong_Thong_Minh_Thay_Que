@@ -1,0 +1,91 @@
+{
+  "datasets": {
+    "pima": {
+      "demo": {
+        "row": 700,
+        "values": {
+          "preg": 2.0,
+          "plas": 122.0,
+          "pres": 76.0,
+          "skin": 27.0,
+          "insu": 200.0,
+          "mass": 35.9,
+          "pedi": 0.483,
+          "age": 26.0
+        },
+        "actual": 0,
+        "v1_score": 0.2751257714460255,
+        "v2_score": 0.5185658639375581
+      },
+      "test_n": 154,
+      "agree": 135,
+      "both_correct": 105,
+      "both_wrong": 30,
+      "disagree": 19,
+      "only_v1_correct": 11,
+      "only_v2_correct": 8
+    },
+    "early_stage": {
+      "demo": {
+        "row": 234,
+        "values": {
+          "Age": 70.0,
+          "Gender": 1.0,
+          "Polyuria": 1.0,
+          "Polydipsia": 0.0,
+          "sudden weight loss": 0.0,
+          "weakness": 0.0,
+          "Polyphagia": 1.0,
+          "Genital thrush": 0.0,
+          "visual blurring": 1.0,
+          "Itching": 1.0,
+          "Irritability": 0.0,
+          "delayed healing": 1.0,
+          "partial paresis": 1.0,
+          "muscle stiffness": 1.0,
+          "Alopecia": 1.0,
+          "Obesity": 0.0
+        },
+        "actual": 0,
+        "v1_score": 0.5246819440404755,
+        "v2_score": 0.46089494758770794
+      },
+      "test_n": 51,
+      "agree": 49,
+      "both_correct": 44,
+      "both_wrong": 5,
+      "disagree": 2,
+      "only_v1_correct": 0,
+      "only_v2_correct": 2
+    }
+  },
+  "policy": {
+    "simulated_ratings": 600,
+    "seed": 254,
+    "initial_greedy_correct": 1,
+    "final_greedy_correct": 3,
+    "contexts": [
+      "agree",
+      "missing",
+      "disagree"
+    ],
+    "greedy_actions": [
+      0,
+      1,
+      2
+    ]
+  },
+  "integration": [
+    "pima/v1",
+    "pima/v2",
+    "early_stage/v1",
+    "early_stage/v2",
+    "priority bypass",
+    "invalid input",
+    "audit",
+    "single-use feedback",
+    "V2 parity",
+    "peer parity",
+    "individual masking parity"
+  ]
+}

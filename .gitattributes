@@ -1,4 +1,5 @@
 # Preserve exported bytes so manifest checksums survive clone on Windows/Linux.
+*.pdf binary
 exports/diabetes/** -text whitespace=cr-at-eol
 exports/KB_KG_RAG/** -text whitespace=cr-at-eol
 data/source_documents/** -text whitespace=cr-at-eol

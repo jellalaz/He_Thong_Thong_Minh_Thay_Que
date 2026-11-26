@@ -11,10 +11,12 @@ def state():
  q.setdefault('topics',{})
  return q
 
-def choose(topic,preferred='auto'):
+def choose(topic,preferred='auto', exploration=0.0):
  with LOCK:
   q=state();values=q['topics'].get(topic,[0.0,0.0,0.0])
   action=FORMATS.index(preferred) if preferred in FORMATS else max(range(3),key=lambda i:values[i])
+  if preferred=='auto' and exploration and secrets.randbelow(10_000) < exploration*10_000:
+   action=secrets.randbelow(len(FORMATS))
   token=secrets.token_urlsafe(16)
   PENDING[token]=(topic,action)
   if len(PENDING)>500:PENDING.pop(next(iter(PENDING)))
@@ -22,7 +24,7 @@ def choose(topic,preferred='auto'):
 
 def record(token,helpful):
  with LOCK:
-  pending=PENDING.pop(token,None)
+  pending=PENDING.get(token)
   if pending is None:return None
   topic,action=pending
   q=state();values=q['topics'].setdefault(topic,[0.0,0.0,0.0])
@@ -31,4 +33,5 @@ def record(token,helpful):
   q['ratings']+=1
   FILE.parent.mkdir(parents=True,exist_ok=True)
   tmp=FILE.with_suffix('.tmp');tmp.write_text(json.dumps(q,ensure_ascii=False,indent=2),encoding='utf-8');tmp.replace(FILE)
-  return {'saved':True,'strategy':FORMATS[action],'topic':topic,'ratings':q['ratings']}
+  del PENDING[token]
+  return {'q_value':values[action],'reward':reward,'saved':True,'strategy':FORMATS[action],'topic':topic,'ratings':q['ratings']}

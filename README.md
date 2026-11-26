@@ -2,6 +2,17 @@
 
 Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 02.
 
+## Demo và báo cáo V3
+
+Chạy `bash run-macos.sh start`. Mở [Đối chiếu V3](http://localhost:8765/#v3), chọn Pima và bấm **Mẫu hai mạng khác nhãn**. Chuyển sang **Thực nghiệm V2** ở thanh bên, chạy một lượt, rồi quay về **Đối chiếu V3** và chạy lại. Khi đổi workflow trong cùng tab, biểu mẫu giữ các giá trị đã nhập. Với mạng chính V2, mẫu Pima này cho điểm 0,519 ở cả hai lượt. V3 hiển thị thêm điểm 0,275 của mạng V1, cờ bất đồng và độ nhạy từng trường.
+
+API `POST /api/v2/predict` nhận thêm `workflow: "v3"`. Bỏ trường này để gọi quy trình V2. Trong V3, ModelComparison chạy checkpoint đối chứng, PresentationPolicy chọn cách giải thích theo dataset và trạng thái mẫu. Bản local học từ phiếu Hữu ích / Chưa hữu ích qua `POST /api/feedback`. Nhật ký V3 nằm ở `.runtime/audit-v3.jsonl`.
+
+- [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) có hướng dẫn bảo vệ và hai ảnh chụp cùng mẫu trên V2/V3.
+- [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf) có phân tích ghép cặp, độ nhạy và thí nghiệm phản hồi mô phỏng.
+- [Ôn vấn đáp GlucoGuide – 51 câu](reports/on_van_dap_glucoguide_51_cau.pdf) có mục lục theo câu, ví dụ từ code và hai kịch bản demo ở câu 42 và 49.
+- Tái lập số liệu với `.venv/bin/python -m scripts.evaluate_study_v3` khi Neo4j local đang chạy. [Kết quả](results/v3/study_review.json).
+
 ## Phiên bản V2 và bộ nộp gọn
 
 Mở http://localhost:8765/#v2 để chạy workflow mới và so sánh hai kiến trúc trên Pima/OpenML 37 và Early Stage/UCI 529. V2 có 6 tầng, 7 vai trò (Coordinator điều phối Data, Prediction, Rule, KG/RAG, Explanation, Monitoring), request ID, model version/hash và audit metadata tại `.runtime/audit-v2.jsonl`. Chat và các mô hình V1 gốc vẫn giữ nguyên.
@@ -118,7 +129,7 @@ Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chố
 
 ## Mã nguồn báo cáo
 
-Bốn PDF chính nằm trong [`reports/`](reports/). Mã LaTeX và hình nằm trong [`report_sources/`](report_sources/). Dùng `scripts/assemble_reports.py` để ghép nguồn V1. Script `scripts/build_v2_reports.py` biên dịch V2 bằng Tectonic và lưu bản dựng tại `report_sources/v2/`.
+Thư mục [`reports/`](reports/) có hai báo cáo ở từng phiên bản V1, V2 và V3, cùng tài liệu ôn vấn đáp. Mã dựng báo cáo và hình minh họa nằm trong [`report_sources/`](report_sources/). Dùng `scripts/assemble_reports.py` để ghép nguồn V1, `scripts/build_v2_reports.py` để biên dịch V2 bằng Tectonic và `report_sources/v3/build.py` để dựng hai báo cáo V3 từ PDF V2 và kết quả đối chiếu.
 
 ## Cấu trúc thư mục
 
