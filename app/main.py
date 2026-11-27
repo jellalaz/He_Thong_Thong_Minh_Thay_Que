@@ -10,12 +10,13 @@ from pydantic import BaseModel, Field
 from neo4j import GraphDatabase
 from app.agents import Agent, MessageBus
 from app.conversation import route
+from app.care_dialogue import care_state
 from app.dialogue import plan_turn
 from app.answer_display import clean_answer
 from app.retrieval import load_knowledge, Retriever
 from app.cloud_graph import DeploymentGraphAgent, cloud_graph_view, graph_status, graph_uri
 from app import local_llm, feedback
-from app import safety
+from app import model_paths, safety
 from app.model_support import ModelReviewAgent, SupportAgent, SUPPORT_DOCUMENTS
 from app.settings import database, browser_url
 from typing import Literal
@@ -27,7 +28,7 @@ kb=load_knowledge()
 docs=kb['documents']
 retriever=Retriever(docs)
 schema=json.loads((ROOT/'models/schema.json').read_text())
-models={k:joblib.load(ROOT/'models'/f'{v}.joblib') for k,v in [('classification','MLPClassifier'),('regression','MLPRegressor')]}
+models = {task: joblib.load(model_paths.original_checkpoint(task)) for task in model_paths.ORIGINAL_FILENAMES}
 app=FastAPI(title='GlucoGuide • Giang KT')
 app.mount('/assets',StaticFiles(directory=ROOT/'web'),name='assets')
 class Turn(BaseModel):
@@ -84,7 +85,17 @@ def chat(req:Request):
  msg('Người dùng','Điều phối','REQUEST',req.question or req.task)
  if req.task not in ['knowledge','classification','regression']:raise HTTPException(422,'Bài toán không hợp lệ')
  bus.register(Agent('An toàn',lambda payload,b: safety.classify(payload['question'],payload['history'])))
- assessment=bus.request('Điều phối','An toàn',{'question':req.question,'history':[h.model_dump() for h in req.history]})
+ history = [h.model_dump() for h in req.history]
+ assessment=bus.request('Điều phối','An toàn',{'question':req.question,'history':history})
+ # Units sometimes arrive one turn after the number. Triage the completed reading
+ # before any routine intake response, including when the unit is all the user typed.
+ if not safety.protected(assessment) and req.question:
+  intake = care_state(req.question, history)
+  if intake and intake.fact == 'reading' and intake.value and intake.unit and intake.uses_history:
+   completed = safety.classify(f'Đường huyết {intake.value} {intake.unit}')
+   if safety.protected(completed):
+    completed.context_used = True
+    assessment = completed
  # Triage precedes model input checks, topic routing, Neo4j and language generation.
  if safety.protected(assessment):
   ids=['low','urgent'] if assessment.reason=='possible_hypoglycemia' else ['sick_day','urgent'] if assessment.reason in {'possible_dka','high_glucose_with_vomiting','high_glucose'} else ['medicine'] if assessment.medication_risk and assessment.level=='ROUTINE' else ['urgent'] if assessment.level=='EMERGENCY' else []
@@ -138,7 +149,7 @@ def chat(req:Request):
  state=int(result is not None)*2+int(bool(selected)); action=int(np.argmax(policy['q'][state]))
  if not selected:action=0
  msg('Chính sách RL','Phản hồi','INFORM',{'state':state,'action':policy['actions'][action],'rule':'Thiếu bằng chứng thì yêu cầu làm rõ'})
- answer=bus.request('Điều phối','Phản hồi',selected) if action in (1,2) else 'Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.'
+ answer=bus.request('Điều phối','Phản hồi',selected) if action in (1,2) else plan.get('clarification', 'Tôi chưa tìm thấy bằng chứng phù hợp trong kho tri thức. Bạn hãy nêu rõ chỉ số hoặc chủ đề cần tìm hiểu.')
  if plan['override'] is not None:answer=plan['override']
  elif plan['intro']:answer=plan['intro']+'\n\n'+answer
  if result or model_followup:

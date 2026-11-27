@@ -1,4 +1,50 @@
 let v2Study;
+
+window.refreshStudyModels = function () {
+ if (!v2Study) return;
+ const key = $('#v2-dataset').value;
+ const selection = $('#v2-version');
+ const v3 = $('#study-workflow').value === 'v3';
+ const previous = selection.value;
+ if (v3) {
+  const {ranking, summary} = v2Study.deep_models[key];
+  const winner = summary[ranking[0]];
+  selection.replaceChildren(new Option(winner.label + ' · chọn theo validation', 'auto'));
+ } else {
+  selection.replaceChildren(...['v2','v1'].map((id) => {
+   const depth = v2Study.experiment.configs[id].hidden_layer_sizes.length;
+   return new Option(id.toUpperCase() + ' · ' + depth + ' tầng ẩn', id);
+  }));
+  selection.value = previous === 'v1' ? 'v1' : 'v2';
+ }
+ selection.disabled = v3;
+ renderStudyMetrics(v3);
+};
+
+function renderStudyMetrics(v3) {
+ const label = (metric) => metric.toFixed(3);
+ let html = '<table><thead><tr><th>Dataset</th><th>Mô hình</th><th>Macro-F1 validation</th><th>Macro-F1 test</th><th>ROC-AUC test</th></tr></thead><tbody>';
+ for (const [key, spec] of Object.entries(v2Study.datasets)) {
+  if (v3) {
+   const {ranking, summary} = v2Study.deep_models[key];
+   for (const id of ranking) {
+    const row = summary[id];
+    html += `<tr><td>${esc(spec.title)}</td><td>${esc(row.label)}${id === ranking[0] ? ' · Được chọn' : ''}</td><td>${label(row.validation_f1)}</td><td>${label(row.test_f1)}</td><td>${label(row.test_auc)}</td></tr>`;
+   }
+  } else {
+   for (const version of ['logistic','v1','v2']) {
+    const rows = v2Study.experiment.results.filter(r => r.dataset === key && r.version === version);
+    const mean = metric => label(rows.reduce((sum,r) => sum+r[metric],0)/rows.length);
+    html += `<tr><td>${esc(spec.title)}</td><td>${version === 'logistic' ? 'Logistic' : version.toUpperCase()}</td><td>${version === 'logistic' ? '—' : mean('validation_macro_f1')}</td><td>${mean('macro_f1')}</td><td>${mean('roc_auc')}</td></tr>`;
+   }
+  }
+ }
+ $('#v2-metrics').innerHTML = html + '</tbody></table>';
+ $('#v2-differences').textContent = v3
+  ? 'MLP, CNN 1D và Transformer dùng cùng phép chia và ba seed. Mạng chính và mạng đối chứng được xếp theo Macro-F1 validation. Điểm test chỉ dùng để báo cáo.'
+  : 'V2 tái hiện đối chiếu hai checkpoint MLP của thực nghiệm gốc.';
+}
+
 function v2Fields(){
  const d=v2Study.datasets[$('#v2-dataset').value];
  $('#v2-population').textContent=d.population+' '+d.scope;
@@ -39,7 +85,7 @@ function showReview(result) {
   }
  };
 }
-$('#v2-dataset').onchange=()=>v2Fields();
+$('#v2-dataset').onchange=()=>{v2Fields();window.refreshStudyModels();};
 $('#v2-version').onchange=()=>{
  $('#v2-result').innerHTML='<h2>Kết quả nghiên cứu</h2><p>Chạy lại mẫu để xem kết quả của mạng vừa chọn.</p>';
 };
@@ -50,7 +96,7 @@ $('#v2-sample').onclick = () => {
  if (v2Study) fillStudySample(v2Study.datasets[$('#v2-dataset').value].example);
 };
 $('#v3-disagreement').onclick = () => {
- if (v2Study) fillStudySample(v2Study.disagreement_examples[$('#v2-dataset').value].values);
+ if (v2Study) fillStudySample(v2Study.deep_models[$('#v2-dataset').value].demo.values);
 };
 $('#v2-form').onsubmit=async e=>{
  e.preventDefault();const button=e.target.querySelector('button[type="submit"]');button.disabled=true;
@@ -63,29 +109,61 @@ $('#v2-form').onsubmit=async e=>{
   const d=await r.json();
   if (selectedWorkflow!==$('#study-workflow').value || selectedDataset!==$('#v2-dataset').value || selectedVersion!==$('#v2-version').value) return;
   if(!r.ok)throw Error(d.detail?.message||'Đầu vào không hợp lệ.');
-  $('#v2-result').innerHTML=`<p class="eyebrow">${esc(d.prediction?.model_version||'Ưu tiên an toàn')}</p><h2>${esc(d.prediction?.label_text||'Cần xử lý ưu tiên')}</h2><p class="answer-text">${esc(d.answer)}</p>${d.prediction ? `<p><b>${d.prediction.hidden_layers.length} tầng ẩn:</b> ${esc(d.prediction.hidden_layers.join(" → "))}</p>` : ""}<p><b>Mã yêu cầu:</b> <code>${esc(d.request_id)}</code></p><p>Audit: ${d.audit.stored?'đã lưu metadata':'chưa lưu được'} · không lưu đầu vào gốc</p>${(d.rules?.flags||[]).map(f=>`<p class="muted">• ${esc(f)}</p>`).join('')}<h3>Nguồn</h3>${d.sources.map(s=>`<p><a href="${esc(s.source.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> [${esc(s.id)}]</p>`).join('')}<p>Quan hệ KG đã đối chiếu: ${d.graph_evidence.length} · ${esc(d.graph_status||'bỏ qua')}</p><details open><summary>Trace ${d.trace.length} thông điệp</summary><div class="v2-trace">${d.trace.map(t=>`<p><b>${esc(t.sender)} → ${esc(t.receiver)}</b> · ${esc(t.type)}<br><small>${esc(t.model_version)} · ${t.elapsed_ms} ms</small></p>`).join('')}</div></details>`;
+  $('#v2-result').innerHTML=`<p class="eyebrow">${esc(d.prediction?.model_version||'Ưu tiên an toàn')}</p><h2>${esc(d.prediction?.label_text||'Cần xử lý ưu tiên')}</h2><p class="answer-text">${esc(d.answer)}</p>${d.prediction?.architecture ? `<p><b>${esc(d.prediction.architecture)}</b> · Macro-F1 validation ${d.prediction.validation_macro_f1.toFixed(3)}<br><small>${esc(d.prediction.checkpoint_file)}</small></p>` : d.prediction?.hidden_layers ? `<p><b>${d.prediction.hidden_layers.length} tầng ẩn:</b> ${esc(d.prediction.hidden_layers.join(" → "))}</p>` : ''}<p><b>Mã yêu cầu:</b> <code>${esc(d.request_id)}</code></p><p>Audit: ${d.audit.stored?'đã lưu metadata':'chưa lưu được'} · không lưu đầu vào gốc</p>${(d.rules?.flags||[]).map(f=>`<p class="muted">• ${esc(f)}</p>`).join('')}<h3>Nguồn</h3>${d.sources.map(s=>`<p><a href="${esc(s.source.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> [${esc(s.id)}]</p>`).join('')}<p>Quan hệ KG đã đối chiếu: ${d.graph_evidence.length} · ${esc(d.graph_status||'bỏ qua')}</p><details open><summary>Trace ${d.trace.length} thông điệp</summary><div class="v2-trace">${d.trace.map(t=>`<p><b>${esc(t.sender)} → ${esc(t.receiver)}</b> · ${esc(t.type)}<br><small>${esc(t.model_version)} · ${t.elapsed_ms} ms</small></p>`).join('')}</div></details>`;
   showReview(d);
  }catch(error){$('#v2-result').innerHTML=`<p class="error">${esc(error.message)}</p>`;}finally{button.disabled=false;}
 };
 (async()=>{
  try{
   v2Study=await api('/api/v2/study');
-  const configs=v2Study.experiment.configs;
-  for(const option of $('#v2-version').options){
-   const layers=configs[option.value].hidden_layer_sizes;
-   const title=option.value==='v1'?'V1 đối chứng':'V2';
-   option.textContent=`${title} · ${layers.length} tầng ẩn: ${layers.join(' → ')}`;
-  }
-  $('#v2-status').textContent='Đã train trên hai dataset; kết quả và checkpoint được lưu để chạy lại.';
-  $('#v2-dataset').innerHTML=Object.entries(v2Study.datasets).map(([k,v])=>`<option value="${esc(k)}">${esc(v.title)}</option>`).join('');v2Fields();
-  let html='<table><thead><tr><th>DATASET</th><th>MÔ HÌNH</th><th>ACCURACY</th><th>MACRO-F1</th><th>RECALL POSITIVE</th><th>THAM SỐ</th></tr></thead><tbody>';
-  for(const [key,dataset] of Object.entries(v2Study.datasets)){
-   for(const version of ['logistic','v1','v2']){
-    const rows=v2Study.experiment.results.filter(r=>r.dataset===key&&r.version===version),mean=n=>rows.reduce((s,r)=>s+r[n],0)/rows.length;
-    html+=`<tr><td>${esc(dataset.title)}<br><small>Test ${dataset.audit.test} mẫu</small></td><td>${version==='logistic'?'Logistic đối chứng':version.toUpperCase()}</td><td>${mean('accuracy').toFixed(3)}</td><td>${mean('macro_f1').toFixed(3)}</td><td>${mean('recall').toFixed(3)}</td><td>${rows[0].parameters??'—'}</td></tr>`;
-   }
-  }
-  $('#v2-metrics').innerHTML=html+'</tbody></table>';
-  $('#v2-differences').innerHTML='<p><b>Hệ thống:</b> thêm hợp đồng dữ liệu riêng cho từng dataset, mã yêu cầu, phiên bản checkpoint, giải thích có nguồn và audit metadata. Chatbot V1 gốc vẫn chạy ở mục Trò chuyện.</p><p><b>Mô hình:</b> V2 thêm hai tầng ẩn, tăng L2 và cân bằng trọng số lớp. Số tầng ẩn đếm phần giữa đầu vào và đầu ra.</p><p><b>Đánh giá:</b> loại trùng trước khi chia, fit tiền xử lý trên train, chọn epoch bằng validation, test chỉ dùng báo cáo. Hai dataset có quần thể và đặc trưng khác nhau.</p>';
+  $('#v2-status').textContent='Hai bộ dữ liệu nghiên cứu đã sẵn sàng.';
+  $('#v2-dataset').innerHTML=Object.entries(v2Study.datasets).map(([k,v])=>`<option value="${esc(k)}">${esc(v.title)}</option>`).join('');
+  v2Fields();
+  window.refreshStudyModels();
  }catch(error){$('#v2-status').textContent='Chưa đọc được thực nghiệm V2: '+error.message;}
 })();
+
+const typeForm = $('#type-form');
+const typeLabels = {type_1: 'Type 1', type_2: 'Type 2', undetermined: 'Chưa xác định'};
+(async () => {
+ try {
+  const study = await api('/api/v2/type-study');
+  $('#type-study-scope').textContent = study.scope;
+  const winner = study.models[study.ranking[0]];
+  const total = study.splits.find(split => split.split === 'test');
+  const retained = study.guarded_test.coverage * 100;
+  $('#type-study-metrics').textContent = `${winner.label} · Macro-F1 ${winner.test.macro_f1.toFixed(3)} tại ngưỡng 0,5 trên ${total.type_1 + total.type_2} mẫu test năm 2024. Với hai ngưỡng hiện hành, mô hình trả nhãn cho ${retained.toFixed(1)}% mẫu.`;
+  $('#type-example').onchange = event => {
+   const sample = study.examples[event.target.value];
+   if (!sample) return;
+   for (const [key, value] of Object.entries(sample)) typeForm.elements.namedItem(key).value = value;
+   $('#type-confirm').checked = true;
+   $('#type-result').innerHTML = '<p>Đã điền mẫu giả định. Bấm chạy để xem kết quả.</p>';
+  };
+  typeForm.querySelector('button[type="submit"]').disabled = false;
+ } catch {
+  $('#type-study-scope').textContent = 'Chưa tải được thí nghiệm NHIS.';
+ }
+})();
+typeForm.onsubmit = async event => {
+ event.preventDefault();
+ const button = typeForm.querySelector('button[type="submit"]');
+ const panel = $('#type-result');
+ const inputs = Object.fromEntries([...new FormData(typeForm)].map(([key, val]) => [key, Number(val)]));
+ button.disabled = true;
+ try {
+  panel.textContent = 'Đang chạy mô hình…';
+  const response = await fetch('/api/v2/type-predict', {
+   method: 'POST', headers: {'Content-Type': 'application/json'},
+   body: JSON.stringify({...inputs, confirmed_study_scope: $('#type-confirm').checked})
+  });
+  const data = await response.json();
+  if (!response.ok) throw Error(typeof data.detail === 'string' ? data.detail : 'Kiểm tra lại các trường của mẫu nghiên cứu.');
+  const detail = data.label === 'undetermined' ? 'Điểm nằm giữa hai ngưỡng trả nhãn.' : 'Nhãn dự đoán của mẫu nghiên cứu.';
+  panel.innerHTML = `<h3>${esc(typeLabels[data.label])}</h3><p>${detail}</p><p>Điểm lớp type 1: ${data.type_1_score.toFixed(3)}</p><p>${esc(data.architecture)} · <small>${esc(data.checkpoint_file)}</small></p>`;
+ } catch (error) {
+  panel.innerHTML = `<p class="error">${esc(error.message)}</p>`;
+ } finally {
+  button.disabled = false;
+ }
+};

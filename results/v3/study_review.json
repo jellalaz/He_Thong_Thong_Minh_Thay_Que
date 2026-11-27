@@ -73,7 +73,61 @@
       0,
       1,
       2
-    ]
+    ],
+    "formats": [
+      "brief",
+      "steps",
+      "explain"
+    ],
+    "blocks": [
+      {
+        "end": 100,
+        "helpful": 86,
+        "mean_reward": 0.72
+      },
+      {
+        "end": 200,
+        "helpful": 98,
+        "mean_reward": 0.96
+      },
+      {
+        "end": 300,
+        "helpful": 95,
+        "mean_reward": 0.9
+      },
+      {
+        "end": 400,
+        "helpful": 92,
+        "mean_reward": 0.84
+      },
+      {
+        "end": 500,
+        "helpful": 95,
+        "mean_reward": 0.9
+      },
+      {
+        "end": 600,
+        "helpful": 93,
+        "mean_reward": 0.86
+      }
+    ],
+    "final_q": {
+      "agree": [
+        0.9999999999999998,
+        -0.2,
+        -0.8926258176
+      ],
+      "missing": [
+        -0.83222784,
+        0.9999999999999998,
+        -0.67232
+      ],
+      "disagree": [
+        -0.865782272,
+        -0.83222784,
+        0.9999999999999998
+      ]
+    }
   },
   "integration": [
     "pima/v1",

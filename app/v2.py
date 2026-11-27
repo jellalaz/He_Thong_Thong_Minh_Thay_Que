@@ -15,7 +15,7 @@ from typing import Literal
 from app.agents import Agent, MessageBus
 from app.cloud_graph import DeploymentGraphAgent
 from app.settings import database
-from app import safety, study_review
+from app import deep_study, model_paths, safety, study_review, type_study
 
 ROOT = Path(__file__).resolve().parents[1]
 router = APIRouter(prefix='/api/v2', tags=['Version 2 research MAS'])
@@ -31,16 +31,35 @@ def registry():
 
 @lru_cache
 def checkpoint(dataset, version):
-    path = ROOT / 'models/v2' / (dataset + '_' + version + '.joblib')
+    path = model_paths.study_checkpoint(dataset, version)
     return joblib.load(path), hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class StudyRequest(BaseModel):
     dataset: Literal['pima', 'early_stage'] = 'pima'
-    version: Literal['v1', 'v2'] = 'v2'
+    version: Literal['v1', 'v2', 'auto'] = 'auto'
     values: dict = Field(default_factory=dict)
     workflow: Literal['v2', 'v3'] = 'v2'
     question: str = Field(default='HbA1c là gì?', max_length=3000)
+
+
+class TypeStudyRequest(BaseModel):
+    age: int = Field(ge=18, le=85, strict=True)
+    age_at_diagnosis: int = Field(ge=1, le=85, strict=True)
+    bmi_category: int = Field(ge=1, le=4, strict=True)
+    confirmed_study_scope: Literal[True]
+
+
+@router.get('/type-study')
+def type_study_info():
+    return dict(type_study.results(), examples=type_study.EXAMPLES, scope=type_study.SCOPE)
+
+
+@router.post('/type-predict')
+def predict_type(req: TypeStudyRequest):
+    if req.age_at_diagnosis > req.age:
+        raise HTTPException(422, 'Tuổi khi được chẩn đoán phải nhỏ hơn hoặc bằng tuổi hiện tại.')
+    return type_study.predict(req.age, req.age_at_diagnosis, req.bmi_category)
 
 
 class AuditBus(MessageBus):
@@ -128,6 +147,8 @@ def explain(payload, _bus):
     p = payload['prediction']; docs = payload['knowledge']['documents']
     text = ('Mô hình ' + p['model_version'] + ' xếp mẫu vào nhãn ' + p['label_text'] +
             ', với điểm lớp Positive ' + format(p['positive_label_score'], '.3f') + '. ' + p['scope'])
+    if 'diabetes_type' in p:
+        text += ' Chưa xác định được tuýp vì dữ liệu của mô hình này chỉ có nhãn Positive và Negative.'
     if 'comparison' in payload:
         text += '\n\n' + study_review.comparison_text(p, payload['comparison'], payload['rules'], payload['style'])
     if docs: text += '\n\nThông tin tham khảo: ' + docs[0]['text'] + ' [' + docs[0]['id'] + ']'
@@ -149,7 +170,10 @@ def monitor(payload, _bus):
 
 @router.get('/study')
 def study():
+    deep_models = {key: {field: row[field] for field in ('ranking', 'summary', 'counts', 'demo')}
+                   for key, row in deep_study.results()['datasets'].items()}
     return dict(registry(), experiment=json.loads((ROOT/'results/v2/experiment.json').read_text()),
+                deep_models=deep_models,
                 disagreement_examples={key: row['demo'] for key, row in
                     json.loads((ROOT/'results/v3/study_review.json').read_text())['datasets'].items()},
                 layers=['Giao diện', 'API và dữ liệu', 'Điều phối', 'Agent chuyên trách', 'Tri thức và mô hình', 'Đánh giá và audit'],
@@ -166,8 +190,18 @@ def coordinated_prediction(req: StudyRequest):
     start = time.perf_counter(); request_id = uuid.uuid4().hex
     enhanced = req.workflow == 'v3'
     system_version = '3.0' if enhanced else SYSTEM_VERSION
-    bus = AuditBus(request_id, req.dataset+'-'+req.version+'-seed254', system_version)
-    bus.register(Agent('Data', validate_data)); bus.register(Agent('Prediction', predict))
+    use_selected_model = enhanced and req.version == 'auto'
+    version = 'v2' if req.version == 'auto' else req.version
+    if use_selected_model:
+        row = deep_study.results()['datasets'][req.dataset]
+        family = row['ranking'][0]
+        seed = row['summary'][family]['checkpoint']['seed']
+        model_version = f'{req.dataset}-{family}-seed{seed}'
+    else:
+        model_version = f'{req.dataset}-{version}-seed254'
+    bus = AuditBus(request_id, model_version, system_version)
+    bus.register(Agent('Data', validate_data))
+    bus.register(Agent('Prediction', deep_study.predict if use_selected_model else predict))
     bus.register(Agent('Rule', reviewed_rules)); bus.register(Agent('Explanation', explain)); bus.register(Agent('Monitoring', monitor))
     assessment = safety.classify(req.question, [])
     if safety.protected(assessment):
@@ -183,12 +217,15 @@ def coordinated_prediction(req: StudyRequest):
         bus.request('Coordinator', 'Monitoring', {'request_id':request_id,'system_version':system_version,
                     'status':'validation-error','dataset':req.dataset,'model_invoked':False})
         raise HTTPException(422, {'request_id': request_id, 'message': str(exc), 'trace': bus.trace})
-    prediction = bus.request('Coordinator', 'Prediction', {'dataset':req.dataset,'version':req.version,'data':data})
+    prediction = bus.request('Coordinator', 'Prediction', {'dataset':req.dataset,'version':version,'data':data,
+                            'scope':registry()['datasets'][req.dataset]['scope']})
+    if enhanced:
+        prediction['diabetes_type'] = 'undetermined'
     review_input = {'dataset': req.dataset, 'data': data, 'prediction': prediction}
     extra = {}
     if enhanced:
         bus.register(Agent('ModelComparison', study_review.compare_models))
-        extra['comparison'] = bus.request('Coordinator', 'ModelComparison', dict(review_input, version=req.version))
+        extra['comparison'] = bus.request('Coordinator', 'ModelComparison', dict(review_input, version=version))
         review_input.update(extra)
     rules = bus.request('Coordinator', 'Rule', review_input)
     if not rules['prediction_consistent']:

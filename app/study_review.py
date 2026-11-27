@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from app import feedback, local_llm
+from app import deep_study, feedback, local_llm
 
 
 def compare_models(payload, _bus):
@@ -11,6 +11,9 @@ def compare_models(payload, _bus):
     data = payload['data']
     names = data['features']
     values = np.asarray(data['values'], dtype=float)
+    family = payload['prediction'].get('family')
+    if family:
+        return compare_deep_families(payload['dataset'], family, names, values, payload['prediction']['positive_label_score'])
     version = payload['version']
     other = 'v1' if version == 'v2' else 'v2'
     model, _ = checkpoint(payload['dataset'], version)
@@ -28,6 +31,24 @@ def compare_models(payload, _bus):
                for index, new_score in zip(observed, scores)]
     changes.sort(key=lambda item: abs(item['delta']), reverse=True)
     return {'peer_version': other, 'peer_sha256': digest, 'peer_score': peer_score,
+            'peer_label': int(peer_score >= .5), 'sensitivity': changes[:3]}
+
+
+def compare_deep_families(dataset, family, features, values, score):
+    record = deep_study.results()['datasets'][dataset]
+    peer = record['ranking'][1]
+    weights, _ = deep_study.checkpoint(dataset, family)
+    peer_weights, digest = deep_study.checkpoint(dataset, peer)
+    peer_score = float(deep_study.probabilities(peer, [values], peer_weights)[0])
+    observed = np.flatnonzero(np.isfinite(values))
+    variants = np.tile(values, (len(observed), 1))
+    variants[np.arange(len(observed)), observed] = weights['median'][observed]
+    scores = deep_study.probabilities(family, variants, weights)
+    changes = [{'feature': features[i], 'delta': float(updated - score)}
+               for i, updated in zip(observed, scores)]
+    changes.sort(key=lambda item: abs(item['delta']), reverse=True)
+    return {'peer_version': peer, 'peer_architecture': record['summary'][peer]['label'],
+            'peer_sha256': digest, 'peer_score': peer_score,
             'peer_label': int(peer_score >= .5), 'sensitivity': changes[:3]}
 
 
@@ -55,8 +76,9 @@ def presentation_policy(payload, _bus):
 
 def comparison_text(primary, comparison, review, style):
     summary = 'Hai mạng cùng nhãn.' if review['agree'] else 'Hai mạng khác nhãn.'
+    peer_name = comparison.get('peer_architecture', comparison['peer_version'].upper())
     scores = (f"Điểm lớp Positive của {primary['model_version']} là {primary['positive_label_score']:.3f}, "
-              f"của mạng {comparison['peer_version'].upper()} là {comparison['peer_score']:.3f}.")
+              f"của mô hình đối chứng {peer_name} là {comparison['peer_score']:.3f}.")
     if style == 'brief':
         return summary + ' ' + scores
     feature = comparison['sensitivity'][0]

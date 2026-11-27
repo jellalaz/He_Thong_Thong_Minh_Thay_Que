@@ -1,0 +1,139 @@
+{
+  "ranking": [
+    "mlp",
+    "transformer",
+    "cnn"
+  ],
+  "models": {
+    "mlp": {
+      "label": "MLP",
+      "validation_f1": 0.6409904160691707,
+      "test": {
+        "macro_f1": 0.643699739477839,
+        "roc_auc_type_1": 0.6951569969578444,
+        "recall_type_1": 0.46794871794871795,
+        "recall_type_2": 0.8898305084745762,
+        "confusion_type_order_1_2": [
+          [
+            146,
+            166
+          ],
+          [
+            325,
+            2625
+          ]
+        ]
+      },
+      "seed": 256,
+      "checkpoint": {
+        "file": "nhis_type1_vs_type2_mlp_seed256.npz",
+        "sha256": "96cce00323c6a545b9b7b07538c393e1f065035b73ba1f05ae8ee91562815830"
+      }
+    },
+    "cnn": {
+      "label": "CNN 1D",
+      "validation_f1": 0.6201601447211406,
+      "test": {
+        "macro_f1": 0.6297737652681891,
+        "roc_auc_type_1": 0.7288803780964799,
+        "recall_type_1": 0.5032051282051282,
+        "recall_type_2": 0.8623728813559322,
+        "confusion_type_order_1_2": [
+          [
+            157,
+            155
+          ],
+          [
+            406,
+            2544
+          ]
+        ]
+      },
+      "seed": 255
+    },
+    "transformer": {
+      "label": "Transformer theo đặc trưng",
+      "validation_f1": 0.6347790168216657,
+      "test": {
+        "macro_f1": 0.6429117181680621,
+        "roc_auc_type_1": 0.7223810299869622,
+        "recall_type_1": 0.46474358974358976,
+        "recall_type_2": 0.8901694915254237,
+        "confusion_type_order_1_2": [
+          [
+            145,
+            167
+          ],
+          [
+            324,
+            2626
+          ]
+        ]
+      },
+      "seed": 255
+    }
+  },
+  "thresholds": {
+    "type_1": 0.91,
+    "type_2": 0.43
+  },
+  "guarded_test": {
+    "coverage": 0.8347639484978541,
+    "type_1": {
+      "count": 56,
+      "precision": 0.7321428571428571
+    },
+    "type_2": {
+      "count": 2667,
+      "precision": 0.9430071241094863
+    }
+  },
+  "majority_test_f1": 0.4748873148744366,
+  "training": {
+    "max_epochs": 110,
+    "patience": 22,
+    "batch_size": 128
+  },
+  "seeds": [
+    254,
+    255,
+    256
+  ],
+  "examples": {
+    "early_onset": {
+      "score": 0.962063729763031,
+      "label": "type_1"
+    },
+    "later_onset": {
+      "score": 0.37699779868125916,
+      "label": "type_2"
+    },
+    "uncertain": {
+      "score": 0.7604624629020691,
+      "label": "undetermined"
+    }
+  },
+  "splits": [
+    {
+      "year": 2022,
+      "split": "train",
+      "type_1": 231,
+      "type_2": 2387,
+      "archive_sha256": "25083298173acfff35c6635be0fbcaa3ff26b985e0a48fc5e7d9788761864dba"
+    },
+    {
+      "year": 2023,
+      "split": "validation",
+      "type_1": 259,
+      "type_2": 2642,
+      "archive_sha256": "e6f0918e683e1d756e4298470737b4c99777e8a90ea9ee7488544b917f058585"
+    },
+    {
+      "year": 2024,
+      "split": "test",
+      "type_1": 312,
+      "type_2": 2950,
+      "archive_sha256": "5f926b2ec0af508fa84ebc791c83bfefa6f020724754aab599004706981abdaf"
+    }
+  ]
+}

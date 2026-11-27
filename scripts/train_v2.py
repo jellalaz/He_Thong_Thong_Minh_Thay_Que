@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import sys
 import time
 from zoneinfo import ZoneInfo
 import joblib
@@ -22,6 +23,10 @@ from sklearn.utils.class_weight import compute_sample_weight
 from threadpoolctl import threadpool_limits
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ''):
+    sys.path.insert(0, str(ROOT))
+from app.model_paths import study_checkpoint
+
 RAW = ROOT / 'data/raw/v2'
 if not (RAW / 'pima.arff').exists(): RAW = ROOT / 'data/v2/sources'
 DATA = ROOT / 'data/v2'
@@ -138,7 +143,7 @@ def main():
                 preds[version+'_'+str(seed)+'_prob'] = prob
                 if seed == 254:
                     pipeline = Pipeline([*pre.steps, ('model', best)])
-                    path = MODELS / (key+'_'+version+'.joblib')
+                    path = study_checkpoint(key, version)
                     joblib.dump(pipeline, path)
                     result['checkpoint_sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
                 print(json.dumps(result), flush=True)

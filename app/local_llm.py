@@ -70,12 +70,17 @@ def respond(payload,bus):
   if verdict['mode']=='qwen-lora' and not use_adapter:verdict['mode']='qwen-rag'
   return dict(verdict,seconds=round(time.perf_counter()-start,3))
 def verify(payload,bus):
+ from app.answer_display import clean_answer
  from app.retrieval import normalize
  from app.graph_knowledge import ground_facts
  _,bad_graph=ground_facts(payload.get('graph_evidence',[]),payload['documents'])
  if bad_graph:return {'answer':payload['fallback'],'mode':'rules','reason':'Quan hệ đồ thị không khớp tài liệu; dùng nội dung KB đã kiểm tra.'}
  draft=re.sub(r'^\s*\d+[.)]\s+', '- ', payload['draft'], flags=re.M).strip()
  draft=re.sub(r'^Dưới đây là (?:bản nháp|câu trả lời) (?:được |đã )?(?:chỉnh sửa|sửa lại)[^:\n]*:\s*','',draft,flags=re.I)
+ displayed = clean_answer(draft)
+ if re.search(r'(?:[:：][*_]*|\n[ \t]*(?:[-*•]|\d+[.)]))\s*\Z', displayed):
+  return {'answer':payload['fallback'],'mode':'rules',
+          'reason':'Câu trả lời còn tiêu đề hoặc mục liệt kê dang dở. Hãy hoàn thành ý hoặc bỏ dòng đó.'}
  context=' '.join(d['text'] for d in payload['documents']);ids={d['id'] for d in payload['documents']}
  unknown=set(re.findall(r'\[([a-z0-9_]+)\]',draft))-ids
  denied_evidence=bool(re.search(r'(?:không (?:được )?(?:đề cập|nêu|có)|chưa (?:đề cập|có))[^.!?\n]*\[[a-zA-Z][a-zA-Z0-9_-]*\]',draft,re.I))

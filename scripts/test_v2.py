@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from fastapi.testclient import TestClient
 from app.main import app
-from app import v2
+from app import model_paths, v2
 
 ROOT=Path(__file__).resolve().parents[1]
 checks=[]
@@ -28,7 +28,7 @@ with patch.object(v2,'AUDIT',audit):
   pred=pd.read_csv(ROOT/'results/v2'/f'{dataset}_test_predictions.csv')
   assert np.array_equal(data.loc[pred.row,'target'].to_numpy(),pred.actual.to_numpy())
   for version in ['v1','v2']:
-   model=joblib.load(ROOT/'models/v2'/f'{dataset}_{version}.joblib')
+   model=joblib.load(model_paths.study_checkpoint(dataset, version))
    prob=model.predict_proba(data.loc[pred.row,features])[:,1]
    assert np.allclose(prob,pred[f'{version}_254_prob'],rtol=0,atol=1e-12)
    request={'dataset':dataset,'version':version,'values':registry['datasets'][dataset]['example'],'question':'HbA1c là gì?'}

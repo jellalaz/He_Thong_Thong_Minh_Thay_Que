@@ -18,7 +18,7 @@ def graph_uri():
 
 @lru_cache
 def graph_snapshot():
-    path = Path(__file__).resolve().parents[1] / 'exports/diabetes/kg/graph.json'
+    path = Path(__file__).resolve().parents[1] / 'data/knowledge_graph_snapshot.json'
     return json.loads(path.read_text(encoding='utf-8'))
 
 

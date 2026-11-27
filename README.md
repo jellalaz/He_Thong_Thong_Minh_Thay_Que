@@ -2,16 +2,27 @@
 
 Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 02.
 
+## Project 01 V3 · hình minh họa và demo
+
+[Báo cáo Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) trình bày học tăng cường và demo phiếu đánh giá trong chương **Triển khai và trình diễn V3**. Chương **Đối chiếu mô hình với mã nguồn** chỉ tới từng tệp và dòng code. Khởi động trên Mac bằng `bash run-macos.sh start`.
+
+- [Minh chứng mô hình](http://localhost:8765/#minhchung) hiển thị ROC và Precision–Recall của hai mạng ở seed 254. Chọn Pima hoặc Early Stage rồi kéo ngưỡng để đếm lại ma trận trên tập test. [Hàm evaluate_dataset](scripts/build_study_evidence.py) lấy dữ liệu từ CSV, [confusionAt và rankingChart](web/study-evidence.js) tính ma trận và vẽ trên web.
+- [Đồ thị tri thức](http://localhost:8765/#graph) có nút **Cụm lớn nhất**. Bấm vào nút khái niệm để xem quan hệ có hướng, mở **Danh sách quan hệ** để xem mã tài liệu. [selectGraphEdges](web/app.js) dùng [layout](web/graph-layout.js) để xác định thành phần liên thông.
+- Dựng lại dữ liệu web bằng `.venv/bin/python scripts/build_study_evidence.py`. Khi dịch vụ đang chạy, kiểm thử hai dataset, ba ngưỡng và chuyển bộ lọc bằng `NODE_PATH=.runtime/ui-tests/node_modules .runtime/node/bin/node scripts/test_study_evidence_view.cjs`.
+
 ## Demo và báo cáo V3
 
-Chạy `bash run-macos.sh start`. Mở [Đối chiếu V3](http://localhost:8765/#v3), chọn Pima và bấm **Mẫu hai mạng khác nhãn**. Chuyển sang **Thực nghiệm V2** ở thanh bên, chạy một lượt, rồi quay về **Đối chiếu V3** và chạy lại. Khi đổi workflow trong cùng tab, biểu mẫu giữ các giá trị đã nhập. Với mạng chính V2, mẫu Pima này cho điểm 0,519 ở cả hai lượt. V3 hiển thị thêm điểm 0,275 của mạng V1, cờ bất đồng và độ nhạy từng trường.
+Chạy `bash run-macos.sh start` rồi mở [Đối chiếu V3](http://localhost:8765/#v3).
+Chọn Pima hoặc Early Stage, bấm **Mẫu hai mạng khác nhãn**, rồi chạy luồng đa agent.
+V3 chọn CNN 1D cho Pima và MLP cho Early Stage theo Macro-F1 validation.
+Mạng đứng thứ hai được dùng để đối chiếu cùng mẫu.
 
-API `POST /api/v2/predict` nhận thêm `workflow: "v3"`. Bỏ trường này để gọi quy trình V2. Trong V3, ModelComparison chạy checkpoint đối chứng, PresentationPolicy chọn cách giải thích theo dataset và trạng thái mẫu. Bản local học từ phiếu Hữu ích / Chưa hữu ích qua `POST /api/feedback`. Nhật ký V3 nằm ở `.runtime/audit-v3.jsonl`.
-
-- [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) có hướng dẫn bảo vệ và hai ảnh chụp cùng mẫu trên V2/V3.
-- [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf) có phân tích ghép cặp, độ nhạy và thí nghiệm phản hồi mô phỏng.
-- [Ôn vấn đáp GlucoGuide – 51 câu](reports/on_van_dap_glucoguide_51_cau.pdf) có mục lục theo câu, ví dụ từ code và hai kịch bản demo ở câu 42 và 49.
-- Tái lập số liệu với `.venv/bin/python -m scripts.evaluate_study_v3` khi Neo4j local đang chạy. [Kết quả](results/v3/study_review.json).
+- **Dữ liệu thí nghiệm** dùng chung train/validation/test cho MLP, CNN 1D và Transformer theo đặc trưng.
+- **Checkpoint V3** nằm trong `models/v3/` dạng `.npz`, gồm trọng số và thống kê tiền xử lý. `app/deep_study.py` nạp và kiểm SHA-256.
+- **Đường gọi** là `POST /api/v2/predict` với `workflow: "v3"` và `version: "auto"` hoặc bỏ `version`. Giữ `workflow: "v2"` để tái hiện các checkpoint MLP lịch sử.
+- **Tái lập** bằng `.venv/bin/python -m scripts.compare_deep_models` và `.venv/bin/python -m scripts.build_study_evidence`. Sau khi tái huấn luyện, nạp lại dịch vụ để đọc checkpoint mới.
+- **Minh chứng** có ROC, Precision–Recall và ma trận nhầm lẫn tương tác cho cả ba họ mạng. [Notebook](notebooks/tieuluan_final_06_02_giangkt_v3.ipynb) nạp cùng checkpoint và có sẵn biểu đồ.
+- **Báo cáo** gồm [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) và [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf).
 
 ## Phiên bản V2 và bộ nộp gọn
 
@@ -89,12 +100,23 @@ Web dùng FastAPI; Qwen3 4B Q4_K_M chạy bằng llama.cpp tại 127.0.0.1:11435
 
 - Phân loại: Diabetes Risk Prediction 50K, 40.000 dòng train và 10.000 dòng test; MLP học nhãn tổng hợp High/Moderate/Low.
 - Hồi quy: diabetes/scikit-learn, 353 mẫu train và 89 mẫu test; dự đoán điểm tiến triển nghiên cứu.
-- Tri thức: `knowledge.json`, `knowledge_dialogue.json` và `knowledge_curated.json` trong `data/`, tổng 58 đoạn tham chiếu 22 nguồn duy nhất, gồm 21 link web và 1 PDF. Mục `sources` trong [KB_knowledge.json](exports/KB_KG_RAG/KB_knowledge.json) liệt kê đủ 22 nguồn đang dùng.
-- Đồ thị local: 169 khái niệm, 106 quan hệ, phủ đủ 58 tài liệu. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
+- Tri thức: `knowledge.json`, `knowledge_dialogue.json` và `knowledge_curated.json` trong `data/`, tổng 61 đoạn tham chiếu 25 nguồn duy nhất, gồm 24 link web và 1 PDF. Mục Tri thức trên web và `GET /api/knowledge` đọc bản đang chạy.
+- Đồ thị local: 175 khái niệm, 109 quan hệ, phủ đủ 61 tài liệu. Bản xuất lưu trước đợt bổ sung có 169 khái niệm và 106 quan hệ. Mỗi quan hệ lưu mã tài liệu, trích đoạn và URL nguồn.
 - Hội thoại: định tuyến, truy xuất TF-IDF từ/ký tự, Qwen local và kiểm tra phản hồi. Trọng số 4B dùng nguyên bản; các thí nghiệm LoRA 1.7B được giữ riêng.
 - Agent đồ thị: truy vấn Neo4j theo mã tài liệu qua MessageBus, đối chiếu bộ ba/trích đoạn/URL và cấp các quan hệ hợp lệ vào ngữ cảnh Qwen. Không tự sinh Cypher từ câu hỏi và không tự thêm quan hệ vào cơ sở dữ liệu.
 - An toàn: phân loại trước RAG, không chờ đồ thị hoặc mô hình khi cần hành động ưu tiên.
 - Phản hồi: bảng Q học ba cách trình bày theo chủ đề; không học liều thuốc hoặc điều trị.
+
+### Tệp mô hình đang dùng
+
+| Tác vụ | Tệp |
+|---|---|
+| Phân loại nhãn tổng hợp trên dữ liệu 50K | `models/synthetic_diabetes_risk_mlp_classifier.joblib` |
+| Hồi quy điểm tiến triển nghiên cứu | `models/diabetes_progression_mlp_regressor.joblib` |
+| Phân loại mẫu Pima | `models/v2/pima_mlp_classifier_3_hidden_layers.joblib` và `models/v2/pima_mlp_classifier_5_hidden_layers.joblib` |
+| Phân loại mẫu Early Stage | `models/v2/early_stage_mlp_classifier_3_hidden_layers.joblib` và `models/v2/early_stage_mlp_classifier_5_hidden_layers.joblib` |
+
+Các lựa chọn V1 và V2 trên màn hình đối chiếu tương ứng với mạng 3 và 5 tầng ẩn. Hồi quy logistic và Ridge vẫn có số liệu đối chứng trong `results/model_metrics.json`.
 
 ## Nạp lại đồ thị và kiểm thử
 
@@ -108,7 +130,7 @@ Từ thư mục project, dùng Python của .venv:
 
 Kiểm thử an toàn chặn DNS/kết nối ngoài; kết nối loopback được giữ cho các thành phần nội bộ. Kết quả nằm trong results/. Script evaluate_chat_local.py cần web cùng mô hình local đang chạy và lưu phản hồi để đọc lại.
 
-Kiểm thử giao diện bằng `node scripts/test_graph_view.cjs` với Playwright và Edge. Script chặn truy cập máy chủ ngoài và kiểm tra đủ 58 bộ lọc cùng các thao tác trên desktop và điện thoại. Ảnh desktop được lưu tại `report_sources/demo-graph-current.png`.
+Kiểm thử giao diện bằng `node scripts/test_graph_view.cjs` với Playwright và Edge. Script chặn truy cập máy chủ ngoài và kiểm tra các bộ lọc tài liệu cùng các thao tác trên desktop và điện thoại. Ảnh desktop được lưu tại `report_sources/demo-graph-current.png`.
 
 ## Bộ nộp KB, KG và RAG
 
@@ -129,7 +151,14 @@ Tập truy xuất có 20 câu cần tìm tài liệu và 2 câu cần từ chố
 
 ## Mã nguồn báo cáo
 
-Thư mục [`reports/`](reports/) có hai báo cáo ở từng phiên bản V1, V2 và V3, cùng tài liệu ôn vấn đáp. Mã dựng báo cáo và hình minh họa nằm trong [`report_sources/`](report_sources/). Dùng `scripts/assemble_reports.py` để ghép nguồn V1, `scripts/build_v2_reports.py` để biên dịch V2 bằng Tectonic và `report_sources/v3/build.py` để dựng hai báo cáo V3 từ PDF V2 và kết quả đối chiếu.
+Thư mục [`reports/`](reports/) có hai báo cáo ở từng phiên bản V1, V2 và V3, cùng tài liệu ôn vấn đáp. Mã dựng báo cáo và hình minh họa nằm trong [`report_sources/`](report_sources/). Dùng `scripts/assemble_reports.py` để ghép nguồn V1, `scripts/build_v2_reports.py` để biên dịch V2 bằng Tectonic. Hai báo cáo V3 được biên dịch trực tiếp từ nguồn LaTeX trong `report_sources/v3/` với Times New Roman và Courier New. Từ thư mục gốc, chạy:
+
+```bash
+cd report_sources/v3
+tectonic --outdir ../../reports project01_06_02_giangkt_v3.tex
+tectonic --outdir ../../reports tieuluan_final_06_02_giangkt_v3.tex
+```
+
 
 ## Cấu trúc thư mục
 
@@ -141,14 +170,20 @@ Thư mục [`reports/`](reports/) có hai báo cáo ở từng phiên bản V1, 
 
 ## Demo trên Vercel
 
-[Mở demo GlucoGuide](https://glucoguide-giang254.vercel.app/#v2) để so sánh mô hình V1 và V2. Web chạy FastAPI và các checkpoint MLP đã huấn luyện. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `exports/diabetes/kg/graph.json` và ghi rõ nguồn lưu trữ. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata. Kết quả thực nghiệm phục vụ học phần và cần được đọc trong phạm vi nghiên cứu của từng dataset.
+[Mở demo GlucoGuide V3](https://glucoguide-giang254.vercel.app/#v3) để chạy các checkpoint đã chọn và thử phân loại type 1, type 2. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `data/knowledge_graph_snapshot.json`. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata.
 
 ## Nguồn web/PDF và hỗ trợ sau mô hình
 
-12 đoạn bổ sung được dựng từ web NIDDK, hai bài Vinmec và PDF NIDDK Guiding Principles. PDF nguồn và văn bản web NIDDK lưu tại data/source_documents/; Vinmec chỉ lưu trích dẫn ngắn cùng URL và mã băm. data/source_curation.json ghi nội dung biên soạn và vị trí đối chiếu; chạy `python scripts/build_sourced_kb.py` để kiểm tra và dựng lại hoàn toàn offline. PDF là tài liệu lưu trữ: chỉ dùng các nguyên tắc tự chăm sóc đã chọn, không lấy ngưỡng chẩn đoán hoặc liều điều trị từ đó. Thu thập nguồn ban đầu có truy cập web theo yêu cầu; lúc hỏi đáp không tự tải nguồn hoặc gửi dữ liệu người dùng ra ngoài.
+14 đoạn bổ sung được dựng từ web NIDDK, hai bài Vinmec, hai bài Nhà thuốc FPT Long Châu và PDF NIDDK Guiding Principles. PDF nguồn và văn bản web NIDDK lưu tại data/source_documents/; Vinmec và Long Châu chỉ lưu trích dẫn ngắn cùng URL và mã băm tệp đã lưu. data/source_curation.json ghi nội dung biên soạn và vị trí đối chiếu; chạy `python scripts/build_sourced_kb.py` để kiểm tra và dựng lại hoàn toàn offline. PDF là tài liệu lưu trữ: chỉ dùng các nguyên tắc tự chăm sóc đã chọn, không lấy ngưỡng chẩn đoán hoặc liều điều trị từ đó. Thu thập nguồn ban đầu có truy cập web theo yêu cầu; lúc hỏi đáp không tự tải nguồn hoặc gửi dữ liệu người dùng ra ngoài.
 
 Nguồn Vimec Accessibility là thiết bị nâng, còn vimec.net.vn là công ty thiết bị y tế; các trang đã kiểm tra không được đưa vào KB tư vấn bệnh. Vinmec là nguồn y khoa tiếng Việt đã được người dùng xác nhận.
 
 Sau khi chạy phân loại/hồi quy, bấm **Nhận xét và hỗ trợ**. Agent Nhận xét mô hình giải thích phạm vi; agent Hỗ trợ người dùng trả ba mục có nguồn: ăn uống, theo dõi và chuẩn bị đi khám. Những mục này là gợi ý chung, không được cá nhân hóa bằng nhãn tổng hợp. Mẫu được chuyển sang các lượt chat tiếp theo khi người dùng bấm nút; có thể bấm Bỏ ngữ cảnh mẫu hoặc Cuộc trò chuyện mới để xóa. Backend tự tính lại kết quả từ trường đầu vào, không nhận kết luận chẩn đoán do trình duyệt gửi.
 
 Kiểm thử mới: `python -m scripts.test_sources_support` và `node scripts/test_support_view.cjs`. Tập 8 truy vấn kiểm tra nguồn PDF/Vinmec nằm trong data/rag_source_evaluation.json; kết quả được lưu riêng với tập 22 truy vấn hồi quy. Để xem PDF offline trên web, tìm PDF trong Dữ liệu & tài liệu, bấm Đọc tài liệu gốc; liên kết đi tới /api/source/{id} kèm số trang.
+
+### Phân loại type 1 và type 2 (NHIS)
+
+Mở [Thực nghiệm V3](http://localhost:8765/#v3), kéo xuống **Phân loại tiểu đường type 1 và type 2**, chọn mẫu giả định rồi bấm **Chạy phân loại**. API `POST /api/v2/type-predict` nạp checkpoint MLP đã chọn qua validation và trả `type_1`, `type_2` hoặc `undetermined`. Demo dành cho mẫu nghiên cứu là người lớn đã được chẩn đoán ngoài thai kỳ.
+
+Bộ khảo sát NHIS công khai lưu theo ba tệp ZIP chứa CSV trong `data/raw/nhis/`. Tải từ CDC cho [2022](https://www.cdc.gov/nchs/nhis/documentation/2022-nhis.html), [2023](https://www.cdc.gov/nchs/nhis/documentation/2023-nhis.html) và [2024](https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html), theo thứ tự train/validation/test. Chạy lại với `.venv/bin/python -m scripts.compare_diabetes_types data/raw/nhis`. Mã băm dữ liệu, số mẫu theo nhãn và kết quả có trong `results/v3/diabetes_types.json`. Nhãn là loại bệnh người tham gia thuật lại. Test năm 2024 cho Macro-F1 0,644 tại ngưỡng 0,5. Demo dùng hai ngưỡng 0,43 và 0,91, có nhãn cho 83,5% mẫu test.

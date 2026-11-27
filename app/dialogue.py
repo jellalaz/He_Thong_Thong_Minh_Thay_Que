@@ -1,5 +1,6 @@
 """Plan conversation turns while preserving existing measurement and emergency rules."""
 import re
+from app.care_dialogue import care_plan, care_state, reported_details
 from app.retrieval import normalize
 
 RULE_TOPICS = {'bloodpressure', 'meanpressure', 'low', 'urgent', 'model', 'classification', 'demographics'}
@@ -12,7 +13,9 @@ INTENTS = [
     ('monitor', r'nhat ky|ghi (?:chep|lai)|tai kham|di kham|hoi bac si|so do', ['glucose_log', 'care_questions']),
     ('diabetes', r'type|tuyp|tuy?p|tiep xuc|lay (?:khong|nhiem)|di truyen|bien chung|tien (?:tieu duong|dai thao duong)|chua khoi', ['overview']),
 ]
-CONTINUE = r'^(?:vay|the|con|tai sao|vi sao|vi du|cho (?:minh|toi) vi du|cu the|noi ro|chi tiet|giai thich|la sao|toi khong hieu|lam sao|nhu the nao|bao nhieu|toi khong|minh khong|khong thich|co can|co duoc|duoc khong|thay bang|thay gi)\b'
+CONTINUE = r'^(?:vay|the|con|tai sao|vi sao|vi du|cho (?:(?:minh|toi) )?vi du|cu the|noi ro|chi tiet|giai thich|la sao|toi khong hieu|lam sao|nhu the nao|bao nhieu|toi khong|minh khong|khong thich|co can|co duoc|duoc khong|thay bang|thay gi)\b'
+TYPE_QUESTION = r'\b(?:(?:loai|type|tuyp|tuy?p) (?:gi|may|nao)|(?:xac dinh|biet|du doan) (?:duoc )?(?:loai|type|tuyp|tuy?p)|(?:thuoc|la|co phai) (?:tieu duong )?(?:type|tuyp|tuy?p|loai) [12])\b'
+TYPE_CONTEXT = r'\b(?:tieu duong|dai thao duong|duong huyet|hba1c|type [12]|tuyp [12])\b'
 
 
 def explicit_topic(text):
@@ -27,6 +30,17 @@ def plan_turn(question, history, legacy):
     p = dict(legacy)
     p['guarded'] = False
     q = normalize(question).strip(' .!?')
+    if p['tone'] != 'urgent' and re.search(TYPE_QUESTION, q):
+        prior = ' '.join(normalize(h['content']) for h in history[-6:] if h['role'] == 'user')
+        if re.search(TYPE_CONTEXT, q + ' ' + prior):
+            p.update(topic='diabetes', ids=['identifying_diabetes_type'], guarded=True,
+                     fixed_sources=True, override=None, intro='', context_used=not bool(re.search(TYPE_CONTEXT, q)),
+                     suggestions=['Tiểu đường type 1 khác type 2 thế nào?'])
+            return p
+    intake = care_state(question, history)
+    if intake and intake.fact != 'freeform' and p['tone'] != 'urgent':
+        p.update(care_plan(intake))
+        return p
     # Preserve actual medical interpretation, clarification and emergency branches.
     if p['tone'] == 'urgent' or p['topic'] in RULE_TOPICS or (p['topic'] in {'a1c', 'testing'} and (re.search(r'\d', q) or p['context_used'] or p['intro'])):
         p.update(guarded=True, fixed_sources=True)
@@ -68,17 +82,28 @@ def plan_turn(question, history, legacy):
         return p
     current, ids = explicit_topic(question)
     prior_users = [h['content'] for h in history if h['role'] == 'user'][-6:]
-    # Read the latest relevant topic; social turns neither replace nor invent medical facts.
-    anchor = None
-    for old in reversed(prior_users):
-        old_topic, old_ids = explicit_topic(old)
-        if old_topic:
-            anchor = (old, old_topic, old_ids)
-            break
-    if anchor and re.search(CONTINUE, q) and (not current or current == anchor[1]):
-        old, current, ids = anchor
-        p.update(query=old + '\nCâu hỏi tiếp: ' + question, context_used=True,
-                 resolved_question=f'Trước đó người dùng hỏi: {old}\nBây giờ cần trả lời: {question}')
+    # Keep adjacent clarifications together, including preferences added after the opening turn.
+    # An intervening standalone question ends the chain even if it has no matching intent.
+    thread = []
+    anchor_topic = current
+    if re.search(CONTINUE, q):
+        for old in reversed(prior_users):
+            old_topic, old_ids = explicit_topic(old)
+            if old_topic and anchor_topic and old_topic != anchor_topic:
+                break
+            continues = re.search(CONTINUE, normalize(old))
+            if not old_topic and not continues:
+                break
+            thread.append(old)
+            if old_topic:
+                anchor_topic, ids = old_topic, old_ids
+            if not continues:
+                break
+    if thread and anchor_topic:
+        current = anchor_topic
+        earlier = '\n'.join(reversed(thread))
+        p.update(query=earlier + '\nCâu hỏi tiếp: ' + question, context_used=True,
+                 resolved_question=f'Các lượt trước của người dùng:\n{earlier}\nCâu hỏi hiện tại: {question}')
     elif current:
         p.update(query=question, context_used=False)
     if current:
@@ -101,4 +126,9 @@ def plan_turn(question, history, legacy):
         p['instruction'] = 'Đưa ví dụ món cụ thể theo tài liệu. Nếu người dùng nói không ăn một món, hãy thay món đó bằng lựa chọn phù hợp trong nguồn; không nhắc lại món họ đã từ chối. Không tự tính gram, calo hay liều thuốc.'
     if p['topic'] == 'medicine':
         p['instruction'] = 'Giải thích đúng thuốc hoặc câu hỏi cơ chế đang được hỏi. Không tính liều hoặc thay đơn. Nếu không biết thuốc nào, hỏi tên thuốc.'
+    if intake and intake.fact == 'freeform':
+        who = ' '.join(filter(None, [intake.title, intake.name]))
+        p['care_context'] = {'person': who, 'observations': reported_details(intake)}
+        p['context_used'] = True
+        p['clarification'] = f'Bạn đang nói tiếp về {who}. Chi tiết bạn vừa kể khiến bạn lo điều gì về sức khỏe của {intake.title}?'
     return p

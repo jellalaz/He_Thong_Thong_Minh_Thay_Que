@@ -32,6 +32,22 @@
       "url": "https://www.vinmec.com/vie/bai-viet/cach-cham-soc-ban-chan-nguoi-benh-tieu-duong-vi",
       "local_file": "data/source_documents/vinmec_feet.excerpts.json",
       "scope": "Prevention and referral sections only; wound treatment and prescriptions excluded."
+    },
+    "long_chau_nutrition": {
+      "label": "Nhà thuốc FPT Long Châu · Dinh dưỡng cho người tiểu đường",
+      "publisher": "Nhà thuốc FPT Long Châu",
+      "kind": "web",
+      "url": "https://nhathuoclongchau.com.vn/bai-viet/dinh-duong-cho-nguoi-tieu-duong-nguyen-tac-an-uong-va-cach-xay-dung-che-do-an.html",
+      "local_file": "data/source_documents/long_chau_nutrition.excerpts.json",
+      "retrieved_at": "2026-11-27"
+    },
+    "long_chau_feet": {
+      "label": "Nhà thuốc FPT Long Châu · Phòng ngừa vấn đề ở bàn chân",
+      "publisher": "Nhà thuốc FPT Long Châu",
+      "kind": "web",
+      "url": "https://nhathuoclongchau.com.vn/bai-viet/ban-chan-dai-thao-duong-nguyen-nhan-dau-hieu-va-cach-phong-ngua-hieu-qua.html",
+      "local_file": "data/source_documents/long_chau_feet.excerpts.json",
+      "retrieved_at": "2026-11-27"
     }
   },
   "documents": [
@@ -413,6 +429,66 @@
         "page": 1,
         "heading": "2.7. Đến cơ sở y tế khi gặp biến chứng",
         "quote": "không nên tự xử lý tại nhà"
+      }
+    },
+    {
+      "id": "long_chau_whole_grains",
+      "title": "Long Châu: Chọn ngũ cốc nguyên hạt",
+      "source": "long_chau_nutrition",
+      "terms": [
+        "long châu",
+        "dinh dưỡng",
+        "ngũ cốc nguyên hạt",
+        "gạo lứt",
+        "yến mạch"
+      ],
+      "questions": [
+        "Theo Long Châu, người tiểu đường có thể chọn ngũ cốc nào?"
+      ],
+      "text": "Gạo lứt, yến mạch và bánh mì nguyên cám là những ví dụ về ngũ cốc nguyên hạt Long Châu gợi ý khi chuẩn bị bữa ăn cho người tiểu đường.",
+      "triples": [
+        [
+          "Ngũ cốc nguyên hạt",
+          "có ví dụ",
+          "Yến mạch"
+        ]
+      ],
+      "topics": [
+        "meal"
+      ],
+      "locator": {
+        "heading": "Chọn thực phẩm giàu chất xơ",
+        "quote": "gạo lứt, yến mạch, bánh mì nguyên cám"
+      }
+    },
+    {
+      "id": "long_chau_sole_check",
+      "title": "Long Châu: Quan sát lòng bàn chân",
+      "source": "long_chau_feet",
+      "terms": [
+        "long châu",
+        "bàn chân",
+        "lòng bàn chân",
+        "gương",
+        "kiểm tra chân"
+      ],
+      "questions": [
+        "Theo Long Châu, làm sao để kiểm tra lòng bàn chân?"
+      ],
+      "text": "Khi kiểm tra bàn chân, bạn có thể dùng gương nếu khó nhìn thấy lòng bàn chân.",
+      "triples": [
+        [
+          "Quan sát lòng bàn chân",
+          "có thể dùng",
+          "Gương"
+        ]
+      ],
+      "topics": [
+        "monitor"
+      ],
+      "locator": {
+        "heading": "Cách phòng ngừa",
+        "quote": "Sử dụng gương nếu không tự kiểm tra được lòng bàn chân."
       }
     }
   ]

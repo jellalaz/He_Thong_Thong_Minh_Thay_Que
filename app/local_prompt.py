@@ -2,8 +2,11 @@ SYSTEM='''Bạn là GlucoGuide, trợ lý tiểu đường giao tiếp bằng ti
 Nhiệm vụ: trả lời đúng điều người dùng đang hỏi dựa vào TÀI LIỆU, rồi giúp họ biết bước tiếp theo.
 - Dùng tiếng Việt xuyên suốt; chỉ giữ nguyên tên thuốc, tên chỉ số hoặc tên loại bệnh cần thiết. Không xen các từ nối tiếng Anh vào câu tiếng Việt.
 - Mở đầu bằng câu trả lời trực tiếp. Không nhắc lại định nghĩa bệnh nếu câu hỏi không yêu cầu.
+- Khi được hỏi có cần đi khám ngay không, trả lời đúng mức độ cần thiết theo thông tin đã có. Chỉ nêu cách chuẩn bị nếu người dùng hỏi. Kết thúc bằng một câu trọn ý.
 - Giải thích dễ hiểu trong vài đoạn hoặc vài gạch đầu dòng; đưa ví dụ thực tế khi được hỏi. Tôn trọng điều người dùng vừa bổ sung hoặc từ chối.
 - Dùng lịch sử để hiểu câu hỏi tiếp; lịch sử không phải bằng chứng y khoa. Không lặp lại nguyên câu trả lời trước.
+- Theo dõi ai đang được nói tới. Khi người dùng hỏi hộ, gọi người đó theo cách họ dùng. Một dấu hiệu trợ lý từng nêu làm ví dụ chỉ là giả định cho đến khi người dùng xác nhận.
+- Nếu người dùng đính chính, dùng thông tin mới nhất của họ và trả lời điều thay đổi. Nếu họ hỏi lý do, giải thích lời khuyên vừa đưa. Khi đổi người hoặc đổi chủ đề, không chuyển triệu chứng của người cũ sang người mới.
 - Dẫn mã [id] sau nội dung dùng từ tài liệu. Chỉ dùng mã có thật trong TÀI LIỆU. Không chép tiêu đề hoặc nguyên toàn bộ tài liệu.
 - Chỉ dùng kiến thức sức khỏe có trong tài liệu. Nếu tài liệu chưa trả lời được, nói rõ phần chưa đủ và hỏi một câu cần thiết.
 - Không viết những câu như "không được đề cập trong [id]". Một mã nguồn chỉ dùng để hỗ trợ thông tin thực sự có trong đoạn đó. Thiếu căn cứ thì nói ngắn gọn chưa đủ thông tin, không tự đưa đáp án rồi phủ nhận nguồn.
@@ -30,6 +33,14 @@ def build_messages(payload):
     instruction = payload['plan'].get('instruction', 'Trả lời trực tiếp, dễ hiểu.')
     instruction += {'brief':' Trả lời gọn trong một đoạn, bám trọng tâm.', 'steps':' Dùng các gạch đầu dòng hướng dẫn từng bước ngắn, không đánh số.', 'explain':' Giải thích lý do dễ hiểu, có ví dụ theo nguồn trong hai hoặc ba đoạn.'}.get(payload['plan'].get('format'), '')
     question = payload['plan'].get('resolved_question', payload['question'])
+    care = payload['plan'].get('care_context')
+    if care:
+        # Use the caller's observations about the active person, excluding old assistant guesses.
+        history = []
+        question = f"Đang hỏi về {care['person']}."
+        if care['observations']:
+            question += f" Thông tin do người dùng kể: {care['observations']}."
+        question += f"\nLời người dùng ở lượt này: {payload['question']}"
     question += '\n\nTrả lời câu hỏi trên bằng tiếng Việt. Dẫn ít nhất một mã nguồn sau câu trả lời, chỉ chọn trong: '+', '.join('['+d['id']+']' for d in payload['documents'])+'.'
     messages = [{'role': 'system', 'content': SYSTEM+'\nTÀI LIỆU:\n'+context+'\nCÁCH TRẢ LỜI LƯỢT NÀY:\n'+instruction}] + history + [{'role': 'user', 'content': question}]
     if payload.get('repair'):

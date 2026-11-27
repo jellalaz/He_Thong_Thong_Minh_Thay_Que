@@ -7,6 +7,10 @@
       "label": "NIDDK · What Is Diabetes?",
       "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/what-is-diabetes"
     },
+    "type_diagnosis": {
+      "label": "NIDDK · Diabetes Tests & Diagnosis",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis#type"
+    },
     "living": {
       "label": "NIDDK · Healthy Living with Diabetes",
       "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes"
@@ -61,6 +65,26 @@
           "liên quan đến",
           "sử dụng insulin kém hiệu quả"
         ]
+      ]
+    },
+    {
+      "id": "identifying_diabetes_type",
+      "title": "Bác sĩ xác định loại tiểu đường bằng cách nào?",
+      "terms": [
+        "xác định loại tiểu đường",
+        "tiểu đường loại mấy",
+        "xét nghiệm phân loại",
+        "tự kháng thể"
+      ],
+      "topics": ["diabetes"],
+      "questions": [
+        "Chỉ số HbA1c có cho biết tôi bị tiểu đường loại mấy không?",
+        "Cần xét nghiệm gì để xác định type tiểu đường?"
+      ],
+      "source": "type_diagnosis",
+      "text": "Chỉ số đường huyết hoặc HbA1c có thể được dùng để xác nhận có đái tháo đường, nhưng riêng các chỉ số này chưa xác định được loại. Khi nghi type 1, bác sĩ có thể chỉ định xét nghiệm tự kháng thể. Xét nghiệm di truyền có thể được dùng khi nghi đái tháo đường đơn gen.",
+      "triples": [
+        ["Nghi đái tháo đường type 1", "có thể đánh giá bằng", "Xét nghiệm tự kháng thể"]
       ]
     },
     {

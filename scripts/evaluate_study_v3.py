@@ -45,16 +45,25 @@ def evaluate_policy():
     # Three explicit simulated preferences, one per context. Freeze Q during evaluation.
     rng = random.Random(254)
     contexts = ['agree', 'missing', 'disagree']
+    blocks = []
+    rewards = []
     with patch('app.feedback.secrets.randbelow', rng.randrange):
         for i in range(600):
             k = i % len(contexts)
             p = presentation_policy({'dataset':'pima', 'context':contexts[k]}, None)
-            feedback.record(p['feedback_id'], p['style'] == feedback.FORMATS[k])
+            vote = feedback.record(p['feedback_id'], p['style'] == feedback.FORMATS[k])
+            rewards.append(vote['reward'])
+            if len(rewards) == 100:
+                blocks.append({'end': i + 1, 'helpful': rewards.count(1.0),
+                               'mean_reward': sum(rewards) / len(rewards)})
+                rewards.clear()
     learned = feedback.state()['topics']
     best = [int(np.argmax(learned['study/pima/'+context])) for context in contexts]
     assert best == [0, 1, 2]
     return {'simulated_ratings':600, 'seed':254, 'initial_greedy_correct':1,
-            'final_greedy_correct':3, 'contexts':contexts, 'greedy_actions':best}
+            'final_greedy_correct':3, 'contexts':contexts, 'greedy_actions':best,
+            'formats': list(feedback.FORMATS), 'blocks': blocks,
+            'final_q': {context: learned['study/pima/'+context] for context in contexts}}
 
 
 def main():

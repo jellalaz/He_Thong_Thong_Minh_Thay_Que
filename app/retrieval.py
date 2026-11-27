@@ -50,6 +50,9 @@ class Retriever:
         if plan.get('fixed_sources'):
             return [dict(self.by_id[i], retrieval_score=1.0) for i in plan['ids'] if i in self.by_id]
         query = normalize(plan['query'])
+        requested_publishers = tuple(prefix for pattern, prefix in (
+            (r'\bvinmec\b', 'vinmec_'), (r'\blong\s+chau\b', 'long_chau_'),
+        ) if re.search(pattern, query))
         scores = (self.config['word_weight'] * (self.words @ self.word.transform([query]).T).toarray().ravel()
                   + self.config['char_weight'] * (self.chars @ self.char.transform([query]).T).toarray().ravel())
         for i, doc in enumerate(self.docs):
@@ -63,7 +66,7 @@ class Retriever:
                 scores[i] += self.config['routing_boost']
             if doc['source'] in {'dataset', 'classification_data'} and plan['topic'] not in {'model', 'classification', 'meanpressure', 'demographics'}:
                 scores[i] = 0  # Never mix research features into ordinary patient questions.
-            if re.search(r'\bvinmec\b', query) and not doc['source'].startswith('vinmec_'):
+            if requested_publishers and not doc['source'].startswith(requested_publishers):
                 scores[i] = 0
             if re.search(r'\bpdf\b', query) and doc.get('provenance', {}).get('kind') != 'pdf':
                 scores[i] = 0

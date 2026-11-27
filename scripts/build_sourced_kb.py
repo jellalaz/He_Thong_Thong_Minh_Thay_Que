@@ -20,7 +20,7 @@ def build():
         assert path.is_relative_to((ROOT/'data/source_documents').resolve())
         content = path.read_bytes()
         source['sha256'] = hashlib.sha256(content).hexdigest()
-        source['retrieved_at'] = '2026-11-06'
+        source.setdefault('retrieved_at', '2026-11-06')
         if source['kind'] == 'pdf':
             pages = [compact(p.extract_text()) for p in PdfReader(path).pages]
         elif path.suffix == '.json':
