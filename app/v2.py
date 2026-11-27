@@ -216,7 +216,7 @@ def study():
 @router.post('/predict')
 def coordinated_prediction(req: StudyRequest):
     if req.workflow == 'v3' and os.environ.get('VERCEL'):
-        raise HTTPException(410, 'V3 dùng mô hình NHIS tại /api/v2/type-predict. Phép đối chiếu Pima và Early Stage nằm ở tab Minh chứng.')
+        raise HTTPException(410, 'Chạy sàng lọc Pima ở /api/v2/screening-predict hoặc phân loại type NHIS ở /api/v2/type-predict.')
     # Lazy import avoids an import cycle and retains the established live graph factory.
     from app.main import kb, retriever, graph_driver
     from app.conversation import route
@@ -294,3 +294,62 @@ def coordinated_prediction(req: StudyRequest):
             'answer':explanation['text'],'trace':bus.trace,'audit':audit,'seconds':seconds,
             'sources':[{'id':d['id'],'title':d['title'],'excerpt':d['text'],'source':kb['sources'][d['source']]} for d in facts['documents']],
             'graph_evidence':facts['facts'],'graph_status':facts['graph_status'],'safety':assessment.public()}
+
+
+class ScreeningRequest(BaseModel, extra='forbid'):
+    values: dict[str, float | None]
+
+
+SCREENING_REQUIRED = ('plas', 'mass', 'age')
+SCREENING_LABELS = {
+    'preg': 'Số lần mang thai',
+    'plas': 'Glucose huyết tương sau 2 giờ nghiệm pháp dung nạp glucose (mg/dL)',
+    'pres': 'Huyết áp tâm trương (mmHg)',
+    'skin': 'Nếp gấp da cơ tam đầu (mm)',
+    'insu': 'Insulin huyết thanh sau 2 giờ (µU/mL)',
+    'mass': 'BMI (kg/m²)',
+    'pedi': 'Chỉ số phả hệ tiểu đường theo bộ Pima',
+    'age': 'Tuổi (năm)',
+}
+
+
+@router.get('/screening-study')
+def screening_study():
+    spec = registry()['datasets']['pima']
+    study = deep_study.results()['datasets']['pima']
+    return {
+        'features': [{**f, 'label': SCREENING_LABELS[f['name']], 'required': f['name'] in SCREENING_REQUIRED}
+                     for f in spec['features']],
+        'ranking': study['ranking'], 'models': study['summary'],
+        'examples': {
+            'a': dict(zip(SCREENING_LABELS, (11, 143, 94, 33, 146, 36.6, .254, 51), strict=True)),
+            'b': dict(zip(SCREENING_LABELS, (1, 97, 66, 15, 140, 23.2, .487, 22), strict=True)),
+        },
+    }
+
+
+@router.post('/screening-predict')
+def screening_predict(req: ScreeningRequest):
+    spec = registry()['datasets']['pima']
+    study = deep_study.results()['datasets']['pima']
+    family = study['ranking'][0]
+    bus = AuditBus(uuid.uuid4().hex, study['summary'][family]['checkpoint']['file'], '3.0')
+    bus.register(Agent('Data', validate_data))
+    bus.register(Agent('Prediction', deep_study.predict))
+    bus.register(Agent('Rule', reviewed_rules))
+    values = dict.fromkeys(SCREENING_LABELS) | req.values
+    try:
+        data = bus.request('Coordinator', 'Data', {'dataset': 'pima', 'values': values})
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from error
+    for field in SCREENING_REQUIRED:
+        if field in data['missing_fields']:
+            raise HTTPException(422, 'Cần nhập ' + SCREENING_LABELS[field] + '.')
+    for field in ('age', 'preg'):
+        if values[field] is not None and not values[field].is_integer():
+            raise HTTPException(422, SCREENING_LABELS[field] + ' cần là số nguyên.')
+    prediction = bus.request('Coordinator', 'Prediction', {'dataset': 'pima', 'data': data, 'scope': spec['scope']})
+    rules = bus.request('Coordinator', 'Rule', {'dataset': 'pima', 'data': data, 'prediction': prediction})
+    if not rules['prediction_consistent']:
+        raise HTTPException(503, 'Nhãn và điểm mô hình không nhất quán.')
+    return {**prediction, 'missing_fields': [SCREENING_LABELS[k] for k in data['missing_fields']]}

@@ -8,7 +8,7 @@ async function api(url,body){const r=await fetch(url,body?{method:'POST',headers
 function toast(s){$('#toast').textContent=s;$('#toast').hidden=false;setTimeout(()=>$('#toast').hidden=true,3000)}
 function showView(v){
  document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
- ['chat','models','graph','data','minhchung','v2','v3'].forEach(x=>$('#'+x).hidden=x!==v);
+ ['chat','models','graph','data','minhchung','v2','v3','type'].forEach(x=>$('#'+x).hidden=x!==v);
  historyReplace(v);
  if(v==='minhchung')loadStudyEvidence();
  if(v==='graph')drawGraph();
@@ -101,5 +101,5 @@ function renderKB(){const q=norm($('#kb-search').value),rows=knowledge.filter(d=
 async function catalog(){try{const d=await api('/assets/data_catalog.json');$('#catalog').innerHTML='<div class="dataset-grid">'+['classification','regression'].map((k,i)=>{const x=d[k];return `<article class="dataset-card"><span class="eyebrow">0${i+1} / ${i?'HỒI QUY':'PHÂN LOẠI'}</span><h2>${esc(x.name)}</h2><p>${esc(x.scope)}</p><a href="${esc(x.url)}" target="_self" rel="noopener">${esc(x.publisher)} ↗</a><div class="data-statline"><span><b>${x.rows.toLocaleString('vi-VN')}</b>quan sát</span><span><b>${x.used_features}</b>biến đầu vào</span><span><b>${x.test.toLocaleString('vi-VN')}</b>mẫu kiểm tra</span></div><p>Train / test: ${x.train} / ${x.test} · seed ${d.seed}</p><small>${esc(x.file)}</small></article>`}).join('')+`</div><details class="data-details"><summary>Kiểm kê dữ liệu thiếu và khoảng quan sát · 8 trường phân loại</summary><p class="muted">Khoảng quan sát trong snapshot, không phải ngưỡng lâm sàng. Trung vị điền thiếu của mô hình học riêng trên train.</p><div class="table-scroll"><table><tr><th>TRƯỜNG</th><th>THIẾU</th><th>MIN</th><th>TRUNG VỊ</th><th>MAX</th></tr>${d.classification.fields.map(f=>`<tr><td>${esc(f.name)}</td><td>${f.missing}</td><td>${f.min}</td><td>${f.median}</td><td>${f.max}</td></tr>`).join('')}</table></div></details>`}catch(e){$('#catalog').textContent=e.message}}
 (async()=>{checkStatus();loadKB();catalog();try{schema=await api('/api/schema');fields();const m=await api('/api/metrics');$('#metrics').innerHTML=metricTable(m.filter(r=>r.accuracy!==undefined),false)+metricTable(m.filter(r=>r.mae!==undefined),true)}catch(e){$('#metrics').textContent=e.message}})();
 
-window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(['chat','models','graph','data','minhchung','v2','v3'].includes(v))showView(v)});
-const initialView=location.hash.slice(1);if(['chat','models','graph','data','minhchung','v2','v3'].includes(initialView))showView(initialView);
+window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(['chat','models','graph','data','minhchung','v2','v3','type'].includes(v))showView(v)});
+const initialView=location.hash.slice(1);if(['chat','models','graph','data','minhchung','v2','v3','type'].includes(initialView))showView(initialView);

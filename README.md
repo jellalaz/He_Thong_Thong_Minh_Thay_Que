@@ -12,11 +12,12 @@ Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 0
 
 ## Demo và báo cáo V3
 
-Mở [Dự đoán type · V3](https://glucoguide-giang254.vercel.app/#v3) hoặc chạy `bash run-macos.sh start` để xem trên Mac.
+Mở [Sàng lọc tiểu đường · V3](https://glucoguide-giang254.vercel.app/#v3) hoặc chạy `bash run-macos.sh start` để xem trên Mac.
 
-- **Một checkpoint Deep Learning.** So sánh tám biến trên NHIS, Macro-F1 validation trung bình là MLP (0,635), Transformer (0,630) và CNN 1D (0,616). MLP đạt Macro-F1 test 0,641 ở ngưỡng 0,5.
+- **Sàng lọc trên Pima.** Nhập glucose sau 2 giờ, BMI, tuổi và các chỉ số còn lại để phân loại nhãn dương/âm. API `POST /api/v2/screening-predict` dùng một checkpoint CNN 1D đã chọn trên validation (Macro-F1 trung bình 0,775), `models/v3/pima_cnn_seed255.npz`. Dữ liệu nghiên cứu gồm phụ nữ Pima từ 21 tuổi.
+- **[Phân loại type](https://glucoguide-giang254.vercel.app/#type) cho mẫu đã được chẩn đoán.** So sánh tám biến trên NHIS, Macro-F1 validation trung bình là MLP (0,635), Transformer (0,630) và CNN 1D (0,616). MLP đạt Macro-F1 test 0,641 ở ngưỡng 0,5.
 - **Luồng agent.** `POST /api/v2/type-predict` chuyển qua Data, Prediction và Rule. `app/type_study.py` nạp tệp `models/v3/nhis_type1_vs_type2_8f_mlp_seed255.npz`.
-- **Minh chứng.** [Notebook](notebooks/tieuluan_final_06_02_giangkt_v3.ipynb) mở đầu bằng bảng và biểu đồ của ba mô hình trên NHIS. Phần phụ lục trình bày so sánh trên Pima và Early Stage. Tab V2 tái hiện demo trước đó.
+- **Minh chứng.** [Notebook](notebooks/tieuluan_final_06_02_giangkt_v3.ipynb) mở đầu bằng so sánh các mô hình trên Pima và Early Stage, sau đó trình bày bài toán phân loại type trên NHIS. Tab V2 tái hiện demo trước đó.
 - **Báo cáo.** [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) và [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf).
 
 
@@ -166,7 +167,7 @@ tectonic --outdir ../../reports tieuluan_final_06_02_giangkt_v3.tex
 
 ## Demo trên Vercel
 
-[Mở demo GlucoGuide V3](https://glucoguide-giang254.vercel.app/#v3) để chạy mô hình MLP đã chọn và thử phân loại type 1, type 2. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `data/knowledge_graph_snapshot.json`. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata.
+[Mở demo GlucoGuide V3](https://glucoguide-giang254.vercel.app/#v3) để chạy CNN 1D và xem nhãn dương/âm của mẫu Pima. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `data/knowledge_graph_snapshot.json`. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata.
 
 ## Nguồn web/PDF và hỗ trợ sau mô hình
 
@@ -180,6 +181,6 @@ Kiểm thử mới: `python -m scripts.test_sources_support` và `node scripts/t
 
 ### Phân loại type 1 và type 2 (NHIS)
 
-Mở [Thực nghiệm V3](http://localhost:8765/#v3), chọn mẫu giả định rồi bấm **Chạy phân loại**. API `POST /api/v2/type-predict` nạp checkpoint MLP đã chọn qua validation và trả `type_1`, `type_2` hoặc `undetermined`. Demo dành cho mẫu nghiên cứu là người lớn đã được chẩn đoán ngoài thai kỳ.
+Mở [Phân loại type](http://localhost:8765/#type), chọn mẫu giả định rồi bấm **Chạy phân loại**. API `POST /api/v2/type-predict` nạp checkpoint MLP đã chọn qua validation và trả `type_1`, `type_2` hoặc `undetermined`. Demo dành cho mẫu nghiên cứu là người lớn đã được chẩn đoán ngoài thai kỳ.
 
 Bộ khảo sát NHIS công khai lưu theo ba tệp ZIP chứa CSV trong `data/raw/nhis/`. Tải từ CDC cho [2022](https://www.cdc.gov/nchs/nhis/documentation/2022-nhis.html), [2023](https://www.cdc.gov/nchs/nhis/documentation/2023-nhis.html) và [2024](https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html), theo thứ tự train/validation/test. Chạy lại với `.venv/bin/python -m scripts.compare_diabetes_types data/raw/nhis`. Mã băm dữ liệu, số mẫu theo nhãn và kết quả có trong `results/v3/diabetes_types.json`. Nhãn là loại bệnh người tham gia thuật lại. Tám trường gồm tuổi hiện tại, tuổi lúc được chẩn đoán, nhóm BMI, giới tính, tiền sử tăng huyết áp, tiền sử cholesterol cao, từng hút ít nhất 100 điếu thuốc lá và sức khỏe tự đánh giá. Ba biến đầu là bắt buộc, năm biến sau có thể để trống. Macro-F1 test 2024 là 0,641 với tám biến và 0,644 với ba biến tại ngưỡng 0,5. Demo dùng hai ngưỡng 0,37 và 0,9, có nhãn cho 74,1% mẫu test.

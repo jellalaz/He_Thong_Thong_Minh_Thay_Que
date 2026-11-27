@@ -41,7 +41,7 @@ const base = process.env.GLUCOGUIDE_TEST_URL || 'http://127.0.0.1:8765';
     const graph = await (await page.request.get(new URL('/api/graph', base).href)).json();
     await page.waitForFunction(count=>document.querySelectorAll('#network [data-node]').length===count,graph.nodes.length);
     assert.equal(await page.locator('#network [data-edge]').count(),graph.edges.length);
-    await page.locator('[data-view="v3"]').click();
+    await page.locator('[data-view="type"]').click();
     assert(await page.locator('#v2-form').isHidden());
     assert.equal(await page.locator('#type-comparison tbody tr').count(),3);
     const study = await (await page.request.get(new URL('/api/v2/type-study', base).href)).json();
