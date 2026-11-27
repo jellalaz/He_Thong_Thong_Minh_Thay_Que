@@ -5,8 +5,8 @@
 <nav class="navigation" aria-label="Điều hướng chính">
 <button data-view="chat" class="active"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4V4Z"/><path d="M8 8h8M8 12h5"/></svg>Trò chuyện</button>
 <button data-view="models"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15v-4m5 4V5m5 10V8"/></svg>Phân loại & dự đoán</button>
-<button data-view="v2">Thực nghiệm V2</button>
-<button data-view="v3"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15V9m5 6V4m5 11V7"/></svg>Đối chiếu V3</button>
+<button data-view="v2">Bản đối chiếu V2</button>
+<button data-view="v3"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 15V9m5 6V4m5 11V7"/></svg>Dự đoán type · V3</button>
 <button data-view="minhchung">Minh chứng mô hình</button>
 <button data-view="graph"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="3"/><circle cx="18" cy="7" r="3"/><circle cx="12" cy="18" r="3"/><path d="m8 9 3 6m5-6-3 6M9 7h6"/></svg>Đồ thị tri thức</button>
 <button data-view="data"><svg viewBox="0 0 24 24"><path d="M4 4h7l1 2 1-2h7v15h-7l-1 2-1-2H4V4Zm8 2v15"/></svg>Dữ liệu & tài liệu</button></nav>
@@ -33,8 +33,10 @@ RETURN a,r,b LIMIT 100;</pre><button id="copy-cypher" class="text-button">Sao ch
   <div id="proof-matrices" class="proof-charts" aria-live="polite"></div>
 </div></section>
 <section id="data" class="view" hidden><header class="section-heading"><div><p class="eyebrow">THƯ VIỆN</p><h1>Dữ liệu & tài liệu</h1></div></header><div id="catalog"></div><div class="library-header"><h2>Kiến thức tiểu đường</h2><label><span class="sr-only">Tìm chủ đề</span><input id="kb-search" type="search" placeholder="Tìm chủ đề…"></label></div><div id="kb-results" class="kb-grid"></div></section>
-<section id="v2" class="view" hidden><header class="section-heading"><div><p class="eyebrow">HAI DATASET · CÙNG PHÉP CHIA</p><h1>Thực nghiệm đa agent</h1></div></header><label for="study-workflow">Phiên bản hệ đa agent</label><select id="study-workflow"><option value="v3">V3 · chọn mạng theo validation</option><option value="v2">V2 · quy trình gốc</option></select><p id="workflow-note" class="model-note">Luồng MAS V2 có 6 tầng, 7 vai trò và audit theo mã yêu cầu. V1 trong bảng là kiến trúc cũ tái huấn luyện trên hai dataset mới.</p><p id="v2-status" role="status">Đang đọc kết quả thực nghiệm…</p><div class="model-layout"><div class="panel model-form"><label for="v2-dataset">Bộ dữ liệu nghiên cứu</label><select id="v2-dataset"></select><p id="v2-population" class="muted"></p><label for="v2-version">Kiến trúc mô hình</label><select id="v2-version"><option value="v2">V2</option><option value="v1">V1 đối chứng</option></select><button id="v2-sample" class="sample-button" type="button">Điền mẫu công khai</button><button type="button" id="v3-disagreement" class="sample-button" hidden>Mẫu hai mạng khác nhãn</button><form id="v2-form"><div id="v2-fields" class="v2-fields"></div><label>Câu hỏi kiến thức đi kèm<input id="v2-question" value="HbA1c là gì?" maxlength="3000"></label><button class="primary-button" type="submit">Chạy luồng đa agent →</button></form></div><div id="v2-result" class="panel" aria-live="polite"><h2>Mẫu nghiên cứu</h2><p>Chọn bộ dữ liệu, điền mẫu và chạy để xem dự đoán, cờ kiểm tra, nguồn và trace.</p></div></div><section id="type-study" class="panel v2-study">
-<h2>Phân loại tiểu đường type 1 và type 2</h2>
+<section id="v2" class="view" hidden><header class="section-heading"><div><p class="eyebrow">HAI DATASET · CÙNG PHÉP CHIA</p><h1>Thực nghiệm đa agent</h1></div></header><p class="model-note">V2 tái hiện hai checkpoint MLP lịch sử trên Pima và Early Stage.</p><p id="v2-status" role="status">Đang đọc kết quả thực nghiệm…</p><div class="model-layout"><div class="panel model-form"><label for="v2-dataset">Bộ dữ liệu nghiên cứu</label><select id="v2-dataset"></select><p id="v2-population" class="muted"></p><label for="v2-version">Kiến trúc mô hình</label><select id="v2-version"><option value="v2">V2</option><option value="v1">V1 đối chứng</option></select><button id="v2-sample" class="sample-button" type="button">Điền mẫu công khai</button><form id="v2-form"><div id="v2-fields" class="v2-fields"></div><label>Câu hỏi kiến thức đi kèm<input id="v2-question" value="HbA1c là gì?" maxlength="3000"></label><button class="primary-button" type="submit">Chạy luồng đa agent →</button></form></div><div id="v2-result" class="panel" aria-live="polite"><h2>Mẫu nghiên cứu</h2><p>Chọn bộ dữ liệu, điền mẫu và chạy để xem dự đoán, cờ kiểm tra, nguồn và trace.</p></div></div><div class="panel v2-study"><h2>Kết quả test giữ riêng</h2><p class="muted">Cùng phép chia trong từng dataset. Số liệu trung bình qua ba seed 254, 255 và 256.</p><div id="v2-metrics" class="table-scroll"></div><h2>Cách đánh giá và chọn mạng</h2><div id="v2-differences"></div></div></section>
+<section id="v3" class="view" hidden>
+<header class="section-heading"><div><h1>Phân loại tiểu đường type 1 và type 2</h1></div></header>
+<div id="type-study" class="panel">
 <p id="type-study-scope" class="model-note">Demo nghiên cứu trên khảo sát NHIS.</p>
 <div class="model-layout">
 <form id="type-form" class="model-form">
@@ -52,6 +54,11 @@ RETURN a,r,b LIMIT 100;</pre><button id="copy-cypher" class="text-button">Sao ch
 <div id="type-result" class="panel" aria-live="polite"><p>Chọn mẫu rồi chạy để xem nhãn nghiên cứu.</p></div>
 </div>
 <p id="type-study-metrics"></p>
-<p><a href="https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html" target="_blank" rel="noopener">Dữ liệu và bảng mã NHIS năm 2024</a></p>
-</section><div class="panel v2-study"><h2>Kết quả test giữ riêng</h2><p class="muted">Cùng phép chia trong từng dataset. Số liệu trung bình qua ba seed 254, 255 và 256.</p><div id="v2-metrics" class="table-scroll"></div><h2>Cách đánh giá và chọn mạng</h2><div id="v2-differences"></div></div></section>
-</main><div id="toast" role="status" hidden></div><script src="/assets/graph-layout.js?v=2"></script><script src="/assets/study-evidence.js?v=5"></script><script src="/assets/app.js?v=6"></script><script src="/assets/chat-options.js"></script><script src="/assets/model-support.js?v=1"></script><script src="/assets/v2.js?v=5"></script></body></html>
+</div>
+<div class="panel v2-study">
+<h2>So sánh ba kiến trúc trên NHIS</h2>
+<div id="type-comparison" class="table-scroll"></div>
+<p><a href="https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/blob/main/notebooks/tieuluan_final_06_02_giangkt_v3.ipynb" target="_blank" rel="noopener">Mở notebook so sánh</a> · <a href="https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html" target="_blank" rel="noopener">Dữ liệu và bảng mã NHIS năm 2024</a></p>
+</div>
+</section>
+</main><div id="toast" role="status" hidden></div><script src="/assets/graph-layout.js?v=2"></script><script src="/assets/study-evidence.js?v=5"></script><script src="/assets/app.js?v=7"></script><script src="/assets/chat-options.js"></script><script src="/assets/model-support.js?v=1"></script><script src="/assets/v2.js?v=6"></script></body></html>

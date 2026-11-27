@@ -12,17 +12,13 @@ Kiều Trường Giang, B23DCCN254, nhóm học phần 06, nhóm thực hiện 0
 
 ## Demo và báo cáo V3
 
-Chạy `bash run-macos.sh start` rồi mở [Đối chiếu V3](http://localhost:8765/#v3).
-Chọn Pima hoặc Early Stage, bấm **Mẫu hai mạng khác nhãn**, rồi chạy luồng đa agent.
-V3 chọn CNN 1D cho Pima và MLP cho Early Stage theo Macro-F1 validation.
-Mạng đứng thứ hai được dùng để đối chiếu cùng mẫu.
+Mở [Dự đoán type · V3](https://glucoguide-giang254.vercel.app/#v3) hoặc chạy `bash run-macos.sh start` để xem trên Mac.
 
-- **Dữ liệu thí nghiệm** dùng chung train/validation/test cho MLP, CNN 1D và Transformer theo đặc trưng.
-- **Checkpoint V3** nằm trong `models/v3/` dạng `.npz`, gồm trọng số và thống kê tiền xử lý. `app/deep_study.py` nạp và kiểm SHA-256.
-- **Đường gọi** là `POST /api/v2/predict` với `workflow: "v3"` và `version: "auto"` hoặc bỏ `version`. Giữ `workflow: "v2"` để tái hiện các checkpoint MLP lịch sử.
-- **Tái lập** bằng `.venv/bin/python -m scripts.compare_deep_models` và `.venv/bin/python -m scripts.build_study_evidence`. Sau khi tái huấn luyện, nạp lại dịch vụ để đọc checkpoint mới.
-- **Minh chứng** có ROC, Precision–Recall và ma trận nhầm lẫn tương tác cho cả ba họ mạng. [Notebook](notebooks/tieuluan_final_06_02_giangkt_v3.ipynb) nạp cùng checkpoint và có sẵn biểu đồ.
-- **Báo cáo** gồm [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) và [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf).
+- **Một checkpoint Deep Learning.** MLP đứng đầu validation trên NHIS (Macro-F1 0,641), tiếp theo là Transformer (0,635) và CNN 1D (0,620). Điểm test của checkpoint đầu bảng là 0,644 tại ngưỡng 0,5.
+- **Luồng agent.** `POST /api/v2/type-predict` chuyển qua Data, Prediction và Rule. `app/type_study.py` nạp tệp `models/v3/nhis_type1_vs_type2_mlp_seed256.npz`.
+- **Minh chứng.** [Notebook](notebooks/tieuluan_final_06_02_giangkt_v3.ipynb) mở đầu bằng bảng và biểu đồ của ba mô hình trên NHIS. Phần phụ lục trình bày so sánh trên Pima và Early Stage. Tab V2 tái hiện demo trước đó.
+- **Báo cáo.** [Project 01 V3](reports/project01_06_02_giangkt_v3.pdf) và [Tiểu luận Final V3](reports/tieuluan_final_06_02_giangkt_v3.pdf).
+
 
 ## Phiên bản V2 và bộ nộp gọn
 
@@ -170,7 +166,7 @@ tectonic --outdir ../../reports tieuluan_final_06_02_giangkt_v3.tex
 
 ## Demo trên Vercel
 
-[Mở demo GlucoGuide V3](https://glucoguide-giang254.vercel.app/#v3) để chạy các checkpoint đã chọn và thử phân loại type 1, type 2. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `data/knowledge_graph_snapshot.json`. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata.
+[Mở demo GlucoGuide V3](https://glucoguide-giang254.vercel.app/#v3) để chạy mô hình MLP đã chọn và thử phân loại type 1, type 2. Chat trả lời bằng KB và luật có nguồn. Nếu Aura không kết nối, giao diện và agent KG đọc bản chụp tại `data/knowledge_graph_snapshot.json`. Bản chạy Mac dùng Qwen 4B, Neo4j trực tiếp và lưu audit metadata.
 
 ## Nguồn web/PDF và hỗ trợ sau mô hình
 
@@ -184,6 +180,6 @@ Kiểm thử mới: `python -m scripts.test_sources_support` và `node scripts/t
 
 ### Phân loại type 1 và type 2 (NHIS)
 
-Mở [Thực nghiệm V3](http://localhost:8765/#v3), kéo xuống **Phân loại tiểu đường type 1 và type 2**, chọn mẫu giả định rồi bấm **Chạy phân loại**. API `POST /api/v2/type-predict` nạp checkpoint MLP đã chọn qua validation và trả `type_1`, `type_2` hoặc `undetermined`. Demo dành cho mẫu nghiên cứu là người lớn đã được chẩn đoán ngoài thai kỳ.
+Mở [Thực nghiệm V3](http://localhost:8765/#v3), chọn mẫu giả định rồi bấm **Chạy phân loại**. API `POST /api/v2/type-predict` nạp checkpoint MLP đã chọn qua validation và trả `type_1`, `type_2` hoặc `undetermined`. Demo dành cho mẫu nghiên cứu là người lớn đã được chẩn đoán ngoài thai kỳ.
 
 Bộ khảo sát NHIS công khai lưu theo ba tệp ZIP chứa CSV trong `data/raw/nhis/`. Tải từ CDC cho [2022](https://www.cdc.gov/nchs/nhis/documentation/2022-nhis.html), [2023](https://www.cdc.gov/nchs/nhis/documentation/2023-nhis.html) và [2024](https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html), theo thứ tự train/validation/test. Chạy lại với `.venv/bin/python -m scripts.compare_diabetes_types data/raw/nhis`. Mã băm dữ liệu, số mẫu theo nhãn và kết quả có trong `results/v3/diabetes_types.json`. Nhãn là loại bệnh người tham gia thuật lại. Test năm 2024 cho Macro-F1 0,644 tại ngưỡng 0,5. Demo dùng hai ngưỡng 0,43 và 0,91, có nhãn cho 83,5% mẫu test.

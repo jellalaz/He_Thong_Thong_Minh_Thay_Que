@@ -5,6 +5,7 @@
 .runtime
 reports
 report_sources
+notebooks
 references
 legacy_tieuluan
 data/raw

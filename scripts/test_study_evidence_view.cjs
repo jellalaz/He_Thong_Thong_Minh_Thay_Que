@@ -42,23 +42,26 @@ const base = process.env.GLUCOGUIDE_TEST_URL || 'http://127.0.0.1:8765';
     await page.waitForFunction(count=>document.querySelectorAll('#network [data-node]').length===count,graph.nodes.length);
     assert.equal(await page.locator('#network [data-edge]').count(),graph.edges.length);
     await page.locator('[data-view="v3"]').click();
-    assert(await page.locator('#v3-disagreement').isVisible());
-    for (const [dataset, family] of [['pima','CNN 1D'],['early_stage','MLP']]) {
-      await page.selectOption('#v2-dataset', dataset);
-      assert.match(await page.locator('#v2-version').innerText(), new RegExp(family));
-      await page.locator('#v2-sample').click();
-      await page.locator('#v2-form button[type="submit"]').click();
-      await page.locator('#v2-result .answer-text').waitFor();
-      assert.match(await page.locator('#v2-result .answer-text').innerText(), /Chưa xác định được tuýp/);
-    }
+    assert(await page.locator('#v2-form').isHidden());
+    assert.equal(await page.locator('#type-comparison tbody tr').count(),3);
+    assert.equal(await page.locator('#type-comparison tbody strong').innerText(),'MLP · Đang dùng');
+    const checkpoints = new Set();
     for (const [sample, label] of [['early_onset','Type 1'],['later_onset','Type 2'],['uncertain','Chưa xác định']]) {
       await page.selectOption('#type-example',sample);
+      const received = page.waitForResponse(response => response.url().endsWith('/api/v2/type-predict'));
       await page.locator('#type-form button[type="submit"]').click();
+      const result = await (await received).json();
+      checkpoints.add(result.checkpoint_file);
+      assert.deepEqual(result.trace.filter(step => step.type==='REQUEST').map(step => step.receiver),['Data','Prediction','Rule']);
       assert.equal(await page.locator('#type-result h3').innerText(), label);
     }
-    await page.selectOption('#study-workflow', 'v2');
+    assert.deepEqual([...checkpoints],['nhis_type1_vs_type2_mlp_seed256.npz']);
+    await page.locator('[data-view="v2"]').click();
     assert(await page.locator('#type-study').isHidden());
+    await page.locator('#v2-sample').click();
+    await page.locator('#v2-form button[type="submit"]').click();
+    await page.locator('#v2-result .answer-text').waitFor();
     assert.deepEqual(errors,[]);
-    console.log('PASS: study charts, graph and Long Châu filter, two automatic checkpoints, all three type outcomes, and V2 navigation.');
+    console.log('PASS: charts, graph, NHIS comparison, three outcomes using one checkpoint, and legacy V2.');
   } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

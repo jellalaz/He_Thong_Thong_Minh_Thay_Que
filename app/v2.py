@@ -3,6 +3,7 @@ from functools import lru_cache
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import threading
 import time
@@ -57,9 +58,31 @@ def type_study_info():
 
 @router.post('/type-predict')
 def predict_type(req: TypeStudyRequest):
-    if req.age_at_diagnosis > req.age:
-        raise HTTPException(422, 'Tuổi khi được chẩn đoán phải nhỏ hơn hoặc bằng tuổi hiện tại.')
-    return type_study.predict(req.age, req.age_at_diagnosis, req.bmi_category)
+    def check_data(data, _bus):
+        if data['age_at_diagnosis'] > data['age']:
+            raise HTTPException(422, 'Tuổi khi được chẩn đoán phải nhỏ hơn hoặc bằng tuổi hiện tại.')
+        return data
+
+    def check_label(prediction, _bus):
+        score = prediction['type_1_score']
+        if not (math.isfinite(score) and 0 <= score <= 1
+                and prediction['label'] == type_study.decide(score, type_study.results()['thresholds'])):
+            raise HTTPException(503, 'Đầu ra mô hình không qua kiểm tra nhất quán.')
+        return prediction['label']
+
+    study = type_study.results()
+    chosen = study['models'][study['ranking'][0]]['checkpoint']['file']
+    bus = AuditBus(uuid.uuid4().hex, chosen, '3.0')
+    bus.register(Agent('Data', check_data))
+    bus.register(Agent('Prediction', lambda data, _: type_study.predict(**data)))
+    bus.register(Agent('Rule', check_label))
+    data = bus.request('Coordinator', 'Data', req.model_dump(exclude={'confirmed_study_scope'}))
+    prediction = bus.request('Coordinator', 'Prediction', data)
+    bus.request('Coordinator', 'Rule', prediction)
+    return {**prediction, 'trace': [
+        {k: event[k] for k in ('sender', 'receiver', 'type', 'model_version', 'elapsed_ms')}
+        for event in bus.trace
+    ]}
 
 
 class AuditBus(MessageBus):
@@ -183,6 +206,8 @@ def study():
 
 @router.post('/predict')
 def coordinated_prediction(req: StudyRequest):
+    if req.workflow == 'v3' and os.environ.get('VERCEL'):
+        raise HTTPException(410, 'V3 dùng mô hình NHIS tại /api/v2/type-predict. Phép đối chiếu Pima và Early Stage nằm ở tab Minh chứng.')
     # Lazy import avoids an import cycle and retains the established live graph factory.
     from app.main import kb, retriever, graph_driver
     from app.conversation import route
