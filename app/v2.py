@@ -12,7 +12,7 @@ import joblib
 import pandas as pd
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Annotated, Literal
 from app.agents import Agent, MessageBus
 from app.cloud_graph import DeploymentGraphAgent
 from app.settings import database
@@ -44,10 +44,19 @@ class StudyRequest(BaseModel):
     question: str = Field(default='HbA1c là gì?', max_length=3000)
 
 
+SurveyBinary = Annotated[int, Field(ge=1, le=2, strict=True)]
+HealthStatus = Annotated[int, Field(ge=1, le=5, strict=True)]
+
+
 class TypeStudyRequest(BaseModel):
     age: int = Field(ge=18, le=85, strict=True)
     age_at_diagnosis: int = Field(ge=1, le=85, strict=True)
     bmi_category: int = Field(ge=1, le=4, strict=True)
+    sex: SurveyBinary | None = None
+    hypertension: SurveyBinary | None = None
+    high_cholesterol: SurveyBinary | None = None
+    smoked_100: SurveyBinary | None = None
+    general_health: HealthStatus | None = None
     confirmed_study_scope: Literal[True]
 
 
@@ -71,7 +80,7 @@ def predict_type(req: TypeStudyRequest):
         return prediction['label']
 
     study = type_study.results()
-    chosen = study['models'][study['ranking'][0]]['checkpoint']['file']
+    chosen = study['models'][study['selected_family']]['checkpoint']['file']
     bus = AuditBus(uuid.uuid4().hex, chosen, '3.0')
     bus.register(Agent('Data', check_data))
     bus.register(Agent('Prediction', lambda data, _: type_study.predict(**data)))

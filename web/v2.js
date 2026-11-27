@@ -65,19 +65,19 @@ const typeConclusions = {
  try {
   const study = await api('/api/v2/type-study');
   $('#type-study-scope').textContent = study.scope;
-  const winner = study.models[study.ranking[0]];
-  $('#type-comparison').innerHTML = `<table><thead><tr><th>Kiến trúc</th><th>Macro-F1 validation</th><th>Macro-F1 test</th></tr></thead><tbody>${study.ranking.map((family, i) => {
+  const winner = study.models[study.selected_family];
+  $('#type-comparison').innerHTML = `<table><thead><tr><th>Kiến trúc</th><th>Macro-F1 validation</th><th>Macro-F1 test</th></tr></thead><tbody>${study.ranking.map(family => {
    const model = study.models[family];
    const title = esc(model.label);
-   return `<tr><td>${i === 0 ? '<strong>' + title + ' · Đang dùng</strong>' : title}</td><td>${model.validation_f1.toFixed(3)}</td><td>${model.test.macro_f1.toFixed(3)}</td></tr>`;
-  }).join('')}</tbody></table><p class="muted">Xếp hạng bằng Macro-F1 validation trung bình trên ba seed. Điểm test tính tại ngưỡng 0,5.</p>`;
+   return `<tr><td>${family === study.selected_family ? '<strong>' + title + ' · Đang dùng</strong>' : title}</td><td>${model.validation_f1.toFixed(3)}</td><td>${model.test.macro_f1.toFixed(3)}</td></tr>`;
+  }).join('')}</tbody></table><p class="muted">Xếp hạng bằng Macro-F1 validation trung bình trên ba seed. Checkpoint triển khai phải trả được cả hai nhãn trên validation ở hai ngưỡng đã chọn. Điểm test trong bảng tính tại ngưỡng 0,5.</p>`;
   const total = study.splits.find(split => split.split === 'test');
   const retained = study.guarded_test.coverage * 100;
   $('#type-study-metrics').textContent = `${winner.label} · Macro-F1 ${winner.test.macro_f1.toFixed(3)} tại ngưỡng 0,5 trên ${total.type_1 + total.type_2} mẫu test năm 2024. Với hai ngưỡng hiện hành, mô hình trả nhãn cho ${retained.toFixed(1)}% mẫu.`;
   $('#type-example').onchange = event => {
    const sample = study.examples[event.target.value];
    if (!sample) return;
-   for (const [key, value] of Object.entries(sample)) typeForm.elements.namedItem(key).value = value;
+   for (const [key, value] of Object.entries(sample)) typeForm.elements.namedItem(key).value = value ?? '';
    $('#type-confirm').checked = true;
    $('#type-result').innerHTML = '<p>Đã điền mẫu giả định. Bấm chạy để xem kết quả.</p>';
   };
@@ -90,7 +90,7 @@ typeForm.onsubmit = async event => {
  event.preventDefault();
  const button = typeForm.querySelector('button[type="submit"]');
  const panel = $('#type-result');
- const inputs = Object.fromEntries([...new FormData(typeForm)].map(([key, val]) => [key, Number(val)]));
+ const inputs = Object.fromEntries([...new FormData(typeForm)].map(([key, val]) => [key, val === '' ? null : Number(val)]));
  button.disabled = true;
  try {
   panel.textContent = 'Đang chạy mô hình…';
@@ -101,10 +101,12 @@ typeForm.onsubmit = async event => {
   const data = await response.json();
   if (!response.ok) throw Error(typeof data.detail === 'string' ? data.detail : 'Kiểm tra lại các trường của mẫu nghiên cứu.');
   const agents = data.trace.filter(step => step.type === 'REQUEST').map(step => esc(step.receiver));
+  const missing = data.missing_fields.length;
   panel.innerHTML = `<h3>${esc(typeConclusions[data.label])}</h3>
    <details><summary>Luồng agent và điểm mô hình</summary>
     <p>${agents.join(' → ')}</p>
     <p>Điểm lớp type 1 là ${data.type_1_score.toFixed(3)}.${data.label === 'undetermined' ? ' Điểm nằm giữa hai ngưỡng trả nhãn.' : ''}</p>
+    ${missing ? `<p>Có ${missing} trong ${data.feature_count} thông số được điền từ trung vị tập train.</p>` : ''}
     <p>${esc(data.architecture)} · <small>${esc(data.checkpoint_file)}</small></p>
    </details>`;
  } catch (error) {

@@ -40,14 +40,24 @@ RETURN a,r,b LIMIT 100;</pre><button id="copy-cypher" class="text-button">Sao ch
 <p id="type-study-scope" class="model-note">Demo nghiên cứu trên khảo sát NHIS.</p>
 <div class="model-layout">
 <form id="type-form" class="model-form">
-<p>Dùng mẫu giả định hoặc nhập mẫu nghiên cứu theo thông tin dưới đây.</p>
+<p>Chọn mẫu giả định để điền sẵn 8 thông số, hoặc nhập mẫu nghiên cứu.</p>
+<label for="type-example">Mẫu giả định</label>
+<select id="type-example"><option value="">Điền một mẫu</option><option value="early_onset">Chẩn đoán lúc nhỏ</option><option value="later_onset">Chẩn đoán lúc trưởng thành</option><option value="uncertain">Mẫu trung gian</option></select>
+<h3>Thông tin cơ bản</h3>
 <div class="v2-fields">
 <label>Tuổi hiện tại<input name="age" type="number" min="18" max="85" step="1" required></label>
 <label>Tuổi khi được chẩn đoán<input name="age_at_diagnosis" type="number" min="1" max="85" step="1" required></label>
 <label>Nhóm BMI<select name="bmi_category" required><option value="">Chọn nhóm</option><option value="1">Dưới 18,5</option><option value="2">18,5 đến dưới 25</option><option value="3">25 đến dưới 30</option><option value="4">Từ 30</option></select></label>
 </div>
-<label for="type-example">Mẫu giả định</label>
-<select id="type-example"><option value="">Điền một mẫu</option><option value="early_onset">Chẩn đoán lúc nhỏ</option><option value="later_onset">Chẩn đoán lúc trưởng thành</option><option value="uncertain">Mẫu trung gian</option></select>
+<h3>Thông tin bổ sung</h3>
+<p class="muted">Giữ “Không rõ” nếu mẫu thiếu thông tin. Mô hình sẽ dùng giá trị tham chiếu từ tập train.</p>
+<div class="v2-fields">
+<label>Giới tính ghi trong khảo sát<select name="sex"><option value="">Không rõ</option><option value="1">Nam</option><option value="2">Nữ</option></select></label>
+<label>Từng được báo tăng huyết áp<select name="hypertension"><option value="">Không rõ</option><option value="1">Có</option><option value="2">Không</option></select></label>
+<label>Từng được báo cholesterol cao<select name="high_cholesterol"><option value="">Không rõ</option><option value="1">Có</option><option value="2">Không</option></select></label>
+<label>Từng hút ít nhất 100 điếu thuốc lá<select name="smoked_100"><option value="">Không rõ</option><option value="1">Có</option><option value="2">Không</option></select></label>
+<label>Sức khỏe tự đánh giá<select name="general_health"><option value="">Không rõ</option><option value="1">Xuất sắc</option><option value="2">Rất tốt</option><option value="3">Tốt</option><option value="4">Trung bình</option><option value="5">Kém</option></select></label>
+</div>
 <p><label for="type-confirm"><input id="type-confirm" type="checkbox" required> Mẫu nghiên cứu đã được chẩn đoán ngoài thai kỳ</label></p>
 <button class="primary-button" type="submit" disabled>Chạy phân loại →</button>
 </form>
@@ -61,4 +71,4 @@ RETURN a,r,b LIMIT 100;</pre><button id="copy-cypher" class="text-button">Sao ch
 <p><a href="https://github.com/jellalaz/He_Thong_Thong_Minh_Thay_Que/blob/main/notebooks/tieuluan_final_06_02_giangkt_v3.ipynb" target="_blank" rel="noopener">Mở notebook so sánh</a> · <a href="https://www.cdc.gov/nchs/nhis/documentation/2024-nhis.html" target="_blank" rel="noopener">Dữ liệu và bảng mã NHIS năm 2024</a></p>
 </div>
 </section>
-</main><div id="toast" role="status" hidden></div><script src="/assets/graph-layout.js?v=2"></script><script src="/assets/study-evidence.js?v=5"></script><script src="/assets/app.js?v=7"></script><script src="/assets/chat-options.js"></script><script src="/assets/model-support.js?v=1"></script><script src="/assets/v2.js?v=7"></script></body></html>
+</main><div id="toast" role="status" hidden></div><script src="/assets/graph-layout.js?v=2"></script><script src="/assets/study-evidence.js?v=5"></script><script src="/assets/app.js?v=7"></script><script src="/assets/chat-options.js"></script><script src="/assets/model-support.js?v=1"></script><script src="/assets/v2.js?v=8"></script></body></html>

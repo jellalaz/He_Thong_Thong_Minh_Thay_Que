@@ -44,7 +44,10 @@ const base = process.env.GLUCOGUIDE_TEST_URL || 'http://127.0.0.1:8765';
     await page.locator('[data-view="v3"]').click();
     assert(await page.locator('#v2-form').isHidden());
     assert.equal(await page.locator('#type-comparison tbody tr').count(),3);
-    assert.equal(await page.locator('#type-comparison tbody strong').innerText(),'MLP · Đang dùng');
+    const study = await (await page.request.get(new URL('/api/v2/type-study', base).href)).json();
+    const winner = study.models[study.selected_family];
+    assert.equal(await page.locator('#type-comparison tbody strong').innerText(), winner.label + ' · Đang dùng');
+    assert.equal(await page.locator('#type-form [name]').count(), 8);
     const checkpoints = new Set();
     const samples = [
       ['early_onset', 'Mô hình dự đoán mẫu này thuộc type 1.'],
@@ -57,11 +60,13 @@ const base = process.env.GLUCOGUIDE_TEST_URL || 'http://127.0.0.1:8765';
       await page.locator('#type-form button[type="submit"]').click();
       const result = await (await received).json();
       checkpoints.add(result.checkpoint_file);
+      assert.equal(result.feature_count, 8);
+      assert.deepEqual(result.missing_fields, []);
       assert.deepEqual(result.trace.filter(step => step.type==='REQUEST').map(step => step.receiver),['Data','Prediction','Rule']);
       assert.equal(await page.locator('#type-result > :first-child').innerText(), conclusion);
       assert(await page.locator('#type-result details > p').first().isHidden());
     }
-    assert.deepEqual([...checkpoints],['nhis_type1_vs_type2_mlp_seed256.npz']);
+    assert.deepEqual([...checkpoints],[winner.checkpoint.file]);
     await page.locator('[data-view="v2"]').click();
     assert(await page.locator('#type-study').isHidden());
     await page.locator('#v2-sample').click();
