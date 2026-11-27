@@ -46,14 +46,20 @@ const base = process.env.GLUCOGUIDE_TEST_URL || 'http://127.0.0.1:8765';
     assert.equal(await page.locator('#type-comparison tbody tr').count(),3);
     assert.equal(await page.locator('#type-comparison tbody strong').innerText(),'MLP · Đang dùng');
     const checkpoints = new Set();
-    for (const [sample, label] of [['early_onset','Type 1'],['later_onset','Type 2'],['uncertain','Chưa xác định']]) {
+    const samples = [
+      ['early_onset', 'Mô hình dự đoán mẫu này thuộc type 1.'],
+      ['later_onset', 'Mô hình dự đoán mẫu này thuộc type 2.'],
+      ['uncertain', 'Chưa xác định được loại tiểu đường của mẫu này.'],
+    ];
+    for (const [sample, conclusion] of samples) {
       await page.selectOption('#type-example',sample);
       const received = page.waitForResponse(response => response.url().endsWith('/api/v2/type-predict'));
       await page.locator('#type-form button[type="submit"]').click();
       const result = await (await received).json();
       checkpoints.add(result.checkpoint_file);
       assert.deepEqual(result.trace.filter(step => step.type==='REQUEST').map(step => step.receiver),['Data','Prediction','Rule']);
-      assert.equal(await page.locator('#type-result h3').innerText(), label);
+      assert.equal(await page.locator('#type-result > :first-child').innerText(), conclusion);
+      assert(await page.locator('#type-result details > p').first().isHidden());
     }
     assert.deepEqual([...checkpoints],['nhis_type1_vs_type2_mlp_seed256.npz']);
     await page.locator('[data-view="v2"]').click();

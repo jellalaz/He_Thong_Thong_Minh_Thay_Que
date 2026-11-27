@@ -56,7 +56,11 @@ $('#v2-form').onsubmit=async e=>{
 })();
 
 const typeForm = $('#type-form');
-const typeLabels = {type_1: 'Type 1', type_2: 'Type 2', undetermined: 'Chưa xác định'};
+const typeConclusions = {
+ type_1: 'Mô hình dự đoán mẫu này thuộc type 1.',
+ type_2: 'Mô hình dự đoán mẫu này thuộc type 2.',
+ undetermined: 'Chưa xác định được loại tiểu đường của mẫu này.'
+};
 (async () => {
  try {
   const study = await api('/api/v2/type-study');
@@ -96,10 +100,13 @@ typeForm.onsubmit = async event => {
   });
   const data = await response.json();
   if (!response.ok) throw Error(typeof data.detail === 'string' ? data.detail : 'Kiểm tra lại các trường của mẫu nghiên cứu.');
-  const detail = data.label === 'undetermined' ? 'Điểm nằm giữa hai ngưỡng trả nhãn.' : 'Nhãn dự đoán của mẫu nghiên cứu.';
   const agents = data.trace.filter(step => step.type === 'REQUEST').map(step => esc(step.receiver));
-  panel.innerHTML = `<h3>${esc(typeLabels[data.label])}</h3><p>${detail}</p><p>Điểm lớp type 1: ${data.type_1_score.toFixed(3)}</p><p>${esc(data.architecture)} · <small>${esc(data.checkpoint_file)}</small></p>
-   <details><summary>Luồng agent</summary><p>${agents.join(' → ')}</p></details>`;
+  panel.innerHTML = `<h3>${esc(typeConclusions[data.label])}</h3>
+   <details><summary>Luồng agent và điểm mô hình</summary>
+    <p>${agents.join(' → ')}</p>
+    <p>Điểm lớp type 1 là ${data.type_1_score.toFixed(3)}.${data.label === 'undetermined' ? ' Điểm nằm giữa hai ngưỡng trả nhãn.' : ''}</p>
+    <p>${esc(data.architecture)} · <small>${esc(data.checkpoint_file)}</small></p>
+   </details>`;
  } catch (error) {
   panel.innerHTML = `<p class="error">${esc(error.message)}</p>`;
  } finally {
